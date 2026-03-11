@@ -3,691 +3,727 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Gustavo - Creative Portfolio</title>
+    <title>Luis Gustavo | Portfólio</title>
     <style>
+        :root {
+            --primary-orange: #FF8C42;
+            --secondary-orange: #FF6B35;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --dark-gray: #333333;
+            --text-gray: #666666;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0a0a0a;
-            color: #e0e0e0;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--dark-gray);
             line-height: 1.6;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            border-bottom: 1px solid #222;
-            z-index: 1000;
-            padding: 20px 0;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: #888;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        nav a:hover {
-            color: #fff;
-        }
-
-        /* Header/Hero */
+        
+        /* Header */
         header {
-            padding: 200px 0 100px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white);
+            padding: 4rem 2rem;
             text-align: center;
-            border-bottom: 1px solid #222;
         }
-
-        header h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 20px;
-            letter-spacing: -3px;
-        }
-
-        header .subtitle {
-            font-size: 1.5rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        header .date {
-            color: #444;
-            font-size: 1rem;
-            margin-bottom: 40px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .social-links a {
-            color: #888;
-            text-decoration: none;
-            padding: 10px 25px;
-            border: 1px solid #333;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #fff;
-            border-color: #666;
-            background: #1a1a1a;
-        }
-
-        /* Section */
-        section {
-            padding: 100px 0;
-            border-bottom: 1px solid #222;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: #fff;
-            margin-bottom: 20px;
-            font-weight: 600;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-        }
-
-        .section-subtitle {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 50px;
-            line-height: 1.8;
+        
+        .profile-container {
             max-width: 800px;
+            margin: 0 auto;
         }
-
-        /* Table of Contents */
-        .toc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .toc-item {
-            padding: 30px;
-            border: 1px solid #222;
-            border-radius: 6px;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: block;
-        }
-
-        .toc-item:hover {
-            border-color: #444;
-            background: #111;
-            transform: translateY(-3px);
-        }
-
-        .toc-item h3 {
-            color: #fff;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .toc-item p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        /* About */
-        .about-content {
-            font-size: 1.2rem;
-            color: #999;
-            line-height: 1.9;
-            max-width: 800px;
-        }
-
-        .about-content h2 {
-            color: #fff;
-            font-size: 2rem;
-            margin: 40px 0 20px;
-        }
-
-        /* Education */
-        .education-list {
-            display: grid;
-            gap: 30px;
-        }
-
-        .education-item {
-            background: #111;
-            padding: 40px;
-            border: 1px solid #222;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .education-item:hover {
-            border-color: #444;
-            transform: translateX(5px);
-        }
-
-        .education-item h3 {
-            color: #fff;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .education-item p {
-            color: #888;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-card {
-            background: #111;
-            padding: 40px;
-            border: 1px solid #222;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .skill-card:hover {
-            border-color: #444;
-            transform: translateY(-5px);
-        }
-
-        .skill-card h3 {
-            color: #fff;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .skill-card p {
-            color: #888;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        /* Experience */
-        .experience-list {
-            display: grid;
-            gap: 40px;
-        }
-
-        .experience-item {
-            padding: 40px;
-            border-left: 3px solid #333;
-            transition: all 0.3s;
-        }
-
-        .experience-item:hover {
-            border-left-color: #666;
-            background: #111;
-            padding-left: 50px;
-        }
-
-        .experience-item h3 {
-            color: #fff;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .experience-item .company {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        .experience-item p {
-            color: #888;
-            line-height: 1.8;
-        }
-
-        /* Portfolio */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .portfolio-item {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .portfolio-item:hover {
-            border-color: #444;
-            transform: translateY(-5px);
-        }
-
-        .portfolio-item .placeholder {
-            width: 100%;
-            height: 250px;
-            background: #1a1a1a;
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--white);
+            margin-bottom: 1.5rem;
+            background: var(--light-gray);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #444;
             font-size: 3rem;
-            border-bottom: 1px solid #222;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        .portfolio-content {
-            padding: 30px;
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
-
-        .portfolio-content h3 {
-            color: #fff;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            background: var(--primary-orange);
+            color: var(--white);
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--secondary-orange);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-orange);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+        
+        /* About */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-gray);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-tag {
+            background: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--primary-orange);
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 140, 66, 0.2);
+        }
+        
+        .project-header {
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white);
+            padding: 1.5rem;
+        }
+        
+        .project-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .tech-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .project-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-body p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: var(--primary-orange);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary-orange);
+            transform: scale(1.05);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary-orange);
+            color: var(--primary-orange);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+        }
+        
+        /* Education & Experience */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-orange);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.3rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--secondary-orange);
+            border: 2px solid var(--white);
+            box-shadow: 0 0 0 2px var(--primary-orange);
+        }
+        
+        .timeline-date {
+            color: var(--primary-orange);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            margin: 0.3rem 0;
             font-weight: 600;
         }
-
-        .portfolio-content p {
-            color: #888;
-            line-height: 1.7;
-            margin-bottom: 20px;
+        
+        .timeline-desc {
+            color: var(--text-gray);
+            font-size: 0.95rem;
         }
-
+        
         /* Contact */
-        .contact-grid {
+        .contact-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .contact-item {
-            padding: 30px;
-            border: 1px solid #222;
-            border-radius: 6px;
+            gap: 2rem;
             text-align: center;
-            transition: all 0.3s;
         }
-
+        
+        .contact-item {
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        
         .contact-item:hover {
-            border-color: #444;
-            background: #111;
+            transform: translateY(-3px);
         }
-
-        .contact-item h3 {
-            color: #fff;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
         }
-
-        .contact-item p, .contact-item a {
-            color: #888;
+        
+        .contact-item a {
+            color: var(--dark-gray);
             text-decoration: none;
-            transition: color 0.3s;
+            word-break: break-all;
         }
-
+        
         .contact-item a:hover {
-            color: #fff;
+            color: var(--secondary-orange);
         }
-
+        
         /* Footer */
         footer {
-            padding: 60px 0;
+            background: var(--dark-gray);
+            color: var(--white);
             text-align: center;
-            border-top: 1px solid #222;
+            padding: 2rem;
+            margin-top: 3rem;
         }
-
-        footer h2 {
-            color: #fff;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+        
+        footer a {
+            color: var(--primary-orange);
+            text-decoration: none;
         }
-
-        footer p {
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .footer-info {
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 1px solid #222;
-            color: #444;
-            font-size: 0.9rem;
-        }
-
+        
         /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
+            .about-content {
+                grid-template-columns: 1fr;
             }
-
-            header h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
+            
+            h1 {
                 font-size: 2rem;
             }
-
-            nav ul {
-                gap: 20px;
+            
+            .nav-container {
+                gap: 1rem;
             }
-
-            section {
-                padding: 60px 0;
+            
+            nav a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#skills">My Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
     <!-- Header -->
-    <header id="introduction">
-        <div class="container">
-            <h1>OLIO.</h1>
-            <p class="subtitle">Creative Presentation</p>
-            <p class="date">09 May, 2026</p>
-            <p style="color: #666; margin-bottom: 30px;">Presented By: Luis Gustavo</p>
-            <div class="social-links">
-                <a href="#">@reallygreatsite</a>
-                <a href="#">hello@reallygreatsite.com</a>
-                <a href="#">reallygreatsite.com</a>
-            </div>
+    <header>
+        <div class="profile-container">
+            <div class="profile-image">👨‍💻</div>
+            <h1>Luis Gustavo</h1>
+            <p class="subtitle">Desenvolvedor Full Stack | Salesforce Admin | Data Analyst</p>
+            <p class="tagline">Transformando dados em soluções e ideias em código. Apaixonado por tecnologia, inovação e aprendizado contínuo.</p>
         </div>
     </header>
 
-    <!-- Table of Contents -->
-    <section>
-        <div class="container">
-            <h2 class="section-title">Table of Contents</h2>
-            <p class="section-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div class="toc-grid">
-                <a href="#introduction" class="toc-item">
-                    <h3>Introduction</h3>
-                    <p>Apresentação inicial</p>
-                </a>
-                <a href="#about" class="toc-item">
-                    <h3>About Me</h3>
-                    <p>Sobre mim</p>
-                </a>
-                <a href="#education" class="toc-item">
-                    <h3>Education</h3>
-                    <p>Formação acadêmica</p>
-                </a>
-                <a href="#skills" class="toc-item">
-                    <h3>My Skills</h3>
-                    <p>Habilidades pessoais</p>
-                </a>
-                <a href="#experience" class="toc-item">
-                    <h3>Experience</h3>
-                    <p>Experiência profissional</p>
-                </a>
-                <a href="#portfolio" class="toc-item">
-                    <h3>Portfolio</h3>
-                    <p>Projetos realizados</p>
-                </a>
-                <a href="#contact" class="toc-item">
-                    <h3>Contact</h3>
-                    <p>Entre em contato</p>
-                </a>
-            </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#sobre" class="active">Sobre</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#habilidades">Habilidades</a>
+            <a href="#contato">Contato</a>
         </div>
-    </section>
+    </nav>
 
-    <!-- About -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <h2>HELLO, I'M LUIS GUSTAVO</h2>
-                <p>
-                    Desenvolvedor Full Stack apaixonado por tecnologia e inovação, com formação completa 
-                    em desenvolvimento web, análise de dados e administração Salesforce.
-                </p>
+    <!-- About Section -->
+    <section id="sobre">
+        <h2 class="section-title">Sobre Mim</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Olá! Sou <strong>Luis Gustavo</strong>, desenvolvedor Full Stack com foco em criar soluções eficientes e escaláveis. Minha jornada na tecnologia combina desenvolvimento web, análise de dados e administração Salesforce.</p>
+                <p>Busco constantemente aprimorar minhas habilidades e aplicar as melhores práticas do mercado para entregar resultados de alto impacto.</p>
+                <p>Quando não estou codando, estou explorando novas tecnologias, contribuindo para projetos open source ou compartilhando conhecimento com a comunidade.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Education -->
-    <section id="education">
-        <div class="container">
-            <h2 class="section-title">My Education</h2>
-            <p class="section-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div class="education-list">
-                <div class="education-item">
-                    <h3>Hanover University</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-                <div class="education-item">
-                    <h3>Spies University</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-                <div class="education-item">
-                    <h3>Wardiere University</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua.
-                    </p>
+            <div class="about-skills">
+                <h3 style="margin-bottom: 1rem; color: var(--secondary-orange);">Principais Competências</h3>
+                <div class="skills-grid">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">Shopify Liquid</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Salesforce</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">REST APIs</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Personal Skills</h2>
-            <p class="section-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Photography</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-                <div class="skill-card">
-                    <h3>Videography</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-                <div class="skill-card">
-                    <h3>Copywriter</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-                <div class="skill-card">
-                    <h3>JavaScript</h3>
-                    <p>Desenvolvimento web moderno e interativo</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Python</h3>
-                    <p>Análise de dados e automação</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Salesforce</h3>
-                    <p>CRM e automação de vendas</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience -->
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Work Experience</h2>
-            <p class="section-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div class="experience-list">
-                <div class="experience-item">
-                    <h3>Position Title</h3>
-                    <p class="company">Arowwai Industries</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                        exercitation ullamco laboris.
-                    </p>
-                </div>
-                <div class="experience-item">
-                    <h3>Position Title</h3>
-                    <p class="company">Paucek and Lage</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                        exercitation ullamco laboris.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio -->
-    <section id="portfolio">
-        <div class="container">
-            <h2 class="section-title">Project Portfolio</h2>
-            <p class="section-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="placeholder">01</div>
-                    <div class="portfolio-content">
-                        <h3>First Project</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                        </p>
+    <!-- Projects Section -->
+    <section id="projetos" style="background: var(--light-gray);">
+        <h2 class="section-title">Meus Projetos</h2>
+        <div class="projects-grid">
+            
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>📊 Análise de Dados com Python</h3>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Pandas</span>
+                        <span class="tech-badge">Matplotlib</span>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="placeholder">02</div>
-                    <div class="portfolio-content">
-                        <h3>Second Project</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                        </p>
+                <div class="project-body">
+                    <p>Projeto para análise e visualização de dados de vendas mensais. O script carrega dados de CSV, calcula estatísticas descritivas, gera gráficos e exporta relatórios completos.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-primary">Ver no GitHub</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🔌 API REST com PHP</h3>
+                    <div class="project-tech">
+                        <span class="tech-badge">PHP</span>
+                        <span class="tech-badge">REST</span>
+                        <span class="tech-badge">JSON</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>API RESTful desenvolvida em PHP para gerenciamento de clientes. Implementa métodos GET, POST e DELETE com respostas em JSON e documentação completa dos endpoints.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🛍️ Shopify Custom Theme CRO</h3>
+                    <div class="project-tech">
+                        <span class="tech-badge">Liquid</span>
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">JS</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Tema Shopify customizado focado em conversão e performance. Inclui sections reutilizáveis, upsell no carrinho, lazy loading e estrutura modular seguindo boas práticas da plataforma.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/luisgustavoleao896-cpu/shopify-custom-theme-cro" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🛒 Shopify Checkout Extension</h3>
+                    <div class="project-tech">
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">Shopify API</span>
+                        <span class="tech-badge">React</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Extensão para checkout do Shopify desenvolvida com TypeScript. Personaliza o fluxo de compra com funcionalidades avançadas e integração segura com a API da plataforma.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/luisgustavoleao896-cpu/shopify-checkout-extension-typescript" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🐍 Simple API Flask</h3>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Flask</span>
+                        <span class="tech-badge">REST</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>API simples e leve construída com Flask. Demonstra boas práticas de desenvolvimento backend em Python, incluindo rotas, tratamento de requisições e respostas JSON estruturadas.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/luisgustavoleao896-cpu/simple-api-flask" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🌐 Portfólio Site</h3>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">JavaScript</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Site de portfólio pessoal desenvolvido com tecnologias web modernas. Design responsivo, animações suaves e estrutura otimizada para SEO e performance.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>✅ Minhas Tarefas</h3>
+                    <div class="project-tech">
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">LocalStorage</span>
+                        <span class="tech-badge">CRUD</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Aplicativo de gerenciamento de tarefas com interface intuitiva. Permite criar, editar, marcar como concluída e excluir tarefas, com persistência de dados via LocalStorage.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/luisgustavoleao896-cpu/Minhas-tarefas" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>💼 Dev Portfolio</h3>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">Responsive</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Template de portfólio para desenvolvedores com design limpo e profissional. Estrutura modular fácil de personalizar, ideal para apresentar projetos e experiências.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/luisgustavoleao896-cpu/dev-portfolio" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <h3>Email</h3>
-                    <a href="mailto:hello@reallygreatsite.com">hello@reallygreatsite.com</a>
+    <!-- Skills Section -->
+    <section id="habilidades">
+        <h2 class="section-title">Formação & Certificações</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+            
+            <div>
+                <h3 style="color: var(--secondary-orange); margin-bottom: 1.5rem;">☁️ Salesforce & Cloud</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Certificação</div>
+                        <div class="timeline-title">Salesforce Administrador</div>
+                        <div class="timeline-desc">Udemy - Configuração, automação e gestão de ambientes Salesforce</div>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <h3>Website</h3>
-                    <a href="#">reallygreatsite.com</a>
+            </div>
+            
+            <div>
+                <h3 style="color: var(--secondary-orange); margin-bottom: 1.5rem;">🐍 Data Science & Analytics</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Certificação</div>
+                        <div class="timeline-title">Análise de Dados em Python</div>
+                        <div class="timeline-desc">Programação Dinâmica - Pandas, visualização e estatística aplicada</div>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <h3>Social</h3>
-                    <a href="#">@reallygreatsite</a>
+            </div>
+            
+            <div>
+                <h3 style="color: var(--secondary-orange); margin-bottom: 1.5rem;">🌐 Desenvolvimento Web</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Back-end</div>
+                        <div class="timeline-title">PHP Slim Framework & Node.js + TypeScript</div>
+                        <div class="timeline-desc">Cursa - APIs REST, arquitetura e boas práticas backend</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Front-end</div>
+                        <div class="timeline-title">HTML, CSS, JavaScript & Figma</div>
+                        <div class="timeline-desc">Cursa / Chief of Design - UI/UX e desenvolvimento frontend moderno</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Full Stack</div>
+                        <div class="timeline-title">Desenvolvimento Web Completo</div>
+                        <div class="timeline-desc">Udemy - Stack completo do desenvolvimento web</div>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <h3>Address</h3>
-                    <p>123 Anywhere St., Any City, ST 12345</p>
+            </div>
+            
+            <div>
+                <h3 style="color: var(--secondary-orange); margin-bottom: 1.5rem;">💾 Fundamentos</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Banco de Dados</div>
+                        <div class="timeline-title">MySQL – do Básico ao Avançado</div>
+                        <div class="timeline-desc">Cursa - Modelagem, queries e otimização</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Segurança & Lógica</div>
+                        <div class="timeline-title">Segurança da Informação & Lógica de Programação</div>
+                        <div class="timeline-desc">Cursa - Fundamentos essenciais para desenvolvimento seguro</div>
+                    </div>
                 </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" style="background: var(--light-gray);">
+        <h2 class="section-title">Vamos Conversar?</h2>
+        <div class="contact-container">
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <h4>Email</h4>
+                <p><a href="mailto:seuemail@exemplo.com">seuemail@exemplo.com</a></p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">💼</div>
+                <h4>LinkedIn</h4>
+                <p><a href="#" target="_blank">linkedin.com/in/seu-perfil</a></p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">🐙</div>
+                <h4>GitHub</h4>
+                <p><a href="https://github.com/luisgustavoleao896-cpu" target="_blank">github.com/luisgustavoleao896-cpu</a></p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">🌐</div>
+                <h4>Website</h4>
+                <p><a href="#" target="_blank">www.seusite.com</a></p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <h2>THANK YOU</h2>
-            <p>Creative Presentation</p>
-            <p>09 May, 2026</p>
-            <div class="footer-info">
-                <p>Presented By: Luis Gustavo</p>
-                <p>@reallygreatsite | hello@reallygreatsite.com</p>
-                <p>reallygreatsite.com | 123 Anywhere St., Any City, ST 12345</p>
-            </div>
-        </div>
+        <p>&copy; 2026 Luis Gustavo. Todos os direitos reservados.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+            Desenvolvido com ❤️ e código limpo | 
+            <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">Veja meu código no GitHub</a>
+        </p>
     </footer>
+
+    <script>
+        // Smooth scroll para navegação
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Atualiza classe active
+                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Efeito de scroll na navegação
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 
