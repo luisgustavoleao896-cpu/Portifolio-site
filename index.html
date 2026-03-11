@@ -12,6 +12,8 @@
             --light-gray: #F8F9FA;
             --dark-gray: #333333;
             --text-gray: #666666;
+            --shadow: 0 10px 30px rgba(255, 140, 66, 0.15);
+            --shadow-hover: 0 20px 40px rgba(255, 140, 66, 0.25);
         }
         
         * {
@@ -21,511 +23,943 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            background-color: var(--white);
+            background: var(--white);
             color: var(--dark-gray);
             line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        /* Header */
+
+        /* ==================== ANIMAÇÕES GLOBAIS ==================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* ==================== HEADER COM EFEITOS ==================== */
         header {
-            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            background: linear-gradient(-45deg, var(--primary-orange), var(--secondary-orange), #FF9F6B, var(--primary-orange));
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             color: var(--white);
-            padding: 4rem 2rem;
+            padding: 5rem 2rem 4rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
         .profile-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
-        
-        .profile-image {
-            width: 150px;
-            height: 150px;
+
+        .profile-image-wrapper {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
             border-radius: 50%;
-            border: 4px solid var(--white);
-            margin-bottom: 1.5rem;
-            background: var(--light-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            margin-left: auto;
-            margin-right: auto;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--white), rgba(255,255,255,0.8));
+            animation: pulse 3s ease-in-out infinite;
+            position: relative;
         }
-        
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--white);
+            /* Efeito motion blur simulado com CSS */
+            filter: blur(0.5px);
+            transition: filter 0.3s ease;
+        }
+
+        .profile-image:hover {
+            filter: blur(0);
+        }
+
+        .profile-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.3) 60%, transparent 70%);
+            animation: float 4s ease-in-out infinite;
+        }
+
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 0.5rem;
             font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease 0.2s both;
         }
-        
+
         .subtitle {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             opacity: 0.95;
             margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
         }
-        
+
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 3px solid var(--white);
+            white-space: nowrap;
+            animation: typing 3s steps(40) 0.6s both, blink 0.75s step-end infinite;
+            max-width: fit-content;
+        }
+
         .tagline {
             font-size: 1.1rem;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 650px;
+            margin: 1.5rem auto 0;
+            animation: fadeInUp 0.8s ease 0.8s both;
         }
-        
-        /* Navigation */
+
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            animation: fadeInUp 0.8s ease 1s both;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ==================== NAVEGAÇÃO ==================== */
         nav {
             background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: transform 0.3s ease;
         }
-        
+
+        nav.hidden {
+            transform: translateY(-100%);
+        }
+
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
             padding: 1rem;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
-        
+
         nav a {
             color: var(--dark-gray);
             text-decoration: none;
             font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        
-        nav a:hover, nav a.active {
-            background: var(--primary-orange);
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            border-radius: 30px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover::before,
+        nav a.active::before {
+            opacity: 1;
+        }
+
+        nav a:hover,
+        nav a.active {
             color: var(--white);
+            transform: translateY(-2px);
         }
-        
-        /* Sections */
+
+        /* ==================== SEÇÕES ==================== */
         section {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .section-title {
             text-align: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--secondary-orange);
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        
+
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--primary-orange);
-            margin: 0.5rem auto 0;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--secondary-orange));
+            margin: 0.8rem auto 0;
             border-radius: 2px;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 100%;
         }
-        
-        /* About */
-        .about-content {
+
+        /* ==================== SOBRE / OBJETIVO ==================== */
+        .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: start;
         }
-        
-        .about-text p {
+
+        .about-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--primary-orange);
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .about-card h3 {
+            color: var(--secondary-orange);
             margin-bottom: 1rem;
-            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
+
+        .about-text p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .profile-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
             margin-top: 1.5rem;
         }
-        
-        .skill-tag {
-            background: var(--light-gray);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            text-align: center;
+
+        .highlight-tag {
+            background: linear-gradient(135deg, var(--light-gray), #fff);
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
             font-size: 0.9rem;
-            border-left: 3px solid var(--primary-orange);
+            border: 1px solid rgba(255, 140, 66, 0.3);
+            transition: all 0.3s ease;
+            cursor: default;
         }
-        
-        /* Projects */
+
+        .highlight-tag:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* ==================== EXPERIÊNCIA (TIMELINE ANIMADA) ==================== */
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-orange), var(--secondary-orange));
+            border-radius: 2px;
+            animation: gradientShift 4s ease infinite;
+            background-size: 100% 200%;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1.5rem 1.5rem 1.5rem 2rem;
+            margin-bottom: 2rem;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(5px) !important;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.9rem;
+            top: 1.8rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--secondary-orange);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--primary-orange);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .timeline-company {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-period {
+            color: var(--primary-orange);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .timeline-item ul {
+            padding-left: 1.3rem;
+            color: var(--text-gray);
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.4rem;
+            position: relative;
+        }
+
+        .timeline-item li::before {
+            content: '▹';
+            position: absolute;
+            left: -1.3rem;
+            color: var(--secondary-orange);
+        }
+
+        /* ==================== PROJETOS COM EFEITO HOVER DINÂMICO ==================== */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
-        
+
         .project-card {
             background: var(--white);
-            border: 1px solid #eee;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
         }
-        
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 140, 66, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-hover);
         }
-        
+
         .project-header {
             background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
             color: var(--white);
             padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .project-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: float 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
         .project-header h3 {
             font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 2;
         }
-        
+
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 0.5rem;
+            position: relative;
+            z-index: 2;
         }
-        
+
         .tech-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
+            background: rgba(255,255,255,0.25);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
             font-size: 0.8rem;
+            backdrop-filter: blur(5px);
+            transition: transform 0.2s ease;
         }
-        
+
+        .tech-badge:hover {
+            transform: scale(1.1);
+            background: rgba(255,255,255,0.4);
+        }
+
         .project-body {
             padding: 1.5rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
-        
+
         .project-body p {
             color: var(--text-gray);
             margin-bottom: 1.5rem;
             flex-grow: 1;
+            text-align: justify;
         }
-        
+
         .project-links {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
-        
+
         .btn {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
             text-align: center;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--secondary-orange), var(--primary-orange));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
         .btn-primary {
             background: var(--primary-orange);
             color: var(--white);
         }
-        
+
         .btn-primary:hover {
             background: var(--secondary-orange);
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
         }
-        
+
         .btn-outline {
             border: 2px solid var(--primary-orange);
             color: var(--primary-orange);
         }
-        
+
         .btn-outline:hover {
             background: var(--primary-orange);
             color: var(--white);
-        }
-        
-        /* Education & Experience */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--primary-orange);
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2rem;
-            padding-left: 1.5rem;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.4rem;
-            top: 0.3rem;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--secondary-orange);
-            border: 2px solid var(--white);
-            box-shadow: 0 0 0 2px var(--primary-orange);
-        }
-        
-        .timeline-date {
-            color: var(--primary-orange);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        
-        .timeline-title {
-            font-size: 1.2rem;
-            margin: 0.3rem 0;
-            font-weight: 600;
-        }
-        
-        .timeline-desc {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-        
-        /* Contact */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-        
-        .contact-item {
-            padding: 1.5rem;
-            background: var(--light-gray);
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
-        
-        .contact-item:hover {
             transform: translateY(-3px);
         }
-        
-        .contact-icon {
-            font-size: 2rem;
-            color: var(--primary-orange);
-            margin-bottom: 1rem;
+
+        /* ==================== CERTIFICAÇÕES ==================== */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
-        
-        .contact-item a {
+
+        .cert-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary-orange);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .cert-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .cert-card h4 {
             color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .cert-card .provider {
+            color: var(--primary-orange);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .cert-card a {
+            color: var(--secondary-orange);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: gap 0.2s ease;
+        }
+
+        .cert-card a:hover {
+            gap: 0.6rem;
+        }
+
+        .cert-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .cert-category h3 {
+            color: var(--secondary-orange);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ==================== IDIOMAS ==================== */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .language-card {
+            background: linear-gradient(135deg, var(--light-gray), #fff);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .language-card.visible {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .language-card:hover {
+            border-color: var(--primary-orange);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .language-flag {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .language-card h4 {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .language-card .level {
+            color: var(--primary-orange);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ==================== CONTATO ==================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .contact-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .contact-card:nth-child(2) .contact-icon { animation-delay: 0.2s; }
+        .contact-card:nth-child(3) .contact-icon { animation-delay: 0.4s; }
+        .contact-card:nth-child(4) .contact-icon { animation-delay: 0.6s; }
+
+        .contact-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+        }
+
+        .contact-card a,
+        .contact-card p {
+            color: var(--text-gray);
             text-decoration: none;
             word-break: break-all;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
         }
-        
-        .contact-item a:hover {
+
+        .contact-card a:hover {
             color: var(--secondary-orange);
         }
-        
-        /* Footer */
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #25D366;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        /* ==================== FOOTER ==================== */
         footer {
-            background: var(--dark-gray);
+            background: linear-gradient(135deg, var(--dark-gray), #222);
             color: var(--white);
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             margin-top: 3rem;
         }
-        
+
+        footer p {
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
         footer a {
             color: var(--primary-orange);
             text-decoration: none;
+            transition: color 0.2s ease;
         }
-        
-        /* Responsive */
+
+        footer a:hover {
+            color: var(--secondary-orange);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            transform: translateY(-5px) scale(1.2);
+            color: var(--primary-orange);
+        }
+
+        /* ==================== RESPONSIVO ==================== */
         @media (max-width: 768px) {
-            .about-content {
+            .about-grid {
                 grid-template-columns: 1fr;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
             }
             
             .nav-container {
-                gap: 1rem;
+                gap: 0.8rem;
+                padding: 0.8rem;
             }
             
             nav a {
-                font-size: 0.9rem;
-                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
             }
+            
+            section {
+                padding: 3.5rem 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .profile-image-wrapper {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* ==================== UTILITÁRIOS ==================== */
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mt-3 { margin-top: 3rem; }
+        
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary-orange), var(--secondary-orange));
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-orange);
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header com Animações -->
     <header>
         <div class="profile-container">
-            <div class="profile-image">👨‍💻</div>
-            <h1>Luis Gustavo</h1>
-            <p class="subtitle">Desenvolvedor Full Stack | Salesforce Admin | Data Analyst</p>
-            <p class="tagline">Transformando dados em soluções e ideias em código. Apaixonado por tecnologia, inovação e aprendizado contínuo.</p>
+            <div class="profile-image-wrapper">
+                <!-- Substitua pelo caminho da sua foto com motion blur -->
+                <img src="sua-foto-motion.jpg" alt="Luis Gustavo" class="profile-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 180 180%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22180%22 height=%22180%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23FF8C42%22 font-size=%2260%22%3E👨‍💻%3C/text%3E%3C/svg%3E'">
+            </div>
+            <h1>Luis Gustavo Verissimo Cavalcante</h1>
+            <p class="subtitle typing-text">Desenvolvedor Júnior | Back-end & Web</p>
+            <p class="tagline">Transformando código em soluções. Foco em PHP, JavaScript e Python com projetos práticos no GitHub.</p>
+            <div class="location-badge">📍 Fortaleza – CE</div>
         </div>
     </header>
 
-    <!-- Navigation -->
-    <nav>
+    <!-- Navegação Sticky -->
+    <nav id="navbar">
         <div class="nav-container">
             <a href="#sobre" class="active">Sobre</a>
+            <a href="#experiencia">Experiência</a>
             <a href="#projetos">Projetos</a>
-            <a href="#habilidades">Habilidades</a>
+            <a href="#certificacoes">Certificações</a>
             <a href="#contato">Contato</a>
         </div>
     </nav>
 
-    <!-- About Section -->
+    <!-- Sobre / Objetivo -->
     <section id="sobre">
-        <h2 class="section-title">Sobre Mim</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Olá! Sou <strong>Luis Gustavo</strong>, desenvolvedor Full Stack com foco em criar soluções eficientes e escaláveis. Minha jornada na tecnologia combina desenvolvimento web, análise de dados e administração Salesforce.</p>
-                <p>Busco constantemente aprimorar minhas habilidades e aplicar as melhores práticas do mercado para entregar resultados de alto impacto.</p>
-                <p>Quando não estou codando, estou explorando novas tecnologias, contribuindo para projetos open source ou compartilhando conhecimento com a comunidade.</p>
+        <h2 class="section-title animate-on-scroll">Sobre Mim</h2>
+        <div class="about-grid">
+            <div class="about-card animate-on-scroll">
+                <h3>🎯 Objetivo Profissional</h3>
+                <p>Atuar como <strong>Desenvolvedor Júnior</strong>, com foco em desenvolvimento web e back-end, aplicando conhecimentos práticos em <strong>PHP, JavaScript e Python</strong>, com projetos publicados no GitHub.</p>
+                <p>Busco oportunidades para crescer tecnicamente, contribuir com soluções eficientes e aprender com equipes experientes.</p>
             </div>
-            <div class="about-skills">
-                <h3 style="margin-bottom: 1rem; color: var(--secondary-orange);">Principais Competências</h3>
-                <div class="skills-grid">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">PHP</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">TypeScript</span>
-                    <span class="skill-tag">Flask</span>
-                    <span class="skill-tag">Shopify Liquid</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">Salesforce</span>
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">REST APIs</span>
+            <div class="about-card animate-on-scroll">
+                <h3>✨ Perfil Profissional</h3>
+                <p style="margin-bottom: 1rem;">Características que me definem:</p>
+                <div class="profile-highlights">
+                    <span class="highlight-tag">📚 Aprendizado Contínuo</span>
+                    <span class="highlight-tag">🎯 Foco em Resultados</span>
+                    <span class="highlight-tag">💻 Projetos Práticos</span>
+                    <span class="highlight-tag">🤝 Comprometimento</span>
+                    <span class="highlight-tag">🔄 Adaptabilidade</span>
+                    <span class="highlight-tag">🔍 Atenção a Detalhes</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projetos" style="background: var(--light-gray);">
-        <h2 class="section-title">Meus Projetos</h2>
+    <!-- Experiência Profissional -->
+    <section id="experiencia" style="background: var(--light-gray);">
+        <h2 class="section-title animate-on-scroll">Experiência Profissional</h2>
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <span class="timeline-company">Concentrix</span>
+                <span class="timeline-period">Setembro 2024 – Abril 2025</span>
+                <strong>Teleatendimento</strong>
+                <ul>
+                    <li>Atendimento ao cliente via telefone</li>
+                    <li>Suporte e resolução de demandas</li>
+                    <li>Registro de informações em sistema</li>
+                    <li>Cumprimento de indicadores de qualidade</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-company">Grupo Dádiva</span>
+                <span class="timeline-period">2023 – 2024</span>
+                <strong>Consultor de Vendas</strong>
+                <ul>
+                    <li>Atendimento ao cliente e vendas consultivas</li>
+                    <li>Prospecção e fidelização de clientes</li>
+                    <li>Cumprimento de metas e resultados comerciais</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projetos -->
+    <section id="projetos">
+        <h2 class="section-title animate-on-scroll">Projetos no GitHub</h2>
         <div class="projects-grid">
             
-            <!-- Project 1 -->
             <div class="project-card">
                 <div class="project-header">
-                    <h3>📊 Análise de Dados com Python</h3>
-                    <div class="project-tech">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Pandas</span>
-                        <span class="tech-badge">Matplotlib</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <p>Projeto para análise e visualização de dados de vendas mensais. O script carrega dados de CSV, calcula estatísticas descritivas, gera gráficos e exporta relatórios completos.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-primary">Ver no GitHub</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🔌 API REST com PHP</h3>
-                    <div class="project-tech">
-                        <span class="tech-badge">PHP</span>
-                        <span class="tech-badge">REST</span>
-                        <span class="tech-badge">JSON</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <p>API RESTful desenvolvida em PHP para gerenciamento de clientes. Implementa métodos GET, POST e DELETE com respostas em JSON e documentação completa dos endpoints.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-primary">Ver no GitHub</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🛍️ Shopify Custom Theme CRO</h3>
-                    <div class="project-tech">
-                        <span class="tech-badge">Liquid</span>
-                        <span class="tech-badge">HTML5</span>
-                        <span class="tech-badge">CSS3</span>
-                        <span class="tech-badge">JS</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <p>Tema Shopify customizado focado em conversão e performance. Inclui sections reutilizáveis, upsell no carrinho, lazy loading e estrutura modular seguindo boas práticas da plataforma.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/luisgustavoleao896-cpu/shopify-custom-theme-cro" target="_blank" class="btn btn-primary">Ver no GitHub</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🛒 Shopify Checkout Extension</h3>
-                    <div class="project-tech">
-                        <span class="tech-badge">TypeScript</span>
-                        <span class="tech-badge">Shopify API</span>
-                        <span class="tech-badge">React</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <p>Extensão para checkout do Shopify desenvolvida com TypeScript. Personaliza o fluxo de compra com funcionalidades avançadas e integração segura com a API da plataforma.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/luisgustavoleao896-cpu/shopify-checkout-extension-typescript" target="_blank" class="btn btn-primary">Ver no GitHub</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🐍 Simple API Flask</h3>
-                    <div class="project-tech">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Flask</span>
-                        <span class="tech-badge">REST</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <p>API simples e leve construída com Flask. Demonstra boas práticas de desenvolvimento backend em Python, incluindo rotas, tratamento de requisições e respostas JSON estruturadas.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/luisgustavoleao896-cpu/simple-api-flask" target="_blank" class="btn btn-primary">Ver no GitHub</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🌐 Portfólio Site</h3>
+                    <h3>🌐 Portfólio Web</h3>
                     <div class="project-tech">
                         <span class="tech-badge">HTML5</span>
                         <span class="tech-badge">CSS3</span>
@@ -535,43 +969,59 @@
                 <div class="project-body">
                     <p>Site de portfólio pessoal desenvolvido com tecnologias web modernas. Design responsivo, animações suaves e estrutura otimizada para SEO e performance.</p>
                     <div class="project-links">
-                        <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                        <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank" class="btn btn-primary">🔗 Ver Demo</a>
+                        <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-outline">GitHub</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 7 -->
             <div class="project-card">
                 <div class="project-header">
-                    <h3>✅ Minhas Tarefas</h3>
+                    <h3>🔌 API REST em PHP</h3>
                     <div class="project-tech">
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">LocalStorage</span>
-                        <span class="tech-badge">CRUD</span>
+                        <span class="tech-badge">PHP</span>
+                        <span class="tech-badge">REST</span>
+                        <span class="tech-badge">JSON</span>
                     </div>
                 </div>
                 <div class="project-body">
-                    <p>Aplicativo de gerenciamento de tarefas com interface intuitiva. Permite criar, editar, marcar como concluída e excluir tarefas, com persistência de dados via LocalStorage.</p>
+                    <p>API RESTful desenvolvida em PHP para gerenciamento de dados. Implementa métodos GET, POST e DELETE com respostas em JSON e documentação dos endpoints.</p>
                     <div class="project-links">
-                        <a href="https://github.com/luisgustavoleao896-cpu/Minhas-tarefas" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                        <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-primary">Ver no GitHub</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 8 -->
             <div class="project-card">
                 <div class="project-header">
-                    <h3>💼 Dev Portfolio</h3>
+                    <h3>📊 Análise de Dados em Python</h3>
                     <div class="project-tech">
-                        <span class="tech-badge">HTML</span>
-                        <span class="tech-badge">CSS</span>
-                        <span class="tech-badge">Responsive</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Pandas</span>
+                        <span class="tech-badge">Matplotlib</span>
                     </div>
                 </div>
                 <div class="project-body">
-                    <p>Template de portfólio para desenvolvedores com design limpo e profissional. Estrutura modular fácil de personalizar, ideal para apresentar projetos e experiências.</p>
+                    <p>Projeto para análise e visualização de dados. O script carrega dados de CSV, calcula estatísticas descritivas, gera gráficos e exporta relatórios completos.</p>
                     <div class="project-links">
-                        <a href="https://github.com/luisgustavoleao896-cpu/dev-portfolio" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                        <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>⚙️ Projeto PHP</h3>
+                    <div class="project-tech">
+                        <span class="tech-badge">PHP</span>
+                        <span class="tech-badge">MySQL</span>
+                        <span class="tech-badge">MVC</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Aplicação web desenvolvida em PHP seguindo padrões MVC. Inclui autenticação, CRUD completo e integração com banco de dados MySQL.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/luisgustavoleao896-cpu/php.git" target="_blank" class="btn btn-primary">Ver no GitHub</a>
                     </div>
                 </div>
             </div>
@@ -579,132 +1029,195 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="habilidades">
-        <h2 class="section-title">Formação & Certificações</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
-            
-            <div>
-                <h3 style="color: var(--secondary-orange); margin-bottom: 1.5rem;">☁️ Salesforce & Cloud</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">Certificação</div>
-                        <div class="timeline-title">Salesforce Administrador</div>
-                        <div class="timeline-desc">Udemy - Configuração, automação e gestão de ambientes Salesforce</div>
-                    </div>
+    <!-- Certificações -->
+    <section id="certificacoes" style="background: var(--light-gray);">
+        <h2 class="section-title animate-on-scroll">Certificações</h2>
+        
+        <div class="cert-category">
+            <h3>💻 Programação & Desenvolvimento</h3>
+            <div class="certifications-grid">
+                
+                <div class="cert-card">
+                    <h4>Salesforce Administrador</h4>
+                    <span class="provider">Udemy</span>
+                    <a href="https://ude.my/UC-d1627aOa-050c-460b-9c9d-504682b711e5" target="_blank">Ver certificado →</a>
                 </div>
-            </div>
-            
-            <div>
-                <h3 style="color: var(--secondary-orange); margin-bottom: 1.5rem;">🐍 Data Science & Analytics</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">Certificação</div>
-                        <div class="timeline-title">Análise de Dados em Python</div>
-                        <div class="timeline-desc">Programação Dinâmica - Pandas, visualização e estatística aplicada</div>
-                    </div>
+
+                <div class="cert-card">
+                    <h4>Análise de Dados em Python</h4>
+                    <span class="provider">Programação Dinâmica</span>
+                    <a href="https://cursa.app/pt/meu-certificado/certc4b4469ae1302805eda20f9c549456c1" target="_blank">Ver certificado →</a>
                 </div>
-            </div>
-            
-            <div>
-                <h3 style="color: var(--secondary-orange); margin-bottom: 1.5rem;">🌐 Desenvolvimento Web</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">Back-end</div>
-                        <div class="timeline-title">PHP Slim Framework & Node.js + TypeScript</div>
-                        <div class="timeline-desc">Cursa - APIs REST, arquitetura e boas práticas backend</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">Front-end</div>
-                        <div class="timeline-title">HTML, CSS, JavaScript & Figma</div>
-                        <div class="timeline-desc">Cursa / Chief of Design - UI/UX e desenvolvimento frontend moderno</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">Full Stack</div>
-                        <div class="timeline-title">Desenvolvimento Web Completo</div>
-                        <div class="timeline-desc">Udemy - Stack completo do desenvolvimento web</div>
-                    </div>
+
+                <div class="cert-card">
+                    <h4>Back-end com Slim Framework (PHP)</h4>
+                    <span class="provider">Cursa</span>
+                    <a href="https://cursa.app/pt/meu-certificado/cert212c0b82fe81e891f7ab992845d43130" target="_blank">Ver certificado →</a>
                 </div>
-            </div>
-            
-            <div>
-                <h3 style="color: var(--secondary-orange); margin-bottom: 1.5rem;">💾 Fundamentos</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">Banco de Dados</div>
-                        <div class="timeline-title">MySQL – do Básico ao Avançado</div>
-                        <div class="timeline-desc">Cursa - Modelagem, queries e otimização</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">Segurança & Lógica</div>
-                        <div class="timeline-title">Segurança da Informação & Lógica de Programação</div>
-                        <div class="timeline-desc">Cursa - Fundamentos essenciais para desenvolvimento seguro</div>
-                    </div>
+
+                <div class="cert-card">
+                    <h4>Node.js + Express + TypeScript</h4>
+                    <span class="provider">Cursa</span>
+                    <a href="https://cursa.app/pt/meu-certificado/cert784f2ad8d43a8002a35353ced34ea0c8" target="_blank">Ver certificado →</a>
                 </div>
+
+                <div class="cert-card">
+                    <h4>Desenvolvimento Web Full Stack</h4>
+                    <span class="provider">Udemy</span>
+                    <a href="https://ude.my/UC-b87e3e1b-d352-4ca3-9a60-1e70bddcd729" target="_blank">Ver certificado →</a>
+                </div>
+
+                <div class="cert-card">
+                    <h4>HTML, CSS e JavaScript</h4>
+                    <span class="provider">Cursa</span>
+                    <a href="https://cursa.app/pt/meu-certificado/cert49663393e595fc3487c59aa1ddb0e167" target="_blank">Ver certificado →</a>
+                </div>
+
+                <div class="cert-card">
+                    <h4>MySQL – do Básico ao Avançado</h4>
+                    <span class="provider">Cursa</span>
+                    <a href="https://cursa.app/pt/meu-certificado/cert79cb8341079f5ac898fc8a756abc177e" target="_blank">Ver certificado →</a>
+                </div>
+
+                <div class="cert-card">
+                    <h4>Lógica de Programação</h4>
+                    <span class="provider">Cursa</span>
+                    <a href="https://cursa.app/pt/meu-certificado/cert6a98c57b3a86b5365eaab487fe4d1865" target="_blank">Ver certificado →</a>
+                </div>
+
+                <div class="cert-card">
+                    <h4>Segurança da Informação</h4>
+                    <span class="provider">Cursa</span>
+                    <a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank">Ver certificado →</a>
+                </div>
+
+                <div class="cert-card">
+                    <h4>UI/UX com Figma</h4>
+                    <span class="provider">Chief of Design</span>
+                    <a href="https://cursa.app/pt/meu-certificado/cert27f9756d0abff027d20c6c4721b45115" target="_blank">Ver certificado →</a>
+                </div>
+
             </div>
-            
+        </div>
+
+        <div class="cert-category mt-3">
+            <h3>🌍 Idiomas</h3>
+            <div class="languages-grid">
+                
+                <div class="language-card">
+                    <span class="language-flag">🇬🇧</span>
+                    <h4>Inglês</h4>
+                    <span class="level">Básico à Fluência</span>
+                </div>
+
+                <div class="language-card">
+                    <span class="language-flag">🇪🇸</span>
+                    <h4>Espanhol</h4>
+                    <span class="level">A1 ao C1</span>
+                </div>
+
+                <div class="language-card">
+                    <span class="language-flag">🇮🇹</span>
+                    <h4>Italiano</h4>
+                    <span class="level">Para Brasileiros</span>
+                </div>
+
+                <div class="language-card">
+                    <span class="language-flag">🇩🇪</span>
+                    <h4>Alemão</h4>
+                    <span class="level">A1 ao C1</span>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contato" style="background: var(--light-gray);">
-        <h2 class="section-title">Vamos Conversar?</h2>
-        <div class="contact-container">
-            <div class="contact-item">
-                <div class="contact-icon">📧</div>
+    <!-- Contato -->
+    <section id="contato">
+        <h2 class="section-title animate-on-scroll">Vamos Conversar?</h2>
+        <div class="contact-grid">
+            
+            <div class="contact-card">
+                <span class="contact-icon">📧</span>
                 <h4>Email</h4>
-                <p><a href="mailto:seuemail@exemplo.com">seuemail@exemplo.com</a></p>
+                <p><a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a></p>
             </div>
-            <div class="contact-item">
-                <div class="contact-icon">💼</div>
-                <h4>LinkedIn</h4>
-                <p><a href="#" target="_blank">linkedin.com/in/seu-perfil</a></p>
+
+            <div class="contact-card">
+                <span class="contact-icon">📍</span>
+                <h4>Localização</h4>
+                <p>Fortaleza – Ceará, Brasil</p>
             </div>
-            <div class="contact-item">
-                <div class="contact-icon">🐙</div>
+
+            <div class="contact-card">
+                <span class="contact-icon">🐙</span>
                 <h4>GitHub</h4>
                 <p><a href="https://github.com/luisgustavoleao896-cpu" target="_blank">github.com/luisgustavoleao896-cpu</a></p>
             </div>
-            <div class="contact-item">
-                <div class="contact-icon">🌐</div>
-                <h4>Website</h4>
-                <p><a href="#" target="_blank">www.seusite.com</a></p>
+
+            <div class="contact-card">
+                <span class="contact-icon">📱</span>
+                <h4>WhatsApp</h4>
+                <a href="https://wa.me/5585841344" target="_blank" class="whatsapp-btn">
+                    💬 Enviar Mensagem
+                </a>
             </div>
+
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Luis Gustavo. Todos os direitos reservados.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
-            Desenvolvido com ❤️ e código limpo | 
-            <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">Veja meu código no GitHub</a>
-        </p>
+        <p>&copy; 2026 Luis Gustavo Verissimo Cavalcante. Todos os direitos reservados.</p>
+        <p style="font-size: 0.9rem; opacity: 0.8;">Desenvolvido com ❤️ e código limpo</p>
+        <div class="footer-social">
+            <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" title="GitHub">🐙</a>
+            <a href="mailto:gustavoluis.v.c.1016@gmail.com" title="Email">📧</a>
+            <a href="https://wa.me/5585841344" target="_blank" title="WhatsApp">💬</a>
+        </div>
     </footer>
 
     <script>
-        // Smooth scroll para navegação
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                if (targetSection) {
-                    window.scrollTo({
-                        top: targetSection.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Atualiza classe active
-                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-                    this.classList.add('active');
+        // ==================== ANIMAÇÃO AO SCROLL ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll, .project-card, .timeline-item, .cert-card, .language-card, .contact-card').forEach(el => {
+            observer.observe(el);
         });
 
-        // Efeito de scroll na navegação
+        // ==================== NAVBAR DINÂMICO ====================
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+        
         window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            // Esconde/mostra navbar ao scroll
+            if (currentScroll <= 0) {
+                navbar.classList.remove('hidden');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && !navbar.classList.contains('hidden')) {
+                navbar.classList.add('hidden');
+            } else if (currentScroll < lastScroll && navbar.classList.contains('hidden')) {
+                navbar.classList.remove('hidden');
+            }
+            lastScroll = currentScroll;
+
+            // Atualiza link ativo na navegação
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav a');
             
@@ -722,6 +1235,43 @@
                     link.classList.add('active');
                 }
             });
+        });
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ==================== EFEITO PARALLAX SUAVE NO HEADER ====================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('header');
+            if (header && scrolled < header.offsetHeight) {
+                header.style.backgroundPositionY = `${scrolled * 0.3}px`;
+            }
+        });
+
+        // ==================== INICIALIZAÇÃO ====================
+        // Ativa animações iniciais após carregamento
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    if (el.getBoundingClientRect().top < window.innerHeight * 0.9) {
+                        el.classList.add('visible');
+                    }
+                });
+            }, 300);
         });
     </script>
 </body>
