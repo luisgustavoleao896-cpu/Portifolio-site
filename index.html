@@ -36,14 +36,8 @@
 
         /* ==================== ANIMAÇÕES GLOBAIS ==================== */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes float {
@@ -131,7 +125,6 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--white);
-            /* Efeito motion blur simulado com CSS */
             filter: blur(0.5px);
             transition: filter 0.3s ease;
         }
@@ -814,40 +807,14 @@
 
         /* ==================== RESPONSIVO ==================== */
         @media (max-width: 768px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .nav-container {
-                gap: 0.8rem;
-                padding: 0.8rem;
-            }
-            
-            nav a {
-                font-size: 0.85rem;
-                padding: 0.5rem 1rem;
-            }
-            
-            section {
-                padding: 3.5rem 1.5rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .profile-image-wrapper {
-                width: 150px;
-                height: 150px;
-            }
+            .about-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+            .subtitle { font-size: 1.2rem; }
+            .nav-container { gap: 0.8rem; padding: 0.8rem; }
+            nav a { font-size: 0.85rem; padding: 0.5rem 1rem; }
+            section { padding: 3.5rem 1.5rem; }
+            .section-title { font-size: 1.8rem; }
+            .profile-image-wrapper { width: 150px; height: 150px; }
         }
 
         /* ==================== UTILITÁRIOS ==================== */
@@ -855,20 +822,13 @@
         .mb-2 { margin-bottom: 2rem; }
         .mt-3 { margin-top: 3rem; }
         
-        /* Scrollbar personalizada */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--light-gray);
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--light-gray); }
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(var(--primary-orange), var(--secondary-orange));
             border-radius: 5px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary-orange);
-        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--secondary-orange); }
     </style>
 </head>
 <body>
@@ -876,18 +836,8 @@
     <header>
         <div class="profile-container">
             <div class="profile-image-wrapper">
-                <!-- Substitua pelo caminho da sua foto com motion blur -->
-                <header>
-    <div class="profile-container">
-        <div class="profile-image-wrapper">
-            <img src="perfil.jpg" alt="Luis Gustavo" class="profile-image">
-        </div>
-        <h1>Luis Gustavo Verissimo Cavalcante</h1>
-        <p class="subtitle typing-text">Desenvolvedor Júnior | Back-end & Web</p>
-        <p class="tagline">Transformando código em soluções. Foco em PHP, JavaScript e Python com projetos práticos no GitHub.</p>
-        <div class="location-badge">📍 Fortaleza – CE</div>
-    </div>
-</header>
+                <!-- 🔹 Substitua "perfil.jpg" pelo caminho da sua foto -->
+                <img src="perfil.jpg" alt="Luis Gustavo" class="profile-image">
             </div>
             <h1>Luis Gustavo Verissimo Cavalcante</h1>
             <p class="subtitle typing-text">Desenvolvedor Júnior | Back-end & Web</p>
@@ -935,7 +885,6 @@
     <section id="experiencia" style="background: var(--light-gray);">
         <h2 class="section-title animate-on-scroll">Experiência Profissional</h2>
         <div class="timeline">
-            
             <div class="timeline-item">
                 <span class="timeline-company">Concentrix</span>
                 <span class="timeline-period">Setembro 2024 – Abril 2025</span>
@@ -947,7 +896,6 @@
                     <li>Cumprimento de indicadores de qualidade</li>
                 </ul>
             </div>
-
             <div class="timeline-item">
                 <span class="timeline-company">Grupo Dádiva</span>
                 <span class="timeline-period">2023 – 2024</span>
@@ -958,7 +906,6 @@
                     <li>Cumprimento de metas e resultados comerciais</li>
                 </ul>
             </div>
-
         </div>
     </section>
 
@@ -966,7 +913,6 @@
     <section id="projetos">
         <h2 class="section-title animate-on-scroll">Projetos no GitHub</h2>
         <div class="projects-grid">
-            
             <div class="project-card">
                 <div class="project-header">
                     <h3>🌐 Portfólio Web</h3>
@@ -1035,7 +981,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -1046,98 +991,82 @@
         <div class="cert-category">
             <h3>💻 Programação & Desenvolvimento</h3>
             <div class="certifications-grid">
-                
                 <div class="cert-card">
                     <h4>Salesforce Administrador</h4>
                     <span class="provider">Udemy</span>
                     <a href="https://ude.my/UC-d1627aOa-050c-460b-9c9d-504682b711e5" target="_blank">Ver certificado →</a>
                 </div>
-
                 <div class="cert-card">
                     <h4>Análise de Dados em Python</h4>
                     <span class="provider">Programação Dinâmica</span>
                     <a href="https://cursa.app/pt/meu-certificado/certc4b4469ae1302805eda20f9c549456c1" target="_blank">Ver certificado →</a>
                 </div>
-
                 <div class="cert-card">
                     <h4>Back-end com Slim Framework (PHP)</h4>
                     <span class="provider">Cursa</span>
                     <a href="https://cursa.app/pt/meu-certificado/cert212c0b82fe81e891f7ab992845d43130" target="_blank">Ver certificado →</a>
                 </div>
-
                 <div class="cert-card">
                     <h4>Node.js + Express + TypeScript</h4>
                     <span class="provider">Cursa</span>
                     <a href="https://cursa.app/pt/meu-certificado/cert784f2ad8d43a8002a35353ced34ea0c8" target="_blank">Ver certificado →</a>
                 </div>
-
                 <div class="cert-card">
                     <h4>Desenvolvimento Web Full Stack</h4>
                     <span class="provider">Udemy</span>
                     <a href="https://ude.my/UC-b87e3e1b-d352-4ca3-9a60-1e70bddcd729" target="_blank">Ver certificado →</a>
                 </div>
-
                 <div class="cert-card">
                     <h4>HTML, CSS e JavaScript</h4>
                     <span class="provider">Cursa</span>
                     <a href="https://cursa.app/pt/meu-certificado/cert49663393e595fc3487c59aa1ddb0e167" target="_blank">Ver certificado →</a>
                 </div>
-
                 <div class="cert-card">
                     <h4>MySQL – do Básico ao Avançado</h4>
                     <span class="provider">Cursa</span>
                     <a href="https://cursa.app/pt/meu-certificado/cert79cb8341079f5ac898fc8a756abc177e" target="_blank">Ver certificado →</a>
                 </div>
-
                 <div class="cert-card">
                     <h4>Lógica de Programação</h4>
                     <span class="provider">Cursa</span>
                     <a href="https://cursa.app/pt/meu-certificado/cert6a98c57b3a86b5365eaab487fe4d1865" target="_blank">Ver certificado →</a>
                 </div>
-
                 <div class="cert-card">
                     <h4>Segurança da Informação</h4>
                     <span class="provider">Cursa</span>
                     <a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank">Ver certificado →</a>
                 </div>
-
                 <div class="cert-card">
                     <h4>UI/UX com Figma</h4>
                     <span class="provider">Chief of Design</span>
                     <a href="https://cursa.app/pt/meu-certificado/cert27f9756d0abff027d20c6c4721b45115" target="_blank">Ver certificado →</a>
                 </div>
-
             </div>
         </div>
 
         <div class="cert-category mt-3">
             <h3>🌍 Idiomas</h3>
             <div class="languages-grid">
-                
                 <div class="language-card">
                     <span class="language-flag">🇬🇧</span>
                     <h4>Inglês</h4>
                     <span class="level">Básico à Fluência</span>
                 </div>
-
                 <div class="language-card">
                     <span class="language-flag">🇪🇸</span>
                     <h4>Espanhol</h4>
                     <span class="level">A1 ao C1</span>
                 </div>
-
                 <div class="language-card">
                     <span class="language-flag">🇮🇹</span>
                     <h4>Italiano</h4>
                     <span class="level">Para Brasileiros</span>
                 </div>
-
                 <div class="language-card">
                     <span class="language-flag">🇩🇪</span>
                     <h4>Alemão</h4>
                     <span class="level">A1 ao C1</span>
                 </div>
-
             </div>
         </div>
     </section>
@@ -1146,33 +1075,29 @@
     <section id="contato">
         <h2 class="section-title animate-on-scroll">Vamos Conversar?</h2>
         <div class="contact-grid">
-            
             <div class="contact-card">
                 <span class="contact-icon">📧</span>
                 <h4>Email</h4>
                 <p><a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a></p>
             </div>
-
             <div class="contact-card">
                 <span class="contact-icon">📍</span>
                 <h4>Localização</h4>
                 <p>Fortaleza – Ceará, Brasil</p>
             </div>
-
             <div class="contact-card">
                 <span class="contact-icon">🐙</span>
                 <h4>GitHub</h4>
                 <p><a href="https://github.com/luisgustavoleao896-cpu" target="_blank">github.com/luisgustavoleao896-cpu</a></p>
             </div>
-
             <div class="contact-card">
                 <span class="contact-icon">📱</span>
                 <h4>WhatsApp</h4>
-                <a href="https://wa.me/5585841344" target="_blank" class="whatsapp-btn">
+                <!-- ✅ WhatsApp corrigido: +55 85 98584-1344 -->
+                <a href="https://wa.me/5585985841344" target="_blank" class="whatsapp-btn">
                     💬 Enviar Mensagem
                 </a>
             </div>
-
         </div>
     </section>
 
@@ -1183,7 +1108,8 @@
         <div class="footer-social">
             <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" title="GitHub">🐙</a>
             <a href="mailto:gustavoluis.v.c.1016@gmail.com" title="Email">📧</a>
-            <a href="https://wa.me/5585841344" target="_blank" title="WhatsApp">💬</a>
+            <!-- ✅ WhatsApp corrigido no footer também -->
+            <a href="https://wa.me/5585985841344" target="_blank" title="WhatsApp">💬</a>
         </div>
     </footer>
 
@@ -1214,7 +1140,6 @@
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
             
-            // Esconde/mostra navbar ao scroll
             if (currentScroll <= 0) {
                 navbar.classList.remove('hidden');
                 return;
@@ -1227,7 +1152,6 @@
             }
             lastScroll = currentScroll;
 
-            // Atualiza link ativo na navegação
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav a');
             
@@ -1273,7 +1197,6 @@
         });
 
         // ==================== INICIALIZAÇÃO ====================
-        // Ativa animações iniciais após carregamento
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.querySelectorAll('.animate-on-scroll').forEach(el => {
