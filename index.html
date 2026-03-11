@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Gustavo - Full Stack Developer</title>
+    <title>Luis Gustavo - Creative Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -19,141 +19,394 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
         }
 
-        /* Header */
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid #222;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* Header/Hero */
         header {
-            padding: 80px 0;
-            border-bottom: 1px solid #333;
+            padding: 200px 0 100px;
+            text-align: center;
+            border-bottom: 1px solid #222;
         }
 
-        .header-content h1 {
-            font-size: 3.5rem;
+        header h1 {
+            font-size: 4rem;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 10px;
-            letter-spacing: -2px;
+            margin-bottom: 20px;
+            letter-spacing: -3px;
         }
 
-        .header-content h2 {
+        header .subtitle {
             font-size: 1.5rem;
-            color: #888;
-            font-weight: 400;
-            margin-bottom: 15px;
-        }
-
-        .header-content p {
-            font-size: 1.1rem;
             color: #666;
             margin-bottom: 30px;
         }
 
+        header .date {
+            color: #444;
+            font-size: 1rem;
+            margin-bottom: 40px;
+        }
+
         .social-links {
             display: flex;
+            justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .social-links a {
             color: #888;
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+            padding: 10px 25px;
             border: 1px solid #333;
-            padding: 8px 20px;
             border-radius: 4px;
+            transition: all 0.3s;
         }
 
         .social-links a:hover {
             color: #fff;
             border-color: #666;
+            background: #1a1a1a;
         }
 
         /* Section */
         section {
-            padding: 80px 0;
+            padding: 100px 0;
             border-bottom: 1px solid #222;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #fff;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             font-weight: 600;
             letter-spacing: -1px;
+            text-transform: uppercase;
         }
 
         .section-subtitle {
             color: #666;
-            font-size: 1rem;
-            margin-bottom: 30px;
+            font-size: 1.1rem;
+            margin-bottom: 50px;
             line-height: 1.8;
+            max-width: 800px;
+        }
+
+        /* Table of Contents */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .toc-item {
+            padding: 30px;
+            border: 1px solid #222;
+            border-radius: 6px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .toc-item:hover {
+            border-color: #444;
+            background: #111;
+            transform: translateY(-3px);
+        }
+
+        .toc-item h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .toc-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* About */
+        .about-content {
+            font-size: 1.2rem;
+            color: #999;
+            line-height: 1.9;
+            max-width: 800px;
+        }
+
+        .about-content h2 {
+            color: #fff;
+            font-size: 2rem;
+            margin: 40px 0 20px;
+        }
+
+        /* Education */
+        .education-list {
+            display: grid;
+            gap: 30px;
+        }
+
+        .education-item {
+            background: #111;
+            padding: 40px;
+            border: 1px solid #222;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .education-item:hover {
+            border-color: #444;
+            transform: translateX(5px);
+        }
+
+        .education-item h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .education-item p {
+            color: #888;
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
         /* Skills */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .skill-item {
+        .skill-card {
             background: #111;
-            padding: 25px;
+            padding: 40px;
             border: 1px solid #222;
-            border-radius: 6px;
+            border-radius: 8px;
             transition: all 0.3s;
         }
 
-        .skill-item:hover {
+        .skill-card:hover {
             border-color: #444;
-            transform: translateY(-2px);
+            transform: translateY(-5px);
         }
 
-        .skill-item h3 {
+        .skill-card h3 {
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .skill-card p {
+            color: #888;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Experience */
+        .experience-list {
+            display: grid;
+            gap: 40px;
+        }
+
+        .experience-item {
+            padding: 40px;
+            border-left: 3px solid #333;
+            transition: all 0.3s;
+        }
+
+        .experience-item:hover {
+            border-left-color: #666;
+            background: #111;
+            padding-left: 50px;
+        }
+
+        .experience-item h3 {
+            color: #fff;
+            font-size: 1.5rem;
             margin-bottom: 10px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        .skill-item p {
+        .experience-item .company {
             color: #666;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
         }
 
-        /* About */
-        .about-text {
-            font-size: 1.1rem;
-            color: #999;
-            line-height: 1.9;
+        .experience-item p {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .portfolio-item {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .portfolio-item:hover {
+            border-color: #444;
+            transform: translateY(-5px);
+        }
+
+        .portfolio-item .placeholder {
+            width: 100%;
+            height: 250px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+            font-size: 3rem;
+            border-bottom: 1px solid #222;
+        }
+
+        .portfolio-content {
+            padding: 30px;
+        }
+
+        .portfolio-content h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .portfolio-content p {
+            color: #888;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            padding: 30px;
+            border: 1px solid #222;
+            border-radius: 6px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: #444;
+            background: #111;
+        }
+
+        .contact-item h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-item p, .contact-item a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #fff;
         }
 
         /* Footer */
         footer {
-            padding: 40px 0;
+            padding: 60px 0;
             text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        footer h2 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        footer p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .footer-info {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #222;
             color: #444;
             font-size: 0.9rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .header-content h1 {
+            .container {
+                padding: 0 20px;
+            }
+
+            header h1 {
                 font-size: 2.5rem;
             }
-            
-            .header-content h2 {
-                font-size: 1.2rem;
+
+            .section-title {
+                font-size: 2rem;
             }
-            
-            .social-links {
-                flex-direction: column;
-                gap: 10px;
+
+            nav ul {
+                gap: 20px;
             }
-            
+
             section {
                 padding: 60px 0;
             }
@@ -161,91 +414,278 @@
     </style>
 </head>
 <body>
-    <header>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">My Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header id="introduction">
         <div class="container">
-            <div class="header-content">
-                <h1>Olá, eu sou Luis Gustavo</h1>
-                <h2>Desenvolvedor Full Stack</h2>
-                <p>Salesforce Administrator | Data Analyst</p>
-                <div class="social-links">
-                    <a href="#">GitHub</a>
-                    <a href="#">LinkedIn</a>
-                    <a href="#">Email</a>
-                </div>
+            <h1>OLIO.</h1>
+            <p class="subtitle">Creative Presentation</p>
+            <p class="date">09 May, 2026</p>
+            <p style="color: #666; margin-bottom: 30px;">Presented By: Luis Gustavo</p>
+            <div class="social-links">
+                <a href="#">@reallygreatsite</a>
+                <a href="#">hello@reallygreatsite.com</a>
+                <a href="#">reallygreatsite.com</a>
             </div>
         </div>
     </header>
 
-    <section id="sobre">
+    <!-- Table of Contents -->
+    <section>
         <div class="container">
-            <h2 class="section-title">Sobre Mim</h2>
+            <h2 class="section-title">Table of Contents</h2>
             <p class="section-subtitle">
-                Desenvolvedor Full Stack apaixonado por tecnologia e inovação, com formação completa 
-                em desenvolvimento web, análise de dados e administração Salesforce.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore et dolore magna aliqua.
             </p>
+            <div class="toc-grid">
+                <a href="#introduction" class="toc-item">
+                    <h3>Introduction</h3>
+                    <p>Apresentação inicial</p>
+                </a>
+                <a href="#about" class="toc-item">
+                    <h3>About Me</h3>
+                    <p>Sobre mim</p>
+                </a>
+                <a href="#education" class="toc-item">
+                    <h3>Education</h3>
+                    <p>Formação acadêmica</p>
+                </a>
+                <a href="#skills" class="toc-item">
+                    <h3>My Skills</h3>
+                    <p>Habilidades pessoais</p>
+                </a>
+                <a href="#experience" class="toc-item">
+                    <h3>Experience</h3>
+                    <p>Experiência profissional</p>
+                </a>
+                <a href="#portfolio" class="toc-item">
+                    <h3>Portfolio</h3>
+                    <p>Projetos realizados</p>
+                </a>
+                <a href="#contact" class="toc-item">
+                    <h3>Contact</h3>
+                    <p>Entre em contato</p>
+                </a>
+            </div>
         </div>
     </section>
 
-    <section id="habilidades">
+    <!-- About -->
+    <section id="about">
         <div class="container">
-            <h2 class="section-title">Habilidades</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <h3>JavaScript</h3>
-                    <p>Desenvolvimento web moderno</p>
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <h2>HELLO, I'M LUIS GUSTAVO</h2>
+                <p>
+                    Desenvolvedor Full Stack apaixonado por tecnologia e inovação, com formação completa 
+                    em desenvolvimento web, análise de dados e administração Salesforce.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">My Education</h2>
+            <p class="section-subtitle">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore et dolore magna aliqua.
+            </p>
+            <div class="education-list">
+                <div class="education-item">
+                    <h3>Hanover University</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua.
+                    </p>
                 </div>
-                <div class="skill-item">
-                    <h3>TypeScript</h3>
-                    <p>Código tipado e seguro</p>
+                <div class="education-item">
+                    <h3>Spies University</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua.
+                    </p>
                 </div>
-                <div class="skill-item">
-                    <h3>Python</h3>
-                    <p>Análise de dados e automação</p>
-                </div>
-                <div class="skill-item">
-                    <h3>PHP</h3>
-                    <p>Backend robusto</p>
-                </div>
-                <div class="skill-item">
-                    <h3>Node.js</h3>
-                    <p>Servidores escaláveis</p>
-                </div>
-                <div class="skill-item">
-                    <h3>HTML5 & CSS3</h3>
-                    <p>Interfaces responsivas</p>
-                </div>
-                <div class="skill-item">
-                    <h3>MySQL</h3>
-                    <p>Banco de dados relacional</p>
-                </div>
-                <div class="skill-item">
-                    <h3>Shopify</h3>
-                    <p>E-commerce</p>
-                </div>
-                <div class="skill-item">
-                    <h3>Salesforce</h3>
-                    <p>CRM e automação</p>
-                </div>
-                <div class="skill-item">
-                    <h3>Flask</h3>
-                    <p>APIs Python</p>
+                <div class="education-item">
+                    <h3>Wardiere University</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projetos">
+    <!-- Skills -->
+    <section id="skills">
         <div class="container">
-            <h2 class="section-title">Projetos</h2>
+            <h2 class="section-title">Personal Skills</h2>
             <p class="section-subtitle">
-                Em breve meus projetos serão apresentados aqui.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore et dolore magna aliqua.
             </p>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Photography</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <h3>Videography</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <h3>Copywriter</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <h3>JavaScript</h3>
+                    <p>Desenvolvimento web moderno e interativo</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Python</h3>
+                    <p>Análise de dados e automação</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Salesforce</h3>
+                    <p>CRM e automação de vendas</p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Experience -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <p class="section-subtitle">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore et dolore magna aliqua.
+            </p>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <h3>Position Title</h3>
+                    <p class="company">Arowwai Industries</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                        exercitation ullamco laboris.
+                    </p>
+                </div>
+                <div class="experience-item">
+                    <h3>Position Title</h3>
+                    <p class="company">Paucek and Lage</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                        exercitation ullamco laboris.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Project Portfolio</h2>
+            <p class="section-subtitle">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore et dolore magna aliqua.
+            </p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="placeholder">01</div>
+                    <div class="portfolio-content">
+                        <h3>First Project</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="placeholder">02</div>
+                    <div class="portfolio-content">
+                        <h3>Second Project</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-subtitle">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore et dolore magna aliqua.
+            </p>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:hello@reallygreatsite.com">hello@reallygreatsite.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Website</h3>
+                    <a href="#">reallygreatsite.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Social</h3>
+                    <a href="#">@reallygreatsite</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Address</h3>
+                    <p>123 Anywhere St., Any City, ST 12345</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Luis Gustavo. Todos os direitos reservados.</p>
+            <h2>THANK YOU</h2>
+            <p>Creative Presentation</p>
+            <p>09 May, 2026</p>
+            <div class="footer-info">
+                <p>Presented By: Luis Gustavo</p>
+                <p>@reallygreatsite | hello@reallygreatsite.com</p>
+                <p>reallygreatsite.com | 123 Anywhere St., Any City, ST 12345</p>
+            </div>
         </div>
     </footer>
 </body>
