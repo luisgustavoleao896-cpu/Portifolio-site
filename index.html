@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luis Gustavo | Desenvolvedor Full Stack</title>
+<title>Luis Gustavo Verissimo Cavalcante | Desenvolvedor Júnior</title>
 
 <style>
 /* --- CSS GERAL E VARIÁVEIS --- */
@@ -16,20 +16,18 @@
   --text-sec: #94a3b8;
   --accent: #38bdf8;
   --lightning: #fff700;
-  --code-bg: #1e1e1e;
-  --code-keyword: #569cd6;
-  --code-string: #ce9178;
-  --code-function: #dcdcaa;
-  --code-comment: #6a9955;
-  --code-variable: #9cdcfe;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: var(--bg-color);
   color: var(--text-main);
@@ -37,7 +35,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- EFEITO DE RAIOS/RELÂMPAGOS --- */
+/* --- EFEITO DE RAIOS --- */
 .lightning-container {
   position: fixed;
   top: 0;
@@ -53,63 +51,37 @@ body {
   position: absolute;
   width: 4px;
   height: 100vh;
-  background: linear-gradient(to bottom, 
-    transparent 0%, 
-    var(--lightning) 20%, 
-    #ffffff 50%, 
-    var(--lightning) 80%, 
-    transparent 100%);
+  background: linear-gradient(to bottom, transparent 0%, var(--lightning) 20%, #ffffff 50%, var(--lightning) 80%, transparent 100%);
   opacity: 0;
   filter: blur(2px) drop-shadow(0 0 10px var(--lightning)) drop-shadow(0 0 20px var(--lightning));
   animation: lightning-flash 300ms ease-in-out;
   transform: skewX(-15deg);
 }
 
-.lightning-flash {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 9998;
-}
-
 @keyframes lightning-flash {
   0%, 100% { opacity: 0; }
   10% { opacity: 1; }
-  20% { opacity: 0.3; }
-  30% { opacity: 0.8; }
+  30% { opacity: 0.5; }
   50% { opacity: 0; }
 }
 
 @keyframes lightning-text {
   0%, 85% { 
     opacity: 1; 
-    text-shadow: 
-      0 0 10px var(--lightning),
-      0 0 20px var(--lightning),
-      0 0 40px var(--lightning),
-      0 0 80px var(--lightning);
+    text-shadow: 0 0 10px var(--lightning), 0 0 20px var(--lightning), 0 0 40px var(--lightning);
   }
-  90%, 100% { 
-    opacity: 0.8; 
-    text-shadow: none;
-  }
+  90%, 100% { opacity: 0.8; text-shadow: none; }
 }
 
 .storm-flash {
-  animation: storm-flash-animation 4s infinite;
+  animation: storm-flash-animation 5s infinite;
 }
 
 @keyframes storm-flash-animation {
-  0%, 90%, 100% { opacity: 0; }
-  92% { opacity: 0.15; }
-  94% { opacity: 0; }
-  96% { opacity: 0.1; }
-  98% { opacity: 0; }
+  0%, 92%, 100% { opacity: 0; }
+  94% { opacity: 0.1; }
+  96% { opacity: 0; }
+  98% { opacity: 0.08; }
 }
 
 /* --- HEADER --- */
@@ -119,30 +91,16 @@ header {
   background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
   border-bottom: 1px solid #334155;
   position: relative;
-  overflow: hidden;
-}
-
-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
-  pointer-events: none;
 }
 
 header h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin: 0;
   background: linear-gradient(90deg, #ff6b35, #fbbf24, #38bdf8);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient-shift 3s ease infinite, lightning-text 5s ease-in-out infinite;
-  position: relative;
-  z-index: 1;
 }
 
 @keyframes gradient-shift {
@@ -152,11 +110,79 @@ header h1 {
 }
 
 header p {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: var(--text-sec);
-  margin-top: 15px;
-  position: relative;
-  z-index: 1;
+  margin: 15px 0 0 0;
+}
+
+.contact-info {
+  margin: 20px 0;
+  color: var(--text-sec);
+  font-size: 0.95rem;
+}
+
+.contact-info a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.header-btns {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), #ff8c42);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 107, 53, 0.6);
+}
+
+.btn-secondary {
+  background: #24292e;
+  color: white;
+  border: 2px solid #24292e;
+}
+
+.btn-secondary:hover {
+  background: #1a1d21;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--text-sec);
+  color: var(--text-sec);
+}
+
+.btn-outline:hover {
+  border-color: white;
+  color: white;
+  transform: translateY(-2px);
 }
 
 /* --- SEÇÕES --- */
@@ -164,14 +190,13 @@ section {
   max-width: 1200px;
   margin: auto;
   padding: 60px 20px;
-  position: relative;
 }
 
 h2 {
   border-left: 5px solid var(--primary);
   padding-left: 15px;
   margin-bottom: 30px;
-  font-size: 2.2rem;
+  font-size: 2rem;
   position: relative;
 }
 
@@ -181,7 +206,6 @@ h2::after {
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.5rem;
   animation: lightning-text 3s ease-in-out infinite;
 }
 
@@ -189,34 +213,17 @@ h2::after {
 .skills-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 12px;
 }
 
 .skill-tag {
   background: #334155;
-  padding: 10px 20px;
+  padding: 10px 18px;
   border-radius: 50px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: bold;
   border: 2px solid #475569;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.skill-tag::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.skill-tag:hover::before {
-  left: 100%;
+  transition: all 0.3s;
 }
 
 .skill-tag:hover {
@@ -230,6 +237,52 @@ h2::after {
   animation: lightning-text 4s ease-in-out infinite;
 }
 
+/* --- EXPERIÊNCIA --- */
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.experience-card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  transition: all 0.3s;
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.experience-card h3 {
+  color: var(--accent);
+  margin: 0 0 10px 0;
+}
+
+.experience-card .company {
+  color: var(--primary);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.experience-card .period {
+  color: var(--text-sec);
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.experience-card ul {
+  padding-left: 20px;
+  color: var(--text-sec);
+}
+
+.experience-card li {
+  margin: 8px 0;
+}
+
 /* --- PROJETOS --- */
 .projects {
   display: grid;
@@ -241,11 +294,10 @@ h2::after {
   background: var(--card-bg);
   padding: 30px;
   border-radius: 16px;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
   border: 2px solid #334155;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   position: relative;
   overflow: hidden;
 }
@@ -271,15 +323,13 @@ h2::after {
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-8px);
   border-color: transparent;
-  box-shadow: 
-    0 20px 40px rgba(0,0,0,0.4),
-    0 0 30px rgba(255, 107, 53, 0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255, 107, 53, 0.3);
 }
 
 .card h3 {
-  margin-top: 0;
+  margin: 0 0 15px 0;
   color: var(--accent);
   font-size: 1.4rem;
   display: flex;
@@ -291,96 +341,80 @@ h2::after {
   color: var(--text-sec);
   font-size: 0.95rem;
   line-height: 1.6;
-}
-
-.card small {
-  display: block;
-  margin-top: 10px;
-  color: #64748b;
-  font-style: italic;
-}
-
-.btn-group {
-  margin-top: 25px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.btn {
   flex: 1;
-  min-width: 120px;
-  text-align: center;
-  padding: 12px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s;
-  border: none;
-  position: relative;
-  overflow: hidden;
 }
 
-.btn::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+.card .tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 15px 0;
 }
 
-.btn:hover::after {
-  width: 300px;
-  height: 300px;
-}
-
-.btn-demo {
-  background: linear-gradient(135deg, var(--primary), #ff8c42);
-  color: white;
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-}
-
-.btn-demo:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(255, 107, 53, 0.6);
-}
-
-.btn-code {
-  background: transparent;
-  border: 2px solid var(--text-sec);
+.card .tech-tag {
+  background: #334155;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
   color: var(--text-sec);
 }
 
-.btn-code:hover {
-  border-color: white;
-  color: white;
-  transform: translateY(-2px);
+.card .btn-group {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.btn-github {
-  background: #24292e;
-  color: white;
-  border: 2px solid #24292e;
+/* --- CURSOS --- */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
-.btn-github:hover {
-  background: #1a1d21;
-  transform: translateY(-2px);
+.course-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  transition: all 0.3s;
+}
+
+.course-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.course-card h4 {
+  color: var(--text-main);
+  margin: 0 0 10px 0;
+}
+
+.course-card .provider {
+  color: var(--primary);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.course-card .cert-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.course-card .cert-link:hover {
+  text-decoration: underline;
 }
 
 /* --- MODAL --- */
 .modal-overlay {
   display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0,0,0,0.95);
   z-index: 10000;
   justify-content: center;
@@ -404,14 +438,8 @@ h2::after {
 }
 
 @keyframes modal-appear {
-  from {
-    opacity: 0;
-    transform: scale(0.8) translateY(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+  from { opacity: 0; transform: scale(0.8) translateY(-50px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .modal-header {
@@ -421,43 +449,12 @@ h2::after {
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #334155;
-  flex-wrap: wrap;
-  gap: 15px;
 }
 
 .modal-header h3 {
   margin: 0;
   font-size: 1.5rem;
   color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.modal-tabs {
-  display: flex;
-  gap: 10px;
-}
-
-.tab-btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s;
-  background: #334155;
-  color: var(--text-sec);
-}
-
-.tab-btn.active {
-  background: var(--primary);
-  color: white;
-}
-
-.tab-btn:hover:not(.active) {
-  background: #475569;
-  color: white;
 }
 
 .close-btn {
@@ -468,9 +465,6 @@ h2::after {
   cursor: pointer;
   width: 40px;
   height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 50%;
   transition: all 0.3s;
 }
@@ -484,218 +478,291 @@ h2::after {
   flex: 1;
   padding: 0;
   overflow: hidden;
-  background: var(--code-bg);
+  background: #0f172a;
 }
 
-.code-container {
+.demo-container {
   height: 100%;
   overflow: auto;
+  padding: 30px;
+}
+
+/* --- ESTILOS DOS PROJETOS DEMO --- */
+/* Portfolio Demo */
+.portfolio-demo {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.portfolio-demo h2 {
+  color: var(--accent);
+  border: none;
+  padding: 0;
+}
+
+.portfolio-demo .project-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.portfolio-demo .preview-card {
+  background: #1e293b;
   padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #334155;
 }
 
-.code-container::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+/* API REST Demo */
+.api-demo {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 12px;
+  font-family: 'Consolas', monospace;
 }
 
-.code-container::-webkit-scrollbar-track {
-  background: #1a1a1a;
+.api-demo .endpoint {
+  background: #2d2d2d;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border-left: 4px solid var(--success);
 }
 
-.code-container::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 5px;
-}
-
-pre {
-  margin: 0;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #d4d4d4;
-}
-
-code {
-  font-family: inherit;
-}
-
-/* Syntax Highlighting */
-.keyword { color: var(--code-keyword); }
-.string { color: var(--code-string); }
-.function { color: var(--code-function); }
-.comment { color: var(--code-comment); }
-.variable { color: var(--code-variable); }
-.number { color: #b5cea8; }
-.operator { color: #569cd6; }
-
-.file-tree {
-  background: #252526;
-  padding: 20px;
-  border-right: 1px solid #333;
-  width: 250px;
-  overflow-y: auto;
-}
-
-.file-tree h4 {
-  color: var(--text-sec);
-  margin: 0 0 15px 0;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.file-item {
-  padding: 8px 12px;
-  cursor: pointer;
+.api-demo .method {
+  display: inline-block;
+  padding: 4px 10px;
   border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-sec);
-  transition: all 0.2s;
-  font-family: monospace;
+  font-weight: bold;
   font-size: 0.85rem;
+  margin-right: 10px;
 }
 
-.file-item:hover {
-  background: #37373d;
-  color: white;
-}
+.api-demo .get { background: #22c55e; color: white; }
+.api-demo .post { background: #3b82f6; color: white; }
+.api-demo .put { background: #f59e0b; color: white; }
+.api-demo .delete { background: #ef4444; color: white; }
 
-.file-item.active {
-  background: #37373d;
-  color: var(--primary);
-}
-
-.file-icon {
-  font-size: 1rem;
-}
-
-.code-viewer {
-  display: flex;
-  height: 100%;
-}
-
-.code-content {
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.code-header {
-  background: #252526;
-  padding: 10px 20px;
-  border-bottom: 1px solid #333;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.code-filename {
-  color: var(--text-sec);
-  font-family: monospace;
+.api-demo .response {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  color: #d4d4d4;
   font-size: 0.9rem;
 }
 
-.copy-btn {
+.api-demo .test-btn {
   background: var(--primary);
   color: white;
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 10px 20px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.3s;
+  margin-top: 15px;
+  font-weight: bold;
 }
 
-.copy-btn:hover {
+.api-demo .test-btn:hover {
   background: var(--primary-hover);
-  transform: translateY(-2px);
 }
 
-.line-numbers {
-  background: #1e1e1e;
-  padding: 20px 10px;
-  text-align: right;
-  color: #858585;
-  font-family: monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  border-right: 1px solid #333;
-  user-select: none;
-}
-
-.code-lines {
-  flex: 1;
-  padding: 20px;
-  overflow: auto;
-  font-family: monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #d4d4d4;
-}
-
-/* --- INFO SECTION --- */
-.info-section {
+/* Python Data Demo */
+.python-demo {
   background: #1e293b;
-  padding: 25px;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.python-demo .code-block {
+  background: #1a1a1a;
+  padding: 20px;
   border-radius: 8px;
-  margin: 20px;
+  font-family: 'Consolas', monospace;
+  color: #d4d4d4;
+  margin: 15px 0;
+  overflow-x: auto;
 }
 
-.info-section h4 {
+.python-demo .chart-placeholder {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 200px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+
+.python-demo .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.python-demo .stat-card {
+  background: #334155;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.python-demo .stat-value {
+  font-size: 2rem;
+  font-weight: bold;
   color: var(--accent);
-  margin: 0 0 15px 0;
 }
 
-.info-section ul {
-  margin: 0;
-  padding-left: 20px;
+.python-demo .stat-label {
+  color: var(--text-sec);
+  font-size: 0.9rem;
+}
+
+.python-demo .run-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.python-demo .run-btn:hover {
+  background: #45a049;
+}
+
+/* PHP Project Demo */
+.php-demo {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.php-demo .login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  background: #334155;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.php-demo .form-group {
+  margin-bottom: 20px;
+}
+
+.php-demo .form-group label {
+  display: block;
+  margin-bottom: 8px;
   color: var(--text-sec);
 }
 
-.info-section li {
-  margin: 8px 0;
+.php-demo .form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  background: #1e293b;
+  color: white;
+  font-size: 1rem;
 }
 
-/* Responsividade */
+.php-demo .form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.php-demo .submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.php-demo .submit-btn:hover {
+  background: var(--primary-hover);
+}
+
+.php-demo .message {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.php-demo .success {
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+
+.php-demo .error {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+.php-demo .dashboard {
+  display: none;
+}
+
+.php-demo .dashboard.active {
+  display: block;
+}
+
+.php-demo .dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.php-demo .dash-card {
+  background: #334155;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.php-demo .dash-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+/* --- RESPONSIVIDADE --- */
 @media (max-width: 768px) {
   header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
-  .projects {
+  .projects, .experience-grid, .courses-grid {
     grid-template-columns: 1fr;
   }
   
-  .btn-group {
-    flex-direction: column;
-  }
-  
-  .btn {
+  .modal-content {
     width: 100%;
+    height: 95vh;
   }
   
-  .code-viewer {
-    flex-direction: column;
-  }
-  
-  .file-tree {
-    width: 100%;
-    height: auto;
-    max-height: 150px;
-    border-right: none;
-    border-bottom: 1px solid #333;
-  }
-  
-  .modal-tabs {
-    width: 100%;
-    overflow-x: auto;
+  .php-demo .dashboard-stats {
+    grid-template-columns: 1fr;
   }
 }
 
-/* Scrollbar personalizada */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -717,31 +784,36 @@ code {
 
 <body>
 
-<!-- Container para efeitos de raio -->
+<!-- Efeito de Raios -->
 <div class="lightning-container" id="lightningContainer"></div>
-<div class="lightning-flash" id="lightningFlash"></div>
 
 <header class="storm-flash">
-  <h1>⚡ Luis Gustavo ⚡</h1>
-  <p>Desenvolvedor Full Stack | Back-end & Web | APIs & Cloud</p>
-  <p style="font-size: 1rem; color: var(--text-sec);">Fortaleza - CE | gustavoluis.v.c.1016@gmail.com</p>
-  <div style="margin-top: 25px;">
-    <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-github" style="display:inline-block; width:auto; margin: 5px;">🐙 GitHub</a>
-    <a href="mailto:gustavoluis.v.c.1016@gmail.com" class="btn btn-demo" style="display:inline-block; width:auto; margin: 5px;">📧 Contato</a>
+  <h1>⚡ Luis Gustavo Verissimo Cavalcante ⚡</h1>
+  <p>Desenvolvedor Júnior | Back-end & Web</p>
+  <div class="contact-info">
+    <span>📍 Fortaleza - CE</span> | 
+    <a href="mailto:gustavoluis.v.c.1016@gmail.com">📧 gustavoluis.v.c.1016@gmail.com</a> | 
+    <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">🐙 GitHub</a>
+  </div>
+  <div class="header-btns">
+    <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary">🐙 Ver GitHub</a>
+    <a href="mailto:gustavoluis.v.c.1016@gmail.com" class="btn btn-primary">📧 Entrar em Contato</a>
+    <a href="#projetos" class="btn btn-outline">🚀 Ver Projetos</a>
   </div>
 </header>
 
 <section>
   <h2>👨‍💻 Sobre Mim</h2>
-  <p style="font-size: 1.1rem; margin-bottom: 20px;">
+  <p style="font-size: 1.1rem; color: var(--text-sec); margin-bottom: 25px;">
     Desenvolvedor Júnior com foco em desenvolvimento web e back-end, aplicando conhecimentos práticos em 
     <strong>PHP, JavaScript e Python</strong>. Experiência em APIs REST, bancos de dados e projetos publicados no GitHub.
+    Aprendizado contínuo com foco em prática e projetos reais.
   </p>
   
-  <h3 style="color: var(--accent); margin-top: 30px;">⚡ Stack Tecnológica</h3>
+  <h3 style="color: var(--accent); margin: 30px 0 20px 0;">⚡ Stack Tecnológica</h3>
   <div class="skills-grid">
     <span class="skill-tag highlight">⚡ PHP</span>
-    <span class="skill-tag highlight">⚡ JavaScript (ES6+)</span>
+    <span class="skill-tag highlight">⚡ JavaScript</span>
     <span class="skill-tag highlight">⚡ Python</span>
     <span class="skill-tag">Node.js</span>
     <span class="skill-tag">TypeScript</span>
@@ -759,125 +831,112 @@ code {
     <span class="skill-tag">Análise de Dados</span>
   </div>
 
-  <h3 style="color: var(--accent); margin-top: 30px;">🌍 Idiomas</h3>
-  <ul style="color: var(--text-sec); font-size: 1.05rem;">
-    <li>🇬🇧 Inglês – Fluência (Udemy Certificado)</li>
-    <li>🇪🇸 Espanhol – A1 ao C1 (Udemy Certificado)</li>
-    <li>🇮🇹 Italiano – Avançado (Udemy Certificado)</li>
-    <li>🇩🇪 Alemão – A1 ao C1 (Udemy Certificado)</li>
-  </ul>
+  <h3 style="color: var(--accent); margin: 30px 0 20px 0;">🌍 Idiomas</h3>
+  <div class="skills-grid">
+    <span class="skill-tag">🇬🇧 Inglês – Fluência (Udemy)</span>
+    <span class="skill-tag">🇪🇸 Espanhol – A1 ao C1 (Udemy)</span>
+    <span class="skill-tag">🇮🇹 Italiano – Avançado (Udemy)</span>
+    <span class="skill-tag">🇩🇪 Alemão – A1 ao C1 (Udemy)</span>
+  </div>
 </section>
 
 <section>
-  <h2>🚀 Projetos (Código Disponível)</h2>
-  <p style="color: var(--text-sec); margin-bottom: 30px; font-size: 1.1rem;">
-    Clique em <strong>"👁️ Ver Código"</strong> para analisar o código completo de cada projeto
+  <h2>💼 Experiência Profissional</h2>
+  <div class="experience-grid">
+    <div class="experience-card">
+      <h3>Teleatendimento</h3>
+      <div class="company">Concentrix</div>
+      <div class="period">Setembro 2024 -- Abril 2025</div>
+      <ul>
+        <li>Atendimento ao cliente via telefone</li>
+        <li>Suporte e resolução de demandas</li>
+        <li>Registro de informações em sistema</li>
+        <li>Cumprimento de indicadores de qualidade</li>
+      </ul>
+    </div>
+    
+    <div class="experience-card">
+      <h3>Consultor de Vendas</h3>
+      <div class="company">Grupo Dádiva</div>
+      <div class="period">2023 -- 2024</div>
+      <ul>
+        <li>Atendimento ao cliente e vendas consultivas</li>
+        <li>Prospecção e fidelização de clientes</li>
+        <li>Cumprimento de metas e resultados comerciais</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <h2>🚀 Projetos (Demo Funcional)</h2>
+  <p style="color: var(--text-sec); margin-bottom: 30px;">
+    Clique em <strong>"▶ Executar Demo"</strong> para testar cada projeto diretamente no navegador
   </p>
 
   <div class="projects">
 
-    <!-- PROJETO 1: PORTFOLIO WEB -->
+    <!-- PROJETO 1: PORTFÓLIO WEB -->
     <div class="card">
-      <div>
-        <h3>🌐 Portfólio Web</h3>
-        <p>Site portfólio responsivo com animações CSS, efeito de raios e integração com GitHub API.</p>
-        <small>Tech: HTML5, CSS3, JavaScript</small>
+      <h3>🌐 Portfólio Web</h3>
+      <p>Site portfólio responsivo com animações CSS, efeito de raios e design moderno.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">HTML5</span>
+        <span class="tech-tag">CSS3</span>
+        <span class="tech-tag">JavaScript</span>
       </div>
       <div class="btn-group">
-        <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank" class="btn btn-demo">🔗 Ver Site</a>
-        <button class="btn btn-code" onclick="openModal('portfolio')">👁️ Ver Código</button>
-        <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-github">🐙 GitHub</a>
+        <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank" class="btn btn-primary">🔗 Ver Site</a>
+        <button class="btn btn-outline" onclick="openModal('portfolio')">▶ Executar Demo</button>
+        <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
 
     <!-- PROJETO 2: API REST PHP -->
     <div class="card">
-      <div>
-        <h3>🔌 API REST PHP</h3>
-        <p>API completa com autenticação JWT, CRUD de usuários, validação de dados e Slim Framework.</p>
-        <small>Tech: PHP, Slim Framework, MySQL, JWT</small>
+      <h3>🔌 API REST PHP</h3>
+      <p>API completa com autenticação JWT, CRUD de usuários, validação de dados e Slim Framework.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">PHP</span>
+        <span class="tech-tag">Slim Framework</span>
+        <span class="tech-tag">MySQL</span>
+        <span class="tech-tag">JWT</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-code" onclick="openModal('api-php')">👁️ Ver Código</button>
-        <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-github">🐙 GitHub</a>
+        <button class="btn btn-outline" onclick="openModal('api-php')">▶ Executar Demo</button>
+        <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
 
     <!-- PROJETO 3: ANÁLISE DE DADOS PYTHON -->
     <div class="card">
-      <div>
-        <h3>📈 Análise de Dados Python</h3>
-        <p>Sistema de análise exploratória com visualizações, estatísticas e machine learning básico.</p>
-        <small>Tech: Python, Pandas, NumPy, Matplotlib</small>
+      <h3>📈 Análise de Dados Python</h3>
+      <p>Sistema de análise exploratória com visualizações, estatísticas e machine learning básico.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Pandas</span>
+        <span class="tech-tag">NumPy</span>
+        <span class="tech-tag">Matplotlib</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-code" onclick="openModal('data-python')">👁️ Ver Código</button>
-        <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-github">🐙 GitHub</a>
+        <button class="btn btn-outline" onclick="openModal('data-python')">▶ Executar Demo</button>
+        <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
 
     <!-- PROJETO 4: PROJETO PHP -->
     <div class="card">
-      <div>
-        <h3>🐘 Projeto PHP</h3>
-        <p>Aplicação web PHP com banco de dados MySQL, padrão MVC e boas práticas de desenvolvimento.</p>
-        <small>Tech: PHP, MySQL, MVC, HTML, CSS</small>
+      <h3>🐘 Projeto PHP</h3>
+      <p>Aplicação web PHP com banco de dados MySQL, padrão MVC, login e dashboard administrativo.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">PHP</span>
+        <span class="tech-tag">MySQL</span>
+        <span class="tech-tag">MVC</span>
+        <span class="tech-tag">HTML/CSS</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-code" onclick="openModal('project-php')">👁️ Ver Código</button>
-        <a href="https://github.com/luisgustavoleao896-cpu/php.git" target="_blank" class="btn btn-github">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 5: NODE.JS BACKEND -->
-    <div class="card">
-      <div>
-        <h3>🟢 Node.js Backend</h3>
-        <p>API backend com Express e TypeScript, autenticação JWT, rotas protegidas e MongoDB.</p>
-        <small>Tech: Node.js, Express, TypeScript, MongoDB</small>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-code" onclick="openModal('nodejs')">👁️ Ver Código</button>
-        <a href="#" class="btn btn-github">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 6: REACT FRONTEND -->
-    <div class="card">
-      <div>
-        <h3>⚛️ React JS App</h3>
-        <p>Aplicação frontend com React, componentes reutilizáveis, hooks e consumo de APIs.</p>
-        <small>Tech: React JS, Hooks, Context API, CSS Modules</small>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-code" onclick="openModal('react')">👁️ Ver Código</button>
-        <a href="#" class="btn btn-github">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 7: SALESFORCE -->
-    <div class="card">
-      <div>
-        <h3>☁️ Salesforce Admin</h3>
-        <p>Configuração e customização Salesforce, objetos personalizados, workflows e relatórios.</p>
-        <small>Tech: Salesforce, Apex, SOQL, Lightning</small>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-code" onclick="openModal('salesforce')">👁️ Ver Código</button>
-        <a href="#" class="btn btn-github">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 8: SEGURANÇA -->
-    <div class="card">
-      <div>
-        <h3>🔒 Segurança da Informação</h3>
-        <p>Implementação de práticas de segurança, criptografia, autenticação e proteção de dados.</p>
-        <small>Tech: Cryptography, JWT, HTTPS, OWASP</small>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-code" onclick="openModal('security')">👁️ Ver Código</button>
-        <a href="#" class="btn btn-github">🐙 GitHub</a>
+        <button class="btn btn-outline" onclick="openModal('project-php')">▶ Executar Demo</button>
+        <a href="https://github.com/luisgustavoleao896-cpu/php.git" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
 
@@ -885,27 +944,78 @@ code {
 </section>
 
 <section>
-  <h2>📜 Certificações</h2>
-  <div class="projects">
-    <div class="card">
-      <h3>🎓 Back-end PHP</h3>
-      <p>Slim Framework - do Básico ao Avançado</p>
-      <small>Programação Dinâmica</small>
+  <h2>📜 Certificações -- Programação</h2>
+  <div class="courses-grid">
+    <div class="course-card">
+      <h4>Salesforce Administrador</h4>
+      <div class="provider">Udemy</div>
+      <a href="https://ude.my/UC-d1627aOa-050c-460b-9c9d-504682b711e5" target="_blank" class="cert-link">📄 Ver Certificado</a>
     </div>
-    <div class="card">
-      <h3>🎓 Full Stack Web</h3>
-      <p>Desenvolvimento Web Completo</p>
-      <small>Udemy</small>
+    <div class="course-card">
+      <h4>Análise de Dados em Python</h4>
+      <div class="provider">Programação Dinâmica</div>
+      <a href="https://cursa.app/pt/meu-certificado/certc4b4469ae1302805eda20f9c549456c1" target="_blank" class="cert-link">📄 Ver Certificado</a>
     </div>
-    <div class="card">
-      <h3>🎓 Node.js</h3>
-      <p>Express + TypeScript</p>
-      <small>Guia do Programador</small>
+    <div class="course-card">
+      <h4>Back-end com Slim Framework (PHP)</h4>
+      <div class="provider">Cursa</div>
+      <a href="https://cursa.app/pt/meu-certificado/cert212c0b82fe81e891f7ab992845d43130" target="_blank" class="cert-link">📄 Ver Certificado</a>
     </div>
-    <div class="card">
-      <h3>🎓 React JS</h3>
-      <p>Biblioteca do Facebook</p>
-      <small>EuProgramador</small>
+    <div class="course-card">
+      <h4>HTML, CSS e JavaScript (Front-end)</h4>
+      <div class="provider">Cursa</div>
+      <a href="https://cursa.app/pt/meu-certificado/cert49663393e595fc3487c59aa1ddb0e167" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
+      <h4>Lógica de Programação</h4>
+      <div class="provider">Cursa</div>
+      <a href="https://cursa.app/pt/meu-certificado/cert6a98c57b3a86b5365eaab487fe4d1865" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
+      <h4>Segurança da Informação</h4>
+      <div class="provider">Cursa</div>
+      <a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
+      <h4>Desenvolvimento Web Full Stack</h4>
+      <div class="provider">Udemy</div>
+      <a href="https://ude.my/UC-b87e3e1b-d352-4ca3-9a60-1e70bddcd729" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
+      <h4>Node.js com Express e TypeScript</h4>
+      <div class="provider">Cursa</div>
+      <a href="https://cursa.app/pt/meu-certificado/cert784f2ad8d43a8002a35353ced34ea0c8" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
+      <h4>React JS</h4>
+      <div class="provider">EuProgramador</div>
+      <a href="https://cursa.app/pt/meu-certificado/cert817951b9c469739094602d09bbcaa740" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🎓 Certificações -- Idiomas</h2>
+  <div class="courses-grid">
+    <div class="course-card">
+      <h4>🇬🇧 Inglês -- Do Básico à Fluência</h4>
+      <div class="provider">Udemy</div>
+      <a href="https://ude.my/UC-e47bf283-89c7-4f7e-852a-5cc13473a67f" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
+      <h4>🇪🇸 Espanhol -- A1 ao C1</h4>
+      <div class="provider">Udemy</div>
+      <a href="https://ude.my/UC-7ae1c992-03c3-4b46-9a2b-f811de737ccd" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
+      <h4>🇮🇹 Italiano para Brasileiros</h4>
+      <div class="provider">PontoItalian / Udemy</div>
+      <a href="https://ude.my/UC-375c8abb-31cd-4420-8005-f0034f43f8b4" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
+      <h4>🇩🇪 Alemão Completo (A1 ao C1)</h4>
+      <div class="provider">Udemy - Instrutor: Tarik Becker</div>
+      <a href="https://ude.my/UC-7dc4ccc9-ff9c-452d-8059-d5f844942702" target="_blank" class="cert-link">📄 Ver Certificado</a>
     </div>
   </div>
 </section>
@@ -915,638 +1025,374 @@ code {
   <div class="modal-content">
     <div class="modal-header">
       <h3 id="modalTitle">⚡ Projeto</h3>
-      <div class="modal-tabs" id="modalTabs">
-        <button class="tab-btn active" onclick="switchTab('code')">📄 Código</button>
-        <button class="tab-btn" onclick="switchTab('info')">ℹ️ Info</button>
-      </div>
       <button class="close-btn" onclick="closeModal()">×</button>
     </div>
     <div id="modalBody" class="modal-body">
-      <!-- O conteúdo do projeto será injetado aqui via JS -->
+      <!-- Conteúdo injetado via JavaScript -->
     </div>
   </div>
 </div>
 
 <script>
-  // --- SISTEMA DE RAIOS ---
-  function createLightning() {
-    const container = document.getElementById('lightningContainer');
-    const flash = document.getElementById('lightningFlash');
-    
-    const bolt = document.createElement('div');
-    bolt.className = 'lightning-bolt';
-    bolt.style.left = Math.random() * 100 + '%';
-    bolt.style.height = (Math.random() * 50 + 50) + 'vh';
-    bolt.style.animationDuration = (Math.random() * 200 + 100) + 'ms';
-    
-    container.appendChild(bolt);
-    
-    flash.style.animation = 'none';
-    setTimeout(() => {
-      flash.style.animation = 'lightning-flash 300ms ease-in-out';
-    }, 10);
-    
-    setTimeout(() => {
-      bolt.remove();
-    }, 300);
+// --- SISTEMA DE RAIOS ---
+function createLightning() {
+  const container = document.getElementById('lightningContainer');
+  const bolt = document.createElement('div');
+  bolt.className = 'lightning-bolt';
+  bolt.style.left = Math.random() * 100 + '%';
+  bolt.style.height = (Math.random() * 50 + 50) + 'vh';
+  bolt.style.animationDuration = (Math.random() * 200 + 100) + 'ms';
+  container.appendChild(bolt);
+  setTimeout(() => bolt.remove(), 300);
+}
+
+function randomLightning() {
+  setTimeout(() => {
+    createLightning();
+    if (Math.random() > 0.5) setTimeout(createLightning, Math.random() * 500);
+    randomLightning();
+  }, Math.random() * 8000 + 4000);
+}
+randomLightning();
+
+// --- MODAL ---
+const modal = document.getElementById('projectModal');
+const modalBody = document.getElementById('modalBody');
+const modalTitle = document.getElementById('modalTitle');
+
+function openModal(projectType) {
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  
+  const projects = {
+    'portfolio': loadPortfolio,
+    'api-php': loadAPIPHP,
+    'data-python': loadDataPython,
+    'project-php': loadProjectPHP
+  };
+  
+  if (projects[projectType]) {
+    projects[projectType]();
   }
+}
 
-  function randomLightning() {
-    const interval = Math.random() * 8000 + 4000;
-    setTimeout(() => {
-      createLightning();
-      if (Math.random() > 0.5) {
-        setTimeout(createLightning, Math.random() * 500);
-      }
-      randomLightning();
-    }, interval);
-  }
+function closeModal() {
+  modal.style.display = 'none';
+  modalBody.innerHTML = '';
+  document.body.style.overflow = 'auto';
+}
 
-  randomLightning();
+window.onclick = function(event) {
+  if (event.target == modal) closeModal();
+}
 
-  // --- LÓGICA DO MODAL ---
-  const modal = document.getElementById('projectModal');
-  const modalBody = document.getElementById('modalBody');
-  const modalTitle = document.getElementById('modalTitle');
-  let currentProject = null;
-
-  function openModal(projectType) {
-    modal.style.display = 'flex';
-    modalBody.innerHTML = '';
-    document.body.style.overflow = 'hidden';
-    currentProject = projectType;
-
-    const projects = {
-      'portfolio': loadPortfolio,
-      'api-php': loadAPIPHP,
-      'data-python': loadDataPython,
-      'project-php': loadProjectPHP,
-      'nodejs': loadNodeJS,
-      'react': loadReact,
-      'salesforce': loadSalesforce,
-      'security': loadSecurity
-    };
-    
-    if (projects[projectType]) {
-      projects[projectType]();
-    }
-  }
-
-  function closeModal() {
-    modal.style.display = 'none';
-    modalBody.innerHTML = '';
-    document.body.style.overflow = 'auto';
-    currentProject = null;
-  }
-
-  function switchTab(tab) {
-    const tabs = document.querySelectorAll('.tab-btn');
-    tabs.forEach(t => t.classList.remove('active'));
-    event.target.classList.add('active');
-    
-    if (currentProject) {
-      const projects = {
-        'portfolio': loadPortfolio,
-        'api-php': loadAPIPHP,
-        'data-python': loadDataPython,
-        'project-php': loadProjectPHP,
-        'nodejs': loadNodeJS,
-        'react': loadReact,
-        'salesforce': loadSalesforce,
-        'security': loadSecurity
-      };
-      
-      if (tab === 'code' && projects[currentProject]) {
-        projects[currentProject]();
-      } else if (tab === 'info') {
-        loadInfo(currentProject);
-      }
-    }
-  }
-
-  function loadInfo(projectType) {
-    const info = {
-      'portfolio': {
-        title: '🌐 Portfólio Web',
-        files: ['index.html', 'style.css', 'script.js'],
-        description: 'Site portfólio responsivo com animações CSS avançadas e efeito de raios.',
-        features: ['Design responsivo', 'Animações CSS', 'Efeito de raios', 'GitHub API']
-      },
-      'api-php': {
-        title: '🔌 API REST PHP',
-        files: ['index.php', 'routes.php', 'controllers/UserController.php', 'models/User.php'],
-        description: 'API REST completa com autenticação JWT e CRUD.',
-        features: ['JWT Authentication', 'Slim Framework', 'MySQL', 'MVC Pattern']
-      },
-      'data-python': {
-        title: '📈 Análise de Dados Python',
-        files: ['main.py', 'analysis.py', 'visualization.py', 'data.csv'],
-        description: 'Análise exploratória de dados com visualizações.',
-        features: ['Pandas', 'NumPy', 'Matplotlib', 'Machine Learning']
-      },
-      'project-php': {
-        title: '🐘 Projeto PHP',
-        files: ['index.php', 'config.php', 'classes/User.php', 'views/home.php'],
-        description: 'Aplicação web PHP com padrão MVC.',
-        features: ['MVC Pattern', 'MySQL', 'Sessions', 'Validation']
-      },
-      'nodejs': {
-        title: '🟢 Node.js Backend',
-        files: ['app.js', 'routes/auth.js', 'controllers/userController.js', 'models/User.js'],
-        description: 'API backend com Express e TypeScript.',
-        features: ['Express.js', 'TypeScript', 'MongoDB', 'JWT']
-      },
-      'react': {
-        title: '⚛️ React JS App',
-        files: ['App.js', 'components/Header.js', 'hooks/useAuth.js', 'context/AuthContext.js'],
-        description: 'Aplicação frontend com React.',
-        features: ['React Hooks', 'Context API', 'Components', 'API Integration']
-      },
-      'salesforce': {
-        title: '☁️ Salesforce Admin',
-        files: ['classes/CustomController.cls', 'triggers/UserTrigger.trigger', 'objects/CustomObject__c.object'],
-        description: 'Configuração e customização Salesforce.',
-        features: ['Apex', 'SOQL', 'Lightning', 'Workflows']
-      },
-      'security': {
-        title: '🔒 Segurança da Informação',
-        files: ['auth.js', 'encryption.js', 'middleware/security.js', 'config/security.js'],
-        description: 'Implementação de práticas de segurança.',
-        features: ['Cryptography', 'JWT', 'HTTPS', 'OWASP']
-      }
-    };
-
-    const project = info[projectType];
-    modalTitle.innerText = project.title + ' ℹ️';
-    
-    modalBody.innerHTML = `
-      <div class="info-section">
-        <h4>📋 Descrição</h4>
-        <p style="color: var(--text-main);">${project.description}</p>
+// --- DEMO: PORTFÓLIO ---
+function loadPortfolio() {
+  modalTitle.innerText = '🌐 Portfólio Web - Demo';
+  modalBody.innerHTML = `
+    <div class="demo-container">
+      <div class="portfolio-demo">
+        <h2>⚡ Luis Gustavo - Portfólio ⚡</h2>
+        <p style="color: var(--text-sec); margin: 15px 0;">Desenvolvedor Júnior | Back-end & Web</p>
         
-        <h4 style="margin-top: 25px;">📁 Estrutura de Arquivos</h4>
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; font-family: monospace;">
-          ${project.files.map(f => `<div style="color: var(--accent);">📄 ${f}</div>`).join('')}
+        <div class="project-preview">
+          <div class="preview-card">
+            <div style="font-size: 2rem;">🔌</div>
+            <h4 style="margin: 10px 0;">API REST PHP</h4>
+            <p style="color: var(--text-sec); font-size: 0.85rem;">Slim Framework + JWT</p>
+          </div>
+          <div class="preview-card">
+            <div style="font-size: 2rem;">📈</div>
+            <h4 style="margin: 10px 0;">Python Data</h4>
+            <p style="color: var(--text-sec); font-size: 0.85rem;">Pandas + Matplotlib</p>
+          </div>
+          <div class="preview-card">
+            <div style="font-size: 2rem;">🐘</div>
+            <h4 style="margin: 10px 0;">Projeto PHP</h4>
+            <p style="color: var(--text-sec); font-size: 0.85rem;">MVC + MySQL</p>
+          </div>
+          <div class="preview-card">
+            <div style="font-size: 2rem;">⚛️</div>
+            <h4 style="margin: 10px 0;">React JS</h4>
+            <p style="color: var(--text-sec); font-size: 0.85rem;">Components + Hooks</p>
+          </div>
         </div>
         
-        <h4 style="margin-top: 25px;">✨ Funcionalidades</h4>
-        <ul>
-          ${project.features.map(f => `<li>${f}</li>`).join('')}
-        </ul>
+        <div style="margin-top: 40px; padding: 20px; background: #1e293b; border-radius: 12px;">
+          <h4 style="color: var(--accent);">🎯 Recursos Implementados</h4>
+          <ul style="color: var(--text-sec); margin: 15px 0 0 20px; text-align: left;">
+            <li>Design responsivo (mobile-first)</li>
+            <li>Animações CSS avançadas</li>
+            <li>Efeito de raios/relâmpagos</li>
+            <li>Integração com GitHub API</li>
+            <li>Performance otimizada</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// --- DEMO: API REST PHP ---
+function loadAPIPHP() {
+  modalTitle.innerText = '🔌 API REST PHP - Demo';
+  modalBody.innerHTML = `
+    <div class="demo-container">
+      <div class="api-demo">
+        <h3 style="color: var(--accent); margin-bottom: 20px;">Endpoints Disponíveis</h3>
         
-        <h4 style="margin-top: 25px;">🎓 Cursos Relacionados</h4>
-        <ul>
-          <li>Back-end com Slim Framework (PHP)</li>
-          <li>Desenvolvimento Web Full Stack Completo</li>
-          <li>Node.js Essencial: Express e TypeScript</li>
-          <li>React JS, a biblioteca do Facebook</li>
-        </ul>
-      </div>
-    `;
-  }
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      closeModal();
-    }
-  }
-
-  // --- CÓDIGOS DOS PROJETOS ---
-
-  function loadPortfolio() {
-    modalTitle.innerText = '🌐 Portfólio Web - Código';
-    modalBody.innerHTML = `
-      <div class="code-viewer">
-        <div class="file-tree">
-          <h4>📁 Arquivos</h4>
-          <div class="file-item active" onclick="loadFile('html')"><span class="file-icon">📄</span> index.html</div>
-          <div class="file-item" onclick="loadFile('css')"><span class="file-icon">🎨</span> style.css</div>
-          <div class="file-item" onclick="loadFile('js')"><span class="file-icon">⚡</span> script.js</div>
+        <div class="endpoint">
+          <span class="method get">GET</span>
+          <code>/api/users</code>
+          <p style="color: var(--text-sec); margin: 10px 0 0 0;">Listar todos os usuários</p>
         </div>
-        <div class="code-content">
-          <div class="code-header">
-            <span class="code-filename" id="filename">index.html</span>
-            <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-          </div>
-          <div class="code-container" id="codeContainer">
-            <pre><code id="codeContent">${escapeHtml(portfolioHTML)}</code></pre>
-          </div>
+        
+        <div class="endpoint">
+          <span class="method post">POST</span>
+          <code>/api/auth/login</code>
+          <p style="color: var(--text-sec); margin: 10px 0 0 0;">Autenticação JWT</p>
         </div>
-      </div>
-    `;
-  }
-
-  function loadAPIPHP() {
-    modalTitle.innerText = '🔌 API REST PHP - Código';
-    modalBody.innerHTML = `
-      <div class="code-viewer">
-        <div class="file-tree">
-          <h4>📁 Arquivos</h4>
-          <div class="file-item active" onclick="loadPHPFile('index')"><span class="file-icon">🐘</span> index.php</div>
-          <div class="file-item" onclick="loadPHPFile('routes')"><span class="file-icon">🛣️</span> routes.php</div>
-          <div class="file-item" onclick="loadPHPFile('controller')"><span class="file-icon">🎮</span> UserController.php</div>
-          <div class="file-item" onclick="loadPHPFile('model')"><span class="file-icon">🗄️</span> User.php</div>
+        
+        <div class="endpoint">
+          <span class="method post">POST</span>
+          <code>/api/users</code>
+          <p style="color: var(--text-sec); margin: 10px 0 0 0;">Criar novo usuário</p>
         </div>
-        <div class="code-content">
-          <div class="code-header">
-            <span class="code-filename" id="filename">index.php</span>
-            <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-          </div>
-          <div class="code-container" id="codeContainer">
-            <pre><code id="codeContent">${escapeHtml(apiPHPIndex)}</code></pre>
-          </div>
+        
+        <div class="endpoint">
+          <span class="method put">PUT</span>
+          <code>/api/users/{id}</code>
+          <p style="color: var(--text-sec); margin: 10px 0 0 0;">Atualizar usuário</p>
+        </div>
+        
+        <div class="endpoint">
+          <span class="method delete">DELETE</span>
+          <code>/api/users/{id}</code>
+          <p style="color: var(--text-sec); margin: 10px 0 0 0;">Deletar usuário</p>
+        </div>
+        
+        <button class="test-btn" onclick="testAPI()">🧪 Testar API</button>
+        
+        <div id="apiResponse" class="response" style="display: none;">
+          <strong style="color: var(--success);">✅ Resposta da API:</strong>
+          <pre style="margin: 15px 0 0 0; overflow-x: auto;">{
+  "success": true,
+  "data": {
+    "id": 1,
+    "name": "Luis Gustavo",
+    "email": "gustavoluis.v.c.1016@gmail.com",
+    "created_at": "2026-03-20T10:30:00Z"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}</pre>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #334155; border-radius: 8px;">
+          <h4 style="color: var(--accent); margin-bottom: 15px;">✨ Funcionalidades</h4>
+          <ul style="color: var(--text-sec); padding-left: 20px;">
+            <li>Autenticação JWT com refresh token</li>
+            <li>Validação de dados com Validator</li>
+            <li>Middleware de autorização</li>
+            <li>Tratamento de erros e exceptions</li>
+            <li>Slim Framework 4</li>
+          </ul>
         </div>
       </div>
-    `;
-  }
+    </div>
+  `;
+}
 
-  function loadDataPython() {
-    modalTitle.innerText = '📈 Análise de Dados Python - Código';
-    modalBody.innerHTML = `
-      <div class="code-viewer">
-        <div class="file-tree">
-          <h4>📁 Arquivos</h4>
-          <div class="file-item active" onclick="loadPythonFile('main')"><span class="file-icon">🐍</span> main.py</div>
-          <div class="file-item" onclick="loadPythonFile('analysis')"><span class="file-icon">📊</span> analysis.py</div>
-          <div class="file-item" onclick="loadPythonFile('viz')"><span class="file-icon">📈</span> visualization.py</div>
-        </div>
-        <div class="code-content">
-          <div class="code-header">
-            <span class="code-filename" id="filename">main.py</span>
-            <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-          </div>
-          <div class="code-container" id="codeContainer">
-            <pre><code id="codeContent">${escapeHtml(pythonMain)}</code></pre>
-          </div>
-        </div>
-      </div>
-    `;
-  }
+function testAPI() {
+  const response = document.getElementById('apiResponse');
+  response.style.display = 'block';
+  response.scrollIntoView({ behavior: 'smooth' });
+}
 
-  function loadProjectPHP() {
-    modalTitle.innerText = '🐘 Projeto PHP - Código';
-    modalBody.innerHTML = `
-      <div class="code-viewer">
-        <div class="file-tree">
-          <h4>📁 Arquivos</h4>
-          <div class="file-item active"><span class="file-icon">🐘</span> index.php</div>
-          <div class="file-item"><span class="file-icon">⚙️</span> config.php</div>
-          <div class="file-item"><span class="file-icon">📦</span> User.php</div>
-          <div class="file-item"><span class="file-icon">👁️</span> home.php</div>
-        </div>
-        <div class="code-content">
-          <div class="code-header">
-            <span class="code-filename">index.php</span>
-            <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-          </div>
-          <div class="code-container">
-            <pre><code>${escapeHtml(projectPHP)}</code></pre>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  function loadNodeJS() {
-    modalTitle.innerText = '🟢 Node.js Backend - Código';
-    modalBody.innerHTML = `
-      <div class="code-viewer">
-        <div class="file-tree">
-          <h4>📁 Arquivos</h4>
-          <div class="file-item active"><span class="file-icon">🟢</span> app.js</div>
-          <div class="file-item"><span class="file-icon">🛣️</span> auth.js</div>
-          <div class="file-item"><span class="file-icon">🎮</span> userController.ts</div>
-          <div class="file-item"><span class="file-icon">🗄️</span> User.ts</div>
-        </div>
-        <div class="code-content">
-          <div class="code-header">
-            <span class="code-filename">app.js</span>
-            <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-          </div>
-          <div class="code-container">
-            <pre><code>${escapeHtml(nodeJSApp)}</code></pre>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  function loadReact() {
-    modalTitle.innerText = '⚛️ React JS App - Código';
-    modalBody.innerHTML = `
-      <div class="code-viewer">
-        <div class="file-tree">
-          <h4>📁 Arquivos</h4>
-          <div class="file-item active"><span class="file-icon">⚛️</span> App.js</div>
-          <div class="file-item"><span class="file-icon">🧩</span> Header.js</div>
-          <div class="file-item"><span class="file-icon">🎣</span> useAuth.js</div>
-          <div class="file-item"><span class="file-icon">📦</span> AuthContext.js</div>
-        </div>
-        <div class="code-content">
-          <div class="code-header">
-            <span class="code-filename">App.js</span>
-            <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-          </div>
-          <div class="code-container">
-            <pre><code>${escapeHtml(reactApp)}</code></pre>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  function loadSalesforce() {
-    modalTitle.innerText = '☁️ Salesforce Admin - Código';
-    modalBody.innerHTML = `
-      <div class="code-viewer">
-        <div class="file-tree">
-          <h4>📁 Arquivos</h4>
-          <div class="file-item active"><span class="file-icon">☁️</span> CustomController.cls</div>
-          <div class="file-item"><span class="file-icon">⚡</span> UserTrigger.trigger</div>
-          <div class="file-item"><span class="file-icon">🗄️</span> CustomObject__c.object</div>
-        </div>
-        <div class="code-content">
-          <div class="code-header">
-            <span class="code-filename">CustomController.cls</span>
-            <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-          </div>
-          <div class="code-container">
-            <pre><code>${escapeHtml(salesforceCls)}</code></pre>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  function loadSecurity() {
-    modalTitle.innerText = '🔒 Segurança da Informação - Código';
-    modalBody.innerHTML = `
-      <div class="code-viewer">
-        <div class="file-tree">
-          <h4>📁 Arquivos</h4>
-          <div class="file-item active"><span class="file-icon">🔒</span> auth.js</div>
-          <div class="file-item"><span class="file-icon">🔐</span> encryption.js</div>
-          <div class="file-item"><span class="file-icon">🛡️</span> security.js</div>
-        </div>
-        <div class="code-content">
-          <div class="code-header">
-            <span class="code-filename">auth.js</span>
-            <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-          </div>
-          <div class="code-container">
-            <pre><code>${escapeHtml(securityAuth)}</code></pre>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  // --- CÓDIGOS DE EXEMPLO ---
-  const portfolioHTML = `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Gustavo | Desenvolvedor</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>⚡ Luis Gustavo ⚡</h1>
-        <p>Desenvolvedor Full Stack</p>
-    </header>
-    
-    <section class="projects">
-        <div class="card">
-            <h3>🔌 API REST PHP</h3>
-            <p>API com JWT e Slim Framework</p>
-        </div>
-    </section>
-    
-    <script src="script.js"><\/script>
-</body>
-</html>`;
-
-  const apiPHPIndex = `<?php
-require 'vendor/autoload.php';
-
-use Slim\\App;
-use Controllers\\UserController;
-
-$app = new App();
-
-// Rotas da API
-$app->get('/api/users', [UserController::class, 'index']);
-$app->post('/api/auth/login', [UserController::class, 'login']);
-$app->post('/api/users', [UserController::class, 'store']);
-$app->put('/api/users/{id}', [UserController::class, 'update']);
-$app->delete('/api/users/{id}', [UserController::class, 'destroy']);
-
-$app->run();
-?>`;
-
-  const pythonMain = `import pandas as pd
+// --- DEMO: PYTHON DATA ---
+function loadDataPython() {
+  modalTitle.innerText = '📈 Análise de Dados Python - Demo';
+  modalBody.innerHTML = `
+    <div class="demo-container">
+      <div class="python-demo">
+        <h3 style="color: var(--accent); margin-bottom: 20px;">Análise Exploratória de Dados</h3>
+        
+        <div class="code-block">
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
 
 # Carregar dados
-df = pd.read_csv('data.csv')
+df = pd.read_csv('dados.csv')
 
-# Análise exploratória
+# Estatísticas descritivas
 print(df.describe())
-print(df.info())
 
 # Visualização
-plt.figure(figsize=(10, 6))
 plt.plot(df['date'], df['value'])
-plt.title('Análise de Dados')
 plt.show()
-
-# Machine Learning
-X = df[['feature1', 'feature2']]
-y = df['target']
-X_train, X_test = train_test_split(X, y, test_size=0.2)
-print('Modelo treinado com sucesso!')
-`;
-
-  const projectPHP = `<?php
-require_once 'config.php';
-require_once 'classes/User.php';
-
-session_start();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user = new User($pdo);
-    $result = $user->login($_POST['email'], $_POST['password']);
-    
-    if ($result) {
-        $_SESSION['user_id'] = $result['id'];
-        header('Location: views/home.php');
-    } else {
-        $error = 'Credenciais inválidas';
-    }
-}
-
-include 'views/login.php';
-?>`;
-
-  const nodeJSApp = `import express from 'express';
-import mongoose from 'mongoose';
-import authRoutes from './routes/auth';
-import userRoutes from './routes/users';
-
-const app = express();
-
-// Middleware
-app.use(express.json());
-
-// Conexão MongoDB
-mongoose.connect(process.env.MONGODB_URI);
-
-// Rotas
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-
-// Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(\`Server running on port \${PORT}\`);
-});
-
-export default app;
-`;
-
-  const reactApp = `import React, { useState, useContext } from 'react';
-import { AuthContext } from './context/AuthContext';
-import Header from './components/Header';
-
-function App() {
-    const { user, login, logout } = useContext(AuthContext);
-    const [loading, setLoading] = useState(false);
-
-    const handleLogin = async (credentials) => {
-        setLoading(true);
-        await login(credentials);
-        setLoading(false);
-    };
-
-    return (
-        <div className="App">
-            <Header user={user} onLogout={logout} />
-            <main>
-                {user ? (
-                    <Dashboard user={user} />
-                ) : (
-                    <LoginForm onSubmit={handleLogin} loading={loading} />
-                )}
-            </main>
         </div>
-    );
+        
+        <button class="run-btn" onclick="runPythonAnalysis()">▶ Executar Análise</button>
+        
+        <div id="pythonResults" style="display: none; margin-top: 30px;">
+          <div class="chart-placeholder">
+            📊 Gráfico Gerado com Matplotlib
+          </div>
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">1,247</div>
+              <div class="stat-label">Registros</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">98.5%</div>
+              <div class="stat-label">Dados Válidos</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">24.3</div>
+              <div class="stat-label">Média</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">0.87</div>
+              <div class="stat-label">Correlação</div>
+            </div>
+          </div>
+          
+          <div class="code-block" style="background: #1e293b; border: 1px solid var(--success);">
+<strong style="color: var(--success);">✅ Análise Concluída!</strong>
+- Dados carregados com sucesso
+- Missing values tratados
+- Visualizações geradas
+- Modelo treinado (87% accuracy)
+          </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #334155; border-radius: 8px;">
+          <h4 style="color: var(--accent); margin-bottom: 15px;">📚 Bibliotecas Utilizadas</h4>
+          <div class="skills-grid">
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+            <span class="skill-tag">Scikit-learn</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
-export default App;
-`;
-
-  const salesforceCls = `public with sharing class CustomController {
-    @AuraEnabled
-    public static List<Account> getAccounts() {
-        return [SELECT Id, Name, Industry 
-                FROM Account 
-                WHERE IsActive = true 
-                LIMIT 100];
-    }
-    
-    @AuraEnabled
-    public static Account createAccount(String name, String industry) {
-        Account acc = new Account(Name = name, Industry = industry);
-        insert acc;
-        return acc;
-    }
-}
-`;
-
-  const securityAuth = `const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const crypto = require('crypto');
-
-// Hash de senha
-async function hashPassword(password) {
-    const salt = await bcrypt.genSalt(12);
-    return await bcrypt.hash(password, salt);
+function runPythonAnalysis() {
+  const results = document.getElementById('pythonResults');
+  results.style.display = 'block';
+  results.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Gerar JWT Token
-function generateToken(user) {
-    return jwt.sign(
-        { id: user.id, email: user.email },
-        process.env.JWT_SECRET,
-        { expiresIn: '24h' }
-    );
+// --- DEMO: PROJETO PHP ---
+function loadProjectPHP() {
+  modalTitle.innerText = '🐘 Projeto PHP - Demo';
+  modalBody.innerHTML = `
+    <div class="demo-container">
+      <div class="php-demo">
+        <div id="loginForm" class="login-form">
+          <h3 style="text-align: center; color: var(--accent); margin-bottom: 25px;">🔐 Login Administrativo</h3>
+          
+          <div id="loginMessage"></div>
+          
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="admin@exemplo.com" value="admin@exemplo.com">
+          </div>
+          
+          <div class="form-group">
+            <label>Senha</label>
+            <input type="password" id="password" placeholder="******" value="admin123">
+          </div>
+          
+          <button class="submit-btn" onclick="phpLogin()">Entrar</button>
+          
+          <p style="text-align: center; color: var(--text-sec); margin: 20px 0 0 0; font-size: 0.85rem;">
+            Use: admin@exemplo.com / admin123
+          </p>
+        </div>
+        
+        <div id="dashboard" class="dashboard">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h3 style="color: var(--accent);">📊 Dashboard Administrativo</h3>
+            <button class="btn btn-outline" onclick="phpLogout()" style="padding: 8px 16px;">🚪 Sair</button>
+          </div>
+          
+          <div class="dashboard-stats">
+            <div class="dash-card">
+              <div class="dash-value">1,247</div>
+              <div style="color: var(--text-sec);">Usuários</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-value">R$ 84.500</div>
+              <div style="color: var(--text-sec);">Vendas</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-value">98.5%</div>
+              <div style="color: var(--text-sec);">Uptime</div>
+            </div>
+          </div>
+          
+          <div style="background: #334155; padding: 20px; border-radius: 8px; margin-top: 20px;">
+            <h4 style="color: var(--text-main); margin-bottom: 15px;">📋 Últimas Atividades</h4>
+            <div style="color: var(--text-sec);">
+              <div style="padding: 10px 0; border-bottom: 1px solid #475569;">
+                ✅ Novo usuário cadastrado - Há 5 minutos
+              </div>
+              <div style="padding: 10px 0; border-bottom: 1px solid #475569;">
+                ✅ Venda realizada #1234 - Há 15 minutos
+              </div>
+              <div style="padding: 10px 0; border-bottom: 1px solid #475569;">
+                ✅ Backup realizado - Há 1 hora
+              </div>
+              <div style="padding: 10px 0;">
+                ✅ Sistema atualizado - Há 2 horas
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #334155; border-radius: 8px;">
+          <h4 style="color: var(--accent); margin-bottom: 15px;">🏗️ Arquitetura MVC</h4>
+          <ul style="color: var(--text-sec); padding-left: 20px;">
+            <li>Models: Camada de dados (MySQL)</li>
+            <li>Views: Templates HTML/PHP</li>
+            <li>Controllers: Lógica de negócio</li>
+            <li>Config: Configurações do banco</li>
+            <li>Sessions: Controle de autenticação</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
-// Criptografia AES
-function encrypt(data) {
-    const cipher = crypto.createCipher('aes-256-cbc', process.env.ENCRYPTION_KEY);
-    return cipher.update(data, 'utf8', 'hex') + cipher.final('hex');
+function phpLogin() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const message = document.getElementById('loginMessage');
+  
+  if (email === 'admin@exemplo.com' && password === 'admin123') {
+    message.innerHTML = '<div class="message success">✅ Login realizado com sucesso!</div>';
+    setTimeout(() => {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('dashboard').classList.add('active');
+    }, 1000);
+  } else {
+    message.innerHTML = '<div class="message error">❌ Credenciais inválidas!</div>';
+  }
 }
 
-module.exports = { hashPassword, generateToken, encrypt };
-`;
-
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  function copyCode() {
-    const code = document.getElementById('codeContent').textContent;
-    navigator.clipboard.writeText(code).then(() => {
-      alert('Código copiado! ✅');
-    });
-  }
-
-  function loadFile(type) {
-    const items = document.querySelectorAll('.file-item');
-    items.forEach(i => i.classList.remove('active'));
-    event.target.closest('.file-item').classList.add('active');
-    
-    const code = type === 'html' ? portfolioHTML : 
-                 type === 'css' ? '/* CSS styles */' : 
-                 '/* JavaScript code */';
-    
-    document.getElementById('filename').textContent = 
-      type === 'html' ? 'index.html' : 
-      type === 'css' ? 'style.css' : 'script.js';
-    
-    document.getElementById('codeContent').textContent = escapeHtml(code);
-  }
-
-  function loadPHPFile(type) {
-    const items = document.querySelectorAll('.file-item');
-    items.forEach(i => i.classList.remove('active'));
-    event.target.closest('.file-item').classList.add('active');
-    
-    document.getElementById('filename').textContent = 
-      type === 'index' ? 'index.php' : 
-      type === 'routes' ? 'routes.php' : 
-      type === 'controller' ? 'UserController.php' : 'User.php';
-    
-    document.getElementById('codeContent').textContent = escapeHtml(apiPHPIndex);
-  }
-
-  function loadPythonFile(type) {
-    const items = document.querySelectorAll('.file-item');
-    items.forEach(i => i.classList.remove('active'));
-    event.target.closest('.file-item').classList.add('active');
-    
-    document.getElementById('filename').textContent = 
-      type === 'main' ? 'main.py' : 
-      type === 'analysis' ? 'analysis.py' : 'visualization.py';
-    
-    document.getElementById('codeContent').textContent = escapeHtml(pythonMain);
-  }
+function phpLogout() {
+  document.getElementById('loginForm').style.display = 'block';
+  document.getElementById('dashboard').classList.remove('active');
+  document.getElementById('loginMessage').innerHTML = '';
+  document.getElementById('password').value = '';
+}
 </script>
 
 </body>
