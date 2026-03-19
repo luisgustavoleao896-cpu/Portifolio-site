@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -181,8 +182,8 @@ header p {
 }
 
 .btn-outline:hover {
-  border-color: white;
-  color: white;
+  border-color: var(--primary);
+  color: var(--primary);
   transform: translateY(-2px);
 }
 
@@ -367,6 +368,12 @@ h2::after {
   flex-wrap: wrap;
 }
 
+.card .btn-group .btn {
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+
 /* --- CURSOS --- */
 .courses-grid {
   display: grid;
@@ -402,6 +409,9 @@ h2::after {
   color: var(--accent);
   text-decoration: none;
   font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .course-card .cert-link:hover {
@@ -676,6 +686,12 @@ pre {
 
 .demo-result.show {
   display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Chat Demo */
@@ -805,6 +821,12 @@ pre {
   border-radius: 6px;
   margin-bottom: 10px;
   cursor: grab;
+  transition: all 0.2s;
+}
+
+.kanban-task:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 /* Auth Demo */
@@ -944,6 +966,7 @@ pre {
   border-radius: 12px;
   margin: 20px 0;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .upload-zone:hover {
@@ -988,6 +1011,14 @@ pre {
   
   .kanban-column {
     min-width: 100%;
+  }
+  
+  .card .btn-group {
+    flex-direction: column;
+  }
+  
+  .card .btn-group .btn {
+    width: 100%;
   }
 }
 
@@ -1100,7 +1131,7 @@ pre {
 <section id="projetos">
   <h2>🚀 10 Projetos Mais Valorizados (2025)</h2>
   <p style="color: var(--text-sec); margin-bottom: 30px;">
-    Projetos que as empresas mais buscam - Clique em <strong>"▶ Executar Demo"</strong> para testar e <strong>"📄 Ver Código"</strong> para analisar
+    Clique em <strong>"▶ Executar Demo"</strong> para testar e <strong>"📄 Ver Código"</strong> para analisar o código
   </p>
 
   <div class="projects">
@@ -1116,8 +1147,8 @@ pre {
         <span class="tech-tag">MySQL</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('api-rest')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModalCode('api-rest')">📄 Ver Código</button>
+        <button class="btn btn-outline" onclick="openModal('api-rest', 'demo')">▶ Executar Demo</button>
+        <button class="btn btn-outline" onclick="openModal('api-rest', 'code')">📄 Ver Código</button>
         <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
@@ -1133,8 +1164,8 @@ pre {
         <span class="tech-tag">JWT</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('auth')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModalCode('auth')">📄 Ver Código</button>
+        <button class="btn btn-outline" onclick="openModal('auth', 'demo')">▶ Executar Demo</button>
+        <button class="btn btn-outline" onclick="openModal('auth', 'code')">📄 Ver Código</button>
         <a href="#" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
@@ -1150,8 +1181,8 @@ pre {
         <span class="tech-tag">Stripe</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('ecommerce')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModalCode('ecommerce')">📄 Ver Código</button>
+        <button class="btn btn-outline" onclick="openModal('ecommerce', 'demo')">▶ Executar Demo</button>
+        <button class="btn btn-outline" onclick="openModal('ecommerce', 'code')">📄 Ver Código</button>
         <a href="#" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
@@ -1167,8 +1198,8 @@ pre {
         <span class="tech-tag">Redis</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('chat')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModalCode('chat')">📄 Ver Código</button>
+        <button class="btn btn-outline" onclick="openModal('chat', 'demo')">▶ Executar Demo</button>
+        <button class="btn btn-outline" onclick="openModal('chat', 'code')">📄 Ver Código</button>
         <a href="#" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
@@ -1184,8 +1215,8 @@ pre {
         <span class="tech-tag">CSS Grid</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('dashboard')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModalCode('dashboard')">📄 Ver Código</button>
+        <button class="btn btn-outline" onclick="openModal('dashboard', 'demo')">▶ Executar Demo</button>
+        <button class="btn btn-outline" onclick="openModal('dashboard', 'code')">📄 Ver Código</button>
         <a href="#" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
@@ -1201,8 +1232,8 @@ pre {
         <span class="tech-tag">LocalStorage</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('kanban')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModalCode('kanban')">📄 Ver Código</button>
+        <button class="btn btn-outline" onclick="openModal('kanban', 'demo')">▶ Executar Demo</button>
+        <button class="btn btn-outline" onclick="openModal('kanban', 'code')">📄 Ver Código</button>
         <a href="#" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
@@ -1218,8 +1249,8 @@ pre {
         <span class="tech-tag">Matplotlib</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('python-data')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModalCode('python-data')">📄 Ver Código</button>
+        <button class="btn btn-outline" onclick="openModal('python-data', 'demo')">▶ Executar Demo</button>
+        <button class="btn btn-outline" onclick="openModal('python-data', 'code')">📄 Ver Código</button>
         <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
@@ -1235,8 +1266,8 @@ pre {
         <span class="tech-tag">LocalStorage</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('weather')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModalCode('weather')">📄 Ver Código</button>
+        <button class="btn btn-outline" onclick="openModal('weather', 'demo')">▶ Executar Demo</button>
+        <button class="btn btn-outline" onclick="openModal('weather', 'code')">📄 Ver Código</button>
         <a href="#" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
@@ -1252,8 +1283,8 @@ pre {
         <span class="tech-tag">QRCode</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('url-shortener')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModalCode('url-shortener')">📄 Ver Código</button>
+        <button class="btn btn-outline" onclick="openModal('url-shortener', 'demo')">▶ Executar Demo</button>
+        <button class="btn btn-outline" onclick="openModal('url-shortener', 'code')">📄 Ver Código</button>
         <a href="#" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
@@ -1269,8 +1300,8 @@ pre {
         <span class="tech-tag">Crypto</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('file-upload')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModalCode('file-upload')">📄 Ver Código</button>
+        <button class="btn btn-outline" onclick="openModal('file-upload', 'demo')">▶ Executar Demo</button>
+        <button class="btn btn-outline" onclick="openModal('file-upload', 'code')">📄 Ver Código</button>
         <a href="#" class="btn btn-secondary">🐙 GitHub</a>
       </div>
     </div>
@@ -1297,6 +1328,21 @@ pre {
       <a href="https://cursa.app/pt/meu-certificado/cert212c0b82fe81e891f7ab992845d43130" target="_blank" class="cert-link">📄 Ver Certificado</a>
     </div>
     <div class="course-card">
+      <h4>HTML, CSS e JavaScript (Front-end)</h4>
+      <div class="provider">Cursa</div>
+      <a href="https://cursa.app/pt/meu-certificado/cert49663393e595fc3487c59aa1ddb0e167" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
+      <h4>Lógica de Programação</h4>
+      <div class="provider">Cursa</div>
+      <a href="https://cursa.app/pt/meu-certificado/cert6a98c57b3a86b5365eaab487fe4d1865" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
+      <h4>Segurança da Informação</h4>
+      <div class="provider">Cursa</div>
+      <a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank" class="cert-link">📄 Ver Certificado</a>
+    </div>
+    <div class="course-card">
       <h4>Desenvolvimento Web Full Stack</h4>
       <div class="provider">Udemy</div>
       <a href="https://ude.my/UC-b87e3e1b-d352-4ca3-9a60-1e70bddcd729" target="_blank" class="cert-link">📄 Ver Certificado</a>
@@ -1310,16 +1356,6 @@ pre {
       <h4>React JS</h4>
       <div class="provider">EuProgramador</div>
       <a href="https://cursa.app/pt/meu-certificado/cert817951b9c469739094602d09bbcaa740" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>HTML, CSS e JavaScript</h4>
-      <div class="provider">Cursa</div>
-      <a href="https://cursa.app/pt/meu-certificado/cert49663393e595fc3487c59aa1ddb0e167" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Segurança da Informação</h4>
-      <div class="provider">Cursa</div>
-      <a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank" class="cert-link">📄 Ver Certificado</a>
     </div>
   </div>
 </section>
@@ -1350,32 +1386,19 @@ pre {
   </div>
 </section>
 
-<!-- MODAL DE DEMO -->
-<div id="demoModal" class="modal-overlay">
+<!-- MODAL ÚNICO PARA DEMO E CÓDIGO -->
+<div id="projectModal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
-      <h3 id="demoModalTitle">⚡ Projeto Demo</h3>
-      <button class="close-btn" onclick="closeDemoModal()">×</button>
-    </div>
-    <div id="demoModalBody" class="modal-body">
-      <!-- Conteúdo da demo injetado via JS -->
-    </div>
-  </div>
-</div>
-
-<!-- MODAL DE CÓDIGO -->
-<div id="codeModal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3 id="codeModalTitle">📄 Código do Projeto</h3>
+      <h3 id="modalTitle">⚡ Projeto</h3>
       <div class="modal-tabs">
-        <button class="tab-btn active" onclick="switchCodeTab('demo')">🎯 Demo</button>
-        <button class="tab-btn" onclick="switchCodeTab('code')">📄 Código</button>
+        <button class="tab-btn active" id="tabDemo" onclick="switchTab('demo')">🎯 Demo</button>
+        <button class="tab-btn" id="tabCode" onclick="switchTab('code')">📄 Código</button>
       </div>
-      <button class="close-btn" onclick="closeCodeModal()">×</button>
+      <button class="close-btn" onclick="closeModal()">×</button>
     </div>
-    <div id="codeModalBody" class="modal-body">
-      <!-- Conteúdo do código injetado via JS -->
+    <div id="modalBody" class="modal-body">
+      <!-- Conteúdo injetado via JavaScript -->
     </div>
   </div>
 </div>
@@ -1402,15 +1425,81 @@ function randomLightning() {
 }
 randomLightning();
 
-// --- MODAL DE DEMO ---
-const demoModal = document.getElementById('demoModal');
-const demoModalBody = document.getElementById('demoModalBody');
-const demoModalTitle = document.getElementById('demoModalTitle');
+// --- MODAL ---
+const modal = document.getElementById('projectModal');
+const modalBody = document.getElementById('modalBody');
+const modalTitle = document.getElementById('modalTitle');
+const tabDemo = document.getElementById('tabDemo');
+const tabCode = document.getElementById('tabCode');
+let currentProject = null;
+let currentTab = 'demo';
 
-function openModal(projectType) {
-  demoModal.style.display = 'flex';
+function openModal(projectType, tab = 'demo') {
+  modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
+  currentProject = projectType;
+  currentTab = tab;
   
+  updateTabs();
+  loadContent(projectType, tab);
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+  modalBody.innerHTML = '';
+  document.body.style.overflow = 'auto';
+  currentProject = null;
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  updateTabs();
+  loadContent(currentProject, tab);
+}
+
+function updateTabs() {
+  if (currentTab === 'demo') {
+    tabDemo.classList.add('active');
+    tabCode.classList.remove('active');
+  } else {
+    tabDemo.classList.remove('active');
+    tabCode.classList.add('active');
+  }
+}
+
+function loadContent(projectType, tab) {
+  if (tab === 'demo') {
+    modalTitle.innerText = getProjectTitle(projectType) + ' - Demo';
+    loadDemo(projectType);
+  } else {
+    modalTitle.innerText = getProjectTitle(projectType) + ' - Código';
+    loadCode(projectType);
+  }
+}
+
+function getProjectTitle(type) {
+  const titles = {
+    'api-rest': '🔌 API REST com JWT',
+    'auth': '🔐 Sistema de Autenticação',
+    'ecommerce': '🛒 E-Commerce Completo',
+    'chat': '💬 Chat em Tempo Real',
+    'dashboard': '📊 Dashboard Analytics',
+    'kanban': '📋 Kanban Board',
+    'python-data': '📈 Análise de Dados Python',
+    'weather': '🌤️ Weather App API',
+    'url-shortener': '🔗 URL Shortener',
+    'file-upload': '📁 Upload Seguro'
+  };
+  return titles[type] || 'Projeto';
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) closeModal();
+}
+
+// --- DEMOS DOS PROJETOS ---
+
+function loadDemo(type) {
   const demos = {
     'api-rest': demoAPIRest,
     'auth': demoAuth,
@@ -1424,28 +1513,10 @@ function openModal(projectType) {
     'file-upload': demoFileUpload
   };
   
-  if (demos[projectType]) {
-    demos[projectType]();
-  }
+  if (demos[type]) demos[type]();
 }
 
-function closeDemoModal() {
-  demoModal.style.display = 'none';
-  demoModalBody.innerHTML = '';
-  document.body.style.overflow = 'auto';
-}
-
-// --- MODAL DE CÓDIGO ---
-const codeModal = document.getElementById('codeModal');
-const codeModalBody = document.getElementById('codeModalBody');
-const codeModalTitle = document.getElementById('codeModalTitle');
-let currentProject = null;
-
-function openModalCode(projectType) {
-  codeModal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  currentProject = projectType;
-  
+function loadCode(type) {
   const codes = {
     'api-rest': codeAPIRest,
     'auth': codeAuth,
@@ -1459,41 +1530,12 @@ function openModalCode(projectType) {
     'file-upload': codeFileUpload
   };
   
-  if (codes[projectType]) {
-    codes[projectType]();
-  }
+  if (codes[type]) codes[type]();
 }
 
-function closeCodeModal() {
-  codeModal.style.display = 'none';
-  codeModalBody.innerHTML = '';
-  document.body.style.overflow = 'auto';
-  currentProject = null;
-}
-
-function switchCodeTab(tab) {
-  const tabs = document.querySelectorAll('#codeModal .tab-btn');
-  tabs.forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
-  
-  if (tab === 'demo' && currentProject) {
-    closeCodeModal();
-    openModal(currentProject);
-  } else if (tab === 'code' && currentProject) {
-    openModalCode(currentProject);
-  }
-}
-
-window.onclick = function(event) {
-  if (event.target == demoModal) closeDemoModal();
-  if (event.target == codeModal) closeCodeModal();
-}
-
-// --- DEMOS DOS PROJETOS ---
-
+// === DEMO: API REST ===
 function demoAPIRest() {
-  demoModalTitle.innerText = '🔌 API REST com JWT - Demo';
-  demoModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="demo-container">
       <div class="demo-box">
         <h4>Endpoints Disponíveis</h4>
@@ -1552,9 +1594,9 @@ function testAPI() {
   document.getElementById('apiResult').classList.add('show');
 }
 
+// === DEMO: AUTH ===
 function demoAuth() {
-  demoModalTitle.innerText = '🔐 Sistema de Autenticação - Demo';
-  demoModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="demo-container">
       <div class="demo-box">
         <div class="auth-form" id="authForm">
@@ -1615,9 +1657,11 @@ function authLogout() {
   document.getElementById('authMessage').innerHTML = '';
 }
 
+// === DEMO: E-COMMERCE ===
+let cart = [];
 function demoEcommerce() {
-  demoModalTitle.innerText = '🛒 E-Commerce - Demo';
-  demoModalBody.innerHTML = `
+  cart = [];
+  modalBody.innerHTML = `
     <div class="demo-container">
       <div class="demo-box">
         <h4>Produtos Disponíveis</h4>
@@ -1662,7 +1706,6 @@ function demoEcommerce() {
   `;
 }
 
-let cart = [];
 function addToCart(name, price) {
   cart.push({name, price});
   updateCart();
@@ -1699,9 +1742,9 @@ function checkout() {
   updateCart();
 }
 
+// === DEMO: CHAT ===
 function demoChat() {
-  demoModalTitle.innerText = '💬 Chat em Tempo Real - Demo';
-  demoModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="demo-container">
       <div class="demo-box">
         <div class="chat-container">
@@ -1720,7 +1763,7 @@ function demoChat() {
             </div>
           </div>
           <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Digite uma mensagem...">
+            <input type="text" id="chatInput" placeholder="Digite uma mensagem..." onkeypress="if(event.key==='Enter')sendMessage()">
             <button onclick="sendMessage()">Enviar</button>
           </div>
         </div>
@@ -1753,9 +1796,9 @@ function sendMessage() {
   }
 }
 
+// === DEMO: DASHBOARD ===
 function demoDashboard() {
-  demoModalTitle.innerText = '📊 Dashboard Analytics - Demo';
-  demoModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="demo-container">
       <div class="demo-box">
         <h4>Métricas em Tempo Real</h4>
@@ -1797,35 +1840,35 @@ function demoDashboard() {
   `;
 }
 
+// === DEMO: KANBAN ===
 function demoKanban() {
-  demoModalTitle.innerText = '📋 Kanban Board - Demo';
-  demoModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="demo-container">
       <div class="demo-box">
         <h4>Gerenciamento de Tarefas</h4>
         <div class="kanban-board">
           <div class="kanban-column">
             <h4>📝 A Fazer</h4>
-            <div class="kanban-task" draggable="true">Criar API REST</div>
-            <div class="kanban-task" draggable="true">Revisar código</div>
-            <div class="kanban-task" draggable="true">Escrever testes</div>
+            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Criar API REST</div>
+            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Revisar código</div>
+            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Escrever testes</div>
           </div>
           <div class="kanban-column">
             <h4>🔄 Em Progresso</h4>
-            <div class="kanban-task" draggable="true">Desenvolver frontend</div>
-            <div class="kanban-task" draggable="true">Configurar banco</div>
+            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Desenvolver frontend</div>
+            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Configurar banco</div>
           </div>
           <div class="kanban-column">
             <h4>✅ Concluído</h4>
-            <div class="kanban-task" draggable="true">Setup do projeto</div>
-            <div class="kanban-task" draggable="true">Deploy inicial</div>
+            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Setup do projeto</div>
+            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Deploy inicial</div>
           </div>
         </div>
         
         <div style="margin-top: 20px; padding: 20px; background: #334155; border-radius: 8px;">
           <h4 style="color: var(--accent);">✨ Funcionalidades</h4>
           <ul style="color: var(--text-sec); padding-left: 20px; margin: 10px 0 0 0;">
-            <li>Drag & Drop de tarefas</li>
+            <li>Clique para mover tarefas</li>
             <li>Colunas personalizáveis</li>
             <li>Prioridades e prazos</li>
             <li>Colaboração em equipe</li>
@@ -1836,9 +1879,16 @@ function demoKanban() {
   `;
 }
 
+function moveTask(task) {
+  const columns = document.querySelectorAll('.kanban-column');
+  const currentColumn = task.parentElement;
+  let nextIndex = (Array.from(columns).indexOf(currentColumn) + 1) % columns.length;
+  columns[nextIndex].appendChild(task);
+}
+
+// === DEMO: PYTHON DATA ===
 function demoPythonData() {
-  demoModalTitle.innerText = '📈 Análise de Dados Python - Demo';
-  demoModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="demo-container">
       <div class="demo-box">
         <h4>Análise Exploratória de Dados</h4>
@@ -1882,9 +1932,9 @@ function runPythonAnalysis() {
   document.getElementById('pythonResult').classList.add('show');
 }
 
+// === DEMO: WEATHER ===
 function demoWeather() {
-  demoModalTitle.innerText = '🌤️ Weather App API - Demo';
-  demoModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="demo-container">
       <div class="demo-box">
         <div class="weather-card">
@@ -1922,9 +1972,9 @@ function refreshWeather() {
   alert('🌤️ Dados atualizados com sucesso!');
 }
 
+// === DEMO: URL SHORTENER ===
 function demoURLShortener() {
-  demoModalTitle.innerText = '🔗 URL Shortener - Demo';
-  demoModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="demo-container">
       <div class="demo-box">
         <div class="url-shortener">
@@ -1965,9 +2015,9 @@ function copyUrl() {
   alert('📋 URL copiada!');
 }
 
+// === DEMO: FILE UPLOAD ===
 function demoFileUpload() {
-  demoModalTitle.innerText = '📁 Upload Seguro - Demo';
-  demoModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="demo-container">
       <div class="demo-box">
         <h4>Upload de Arquivos</h4>
@@ -2009,11 +2059,10 @@ function triggerUpload() {
   document.getElementById('uploadResult').classList.add('show');
 }
 
-// --- CÓDIGOS DOS PROJETOS ---
+// === CÓDIGOS DOS PROJETOS ===
 
 function codeAPIRest() {
-  codeModalTitle.innerText = '🔌 API REST - Código';
-  codeModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="code-viewer">
       <div class="file-tree">
         <h4>📁 Arquivos</h4>
@@ -2052,8 +2101,7 @@ $app-&gt;run();
 }
 
 function codeAuth() {
-  codeModalTitle.innerText = '🔐 Auth System - Código';
-  codeModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="code-viewer">
       <div class="file-tree">
         <h4>📁 Arquivos</h4>
@@ -2091,8 +2139,7 @@ module.exports = { hashPassword, generateToken };</code></pre>
 }
 
 function codeEcommerce() {
-  codeModalTitle.innerText = '🛒 E-Commerce - Código';
-  codeModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="code-viewer">
       <div class="file-tree">
         <h4>📁 Arquivos</h4>
@@ -2133,8 +2180,7 @@ function codeEcommerce() {
 }
 
 function codeChat() {
-  codeModalTitle.innerText = '💬 Chat - Código';
-  codeModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="code-viewer">
       <div class="file-tree">
         <h4>📁 Arquivos</h4>
@@ -2172,8 +2218,7 @@ io.on('connection', (socket) => {
 }
 
 function codeDashboard() {
-  codeModalTitle.innerText = '📊 Dashboard - Código';
-  codeModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="code-viewer">
       <div class="file-tree">
         <h4>📁 Arquivos</h4>
@@ -2210,8 +2255,7 @@ function codeDashboard() {
 }
 
 function codeKanban() {
-  codeModalTitle.innerText = '📋 Kanban - Código';
-  codeModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="code-viewer">
       <div class="file-tree">
         <h4>📁 Arquivos</h4>
@@ -2249,11 +2293,199 @@ function saveToLocalStorage() {
 }
 
 function codePythonData() {
-  codeModalTitle.innerText = '📈 Python Data - Código';
-  codeModalBody.innerHTML = `
+  modalBody.innerHTML = `
     <div class="code-viewer">
       <div class="file-tree">
         <h4>📁 Arquivos</h4>
         <div class="file-item active"><span>🐍</span> main.py</div>
         <div class="file-item"><span>📊</span> analysis.py</div>
-        <div class="file-item"><span>📈</span> viz.py</
+        <div class="file-item"><span>📈</span> viz.py</div>
+      </div>
+      <div class="code-content">
+        <div class="code-header">
+          <span class="code-filename">main.py</span>
+          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
+        </div>
+        <div class="code-container">
+          <pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Carregar dados
+df = pd.read_csv('dados.csv')
+
+# Estatísticas
+print(df.describe())
+
+# Visualização
+plt.figure(figsize=(10, 6))
+plt.plot(df['date'], df['value'])
+plt.title('Análise de Dados')
+plt.xlabel('Data')
+plt.ylabel('Valor')
+plt.grid(True)
+plt.show()
+
+# Machine Learning
+from sklearn.model_selection import train_test_split
+X = df[['feature1', 'feature2']]
+y = df['target']
+X_train, X_test = train_test_split(X, y, test_size=0.2)
+print('Modelo treinado!')</code></pre>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function codeWeather() {
+  modalBody.innerHTML = `
+    <div class="code-viewer">
+      <div class="file-tree">
+        <h4>📁 Arquivos</h4>
+        <div class="file-item active"><span>⚡</span> weather.js</div>
+        <div class="file-item"><span>🎨</span> style.css</div>
+        <div class="file-item"><span>📄</span> index.html</div>
+      </div>
+      <div class="code-content">
+        <div class="code-header">
+          <span class="code-filename">weather.js</span>
+          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
+        </div>
+        <div class="code-container">
+          <pre><code>async function getWeather(city) {
+    const apiKey = 'YOUR_API_KEY';
+    const response = await fetch(
+        \`https://api.openweathermap.org/data/2.5/weather?q=\${city}&appid=\${apiKey}\`
+    );
+    const data = await response.json();
+    
+    return {
+        temp: data.main.temp,
+        humidity: data.main.humidity,
+        wind: data.wind.speed,
+        description: data.weather[0].description
+    };
+}
+
+// Salvar histórico
+function saveHistory(city, weather) {
+    const history = JSON.parse(localStorage.getItem('weatherHistory') || '[]');
+    history.push({ city, weather, date: new Date() });
+    localStorage.setItem('weatherHistory', JSON.stringify(history));
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function codeURLShortener() {
+  modalBody.innerHTML = `
+    <div class="code-viewer">
+      <div class="file-tree">
+        <h4>📁 Arquivos</h4>
+        <div class="file-item active"><span>🟢</span> app.js</div>
+        <div class="file-item"><span>🗄️</span> urlModel.js</div>
+        <div class="file-item"><span>🎮</span> urlController.js</div>
+      </div>
+      <div class="code-content">
+        <div class="code-header">
+          <span class="code-filename">app.js</span>
+          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
+        </div>
+        <div class="code-container">
+          <pre><code>const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+
+app.use(express.json());
+
+// Rotas
+app.post('/api/shorten', async (req, res) => {
+    const { url } = req.body;
+    const shortCode = generateShortCode();
+    
+    await Url.create({ originalUrl: url, shortCode });
+    
+    res.json({ 
+        shortUrl: \`https://short.link/\${shortCode}\` 
+    });
+});
+
+app.get('/:shortCode', async (req, res) => {
+    const url = await Url.findOne({ shortCode: req.params.shortCode });
+    url.clicks++;
+    await url.save();
+    res.redirect(url.originalUrl);
+});
+
+app.listen(3000);</code></pre>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function codeFileUpload() {
+  modalBody.innerHTML = `
+    <div class="code-viewer">
+      <div class="file-tree">
+        <h4>📁 Arquivos</h4>
+        <div class="file-item active"><span>🟢</span> upload.js</div>
+        <div class="file-item"><span>🔒</span> security.js</div>
+        <div class="file-item"><span>☁️</span> s3.js</div>
+      </div>
+      <div class="code-content">
+        <div class="code-header">
+          <span class="code-filename">upload.js</span>
+          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
+        </div>
+        <div class="code-container">
+          <pre><code>const multer = require('multer');
+const crypto = require('crypto');
+const AWS = require('aws-sdk');
+
+// Configuração do upload
+const storage = multer.memoryStorage();
+const upload = multer({ 
+    storage,
+    limits: { fileSize: 10 * 1024 * 1024 },
+    fileFilter: (req, file, cb) => {
+        const allowed = ['pdf', 'doc', 'jpg', 'png'];
+        const ext = file.originalname.split('.').pop().toLowerCase();
+        cb(null, allowed.includes(ext));
+    }
+});
+
+// Criptografia
+function encryptFile(buffer) {
+    const cipher = crypto.createCipher('aes-256-cbc', process.env.KEY);
+    return cipher.update(buffer) + cipher.final();
+}
+
+// Upload para S3
+async function uploadToS3(file, filename) {
+    const s3 = new AWS.S3();
+    return s3.upload({
+        Bucket: process.env.BUCKET,
+        Key: filename,
+        Body: file
+    }).promise();
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function copyCode() {
+  const code = document.querySelector('pre code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    alert('✅ Código copiado para a área de transferência!');
+  });
+}
+</script>
+
+</body>
+</html>
