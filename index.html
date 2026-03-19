@@ -8,13 +8,14 @@
 <style>
 :root {
   --primary: #ff6b35;
+  --secondary: #ff8c42;
   --bg: #ffffff;
   --text: #1f1f1f;
   --card: #ffffff;
 }
 
 body.dark {
-  --bg: #0f172a;
+  --bg: #0b1220;
   --text: #e5e7eb;
   --card: #1e293b;
 }
@@ -24,14 +25,34 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
+/* ===== HEADER ===== */
 header {
   padding: 60px 20px;
   text-align: center;
-  background: linear-gradient(135deg, #ff6b35, #ff8c42);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ⚡ efeito raio leve */
+header::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: lightning 4s infinite linear;
+}
+
+@keyframes lightning {
+  0% {transform: translateX(-100%);} 
+  100% {transform: translateX(100%);} 
 }
 
 header img {
@@ -39,6 +60,7 @@ header img {
   border-radius: 50%;
 }
 
+/* ===== NAV ===== */
 nav {
   display: flex;
   justify-content: center;
@@ -67,6 +89,7 @@ section {
   padding: 40px 20px;
 }
 
+/* ===== PROJETOS ===== */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -78,12 +101,28 @@ section {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ⚡ efeito hover com brilho */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
 .btn {
@@ -129,7 +168,7 @@ footer {
 <header>
   <img src="perfil.jpg">
   <h1>Luis Gustavo</h1>
-  <p>Desenvolvedor Web</p>
+  <p>Desenvolvedor Back-end & Web</p>
 </header>
 
 <nav>
@@ -141,7 +180,7 @@ footer {
 
 <section id="sobre">
   <h2>Sobre</h2>
-  <p>Desenvolvedor focado em aplicações web modernas.</p>
+  <p>Desenvolvedor focado em PHP, JavaScript e Python. Experiência com APIs, análise de dados e aplicações web.</p>
 </section>
 
 <section id="projetos">
@@ -168,8 +207,23 @@ footer {
     </div>
 
     <div class="card back">
-      <h3>API PHP</h3>
+      <h3>API REST PHP</h3>
       <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" class="btn btn-code">Código</a>
+    </div>
+
+    <div class="card back">
+      <h3>Projeto MVC PHP</h3>
+      <a href="https://github.com/luisgustavoleao896-cpu/php" class="btn btn-code">Código</a>
+    </div>
+
+    <div class="card back">
+      <h3>API Flask</h3>
+      <a href="https://github.com/luisgustavoleao896-cpu/simple-api-flask" class="btn btn-code">Código</a>
+    </div>
+
+    <div class="card back">
+      <h3>Análise de Dados</h3>
+      <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" class="btn btn-code">Código</a>
     </div>
 
   </div>
@@ -203,6 +257,3 @@ function filter(type) {
 
 </body>
 </html>
-
-
-
