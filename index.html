@@ -3,194 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luis Gustavo | Desenvolvedor</title>
+<title>Luis Gustavo | Portfólio</title>
 
 <style>
-:root {
-  --primary: #ff6b35;
-  --secondary: #ff8c42;
-  --bg: #ffffff;
-  --text: #1f1f1f;
-  --card: #ffffff;
-}
-
-body.dark {
-  --bg: #0b1220;
-  --text: #e5e7eb;
-  --card: #1e293b;
-}
-
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  transition: 0.3s;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
 }
-
 header {
-  padding: 60px 20px;
-  text-align: center;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: #ff6b35;
   color: white;
+  text-align: center;
+  padding: 40px;
 }
-
-header img {
-  width: 120px;
-  border-radius: 50%;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 15px;
-  background: var(--card);
-  position: sticky;
-  top: 0;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--text);
-  font-weight: bold;
-}
-
-.toggle {
-  position: absolute;
-  right: 20px;
-  cursor: pointer;
-}
-
 section {
   max-width: 1000px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 20px;
 }
-
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
-
 .card {
-  background: var(--card);
+  background: white;
   padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
 .btn {
   display: inline-block;
   margin-top: 10px;
-  padding: 8px 15px;
+  padding: 8px 12px;
   border-radius: 20px;
   text-decoration: none;
 }
-
-.btn-demo {
-  background: var(--primary);
-  color: white;
-}
-
-.btn-code {
-  border: 1px solid var(--primary);
-  color: var(--primary);
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-}
+.demo { background: #ff6b35; color: white; }
+.code { border: 1px solid #ff6b35; color: #ff6b35; }
 </style>
 </head>
 
 <body>
 
 <header>
-  <img src="perfil.jpg">
   <h1>Luis Gustavo</h1>
-  <p>Desenvolvedor Web</p>
+  <p>Projetos funcionando (clique para testar)</p>
 </header>
 
-<nav>
-  <a href="#sobre">Sobre</a>
-  <a href="#projetos">Projetos</a>
-  <a href="#contato">Contato</a>
-  <span class="toggle" onclick="toggleDark()">🌙</span>
-</nav>
-
-<section id="sobre">
-  <h2>Sobre</h2>
-  <p>Desenvolvedor focado em PHP, JavaScript e Python com projetos práticos.</p>
-</section>
-
-<section id="projetos">
-  <h2>Projetos (Clique e teste)</h2>
+<section>
+  <h2>Projetos</h2>
 
   <div class="projects">
 
+    <!-- PORTFOLIO (FUNCIONA) -->
     <div class="card">
-      <h3>🌐 Portfólio</h3>
-      <p>Site pessoal profissional</p>
-      <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank" class="btn btn-demo">🔗 Ver Projeto</a>
-      <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-code">💻 Código</a>
+      <h3>Portfólio</h3>
+      <p>Meu site profissional</p>
+      <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank" class="btn demo">🔗 Abrir Site</a>
+      <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn code">💻 Código</a>
+    </div>
+
+    <!-- MINHAS TAREFAS (PRECISA PUBLICAR) -->
+    <div class="card">
+      <h3>Minhas Tarefas</h3>
+      <p>App de tarefas</p>
+      <a href="#" class="btn demo">⚠️ Ainda não publicado</a>
+      <a href="https://github.com/luisgustavoleao896-cpu/Minhas-tarefas" target="_blank" class="btn code">💻 Código</a>
+    </div>
+
+    <!-- BACKEND -->
+    <div class="card">
+      <h3>API PHP</h3>
+      <p>Projeto backend (não roda no navegador)</p>
+      <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn code">💻 Ver Código</a>
     </div>
 
     <div class="card">
-      <h3>📝 Minhas Tarefas</h3>
-      <p>Gerenciador de tarefas interativo</p>
-      <a href="https://luisgustavoleao896-cpu.github.io/Minhas-tarefas" target="_blank" class="btn btn-demo">🔗 Ver Projeto</a>
-      <a href="https://github.com/luisgustavoleao896-cpu/Minhas-tarefas" target="_blank" class="btn btn-code">💻 Código</a>
-    </div>
-
-    <div class="card">
-      <h3>🔌 API REST PHP</h3>
-      <p>Endpoints com GET, POST e DELETE</p>
-      <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-demo">📄 Ver Projeto</a>
-    </div>
-
-    <div class="card">
-      <h3>⚙️ Sistema PHP MVC</h3>
-      <p>CRUD completo com banco de dados</p>
-      <a href="https://github.com/luisgustavoleao896-cpu/php" target="_blank" class="btn btn-demo">📄 Ver Projeto</a>
-    </div>
-
-    <div class="card">
-      <h3>🐍 API Flask</h3>
-      <p>API simples em Python</p>
-      <a href="https://github.com/luisgustavoleao896-cpu/simple-api-flask" target="_blank" class="btn btn-demo">📄 Ver Projeto</a>
-    </div>
-
-    <div class="card">
-      <h3>📊 Análise de Dados</h3>
-      <p>Processamento e gráficos com Python</p>
-      <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-demo">📄 Ver Projeto</a>
+      <h3>API Flask</h3>
+      <p>Backend em Python</p>
+      <a href="https://github.com/luisgustavoleao896-cpu/simple-api-flask" target="_blank" class="btn code">💻 Ver Código</a>
     </div>
 
   </div>
+
 </section>
-
-<section id="contato">
-  <h2>Contato</h2>
-  <p>Email: gustavoluis.v.c.1016@gmail.com</p>
-</section>
-
-<footer>
-  <p>© 2026 Luis Gustavo</p>
-</footer>
-
-<script>
-function toggleDark() {
-  document.body.classList.toggle('dark');
-}
-</script>
 
 </body>
 </html>
