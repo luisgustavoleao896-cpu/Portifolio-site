@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Tarefas</title>
+<style>
+body { font-family: Arial; background:#111; color:white; text-align:center; }
+input, button { padding:10px; margin:5px; }
+li { margin:10px; }
+.done { text-decoration: line-through; color: gray; }
+</style>
+</head>
+<body>
+
+<h1>Minhas Tarefas</h1>
+
+<input id="task" placeholder="Nova tarefa">
+<button onclick="addTask()">Adicionar</button>
+
+<ul id="list"></ul>
+
+<script>
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function save() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function render() {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  tasks.forEach((t, i) => {
+    list.innerHTML += `
+      <li class="${t.done ? 'done' : ''}">
+        ${t.text}
+        <button onclick="toggle(${i})">✔</button>
+        <button onclick="remove(${i})">❌</button>
+      </li>`;
+  });
+}
+
+function addTask() {
+  const input = document.getElementById("task");
+  tasks.push({ text: input.value, done: false });
+  input.value = "";
+  save();
+  render();
+}
+
+function toggle(i) {
+  tasks[i].done = !tasks[i].done;
+  save();
+  render();
+}
+
+function remove(i) {
+  tasks.splice(i,1);
+  save();
+  render();
+}
+
+render();
+</script>
+
+</body>
+</html>
