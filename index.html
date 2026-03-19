@@ -8,52 +8,63 @@
 <style>
 :root {
   --primary: #ff6b35;
-  --secondary: #ff8c42;
-  --dark: #1f1f1f;
-  --light: #f5f5f5;
+  --bg: #ffffff;
+  --text: #1f1f1f;
+  --card: #ffffff;
+}
+
+body.dark {
+  --bg: #0f172a;
+  --text: #e5e7eb;
+  --card: #1e293b;
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--light);
-  color: var(--dark);
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
 }
 
 header {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
-  text-align: center;
   padding: 60px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #ff6b35, #ff8c42);
+  color: white;
 }
 
 header img {
   width: 120px;
   border-radius: 50%;
-  margin-bottom: 15px;
 }
 
-h1 { margin: 10px 0; }
-
 nav {
-  background: white;
-  padding: 10px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px;
+  background: var(--card);
   position: sticky;
   top: 0;
 }
 
 nav a {
-  margin: 0 10px;
   text-decoration: none;
-  color: var(--dark);
+  color: var(--text);
   font-weight: bold;
 }
 
+.toggle {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}
+
 section {
-  padding: 40px 20px;
   max-width: 1000px;
   margin: auto;
+  padding: 40px 20px;
 }
 
 .projects {
@@ -63,15 +74,16 @@ section {
 }
 
 .card {
-  background: white;
+  background: var(--card);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card img {
-  width: 100%;
-  border-radius: 8px;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .btn {
@@ -80,7 +92,6 @@ section {
   padding: 8px 15px;
   border-radius: 20px;
   text-decoration: none;
-  font-size: 14px;
 }
 
 .btn-demo {
@@ -93,11 +104,22 @@ section {
   color: var(--primary);
 }
 
+.filter {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter button {
+  margin: 5px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 footer {
   text-align: center;
   padding: 20px;
-  background: var(--dark);
-  color: white;
 }
 </style>
 </head>
@@ -105,44 +127,49 @@ footer {
 <body>
 
 <header>
-  <img src="perfil.jpg" alt="Luis">
+  <img src="perfil.jpg">
   <h1>Luis Gustavo</h1>
-  <p>Desenvolvedor Júnior | PHP • JavaScript • Python</p>
+  <p>Desenvolvedor Web</p>
 </header>
 
 <nav>
   <a href="#sobre">Sobre</a>
   <a href="#projetos">Projetos</a>
   <a href="#contato">Contato</a>
+  <span class="toggle" onclick="toggleDark()">🌙</span>
 </nav>
 
 <section id="sobre">
-  <h2>Sobre mim</h2>
-  <p>Desenvolvedor focado em criar aplicações web funcionais. Buscando primeira oportunidade na área de tecnologia.</p>
+  <h2>Sobre</h2>
+  <p>Desenvolvedor focado em aplicações web modernas.</p>
 </section>
 
 <section id="projetos">
   <h2>Projetos</h2>
+
+  <div class="filter">
+    <button onclick="filter('all')">Todos</button>
+    <button onclick="filter('front')">Front-end</button>
+    <button onclick="filter('back')">Back-end</button>
+  </div>
+
   <div class="projects">
 
-    <div class="card">
+    <div class="card front">
       <h3>Portfólio</h3>
-      <p>Site pessoal responsivo.</p>
-      <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank" class="btn btn-demo">Ver Demo</a>
-      <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-code">Código</a>
+      <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" class="btn btn-demo">Demo</a>
+      <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" class="btn btn-code">Código</a>
     </div>
 
-    <div class="card">
+    <div class="card front">
       <h3>Minhas Tarefas</h3>
-      <p>App de tarefas com JavaScript.</p>
-      <a href="https://luisgustavoleao896-cpu.github.io/Minhas-tarefas" target="_blank" class="btn btn-demo">Ver Demo</a>
-      <a href="https://github.com/luisgustavoleao896-cpu/Minhas-tarefas" target="_blank" class="btn btn-code">Código</a>
+      <a href="https://luisgustavoleao896-cpu.github.io/Minhas-tarefas" class="btn btn-demo">Demo</a>
+      <a href="https://github.com/luisgustavoleao896-cpu/Minhas-tarefas" class="btn btn-code">Código</a>
     </div>
 
-    <div class="card">
+    <div class="card back">
       <h3>API PHP</h3>
-      <p>API REST com endpoints.</p>
-      <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-code">Ver Código</a>
+      <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" class="btn btn-code">Código</a>
     </div>
 
   </div>
@@ -151,14 +178,31 @@ footer {
 <section id="contato">
   <h2>Contato</h2>
   <p>Email: gustavoluis.v.c.1016@gmail.com</p>
-  <p>GitHub: github.com/luisgustavoleao896-cpu</p>
 </section>
 
 <footer>
   <p>© 2026 Luis Gustavo</p>
 </footer>
 
+<script>
+function toggleDark() {
+  document.body.classList.toggle('dark');
+}
+
+function filter(type) {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    if (type === 'all') {
+      card.style.display = 'block';
+    } else {
+      card.style.display = card.classList.contains(type) ? 'block' : 'none';
+    }
+  });
+}
+</script>
+
 </body>
 </html>
+
 
 
