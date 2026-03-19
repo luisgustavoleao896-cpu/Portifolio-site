@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+</head>
+<body style="background:#111;color:white;text-align:center">
+
+<h2>Login</h2>
+
+<input id="user" placeholder="Usuário"><br>
+<input id="pass" type="password" placeholder="Senha"><br><br>
+
+<button onclick="login()">Entrar</button>
+
+<p id="msg"></p>
+
+<script>
+function login(){
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
+
+  if(u === "admin" && p === "123"){
+    document.getElementById("msg").innerText = "Login OK!";
+  } else {
+    document.getElementById("msg").innerText = "Erro!";
+  }
+}
+</script>
+
+</body>
+</html>
