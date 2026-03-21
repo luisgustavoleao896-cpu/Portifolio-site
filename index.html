@@ -1,732 +1,239 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Gustavo - DevPortfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luis Gustavo | Full Stack Engineer</title>
 
-        :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-card: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-blue: #3b82f6;
-            --accent-hover: #2563eb;
-            --border-color: #334155;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, system-ui;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    body {
+      background: #0b0f17;
+      color: #e6edf3;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    header {
+      padding: 80px 20px;
+      text-align: center;
+      max-width: 900px;
+      margin: auto;
+    }
 
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 0;
-        }
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg,#58a6ff,#2ea043);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .subtitle {
+      margin-top: 20px;
+      color: #8b949e;
+      font-size: 1.1rem;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            text-decoration: none;
-        }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+    .section {
+      margin-top: 80px;
+    }
 
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
 
-        .nav-links a:hover {
-            color: var(--accent-blue);
-        }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 25px;
+    }
 
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, #1e293b 100%);
-            position: relative;
-            overflow: hidden;
-        }
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 16px;
+      padding: 25px;
+      transition: 0.3s;
+      position: relative;
+    }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://image.qwenlm.ai/public_source/aec865f7-3f16-475e-bab2-fb595274a992/167f5351d-abc4-45f7-819d-173bbcdd0d70.png');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.1;
-            z-index: -1;
-        }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #58a6ff;
+    }
 
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            align-items: center;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
 
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
+    .card p {
+      font-size: 0.95rem;
+      color: #8b949e;
+      margin-bottom: 15px;
+    }
 
-        .hero-text .highlight {
-            color: var(--accent-blue);
-        }
+    .tech {
+      font-size: 0.8rem;
+      color: #58a6ff;
+      margin-bottom: 10px;
+    }
 
-        .hero-text p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
+    .buttons a {
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin-right: 8px;
+      display: inline-block;
+    }
 
-        .hero-visual {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            animation: float 6s ease-in-out infinite;
-        }
+    .demo {
+      background: #238636;
+      color: white;
+    }
 
-        .hero-visual img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+    .code {
+      background: #30363d;
+      color: white;
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 1.125rem;
-            margin-bottom: 4rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .project-card:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent-blue);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .project-tech {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .tech-tag {
-            background: var(--bg-secondary);
-            color: var(--accent-blue);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .project-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .btn {
-            padding: 10px 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            border: none;
-            font-size: 0.9rem;
-        }
-
-        .btn.live {
-            background: var(--accent-blue);
-            color: white;
-        }
-
-        .btn.code {
-            background: var(--bg-secondary);
-            color: white;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-
-        /* Skills Section */
-        .skills {
-            padding: 80px 0;
-            background: var(--bg-secondary);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-blue);
-        }
-
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-list {
-            list-style: none;
-            color: var(--text-secondary);
-        }
-
-        .skill-list li {
-            margin: 0.25rem 0;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 0;
-        }
-
-        .contact-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-large {
-            padding: 12px 24px;
-            font-size: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-text {
-            color: var(--text-secondary);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .spinner {
-            border: 3px solid var(--bg-secondary);
-            border-top: 3px solid var(--accent-blue);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+    footer {
+      text-align: center;
+      margin: 80px 0;
+      color: #8b949e;
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">Luis Gustavo</a>
-                <ul class="nav-links">
-                    <li><a href="#projects">Projetos</a></li>
-                    <li><a href="#skills">Habilidades</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
-            </nav>
+
+<header>
+  <h1>Luis Gustavo</h1>
+  <p class="subtitle">
+    Desenvolvedor Full Stack focado em transformar ideias em produtos digitais escaláveis.
+    Especializado em interfaces modernas, consumo de APIs e soluções orientadas a dados.
+  </p>
+</header>
+
+<div class="container">
+
+  <section class="section">
+    <h2>Impacto & Experiência</h2>
+    <p>
+      Minha abordagem é centrada em resolver problemas reais com tecnologia.
+      Cada projeto abaixo foi desenvolvido com foco em simular cenários de produção,
+      enfrentando desafios como performance, escalabilidade e experiência do usuário.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Projetos em Produção</h2>
+
+    <div class="projects">
+
+      <!-- AUTH -->
+      <div class="card">
+        <div class="tech">JavaScript • LocalStorage • Auth Flow</div>
+        <h3>Sistema de Autenticação</h3>
+        <p>
+          Simula um fluxo completo de autenticação com login, registro e persistência de sessão.
+          O desafio foi reproduzir comportamento real sem backend.
+          Resolvido com controle de estado e armazenamento local seguro.
+        </p>
+
+        <div class="buttons">
+          <a href="SEU_LINK_PROJETO" target="_blank" class="demo">🚀 Ver Projeto</a>
+          <a href="SEU_LINK_GITHUB" target="_blank" class="code">💻 Código</a>
         </div>
-    </header>
+      </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Olá, sou <span class="highlight">Luis Gustavo</span></h1>
-                    <p>Desenvolvedor Frontend Sênior & Contribuidor Open Source</p>
-                    <div class="project-buttons">
-                        <a href="#projects" class="btn btn-large live">
-                            🔗 Ver Projetos
-                        </a>
-                        <a href="https://github.com/seuusuario" target="_blank" class="btn btn-large code">
-                            💻 GitHub
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <img src="https://image.qwenlm.ai/public_source/aec865f7-3f16-475e-bab2-fb595274a992/109eddb37-c5d9-4d5b-9c8e-19931153caa7.png" alt="Background Abstrato Tech">
-                </div>
-            </div>
+      <!-- API -->
+      <div class="card">
+        <div class="tech">JavaScript • Fetch API • Async</div>
+        <h3>Consumidor de API</h3>
+        <p>
+          Aplicação que consome APIs externas em tempo real.
+          O desafio foi lidar com falhas e latência.
+          Implementado loading inteligente e tratamento de erros.
+        </p>
+
+        <div class="buttons">
+          <a href="SEU_LINK_PROJETO" target="_blank" class="demo">🚀 Ver Projeto</a>
+          <a href="SEU_LINK_GITHUB" target="_blank" class="code">💻 Código</a>
         </div>
-    </section>
+      </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Projetos em Destaque</h2>
-            <p class="section-subtitle">Soluções reais com design profissional e deploy funcionando</p>
-            
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Carregando projetos...</p>
-            </div>
+      <!-- DASHBOARD -->
+      <div class="card">
+        <div class="tech">Chart.js • Data Visualization</div>
+        <h3>Dashboard de Dados</h3>
+        <p>
+          Painel interativo com gráficos e métricas.
+          O desafio foi transformar dados em insights visuais claros.
+          Resolvido com renderização dinâmica e visualização eficiente.
+        </p>
 
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Project 1: TaskFlow Pro -->
-                <div class="project-card fade-in">
-                    <img src="https://image.qwenlm.ai/public_source/7bc4f572-fa30-49f1-bda3-088f06d7915a/1313c3e11-7d41-414a-b3be-03734e231544.png" alt="TaskFlow Pro Dashboard" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">TaskFlow Pro</h3>
-                        <p class="project-description">SaaS de gerenciamento de tarefas com autenticação Firebase, CRUD completo e dashboard estilo Notion/Linear.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Firebase Auth</span>
-                            <span class="tech-tag">Firestore</span>
-                            <span class="tech-tag">Dark Mode</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://taskflow-pro.vercel.app" target="_blank" class="btn live">
-                                🔗 Ver Online
-                            </a>
-                            <a href="https://github.com/seuusuario/taskflow-pro" target="_blank" class="btn code">
-                                💻 Ver Código
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2: DataVision Dashboard -->
-                <div class="project-card fade-in">
-                    <img src="https://image.qwenlm.ai/public_source/7bc4f572-fa30-49f1-bda3-088f06d7915a/1bd3335da-e372-4bb4-8df3-2f96385c8db1.png" alt="DataVision Dashboard" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">DataVision Dashboard</h3>
-                        <p class="project-description">Dashboard com API real (Crypto/Weather), gráficos Chart.js, filtros dinâmicos e tratamento de erros.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Chart.js</span>
-                            <span class="tech-tag">API REST</span>
-                            <span class="tech-tag">Loading States</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://datavision-dashboard.vercel.app" target="_blank" class="btn live">
-                                🔗 Ver Online
-                            </a>
-                            <a href="https://github.com/seuusuario/datavision-dashboard" target="_blank" class="btn code">
-                                💻 Ver Código
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3: SecureAuth System -->
-                <div class="project-card fade-in">
-                    <img src="https://image.qwenlm.ai/public_source/7bc4f572-fa30-49f1-bda3-088f06d7915a/12917ccd0-6bf3-4652-a328-b165f3dd7b7c.png" alt="SecureAuth System" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">SecureAuth System</h3>
-                        <p class="project-description">Sistema de autenticação completo com validação de senha, proteção de rotas e sessão persistente.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Validação</span>
-                            <span class="tech-tag">UX Real</span>
-                            <span class="tech-tag">Segurança</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://secureauth-system.vercel.app" target="_blank" class="btn live">
-                                🔗 Ver Online
-                            </a>
-                            <a href="https://github.com/seuusuario/secureauth-system" target="_blank" class="btn code">
-                                💻 Ver Código
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4: DevConnect -->
-                <div class="project-card fade-in">
-                    <img src="https://image.qwenlm.ai/public_source/7bc4f572-fa30-49f1-bda3-088f06d7915a/1aea75c4e-5991-4fbe-b6ad-93842d899493.png" alt="DevConnect Social" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">DevConnect</h3>
-                        <p class="project-description">Mini rede social estilo LinkedIn/Twitter com posts, curtidas, comentários e feed dinâmico.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">LocalStorage</span>
-                            <span class="tech-tag">Feed Dinâmico</span>
-                            <span class="tech-tag">Interações</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://devconnect-social.vercel.app" target="_blank" class="btn live">
-                                🔗 Ver Online
-                            </a>
-                            <a href="https://github.com/seuusuario/devconnect" target="_blank" class="btn code">
-                                💻 Ver Código
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5: DevShowcase -->
-                <div class="project-card fade-in">
-                    <img src="https://image.qwenlm.ai/public_source/7bc4f572-fa30-49f1-bda3-088f06d7915a/188d557b4-152a-49de-8aad-1f907c670160.png" alt="DevShowcase Platform" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">DevShowcase</h3>
-                        <p class="project-description">Plataforma de portfólio com upload de imagens, página de detalhes e filtro por tecnologia.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Upload</span>
-                            <span class="tech-tag">Filtros</span>
-                            <span class="tech-tag">Detalhes</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://devshowcase-platform.vercel.app" target="_blank" class="btn live">
-                                🔗 Ver Online
-                            </a>
-                            <a href="https://github.com/seuusuario/devshowcase" target="_blank" class="btn code">
-                                💻 Ver Código
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="buttons">
+          <a href="SEU_LINK_PROJETO" target="_blank" class="demo">🚀 Ver Projeto</a>
+          <a href="SEU_LINK_GITHUB" target="_blank" class="code">💻 Código</a>
         </div>
-    </section>
+      </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Habilidades Técnicas</h2>
-            <p class="section-subtitle">Tecnologias que domino para criar soluções profissionais</p>
-            
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">⚛️</div>
-                    <h3 class="skill-title">Frontend</h3>
-                    <ul class="skill-list">
-                        <li>React / Vue</li>
-                        <li>TypeScript</li>
-                        <li>Tailwind CSS</li>
-                        <li>Next.js</li>
-                    </ul>
-                </div>
+      <!-- NETFLIX -->
+      <div class="card">
+        <div class="tech">API TMDB • UI/UX • Responsivo</div>
+        <h3>Netflix Clone</h3>
+        <p>
+          Interface moderna consumindo dados reais de filmes.
+          O desafio foi replicar experiência fluida e responsiva.
+          Aplicado design modular e otimização de renderização.
+        </p>
 
-                <div class="skill-card">
-                    <div class="skill-icon">🔥</div>
-                    <h3 class="skill-title">Backend</h3>
-                    <ul class="skill-list">
-                        <li>Firebase</li>
-                        <li>Node.js</li>
-                        <li>PostgreSQL</li>
-                        <li>REST APIs</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">🚀</div>
-                    <h3 class="skill-title">Deploy & Tools</h3>
-                    <ul class="skill-list">
-                        <li>Vercel</li>
-                        <li>GitHub Actions</li>
-                        <li>Docker</li>
-                        <li>Git</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3 class="skill-title">Design</h3>
-                    <ul class="skill-list">
-                        <li>Figma</li>
-                        <li>UI/UX Principles</li>
-                        <li>Responsive Design</li>
-                        <li>Animations</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="buttons">
+          <a href="SEU_LINK_PROJETO" target="_blank" class="demo">🚀 Ver Projeto</a>
+          <a href="SEU_LINK_GITHUB" target="_blank" class="code">💻 Código</a>
         </div>
-    </section>
+      </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2 class="section-title">Vamos Trabalhar Juntos?</h2>
-                <p class="section-subtitle">Estou disponível para oportunidades e colaborações em projetos inovadores.</p>
-                
-                <div class="contact-buttons">
-                    <a href="mailto:seuemail@email.com" class="btn btn-large live">
-                        📧 Enviar Email
-                    </a>
-                    <a href="https://linkedin.com/in/seuusuario" target="_blank" class="btn btn-large code">
-                        💼 LinkedIn
-                    </a>
-                    <a href="https://github.com/seuusuario" target="_blank" class="btn btn-large code">
-                        💻 GitHub
-                    </a>
-                </div>
-            </div>
+      <!-- TODO -->
+      <div class="card">
+        <div class="tech">State Management • LocalStorage</div>
+        <h3>Task Manager</h3>
+        <p>
+          Gerenciador de tarefas com persistência e alta performance.
+          O desafio foi manter consistência de dados.
+          Resolvido com estrutura otimizada e armazenamento local.
+        </p>
+
+        <div class="buttons">
+          <a href="SEU_LINK_PROJETO" target="_blank" class="demo">🚀 Ver Projeto</a>
+          <a href="SEU_LINK_GITHUB" target="_blank" class="code">💻 Código</a>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p class="footer-text">© 2024 Luis Gustavo. Todos os direitos reservados.</p>
-            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.875rem;">
-                Desenvolvido com ❤️ usando HTML, CSS e JavaScript
-            </p>
-        </div>
-    </footer>
+    </div>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  </section>
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+</div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+<footer>
+  © 2026 Luis Gustavo — Full Stack Engineer
+</footer>
 
-        // Observe project cards
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.style.animationPlayState = 'paused';
-            observer.observe(card);
-        });
-
-        // Loading simulation for projects
-        window.addEventListener('load', () => {
-            const loading = document.getElementById('loading');
-            const projectsGrid = document.getElementById('projectsGrid');
-            
-            // Show loading briefly
-            loading.style.display = 'block';
-            projectsGrid.style.opacity = '0';
-            
-            setTimeout(() => {
-                loading.style.display = 'none';
-                projectsGrid.style.opacity = '1';
-                projectsGrid.style.transition = 'opacity 0.5s ease';
-            }, 800);
-        });
-
-        // Add hover effects to buttons
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.05)';
-            });
-            
-            btn.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
-
-        // Console message for developers
-        console.log('%c🚀 Luis Gustavo - DevPortfolio Nível Empresa', 'color: #3b82f6; font-size: 20px; font-weight: bold;');
-        console.log('%cProjetos reais | Deploy funcionando | Código organizado | Design profissional', 'color: #94a3b8; font-size: 14px;');
-        console.log('%c👉 Você deixou de ser "iniciante" e virou "júnior contratável"', 'color: #10b981; font-size: 14px; font-weight: bold;');
-    </script>
 </body>
 </html>
 
