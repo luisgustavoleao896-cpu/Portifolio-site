@@ -1,2720 +1,646 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfólio de Luis Gustavo - Desenvolvedor Full Stack Júnior especializado em PHP, JavaScript e Python">
-  <title>Luis Gustavo | Desenvolvedor Full Stack Júnior</title>
-  
-  <style>
-    /* --- CSS GERAL E VARIÁVEIS --- */
-    :root {
-      --bg-primary: #0f172a;
-      --bg-secondary: #1e293b;
-      --bg-tertiary: #334155;
-      --primary: #3b82f6;
-      --primary-hover: #2563eb;
-      --accent: #8b5cf6;
-      --success: #22c55e;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --border: #475569;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
-      --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* --- HEADER / HERO --- */
-    header {
-      text-align: center;
-      padding: 100px 20px 80px;
-      background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent), var(--success));
-      opacity: 0.8;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      padding: 6px 16px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-      animation: fadeInDown 0.6s ease;
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    header h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      margin: 0 0 16px;
-      background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 50%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: fadeInUp 0.6s ease 0.1s both;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: var(--text-secondary);
-      margin: 0 0 24px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      animation: fadeInUp 0.6s ease 0.2s both;
-    }
-
-    .hero-objective {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px 24px;
-      margin: 0 auto 30px;
-      max-width: 650px;
-      animation: fadeInUp 0.6s ease 0.3s both;
-    }
-
-    .hero-objective strong {
-      color: var(--primary);
-    }
-
-    .contact-info {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin: 25px 0;
-      animation: fadeInUp 0.6s ease 0.4s both;
-    }
-
-    .contact-info a {
-      color: var(--primary);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: var(--transition);
-    }
-
-    .contact-info a:hover {
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .header-btns {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-      animation: fadeInUp 0.6s ease 0.5s both;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: var(--transition);
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-      color: white;
-      box-shadow: var(--shadow);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .btn-secondary {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      border: 2px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      background: var(--border);
-      transform: translateY(-3px);
-      border-color: var(--primary);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--border);
-      color: var(--text-secondary);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-3px);
-    }
-
-    .availability-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(34, 197, 94, 0.15);
-      color: var(--success);
-      padding: 8px 16px;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-top: 15px;
-      animation: fadeInUp 0.6s ease 0.6s both;
-    }
-
-    .availability-badge::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background: var(--success);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    /* --- SEÇÕES --- */
-    section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 70px 20px;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-
-    .section-header h2 {
-      font-size: 2rem;
-      border-left: 4px solid var(--primary);
-      padding-left: 16px;
-      margin: 0;
-    }
-
-    .section-header .icon {
-      font-size: 1.8rem;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* --- SOBRE MIM --- */
-    .about-content {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-
-    @media (min-width: 768px) {
-      .about-content {
-        grid-template-columns: 2fr 1fr;
-      }
-    }
-
-    .about-text {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-    }
-
-    .about-text p {
-      margin-bottom: 16px;
-    }
-
-    .about-text strong {
-      color: var(--text-primary);
-    }
-
-    .about-highlights {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-    }
-
-    .about-highlights h4 {
-      color: var(--primary);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .highlight-list {
-      list-style: none;
-    }
-
-    .highlight-list li {
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-
-    .highlight-list li:last-child {
-      border-bottom: none;
-    }
-
-    .highlight-list li::before {
-      content: '✓';
-      color: var(--success);
-      font-weight: bold;
-      flex-shrink: 0;
-    }
-
-    /* --- SKILLS --- */
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .skill-tag {
-      background: var(--bg-secondary);
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .skill-tag:hover {
-      transform: translateY(-3px);
-      border-color: var(--primary);
-      box-shadow: var(--shadow);
-    }
-
-    .skill-tag.primary {
-      border-color: var(--primary);
-      background: rgba(59, 130, 246, 0.1);
-      color: var(--primary);
-    }
-
-    .skill-tag.accent {
-      border-color: var(--accent);
-      background: rgba(139, 92, 246, 0.1);
-      color: var(--accent);
-    }
-
-    /* --- EXPERIÊNCIA --- */
-    .experience-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-    }
-
-    .experience-card {
-      background: var(--bg-secondary);
-      padding: 28px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-    }
-
-    .experience-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .experience-card h3 {
-      color: var(--text-primary);
-      margin: 0 0 8px;
-      font-size: 1.3rem;
-    }
-
-    .experience-card .company {
-      color: var(--primary);
-      font-weight: 600;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .experience-card .period {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .experience-card ul {
-      padding-left: 20px;
-      color: var(--text-secondary);
-    }
-
-    .experience-card li {
-      margin: 8px 0;
-      font-size: 0.95rem;
-    }
-
-    /* --- PROJETOS --- */
-    .projects-intro {
-      background: var(--bg-secondary);
-      border-left: 4px solid var(--accent);
-      padding: 20px 24px;
-      border-radius: 0 12px 12px 0;
-      margin-bottom: 35px;
-      color: var(--text-secondary);
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 28px;
-    }
-
-    .project-card {
-      background: var(--bg-secondary);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      overflow: hidden;
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--primary);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .project-preview {
-      height: 180px;
-      background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .project-content {
-      padding: 24px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-content h3 {
-      margin: 0 0 12px;
-      color: var(--text-primary);
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .project-description {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-      flex: 1;
-      line-height: 1.6;
-    }
-
-    .project-problem {
-      background: rgba(59, 130, 246, 0.1);
-      border-left: 3px solid var(--primary);
-      padding: 12px 16px;
-      border-radius: 0 8px 8px 0;
-      margin: 16px 0;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-
-    .project-problem strong {
-      color: var(--primary);
-    }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 16px 0;
-    }
-
-    .tech-tag {
-      background: var(--bg-tertiary);
-      padding: 5px 12px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    .project-learnings {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin: 16px 0;
-      padding-top: 16px;
-      border-top: 1px dashed var(--border);
-    }
-
-    .project-learnings strong {
-      color: var(--text-secondary);
-    }
-
-    .project-links {
-      display: flex;
-      gap: 10px;
-      margin-top: auto;
-      flex-wrap: wrap;
-    }
-
-    .project-links .btn {
-      flex: 1;
-      min-width: 110px;
-      justify-content: center;
-      padding: 10px 16px;
-      font-size: 0.9rem;
-    }
-
-    /* --- CURSOS --- */
-    .courses-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .course-card {
-      background: var(--bg-secondary);
-      padding: 22px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-    }
-
-    .course-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent);
-    }
-
-    .course-card h4 {
-      color: var(--text-primary);
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-    }
-
-    .course-card .provider {
-      color: var(--primary);
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-      font-weight: 500;
-    }
-
-    .course-card .cert-link {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: var(--transition);
-    }
-
-    .course-card .cert-link:hover {
-      color: var(--primary);
-      gap: 8px;
-    }
-
-    /* --- FOOTER --- */
-    footer {
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-      padding: 40px 20px;
-      text-align: center;
-      margin-top: 60px;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-
-    .footer-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .footer-links a:hover {
-      color: var(--primary);
-    }
-
-    .license {
-      background: var(--bg-tertiary);
-      display: inline-block;
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 20px;
-    }
-
-    .license a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .copyright {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-top: 25px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-    }
-
-    /* --- MODAL --- */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      z-index: 10000;
-      justify-content: center;
-      align-items: center;
-      backdrop-filter: blur(8px);
-      padding: 20px;
-    }
-
-    .modal-content {
-      background: var(--bg-secondary);
-      width: 100%;
-      max-width: 1000px;
-      max-height: 90vh;
-      border-radius: 20px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-hover);
-      animation: modalSlideIn 0.3s ease;
-    }
-
-    @keyframes modalSlideIn {
-      from { opacity: 0; transform: scale(0.95) translateY(20px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    .modal-header {
-      padding: 20px 25px;
-      background: var(--bg-tertiary);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .modal-header h3 {
-      margin: 0;
-      font-size: 1.3rem;
-      color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .modal-tabs {
-      display: flex;
-      gap: 8px;
-    }
-
-    .tab-btn {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: var(--transition);
-      background: var(--bg-primary);
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-    .tab-btn.active {
-      background: var(--primary);
-      color: white;
-    }
-
-    .tab-btn:hover:not(.active) {
-      background: var(--border);
-      color: var(--text-primary);
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 1.8rem;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .close-btn:hover {
-      background: var(--bg-primary);
-      color: var(--danger);
-      transform: rotate(90deg);
-    }
-
-    .modal-body {
-      flex: 1;
-      padding: 0;
-      overflow: auto;
-      background: var(--bg-primary);
-    }
-
-    .demo-container {
-      padding: 30px;
-    }
-
-    /* --- DEMO STYLES --- */
-    .demo-box {
-      background: var(--bg-secondary);
-      padding: 24px;
-      border-radius: 12px;
-      margin: 16px 0;
-      border: 1px solid var(--border);
-    }
-
-    .demo-box h4 {
-      color: var(--primary);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .api-endpoint {
-      background: var(--bg-tertiary);
-      padding: 14px 18px;
-      border-radius: 8px;
-      margin: 12px 0;
-      border-left: 4px solid var(--success);
-    }
-
-    .api-method {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      margin-right: 10px;
-      text-transform: uppercase;
-    }
-
-    .get { background: #22c55e; color: white; }
-    .post { background: #3b82f6; color: white; }
-    .put { background: #f59e0b; color: white; }
-    .delete { background: #ef4444; color: white; }
-
-    .demo-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      margin: 12px 8px 12px 0;
-      transition: var(--transition);
-    }
-
-    .demo-btn:hover {
-      background: var(--primary-hover);
-      transform: translateY(-2px);
-    }
-
-    .demo-result {
-      background: var(--bg-tertiary);
-      padding: 18px;
-      border-radius: 8px;
-      margin-top: 20px;
-      font-family: 'Consolas', monospace;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      display: none;
-      border: 1px solid var(--border);
-    }
-
-    .demo-result.show {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Chat Demo */
-    .chat-container {
-      max-width: 550px;
-      margin: 0 auto;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .chat-header {
-      background: var(--primary);
-      padding: 14px 18px;
-      color: white;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .chat-messages {
-      height: 280px;
-      overflow-y: auto;
-      padding: 18px;
-      background: var(--bg-primary);
-    }
-
-    .chat-message {
-      margin: 10px 0;
-      padding: 10px 14px;
-      border-radius: 12px;
-      max-width: 75%;
-      font-size: 0.95rem;
-    }
-
-    .chat-message.sent {
-      background: var(--primary);
-      color: white;
-      margin-left: auto;
-      border-bottom-right-radius: 4px;
-    }
-
-    .chat-message.received {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      border-bottom-left-radius: 4px;
-    }
-
-    .chat-input {
-      display: flex;
-      padding: 14px;
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-    }
-
-    .chat-input input {
-      flex: 1;
-      padding: 12px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--bg-primary);
-      color: white;
-      margin-right: 10px;
-      font-size: 0.95rem;
-    }
-
-    .chat-input input:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    .chat-input button {
-      padding: 12px 22px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-
-    .chat-input button:hover {
-      background: var(--primary-hover);
-    }
-
-    /* E-commerce Demo */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin: 20px 0;
-    }
-
-    .product-card {
-      background: var(--bg-tertiary);
-      padding: 18px;
-      border-radius: 10px;
-      text-align: center;
-      transition: var(--transition);
-    }
-
-    .product-card:hover {
-      transform: translateY(-3px);
-    }
-
-    .product-card .emoji {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .product-card .price {
-      color: var(--success);
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin: 8px 0;
-    }
-
-    .cart-section {
-      background: var(--bg-tertiary);
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-
-    /* Kanban Demo */
-    .kanban-board {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding: 16px 0;
-    }
-
-    .kanban-column {
-      min-width: 220px;
-      background: var(--bg-tertiary);
-      border-radius: 10px;
-      padding: 14px;
-    }
-
-    .kanban-column h4 {
-      margin: 0 0 12px;
-      color: var(--text-primary);
-      font-size: 1rem;
-    }
-
-    .kanban-task {
-      background: var(--bg-secondary);
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: var(--transition);
-      font-size: 0.9rem;
-      border: 1px solid var(--border);
-    }
-
-    .kanban-task:hover {
-      transform: translateY(-2px);
-      border-color: var(--primary);
-    }
-
-    /* Auth Demo */
-    .auth-form {
-      max-width: 380px;
-      margin: 0 auto;
-      background: var(--bg-tertiary);
-      padding: 28px;
-      border-radius: 14px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--bg-primary);
-      color: white;
-      font-size: 1rem;
-      transition: var(--transition);
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-    }
-
-    /* Dashboard Demo */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
-      margin: 20px 0;
-    }
-
-    .dash-card {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      padding: 22px;
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .dash-card.green {
-      background: linear-gradient(135deg, #11998e, #38ef7d);
-    }
-
-    .dash-card.orange {
-      background: linear-gradient(135deg, #f093fb, #f5576c);
-    }
-
-    .dash-card.blue {
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-    }
-
-    .dash-value {
-      font-size: 2rem;
-      font-weight: 700;
-      color: white;
-    }
-
-    .dash-label {
-      color: rgba(255,255,255,0.9);
-      margin-top: 4px;
-      font-size: 0.9rem;
-    }
-
-    /* Weather Demo */
-    .weather-card {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      padding: 35px;
-      border-radius: 16px;
-      text-align: center;
-      max-width: 450px;
-      margin: 0 auto;
-    }
-
-    .weather-temp {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: white;
-    }
-
-    .weather-icon {
-      font-size: 4rem;
-      margin: 15px 0;
-    }
-
-    /* URL Shortener Demo */
-    .url-shortener {
-      max-width: 550px;
-      margin: 0 auto;
-      background: var(--bg-tertiary);
-      padding: 28px;
-      border-radius: 14px;
-    }
-
-    .url-input-group {
-      display: flex;
-      gap: 10px;
-      margin: 18px 0;
-    }
-
-    .url-input-group input {
-      flex: 1;
-      padding: 12px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--bg-primary);
-      color: white;
-      font-size: 0.95rem;
-    }
-
-    .shortened-url {
-      background: var(--bg-secondary);
-      padding: 16px;
-      border-radius: 8px;
-      margin-top: 18px;
-      display: none;
-      border: 1px solid var(--border);
-    }
-
-    .shortened-url.show {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-
-    /* File Upload Demo */
-    .upload-zone {
-      border: 3px dashed var(--border);
-      padding: 35px;
-      text-align: center;
-      border-radius: 12px;
-      margin: 18px 0;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-
-    .upload-zone:hover {
-      border-color: var(--primary);
-      background: rgba(59, 130, 246, 0.1);
-    }
-
-    .upload-icon {
-      font-size: 3.5rem;
-      margin-bottom: 16px;
-    }
-
-    /* Code Viewer */
-    .code-viewer {
-      display: flex;
-      height: calc(90vh - 80px);
-    }
-
-    @media (max-width: 768px) {
-      .code-viewer {
-        flex-direction: column;
-        height: auto;
-        min-height: 500px;
-      }
-    }
-
-    .file-tree {
-      background: var(--bg-tertiary);
-      padding: 18px;
-      border-right: 1px solid var(--border);
-      width: 240px;
-      overflow-y: auto;
-    }
-
-    @media (max-width: 768px) {
-      .file-tree {
-        width: 100%;
-        max-height: 140px;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-    }
-
-    .file-tree h4 {
-      color: var(--text-secondary);
-      margin: 0 0 14px;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-weight: 600;
-    }
-
-    .file-item {
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-secondary);
-      transition: var(--transition);
-      font-family: monospace;
-      font-size: 0.85rem;
-    }
-
-    .file-item:hover {
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-    }
-
-    .file-item.active {
-      background: var(--primary);
-      color: white;
-    }
-
-    .code-content {
-      flex: 1;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .code-header {
-      background: var(--bg-tertiary);
-      padding: 12px 20px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .code-filename {
-      color: var(--text-secondary);
-      font-family: monospace;
-      font-size: 0.9rem;
-    }
-
-    .copy-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: var(--transition);
-      font-weight: 500;
-    }
-
-    .copy-btn:hover {
-      background: var(--primary-hover);
-    }
-
-    .code-container {
-      flex: 1;
-      overflow: auto;
-      padding: 20px;
-      background: #1a1a2e;
-    }
-
-    pre {
-      margin: 0;
-      font-family: 'Fira Code', 'Consolas', monospace;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: #e2e8f0;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
-    code {
-      color: #a5b4fc;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      header {
-        padding: 70px 20px 60px;
-      }
-      
-      .contact-info {
-        flex-direction: column;
-        gap: 10px;
-      }
-      
-      .header-btns {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .btn {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-      }
-      
-      section {
-        padding: 50px 20px;
-      }
-      
-      .projects {
-        grid-template-columns: 1fr;
-      }
-      
-      .project-links {
-        flex-direction: column;
-      }
-      
-      .project-links .btn {
-        width: 100%;
-      }
-      
-      .modal-content {
-        border-radius: 16px;
-      }
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg-primary);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--bg-tertiary);
-      border-radius: 5px;
-      border: 2px solid var(--bg-primary);
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--primary);
-    }
-
-    /* Utilities */
-    .text-center { text-align: center; }
-    .mb-20 { margin-bottom: 20px; }
-    .mt-30 { margin-top: 30px; }
-    .hidden { display: none !important; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Luis Gustavo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- RESET E VARIÁVEIS --- */
+        :root {
+            --netflix-red: #E50914;
+            --netflix-black: #141414;
+            --netflix-dark-gray: #181818;
+            --netflix-light-gray: #e5e5e5;
+            --text-white: #ffffff;
+            --text-gray: #b3b3b3;
+            --match-green: #46d369;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--netflix-black);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- HEADER / NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 4%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0));
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--netflix-red);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul { display: flex; gap: 20px; }
+        nav a:hover { color: var(--text-gray); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.3), var(--netflix-black)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 4%;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-play {
+            background-color: var(--text-white);
+            color: var(--netflix-black);
+        }
+        .btn-play:hover { background-color: rgba(255,255,255,0.75); }
+
+        .btn-info {
+            background-color: rgba(109, 109, 110, 0.7);
+            color: var(--text-white);
+            margin-left: 10px;
+        }
+        .btn-info:hover { background-color: rgba(109, 109, 110, 0.4); }
+
+        /* --- SEÇÃO SOBRE --- */
+        .section-title {
+            font-size: 1.5rem;
+            margin: 60px 4% 20px;
+            font-weight: 600;
+            border-left: 5px solid var(--netflix-red);
+            padding-left: 15px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            padding: 0 4%;
+            margin-bottom: 60px;
+            background-color: var(--netflix-dark-gray);
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .about-text h3 { margin-bottom: 15px; color: var(--netflix-red); }
+        .about-text p { margin-bottom: 15px; color: var(--text-gray); line-height: 1.6; }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .skill-tag {
+            background: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #555;
+        }
+
+        .experience-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 5px;
+        }
+        .experience-box h4 { color: var(--match-green); margin-bottom: 10px; }
+        .experience-box ul { padding-left: 20px; }
+        .experience-box li { color: var(--text-gray); margin-bottom: 5px; font-size: 0.9rem; }
+
+        /* --- PROJETOS --- */
+        .projects-row {
+            padding: 0 4%;
+            margin-bottom: 60px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background-color: var(--netflix-dark-gray);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .card-image {
+            height: 180px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover .card-image img { opacity: 1; }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--netflix-red);
+            color: white;
+            padding: 3px 10px;
+            font-size: 0.7rem;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--text-white);
+        }
+
+        .card-tech {
+            font-size: 0.85rem;
+            color: var(--match-green);
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .card-section {
+            margin-bottom: 10px;
+        }
+
+        .card-section-title {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+
+        .card-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+        }
+
+        .card-btn {
+            flex: 1;
+            font-size: 0.8rem;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
+        }
+        .card-btn:hover { 
+            background: var(--text-white); 
+            color: var(--netflix-black); 
+        }
+        .card-btn.primary {
+            background: var(--netflix-red);
+            color: white;
+        }
+        .card-btn.primary:hover {
+            background: #f40612;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 50px 4%;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+        .social-links {
+            margin-bottom: 20px;
+        }
+        .social-links a {
+            font-size: 1.5rem;
+            margin: 0 15px;
+            color: var(--text-white);
+        }
+        .social-links a:hover { color: var(--netflix-red); }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .profile-img { max-width: 200px; margin: 0 auto; display: block; }
+            nav ul { display: none; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <span class="hero-badge">🚀 Disponível para oportunidades</span>
-  <h1>Luis Gustavo Verissimo Cavalcante</h1>
-  <p class="hero-subtitle">Desenvolvedor Full Stack Júnior • PHP • JavaScript • Python</p>
-  
-  <div class="hero-objective">
-    <strong>Objetivo:</strong> Busco minha primeira oportunidade como Desenvolvedor Júnior para aplicar meus conhecimentos em projetos reais, contribuir com soluções de qualidade e crescer profissionalmente em um ambiente desafiador.
-  </div>
-  
-  <div class="contact-info">
-    <span>📍 Fortaleza - CE</span>
-    <a href="mailto:gustavoluis.v.c.1016@gmail.com">📧 gustavoluis.v.c.1016@gmail.com</a>
-    <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">🐙 GitHub</a>
-    <a href="https://linkedin.com/in/seu-perfil" target="_blank">💼 LinkedIn</a>
-  </div>
-  
-  <div class="header-btns">
-    <a href="#projetos" class="btn btn-primary">🚀 Ver Projetos</a>
-    <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
-    <a href="#" class="btn btn-outline" onclick="downloadCV()">📄 Baixar CV</a>
-  </div>
-  
-  <div class="availability-badge">✅ Disponível para trabalho remoto e híbrido</div>
-</header>
+    <!-- Header -->
+    <header>
+        <div class="logo">LUIS GUSTAVO</div>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<section>
-  <div class="section-header">
-    <span class="icon">👨‍💻</span>
-    <h2>Sobre Mim</h2>
-  </div>
-  
-  <div class="about-content">
-    <div class="about-text">
-      <p>
-        Sou um <strong>desenvolvedor autodidata</strong> com foco em criar soluções web eficientes e escaláveis. 
-        Minha jornada na programação começou com a curiosidade de entender como as coisas funcionam, 
-        e hoje dedico horas diárias ao aprendizado prático através de projetos reais.
-      </p>
-      <p>
-        Tenho experiência com desenvolvimento de <strong>APIs REST</strong>, integração com bancos de dados 
-        e implementação de boas práticas de código. Acredito que a <strong>disciplina e consistência</strong> 
-        são os maiores diferenciais de um profissional em crescimento.
-      </p>
-      <p>
-        Estou em busca da minha primeira oportunidade na área de tecnologia, onde possa aplicar 
-        meus conhecimentos, aprender com profissionais experientes e contribuir ativamente para 
-        o sucesso dos projetos da equipe.
-      </p>
-    </div>
-    
-    <div class="about-highlights">
-      <h4>✨ Meus Diferenciais</h4>
-      <ul class="highlight-list">
-        <li>Autodidata com rotina de estudos estruturada</li>
-        <li>Foco em resolver problemas reais com código</li>
-        <li>Comunicação clara e trabalho em equipe</li>
-        <li>Adaptabilidade para aprender novas tecnologias</li>
-        <li>Comprometimento com prazos e qualidade</li>
-        <li>Inglês fluente para documentação e colaboração</li>
-      </ul>
-    </div>
-  </div>
-  
-  <h3 style="color: var(--primary); margin: 40px 0 20px; display: flex; align-items: center; gap: 10px;">
-    ⚡ Stack Tecnológica
-  </h3>
-  <div class="skills-grid">
-    <span class="skill-tag primary">⚡ PHP</span>
-    <span class="skill-tag primary">⚡ JavaScript</span>
-    <span class="skill-tag primary">⚡ Python</span>
-    <span class="skill-tag">Node.js</span>
-    <span class="skill-tag">TypeScript</span>
-    <span class="skill-tag">React</span>
-    <span class="skill-tag">Slim Framework</span>
-    <span class="skill-tag">Express.js</span>
-    <span class="skill-tag">MySQL</span>
-    <span class="skill-tag">MongoDB</span>
-    <span class="skill-tag">Git & GitHub</span>
-    <span class="skill-tag">REST APIs</span>
-    <span class="skill-tag">HTML5 & CSS3</span>
-    <span class="skill-tag accent">🔒 Segurança</span>
-    <span class="skill-tag accent">📊 Dados</span>
-  </div>
-</section>
-
-<section>
-  <div class="section-header">
-    <span class="icon">💼</span>
-    <h2>Experiência Profissional</h2>
-  </div>
-  
-  <div class="experience-grid">
-    <div class="experience-card">
-      <h3>Teleatendimento</h3>
-      <div class="company">🏢 Concentrix</div>
-      <div class="period">📅 Set/2024 — Abr/2025</div>
-      <ul>
-        <li>Atendimento ao cliente com foco em resolução de problemas</li>
-        <li>Registro e organização de informações em sistemas internos</li>
-        <li>Cumprimento rigoroso de indicadores de qualidade e SLA</li>
-        <li>Desenvolvimento de comunicação clara e empatia</li>
-      </ul>
-    </div>
-    
-    <div class="experience-card">
-      <h3>Consultor de Vendas</h3>
-      <div class="company">🏢 Grupo Dádiva</div>
-      <div class="period">📅 2023 — 2024</div>
-      <ul>
-        <li>Vendas consultivas com foco em necessidades do cliente</li>
-        <li>Prospecção ativa e fidelização de carteira</li>
-        <li>Atingimento consistente de metas comerciais</li>
-        <li>Trabalho em equipe e colaboração interdepartamental</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="projetos">
-  <div class="section-header">
-    <span class="icon">🚀</span>
-    <h2>Projetos em Destaque</h2>
-  </div>
-  
-  <div class="projects-intro">
-    <strong>💡 Dica:</strong> Clique em "▶ Demo" para testar a funcionalidade ou "📄 Código" para analisar a implementação. 
-    Todos os projetos estão disponíveis no GitHub com documentação completa.
-  </div>
-
-  <div class="projects">
-
-    <!-- PROJETO 1: API REST -->
-    <div class="project-card">
-      <div class="project-preview">🔌</div>
-      <div class="project-content">
-        <h3>API REST com Autenticação JWT</h3>
-        <p class="project-description">
-          API completa para gestão de usuários com autenticação segura, validação de dados, 
-          CRUD completo e documentação Swagger.
-        </p>
-        <div class="project-problem">
-          <strong>Problema resolvido:</strong> Fornecer uma base segura e escalável para aplicações web que necessitam de autenticação de usuários e proteção de rotas.
-        </div>
-        <div class="tech-stack">
-          <span class="tech-tag">PHP</span>
-          <span class="tech-tag">Slim Framework</span>
-          <span class="tech-tag">JWT</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">Swagger</span>
-        </div>
-        <div class="project-learnings">
-          <strong>💡 Aprendizados:</strong> Boas práticas de API REST, segurança com tokens JWT, estrutura MVC e documentação de endpoints.
-        </div>
-        <div class="project-links">
-          <button class="btn btn-outline" onclick="openModal('api-rest', 'demo')">▶ Demo</button>
-          <button class="btn btn-outline" onclick="openModal('api-rest', 'code')">📄 Código</button>
-          <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJETO 2: AUTH SYSTEM -->
-    <div class="project-card">
-      <div class="project-preview">🔐</div>
-      <div class="project-content">
-        <h3>Sistema de Autenticação Completo</h3>
-        <p class="project-description">
-          Módulo de login, registro, recuperação de senha e proteção de rotas com JWT. 
-          Inclui hashing de senhas e middleware de autorização.
-        </p>
-        <div class="project-problem">
-          <strong>Problema resolvido:</strong> Implementar um sistema de autenticação seguro que pode ser reutilizado em qualquer aplicação Node.js.
-        </div>
-        <div class="tech-stack">
-          <span class="tech-tag">Node.js</span>
-          <span class="tech-tag">Express</span>
-          <span class="tech-tag">bcrypt</span>
-          <span class="tech-tag">JWT</span>
-        </div>
-        <div class="project-learnings">
-          <strong>💡 Aprendizados:</strong> Criptografia de senhas, middleware em Express, fluxo de autenticação stateless e boas práticas de segurança.
-        </div>
-        <div class="project-links">
-          <button class="btn btn-outline" onclick="openModal('auth', 'demo')">▶ Demo</button>
-          <button class="btn btn-outline" onclick="openModal('auth', 'code')">📄 Código</button>
-          <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJETO 3: E-COMMERCE -->
-    <div class="project-card">
-      <div class="project-preview">🛒</div>
-      <div class="project-content">
-        <h3>E-Commerce com Carrinho e Checkout</h3>
-        <p class="project-description">
-          Loja virtual com catálogo de produtos, carrinho de compras persistente, 
-          cálculo de total e simulação de checkout.
-        </p>
-        <div class="project-problem">
-          <strong>Problema resolvido:</strong> Criar uma experiência de compra completa no frontend com gerenciamento de estado do carrinho.
-        </div>
-        <div class="tech-stack">
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">Context API</span>
-          <span class="tech-tag">LocalStorage</span>
-          <span class="tech-tag">CSS Modules</span>
-        </div>
-        <div class="project-learnings">
-          <strong>💡 Aprendizados:</strong> Gerenciamento de estado com Context API, persistência local, componentes reutilizáveis e UX de e-commerce.
-        </div>
-        <div class="project-links">
-          <button class="btn btn-outline" onclick="openModal('ecommerce', 'demo')">▶ Demo</button>
-          <button class="btn btn-outline" onclick="openModal('ecommerce', 'code')">📄 Código</button>
-          <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJETO 4: CHAT REAL-TIME -->
-    <div class="project-card">
-      <div class="project-preview">💬</div>
-      <div class="project-content">
-        <h3>Chat em Tempo Real com WebSocket</h3>
-        <p class="project-description">
-          Aplicação de mensagens instantâneas com salas, notificações em tempo real 
-          e indicação de usuários online.
-        </p>
-        <div class="project-problem">
-          <strong>Problema resolvido:</strong> Permitir comunicação instantânea entre usuários sem necessidade de refresh da página.
-        </div>
-        <div class="tech-stack">
-          <span class="tech-tag">Node.js</span>
-          <span class="tech-tag">Socket.io</span>
-          <span class="tech-tag">MongoDB</span>
-          <span class="tech-tag">Express</span>
-        </div>
-        <div class="project-learnings">
-          <strong>💡 Aprendizados:</strong> Programação assíncrona com WebSockets, eventos em tempo real e arquitetura pub/sub.
-        </div>
-        <div class="project-links">
-          <button class="btn btn-outline" onclick="openModal('chat', 'demo')">▶ Demo</button>
-          <button class="btn btn-outline" onclick="openModal('chat', 'code')">📄 Código</button>
-          <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJETO 5: DASHBOARD -->
-    <div class="project-card">
-      <div class="project-preview">📊</div>
-      <div class="project-content">
-        <h3>Dashboard Analytics com Gráficos</h3>
-        <p class="project-description">
-          Painel administrativo com métricas em tempo real, visualização de dados 
-          com Chart.js e layout responsivo.
-        </p>
-        <div class="project-problem">
-          <strong>Problema resolvido:</strong> Transformar dados brutos em insights visuais para tomada de decisão rápida.
-        </div>
-        <div class="tech-stack">
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">Chart.js</span>
-          <span class="tech-tag">API REST</span>
-          <span class="tech-tag">CSS Grid</span>
-        </div>
-        <div class="project-learnings">
-          <strong>💡 Aprendizados:</strong> Visualização de dados, consumo de APIs, componentes de dashboard e design responsivo.
-        </div>
-        <div class="project-links">
-          <button class="btn btn-outline" onclick="openModal('dashboard', 'demo')">▶ Demo</button>
-          <button class="btn btn-outline" onclick="openModal('dashboard', 'code')">📄 Código</button>
-          <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJETO 6: KANBAN BOARD -->
-    <div class="project-card">
-      <div class="project-preview">📋</div>
-      <div class="project-content">
-        <h3>Kanban Board com Drag & Drop</h3>
-        <p class="project-description">
-          Gerenciador de tarefas com colunas personalizáveis, arrastar-e-soltar 
-          e persistência local para salvar o estado.
-        </p>
-        <div class="project-problem">
-          <strong>Problema resolvido:</strong> Oferecer uma interface intuitiva para organização visual de tarefas e fluxos de trabalho.
-        </div>
-        <div class="tech-stack">
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">HTML5 Drag API</span>
-          <span class="tech-tag">LocalStorage</span>
-          <span class="tech-tag">CSS3</span>
-        </div>
-        <div class="project-learnings">
-          <strong>💡 Aprendizados:</strong> API de Drag & Drop nativa, manipulação do DOM, UX de produtividade e persistência de dados.
-        </div>
-        <div class="project-links">
-          <button class="btn btn-outline" onclick="openModal('kanban', 'demo')">▶ Demo</button>
-          <button class="btn btn-outline" onclick="openModal('kanban', 'code')">📄 Código</button>
-          <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJETO 7: PYTHON DATA -->
-    <div class="project-card">
-      <div class="project-preview">📈</div>
-      <div class="project-content">
-        <h3>Análise de Dados com Python</h3>
-        <p class="project-description">
-          Script para análise exploratória de dados com Pandas, visualizações 
-          com Matplotlib e estatísticas descritivas.
-        </p>
-        <div class="project-problem">
-          <strong>Problema resolvido:</strong> Automatizar a análise de datasets para identificar padrões e insights de negócio.
-        </div>
-        <div class="tech-stack">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">Pandas</span>
-          <span class="tech-tag">NumPy</span>
-          <span class="tech-tag">Matplotlib</span>
-        </div>
-        <div class="project-learnings">
-          <strong>💡 Aprendizados:</strong> Manipulação de DataFrames, visualização de dados, limpeza de dados e análise estatística.
-        </div>
-        <div class="project-links">
-          <button class="btn btn-outline" onclick="openModal('python-data', 'demo')">▶ Demo</button>
-          <button class="btn btn-outline" onclick="openModal('python-data', 'code')">📄 Código</button>
-          <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJETO 8: WEATHER APP -->
-    <div class="project-card">
-      <div class="project-preview">🌤️</div>
-      <div class="project-content">
-        <h3>Weather App com API Externa</h3>
-        <p class="project-description">
-          Aplicação de previsão do tempo consumindo OpenWeather API, com geolocalização, 
-          histórico de buscas e interface responsiva.
-        </p>
-        <div class="project-problem">
-          <strong>Problema resolvido:</strong> Fornecer informações climáticas em tempo real de forma acessível e visualmente agradável.
-        </div>
-        <div class="tech-stack">
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Fetch API</span>
-          <span class="tech-tag">OpenWeather API</span>
-          <span class="tech-tag">LocalStorage</span>
-        </div>
-        <div class="project-learnings">
-          <strong>💡 Aprendizados:</strong> Consumo de APIs REST, tratamento de erros, geolocalização e UX mobile-first.
-        </div>
-        <div class="project-links">
-          <button class="btn btn-outline" onclick="openModal('weather', 'demo')">▶ Demo</button>
-          <button class="btn btn-outline" onclick="openModal('weather', 'code')">📄 Código</button>
-          <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section>
-  <div class="section-header">
-    <span class="icon">📜</span>
-    <h2>Certificações Técnicas</h2>
-  </div>
-  
-  <div class="courses-grid">
-    <div class="course-card">
-      <h4>Desenvolvimento Web Full Stack</h4>
-      <div class="provider">Udemy</div>
-      <a href="https://ude.my/UC-b87e3e1b-d352-4ca3-9a60-1e70bddcd729" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Back-end com Slim Framework (PHP)</h4>
-      <div class="provider">Cursa</div>
-      <a href="https://cursa.app/pt/meu-certificado/cert212c0b82fe81e891f7ab992845d43130" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Node.js com Express e TypeScript</h4>
-      <div class="provider">Cursa</div>
-      <a href="https://cursa.app/pt/meu-certificado/cert784f2ad8d43a8002a35353ced34ea0c8" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>React JS</h4>
-      <div class="provider">EuProgramador</div>
-      <a href="https://cursa.app/pt/meu-certificado/cert817951b9c469739094602d09bbcaa740" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Análise de Dados em Python</h4>
-      <div class="provider">Programação Dinâmica</div>
-      <a href="https://cursa.app/pt/meu-certificado/certc4b4469ae1302805eda20f9c549456c1" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Segurança da Informação</h4>
-      <div class="provider">Cursa</div>
-      <a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="section-header">
-    <span class="icon">🌍</span>
-    <h2>Idiomas</h2>
-  </div>
-  
-  <div class="courses-grid">
-    <div class="course-card">
-      <h4>🇬🇧 Inglês — Fluência</h4>
-      <div class="provider">Udemy</div>
-      <a href="https://ude.my/UC-e47bf283-89c7-4f7e-852a-5cc13473a67f" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>🇪🇸 Espanhol — Nível C1</h4>
-      <div class="provider">Udemy</div>
-      <a href="https://ude.my/UC-7ae1c992-03c3-4b46-9a2b-f811de737ccd" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>🇮🇹 Italiano — Avançado</h4>
-      <div class="provider">PontoItalian / Udemy</div>
-      <a href="https://ude.my/UC-375c8abb-31cd-4420-8005-f0034f43f8b4" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>🇩🇪 Alemão — Nível C1</h4>
-      <div class="provider">Udemy - Tarik Becker</div>
-      <a href="https://ude.my/UC-7dc4ccc9-ff9c-452d-8059-d5f844942702" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-  </div>
-</section>
-
-<!-- MODAL PARA DEMO E CÓDIGO -->
-<div id="projectModal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3 id="modalTitle">⚡ Projeto</h3>
-      <div class="modal-tabs">
-        <button class="tab-btn active" id="tabDemo" onclick="switchTab('demo')">🎯 Demo</button>
-        <button class="tab-btn" id="tabCode" onclick="switchTab('code')">📄 Código</button>
-      </div>
-      <button class="close-btn" onclick="closeModal()">×</button>
-    </div>
-    <div id="modalBody" class="modal-body">
-      <!-- Conteúdo injetado via JavaScript -->
-    </div>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-content">
-    <h3 style="margin-bottom: 10px;">Luis Gustavo Verissimo Cavalcante</h3>
-    <p style="color: var(--text-secondary); margin-bottom: 20px;">Desenvolvedor Full Stack Júnior</p>
-    
-    <div class="footer-links">
-      <a href="mailto:gustavoluis.v.c.1016@gmail.com">📧 Email</a>
-      <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">🐙 GitHub</a>
-      <a href="https://linkedin.com/in/seu-perfil" target="_blank">💼 LinkedIn</a>
-      <a href="#" onclick="downloadCV()">📄 Download CV</a>
-    </div>
-    
-    <div class="license">
-      📄 Este projeto está sob licença 
-      <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>
-    </div>
-    
-    <p class="copyright">
-      © 2026 Luis Gustavo. Todos os direitos reservados. 
-      <br>Desenvolvido com ❤️ e muito café ☕
-    </p>
-  </div>
-</footer>
-
-<script>
-// --- FUNÇÕES DO MODAL ---
-const modal = document.getElementById('projectModal');
-const modalBody = document.getElementById('modalBody');
-const modalTitle = document.getElementById('modalTitle');
-const tabDemo = document.getElementById('tabDemo');
-const tabCode = document.getElementById('tabCode');
-let currentProject = null;
-let currentTab = 'demo';
-
-function openModal(projectType, tab = 'demo') {
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  currentProject = projectType;
-  currentTab = tab;
-  
-  updateTabs();
-  loadContent(projectType, tab);
-}
-
-function closeModal() {
-  modal.style.display = 'none';
-  modalBody.innerHTML = '';
-  document.body.style.overflow = 'auto';
-  currentProject = null;
-}
-
-function switchTab(tab) {
-  currentTab = tab;
-  updateTabs();
-  loadContent(currentProject, tab);
-}
-
-function updateTabs() {
-  if (currentTab === 'demo') {
-    tabDemo.classList.add('active');
-    tabCode.classList.remove('active');
-  } else {
-    tabDemo.classList.remove('active');
-    tabCode.classList.add('active');
-  }
-}
-
-function loadContent(projectType, tab) {
-  if (tab === 'demo') {
-    modalTitle.innerText = getProjectTitle(projectType) + ' - Demo';
-    loadDemo(projectType);
-  } else {
-    modalTitle.innerText = getProjectTitle(projectType) + ' - Código';
-    loadCode(projectType);
-  }
-}
-
-function getProjectTitle(type) {
-  const titles = {
-    'api-rest': '🔌 API REST com JWT',
-    'auth': '🔐 Sistema de Autenticação',
-    'ecommerce': '🛒 E-Commerce',
-    'chat': '💬 Chat Real-Time',
-    'dashboard': '📊 Dashboard Analytics',
-    'kanban': '📋 Kanban Board',
-    'python-data': '📈 Python Data Analysis',
-    'weather': '🌤️ Weather App'
-  };
-  return titles[type] || 'Projeto';
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) closeModal();
-}
-
-// Fechar modal com ESC
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
-});
-
-// --- DOWNLOAD DO CV ---
-function downloadCV() {
-  // Substitua pelo link real do seu currículo
-  const cvLink = 'https://github.com/luisgustavoleao896-cpu';
-  window.open(cvLink, '_blank');
-  alert('📄 Em um ambiente real, aqui seria feito o download do seu currículo em PDF.');
-}
-
-// --- DEMOS DOS PROJETOS ---
-function loadDemo(type) {
-  const demos = {
-    'api-rest': demoAPIRest,
-    'auth': demoAuth,
-    'ecommerce': demoEcommerce,
-    'chat': demoChat,
-    'dashboard': demoDashboard,
-    'kanban': demoKanban,
-    'python-data': demoPythonData,
-    'weather': demoWeather
-  };
-  if (demos[type]) demos[type]();
-}
-
-function loadCode(type) {
-  const codes = {
-    'api-rest': codeAPIRest,
-    'auth': codeAuth,
-    'ecommerce': codeEcommerce,
-    'chat': codeChat,
-    'dashboard': codeDashboard,
-    'kanban': codeKanban,
-    'python-data': codePythonData,
-    'weather': codeWeather
-  };
-  if (codes[type]) codes[type]();
-}
-
-// === DEMO: API REST ===
-function demoAPIRest() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>🔗 Endpoints Disponíveis</h4>
-        
-        <div class="api-endpoint">
-          <span class="api-method get">GET</span>
-          <code>/api/users</code>
-          <p style="color: var(--text-secondary); margin: 10px 0 0 0; font-size: 0.9rem;">Listar todos os usuários</p>
-        </div>
-        
-        <div class="api-endpoint">
-          <span class="api-method post">POST</span>
-          <code>/api/auth/login</code>
-          <p style="color: var(--text-secondary); margin: 10px 0 0 0; font-size: 0.9rem;">Autenticação com JWT</p>
-        </div>
-        
-        <div class="api-endpoint">
-          <span class="api-method post">POST</span>
-          <code>/api/users</code>
-          <p style="color: var(--text-secondary); margin: 10px 0 0 0; font-size: 0.9rem;">Criar novo usuário</p>
-        </div>
-        
-        <button class="demo-btn" onclick="testAPI()">🧪 Testar Endpoint</button>
-        
-        <div id="apiResult" class="demo-result">
-          <strong style="color: var(--success);">✅ Resposta da API:</strong>
-          <pre style="margin: 15px 0 0 0; overflow-x: auto; font-size: 0.85rem;">{
-  "success": true,
-  "data": {
-    "id": 1,
-    "name": "Luis Gustavo",
-    "email": "gustavoluis@example.com",
-    "created_at": "2026-03-21T10:30:00Z"
-  },
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}</pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function testAPI() {
-  document.getElementById('apiResult').classList.add('show');
-}
-
-// === DEMO: AUTH ===
-function demoAuth() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <div class="auth-form" id="authForm">
-          <h4 style="text-align: center; margin-bottom: 24px;">🔐 Login</h4>
-          <div id="authMessage"></div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="authEmail" value="admin@example.com">
-          </div>
-          <div class="form-group">
-            <label>Senha</label>
-            <input type="password" id="authPassword" value="admin123">
-          </div>
-          <button class="demo-btn" style="width: 100%;" onclick="authLogin()">Entrar</button>
-          <p style="text-align: center; color: var(--text-muted); margin: 15px 0 0 0; font-size: 0.85rem;">
-            Credenciais de teste: admin@example.com / admin123
-          </p>
-        </div>
-        
-        <div id="authDashboard" style="display: none;">
-          <h4 style="color: var(--success); text-align: center; margin-bottom: 20px;">✅ Login Realizado!</h4>
-          <div class="dashboard-grid">
-            <div class="dash-card">
-              <div class="dash-value">1</div>
-              <div class="dash-label">Usuário</div>
-            </div>
-            <div class="dash-card green">
-              <div class="dash-value">Ativo</div>
-              <div class="dash-label">Status</div>
-            </div>
-            <div class="dash-card orange">
-              <div class="dash-value">24h</div>
-              <div class="dash-label">Token JWT</div>
-            </div>
-          </div>
-          <button class="demo-btn" style="width: 100%; margin-top: 20px;" onclick="authLogout()">Sair</button>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function authLogin() {
-  const email = document.getElementById('authEmail').value;
-  const password = document.getElementById('authPassword').value;
-  
-  if (email === 'admin@example.com' && password === 'admin123') {
-    document.getElementById('authForm').style.display = 'none';
-    document.getElementById('authDashboard').style.display = 'block';
-  } else {
-    document.getElementById('authMessage').innerHTML = '<div style="color: var(--danger); padding: 10px; background: rgba(239,68,68,0.15); border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem;">❌ Credenciais inválidas</div>';
-  }
-}
-
-function authLogout() {
-  document.getElementById('authForm').style.display = 'block';
-  document.getElementById('authDashboard').style.display = 'none';
-  document.getElementById('authMessage').innerHTML = '';
-}
-
-// === DEMO: E-COMMERCE ===
-let cart = [];
-function demoEcommerce() {
-  cart = [];
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>🛍️ Produtos</h4>
-        <div class="product-grid">
-          <div class="product-card">
-            <div class="emoji">👟</div>
-            <h5 style="margin: 8px 0;">Tênis</h5>
-            <div class="price">R$ 299,90</div>
-            <button class="demo-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="addToCart('Tênis', 299.90)">+ Carrinho</button>
-          </div>
-          <div class="product-card">
-            <div class="emoji">🎧</div>
-            <h5 style="margin: 8px 0;">Headphone</h5>
-            <div class="price">R$ 459,90</div>
-            <button class="demo-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="addToCart('Headphone', 459.90)">+ Carrinho</button>
-          </div>
-          <div class="product-card">
-            <div class="emoji">⌚</div>
-            <h5 style="margin: 8px 0;">Smartwatch</h5>
-            <div class="price">R$ 899,90</div>
-            <button class="demo-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="addToCart('Smartwatch', 899.90)">+ Carrinho</button>
-          </div>
-        </div>
-        
-        <div class="cart-section">
-          <h4>🛒 Seu Carrinho</h4>
-          <div id="cartItems" style="color: var(--text-secondary); margin: 12px 0; min-height: 40px;">
-            <em>Carrinho vazio</em>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border);">
-            <strong>Total:</strong>
-            <strong style="color: var(--success); font-size: 1.2rem;" id="cartTotal">R$ 0,00</strong>
-          </div>
-          <button class="demo-btn" style="width: 100%; margin-top: 15px;" onclick="checkout()">Finalizar Compra</button>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function addToCart(name, price) {
-  cart.push({name, price});
-  updateCart();
-}
-
-function updateCart() {
-  const items = document.getElementById('cartItems');
-  const total = document.getElementById('cartTotal');
-  
-  if (cart.length === 0) {
-    items.innerHTML = '<em>Carrinho vazio</em>';
-    total.innerText = 'R$ 0,00';
-    return;
-  }
-  
-  items.innerHTML = cart.map(item => 
-    `<div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem;">
-      <span>${item.name}</span>
-      <span>R$ ${item.price.toFixed(2)}</span>
-    </div>`
-  ).join('');
-  
-  const sum = cart.reduce((acc, item) => acc + item.price, 0);
-  total.innerText = 'R$ ' + sum.toFixed(2);
-}
-
-function checkout() {
-  if (cart.length === 0) {
-    alert('Seu carrinho está vazio!');
-    return;
-  }
-  alert('✅ Pedido realizado com sucesso!');
-  cart = [];
-  updateCart();
-}
-
-// === DEMO: CHAT ===
-function demoChat() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <div class="chat-container">
-          <div class="chat-header">💬 Dev Community</div>
-          <div class="chat-messages" id="chatMessages">
-            <div class="chat-message received">
-              <strong>Ana</strong><br>
-              Alguém trabalhando no projeto React hoje?
-            </div>
-            <div class="chat-message sent">
-              Sim! Estou com dúvidas sobre useEffect
-            </div>
-            <div class="chat-message received">
-              <strong>Carlos</strong><br>
-              Posso ajudar! Manda aí 👍
-            </div>
-          </div>
-          <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Digite sua mensagem..." onkeypress="if(event.key==='Enter')sendMessage()">
-            <button onclick="sendMessage()">Enviar</button>
-          </div>
-        </div>
-        
-        <div style="margin-top: 20px; padding: 16px; background: var(--bg-tertiary); border-radius: 8px;">
-          <h4 style="color: var(--accent); font-size: 1rem;">🚀 Tecnologias</h4>
-          <ul style="color: var(--text-secondary); padding-left: 20px; margin: 10px 0 0 0; font-size: 0.9rem;">
-            <li>WebSocket com Socket.io</li>
-            <li>Salas de chat privadas</li>
-            <li>Status online/offline</li>
-            <li>Notificações em tempo real</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function sendMessage() {
-  const input = document.getElementById('chatInput');
-  const messages = document.getElementById('chatMessages');
-  
-  if (input.value.trim()) {
-    const msg = document.createElement('div');
-    msg.className = 'chat-message sent';
-    msg.innerHTML = input.value;
-    messages.appendChild(msg);
-    input.value = '';
-    messages.scrollTop = messages.scrollHeight;
-  }
-}
-
-// === DEMO: DASHBOARD ===
-function demoDashboard() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>📈 Métricas em Tempo Real</h4>
-        <div class="dashboard-grid">
-          <div class="dash-card">
-            <div class="dash-value">1.247</div>
-            <div class="dash-label">Usuários</div>
-          </div>
-          <div class="dash-card green">
-            <div class="dash-value">R$ 84.5K</div>
-            <div class="dash-label">Vendas</div>
-          </div>
-          <div class="dash-card orange">
-            <div class="dash-value">68.5%</div>
-            <div class="dash-label">Conversão</div>
-          </div>
-          <div class="dash-card blue">
-            <div class="dash-value">98.5%</div>
-            <div class="dash-label">Uptime</div>
-          </div>
-        </div>
-        
-        <div style="margin-top: 25px; background: var(--bg-tertiary); padding: 20px; border-radius: 10px;">
-          <h4 style="color: var(--text-primary); font-size: 1rem;">📊 Vendas por Mês</h4>
-          <div style="height: 150px; background: linear-gradient(180deg, rgba(59,130,246,0.2) 0%, transparent 100%); border-bottom: 2px solid var(--primary); display: flex; align-items: flex-end; justify-content: space-around; padding: 0 15px; margin-top: 15px;">
-            <div style="width: 30px; height: 50%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-            <div style="width: 30px; height: 75%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-            <div style="width: 30px; height: 40%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-            <div style="width: 30px; height: 85%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-            <div style="width: 30px; height: 65%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-            <div style="width: 30px; height: 90%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-          </div>
-          <div style="display: flex; justify-content: space-around; margin-top: 8px; color: var(--text-muted); font-size: 0.8rem;">
-            <span>Jan</span><span>Fev</span><span>Mar</span><span>Abr</span><span>Mai</span><span>Jun</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-// === DEMO: KANBAN ===
-function demoKanban() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>📋 Gerenciamento de Tarefas</h4>
-        <div class="kanban-board">
-          <div class="kanban-column">
-            <h4>📝 A Fazer</h4>
-            <div class="kanban-task" onclick="moveTask(this)">Criar API REST</div>
-            <div class="kanban-task" onclick="moveTask(this)">Revisar código</div>
-            <div class="kanban-task" onclick="moveTask(this)">Escrever testes</div>
-          </div>
-          <div class="kanban-column">
-            <h4>🔄 Em Progresso</h4>
-            <div class="kanban-task" onclick="moveTask(this)">Desenvolver frontend</div>
-            <div class="kanban-task" onclick="moveTask(this)">Configurar banco</div>
-          </div>
-          <div class="kanban-column">
-            <h4>✅ Concluído</h4>
-            <div class="kanban-task" onclick="moveTask(this)">Setup do projeto</div>
-            <div class="kanban-task" onclick="moveTask(this)">Deploy inicial</div>
-          </div>
-        </div>
-        
-        <div style="margin-top: 20px; padding: 16px; background: var(--bg-tertiary); border-radius: 8px;">
-          <h4 style="color: var(--accent); font-size: 1rem;">✨ Funcionalidades</h4>
-          <ul style="color: var(--text-secondary); padding-left: 20px; margin: 10px 0 0 0; font-size: 0.9rem;">
-            <li>Clique para mover tarefas entre colunas</li>
-            <li>Persistência com LocalStorage</li>
-            <li>Interface intuitiva e responsiva</li>
-            <li>Drag & Drop nativo do HTML5</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function moveTask(task) {
-  const columns = document.querySelectorAll('.kanban-column');
-  const currentColumn = task.parentElement;
-  let nextIndex = (Array.from(columns).indexOf(currentColumn) + 1) % columns.length;
-  columns[nextIndex].appendChild(task);
-}
-
-// === DEMO: PYTHON DATA ===
-function demoPythonData() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>📊 Análise Exploratória</h4>
-        
-        <div style="background: #1a1a2e; padding: 18px; border-radius: 8px; font-family: monospace; color: #e2e8f0; margin: 20px 0; font-size: 0.85rem; overflow-x: auto;">
-import pandas as pd<br>
-import matplotlib.pyplot as plt<br><br>
-df = pd.read_csv('dados.csv')<br>
-print(df.describe())<br>
-plt.plot(df['date'], df['value'])<br>
-plt.show()
-        </div>
-        
-        <button class="demo-btn" onclick="runPythonAnalysis()">▶ Executar Análise</button>
-        
-        <div id="pythonResult" class="demo-result">
-          <strong style="color: var(--success);">✅ Análise Concluída!</strong>
-          <div class="dashboard-grid" style="margin-top: 15px;">
-            <div class="dash-card">
-              <div class="dash-value">1.247</div>
-              <div class="dash-label">Registros</div>
-            </div>
-            <div class="dash-card green">
-              <div class="dash-value">98.5%</div>
-              <div class="dash-label">Dados Válidos</div>
-            </div>
-            <div class="dash-card orange">
-              <div class="dash-value">0.87</div>
-              <div class="dash-label">Correlação</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function runPythonAnalysis() {
-  document.getElementById('pythonResult').classList.add('show');
-}
-
-// === DEMO: WEATHER ===
-function demoWeather() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <div class="weather-card">
-          <div class="weather-icon">🌤️</div>
-          <div class="weather-temp">24°C</div>
-          <h4 style="color: white; margin: 10px 0;">Fortaleza, CE</h4>
-          <p style="color: rgba(255,255,255,0.9);">Parcialmente Nublado</p>
-          
-          <div style="display: flex; justify-content: space-around; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Luis Gustavo V. Cavalcante</h1>
+            <h2>Desenvolvedor Júnior | Full Stack</h2>
+            <p>
+                <strong style="color: var(--match-green);">98% de compatibilidade</strong> com sua equipe de desenvolvimento.
+                <br><br>
+                Especialista em transformar lógica em soluções reais. Com experiência prática em PHP, Python e JavaScript, 
+                foco em back-end robusto, APIs REST e interfaces dinâmicas. 
+                <br><br>
+                <strong>Objetivo:</strong> Atuar como Desenvolvedor Júnior aplicando conhecimentos em projetos escaláveis 
+                e contribuindo para soluções inovadoras.
+            </p>
             <div>
-              <div style="font-size: 1.3rem;">💧</div>
-              <div>65%</div>
-              <div style="font-size: 0.8rem; opacity: 0.8;">Umidade</div>
+                <a href="#projetos" class="btn btn-play"><i class="fas fa-play"></i> Ver Projetos</a>
+                <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-info"><i class="fab fa-github"></i> GitHub</a>
             </div>
-            <div>
-              <div style="font-size: 1.3rem;">💨</div>
-              <div>12 km/h</div>
-              <div style="font-size: 0.8rem; opacity: 0.8;">Vento</div>
+        </div>
+    </section>
+
+    <!-- Sobre Mim -->
+    <section id="sobre">
+        <h2 class="section-title">Sobre Mim</h2>
+        <div class="about-grid">
+            <img src="https://ui-avatars.com/api/?name=Luis+Gustavo&background=E50914&color=fff&size=300" alt="Luis Gustavo" class="profile-img">
+            
+            <div class="about-text">
+                <h3>Perfil Profissional</h3>
+                <p>
+                    Profissional em transição de carreira com sólida experiência em atendimento ao cliente e vendas, 
+                    o que me proporcionou excelente comunicação, trabalho sob pressão e foco em resultados. 
+                    Atualmente dedicado 100% ao desenvolvimento web com projetos práticos no GitHub.
+                </p>
+                <p>
+                    Aprendizado contínuo com mais de 12 certificações em tecnologias modernas. 
+                    Organizado, responsável e com facilidade em aprender novas tecnologias rapidamente.
+                </p>
+                
+                <h3>Stack Tecnológico</h3>
+                <div class="skills-container">
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">React JS</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">HTML5 & CSS3</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Slim Framework</span>
+                    <span class="skill-tag">Express</span>
+                    <span class="skill-tag">Git/GitHub</span>
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">APIs REST</span>
+                </div>
+
+                <div class="experience-box">
+                    <h4><i class="fas fa-briefcase"></i> Experiência Profissional</h4>
+                    <ul>
+                        <li><strong>Concentrix</strong> -- Teleatendimento (2024-2025)</li>
+                        <li><strong>Grupo Dádiva</strong> -- Consultor de Vendas (2023-2024)</li>
+                    </ul>
+                </div>
             </div>
-            <div>
-              <div style="font-size: 1.3rem;">👁️</div>
-              <div>10 km</div>
-              <div style="font-size: 0.8rem; opacity: 0.8;">Visibilidade</div>
+        </div>
+    </section>
+
+    <!-- Projetos -->
+    <section id="projetos">
+        <h2 class="section-title">5 Projetos em Destaque</h2>
+        <div class="projects-row">
+            <div class="projects-grid">
+
+                <!-- Projeto 1: E-commerce Full Stack -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <span class="card-badge">DESTAQUE</span>
+                        <i class="fas fa-shopping-cart" style="font-size: 4rem; color: #46d369;"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">E-commerce Full Stack</div>
+                        <span class="card-tech"><i class="fas fa-code"></i> PHP • MySQL • JavaScript • Stripe</span>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Problema Resolvido</div>
+                            <p class="card-desc">Criar uma plataforma de vendas online completa com carrinho, checkout e gestão de pedidos.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Solução</div>
+                            <p class="card-desc">Sistema MVC com PHP, banco MySQL normalizado, integração com API Stripe para pagamentos e painel administrativo.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Aprendizado</div>
+                            <p class="card-desc">Arquitetura MVC, segurança de transações, sessões, CRUD completo e integração de APIs de pagamento.</p>
+                        </div>
+
+                        <div class="card-links">
+                            <a href="https://luisgustavoleao896-cpu.github.io/ecommerce-demo/" class="card-btn primary"><i class="fas fa-play"></i> Demo</a>
+                            <a href="https://github.com/luisgustavoleao896-cpu/ecommerce-fullstack" class="card-btn"><i class="fab fa-github"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 2: Task Manager API -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <i class="fas fa-tasks" style="font-size: 4rem; color: #E50914;"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Task Manager API</div>
+                        <span class="card-tech"><i class="fas fa-code"></i> Node.js • Express • MongoDB • JWT</span>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Problema Resolvido</div>
+                            <p class="card-desc">Gerenciamento de tarefas com autenticação segura e múltiplos usuários.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Solução</div>
+                            <p class="card-desc">API RESTful com autenticação JWT, CRUD de tarefas, filtros por status e prioridade.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Aprendizado</div>
+                            <p class="card-desc">Autenticação stateless, middleware, modelagem NoSQL e documentação Swagger.</p>
+                        </div>
+
+                        <div class="card-links">
+                            <a href="https://taskmanager-api-demo.vercel.app/" class="card-btn primary"><i class="fas fa-play"></i> Demo</a>
+                            <a href="https://github.com/luisgustavoleao896-cpu/task-manager-api" class="card-btn"><i class="fab fa-github"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 3: Weather Dashboard -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <i class="fas fa-cloud-sun" style="font-size: 4rem; color: #ffd700;"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Weather Dashboard</div>
+                        <span class="card-tech"><i class="fas fa-code"></i> React • OpenWeather API • Chart.js</span>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Problema Resolvido</div>
+                            <p class="card-desc">Exibir previsões meteorológicas de múltiplas cidades com histórico.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Solução</div>
+                            <p class="card-desc">Dashboard interativo consumindo API externa, gráficos de temperatura e favoritos salvos no localStorage.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Aprendizado</div>
+                            <p class="card-desc">Hooks do React, consumo de APIs assíncronas, visualização de dados e persistência local.</p>
+                        </div>
+
+                        <div class="card-links">
+                            <a href="https://luisgustavoleao896-cpu.github.io/weather-dashboard/" class="card-btn primary"><i class="fas fa-play"></i> Demo</a>
+                            <a href="https://github.com/luisgustavoleao896-cpu/weather-dashboard-react" class="card-btn"><i class="fab fa-github"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 4: Auth System -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <i class="fas fa-shield-alt" style="font-size: 4rem; color: #46d369;"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Sistema de Autenticação</div>
+                        <span class="card-tech"><i class="fas fa-code"></i> PHP • MySQL • Password Hash • Sessions</span>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Problema Resolvido</div>
+                            <p class="card-desc">Implementar login seguro com proteção contra ataques comuns.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Solução</div>
+                            <p class="card-desc">Sistema com registro, login, recuperação de senha, hash bcrypt e proteção CSRF.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Aprendizado</div>
+                            <p class="card-desc">Segurança web, hash de senhas, prevenção de SQL Injection e gerenciamento de sessões.</p>
+                        </div>
+
+                        <div class="card-links">
+                            <a href="https://luisgustavoleao896-cpu.github.io/auth-system-demo/" class="card-btn primary"><i class="fas fa-play"></i> Demo</a>
+                            <a href="https://github.com/luisgustavoleao896-cpu/auth-system-php" class="card-btn"><i class="fab fa-github"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 5: Admin Dashboard -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <i class="fas fa-chart-line" style="font-size: 4rem; color: #E50914;"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Admin Dashboard</div>
+                        <span class="card-tech"><i class="fas fa-code"></i> HTML • CSS • JavaScript • Chart.js</span>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Problema Resolvido</div>
+                            <p class="card-desc">Painel administrativo para visualização de métricas e KPIs.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Solução</div>
+                            <p class="card-desc">Dashboard responsivo com gráficos interativos, tabelas de dados e sidebar navegável.</p>
+                        </div>
+                        
+                        <div class="card-section">
+                            <div class="card-section-title">Aprendizado</div>
+                            <p class="card-desc">Layout responsivo, manipulação de DOM, visualização de dados e UX para admin.</p>
+                        </div>
+
+                        <div class="card-links">
+                            <a href="https://luisgustavoleao896-cpu.github.io/admin-dashboard/" class="card-btn primary"><i class="fas fa-play"></i> Demo</a>
+                            <a href="https://github.com/luisgustavoleao896-cpu/admin-dashboard" class="card-btn"><i class="fab fa-github"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
         </div>
-        
-        <button class="demo-btn" style="width: 100%; margin-top: 20px;" onclick="refreshWeather()">🔄 Atualizar Dados</button>
-      </div>
-    </div>
-  `;
-}
+    </section>
 
-function refreshWeather() {
-  alert('🌤️ Dados climáticos atualizados com sucesso!');
-}
-
-// === CÓDIGOS DOS PROJETOS ===
-function codeAPIRest() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active">🐘 index.php</div>
-        <div class="file-item">🛣️ routes.php</div>
-        <div class="file-item">🎮 UserController.php</div>
-        <div class="file-item">🗄️ User.php</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">index.php</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
+    <!-- Certificações -->
+    <section>
+        <h2 class="section-title">Certificações (12+)</h2>
+        <div class="projects-row">
+            <div class="projects-grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                <div class="project-card" style="padding: 20px;">
+                    <i class="fas fa-certificate" style="color: var(--match-green); font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h4 style="margin-bottom: 10px;">Full Stack Completo</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-gray);">Udemy -- Básico ao Avançado</p>
+                </div>
+                <div class="project-card" style="padding: 20px;">
+                    <i class="fas fa-certificate" style="color: var(--match-green); font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h4 style="margin-bottom: 10px;">Back-end PHP</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-gray);">Slim Framework -- Cursa</p>
+                </div>
+                <div class="project-card" style="padding: 20px;">
+                    <i class="fas fa-certificate" style="color: var(--match-green); font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h4 style="margin-bottom: 10px;">React JS</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-gray);">EuProgramador -- Cursa</p>
+                </div>
+                <div class="project-card" style="padding: 20px;">
+                    <i class="fas fa-certificate" style="color: var(--match-green); font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h4 style="margin-bottom: 10px;">Node.js + TypeScript</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-gray);">Express -- Cursa</p>
+                </div>
+            </div>
         </div>
-        <div class="code-container">
-          <pre><code>&lt;?php
-require 'vendor/autoload.php';
+    </section>
 
-use Slim\App;
-use Controllers\UserController;
-
-$app = new App();
-
-// Rotas da API REST
-$app->get('/api/users', [UserController::class, 'index']);
-$app->post('/api/auth/login', [UserController::class, 'login']);
-$app->post('/api/users', [UserController::class, 'store']);
-$app->put('/api/users/{id}', [UserController::class, 'update']);
-$app->delete('/api/users/{id}', [UserController::class, 'destroy']);
-
-$app->run();
-?></code></pre>
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="social-links">
+            <a href="mailto:gustavoluis.v.c.1016@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/luisgustavoleao896-cpu" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
-      </div>
-    </div>
-  `;
-}
+        <p><strong>Luis Gustavo Verissimo Cavalcante</strong></p>
+        <p>Fortaleza -- CE | gustavoluis.v.c.1016@gmail.com</p>
+        <p style="margin-top: 15px; font-size: 0.8rem; color: #666;">
+            <i class="fas fa-code"></i> Desenvolvido com HTML, CSS e muito café
+        </p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">&copy; 2026 Todos os direitos reservados.</p>
+    </footer>
 
-function codeAuth() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active">🟢 auth.js</div>
-        <div class="file-item">🔐 jwt.js</div>
-        <div class="file-item">🎮 userController.js</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">auth.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-
-async function hashPassword(password) {
-    const salt = await bcrypt.genSalt(12);
-    return await bcrypt.hash(password, salt);
-}
-
-function generateToken(user) {
-    return jwt.sign(
-        { id: user.id, email: user.email },
-        process.env.JWT_SECRET,
-        { expiresIn: '24h' }
-    );
-}
-
-module.exports = { hashPassword, generateToken };</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codeEcommerce() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active">⚛️ Cart.js</div>
-        <div class="file-item">📦 Product.js</div>
-        <div class="file-item">💳 Checkout.js</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">Cart.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>class Cart {
-    constructor() {
-        this.items = [];
-    }
-    
-    add(product, quantity) {
-        this.items.push({ product, quantity });
-        this.save();
-    }
-    
-    getTotal() {
-        return this.items.reduce((total, item) => 
-            total + (item.product.price * item.quantity), 0
-        );
-    }
-    
-    save() {
-        localStorage.setItem('cart', JSON.stringify(this.items));
-    }
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codeChat() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active">🟢 server.js</div>
-        <div class="file-item">⚡ socket.js</div>
-        <div class="file-item">🗄️ message.js</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">server.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>const io = require('socket.io')(server);
-
-io.on('connection', (socket) => {
-    console.log('User connected:', socket.id);
-    
-    socket.on('sendMessage', (data) => {
-        io.emit('receiveMessage', {
-            user: data.user,
-            message: data.message,
-            time: new Date()
+    <script>
+        // Smooth scroll para navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
-    });
-    
-    socket.on('disconnect', () => {
-        console.log('User disconnected');
-    });
-});</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
 
-function codeDashboard() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active">⚛️ Dashboard.jsx</div>
-        <div class="file-item">📈 Chart.jsx</div>
-        <div class="file-item">📊 Metrics.jsx</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">Dashboard.jsx</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>function Dashboard() {
-    const [metrics, setMetrics] = useState({});
-    
-    useEffect(() => {
-        fetch('/api/metrics')
-            .then(res => res.json())
-            .then(data => setMetrics(data));
-    }, []);
-    
-    return (
-        &lt;div className="dashboard"&gt;
-            &lt;Metrics data={metrics} /&gt;
-            &lt;Chart data={metrics.sales} /&gt;
-        &lt;/div&gt;
-    );
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codeKanban() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active">⚡ kanban.js</div>
-        <div class="file-item">🎨 style.css</div>
-        <div class="file-item">📄 index.html</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">kanban.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>function dragStart(event) {
-    event.dataTransfer.setData('text', event.target.id);
-}
-
-function drop(event) {
-    event.preventDefault();
-    const id = event.dataTransfer.getData('text');
-    event.target.appendChild(document.getElementById(id));
-    saveToLocalStorage();
-}
-
-function saveToLocalStorage() {
-    const tasks = document.querySelectorAll('.kanban-task');
-    localStorage.setItem('tasks', JSON.stringify(
-        Array.from(tasks).map(t => t.innerText)
-    ));
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codePythonData() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active">🐍 main.py</div>
-        <div class="file-item">📊 analysis.py</div>
-        <div class="file-item">📈 viz.py</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">main.py</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Carregar dados
-df = pd.read_csv('dados.csv')
-
-# Estatísticas descritivas
-print(df.describe())
-
-# Visualização
-plt.figure(figsize=(10, 6))
-plt.plot(df['date'], df['value'])
-plt.title('Análise de Dados')
-plt.xlabel('Data')
-plt.ylabel('Valor')
-plt.grid(True)
-plt.show()
-
-# Machine Learning básico
-from sklearn.model_selection import train_test_split
-X = df[['feature1', 'feature2']]
-y = df['target']
-X_train, X_test = train_test_split(X, y, test_size=0.2)
-print('Modelo treinado!')</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codeWeather() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active">⚡ weather.js</div>
-        <div class="file-item">🎨 style.css</div>
-        <div class="file-item">📄 index.html</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">weather.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>async function getWeather(city) {
-    const apiKey = 'YOUR_API_KEY';
-    const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
-    );
-    const data = await response.json();
-    
-    return {
-        temp: data.main.temp,
-        humidity: data.main.humidity,
-        wind: data.wind.speed,
-        description: data.weather[0].description
-    };
-}
-
-// Salvar histórico de buscas
-function saveHistory(city, weather) {
-    const history = JSON.parse(localStorage.getItem('weatherHistory') || '[]');
-    history.push({ city, weather, date: new Date() });
-    localStorage.setItem('weatherHistory', JSON.stringify(history));
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function copyCode() {
-  const code = document.querySelector('pre code')?.textContent;
-  if (code) {
-    navigator.clipboard.writeText(code).then(() => {
-      alert('✅ Código copiado para a área de transferência!');
-    });
-  }
-}
-</script>
+        // Efeito de header ao scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(0,0,0,0.95)';
+            } else {
+                header.style.background = 'linear-gradient(to bottom, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0))';
+            }
+        });
+    </script>
 
 </body>
 </html>
