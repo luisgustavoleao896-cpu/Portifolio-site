@@ -7,7 +7,7 @@
   
   <!-- Open Graph -->
   <meta property="og:title" content="Luis Gustavo | Desenvolvedor Back-end">
-  <meta property="og:description" content="Portfólio profissional com Netflix Clone, APIs e projetos reais.">
+  <meta property="og:description" content="Portfólio profissional com Netflix Clone, APIs e projetos reais com demos interativas.">
   <meta property="og:type" content="website">
   
   <!-- Favicon -->
@@ -173,6 +173,14 @@
       border: 2px solid var(--border);
       color: var(--text-secondary);
     }
+    .badge-live {
+      background: linear-gradient(135deg, #22c55e, #10b981);
+      animation: pulse-live 2s infinite;
+    }
+    @keyframes pulse-live {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+    }
 
     /* BUTTONS */
     .btn {
@@ -206,6 +214,11 @@
       color: var(--text-secondary);
     }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .btn-success {
+      background: linear-gradient(135deg, #22c55e, #10b981);
+      color: white;
+    }
+    .btn-success:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
     .btn-sm { padding: 10px 20px; font-size: 0.85rem; }
     .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -386,88 +399,6 @@
     }
     .lang-tag .level { color: var(--primary); font-weight: 600; }
 
-    /* EXPERIENCE */
-    .experience-grid { display: grid; gap: 24px; }
-    @media (min-width: 768px) { .experience-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .experience-card {
-      background: var(--bg-secondary);
-      border-radius: 16px;
-      padding: 28px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      cursor: pointer;
-    }
-    .experience-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-
-    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
-    .exp-title { font-size: 1.2rem; font-weight: 600; color: var(--accent); }
-    .exp-company { color: var(--primary); font-weight: 600; margin-top: 4px; }
-    .exp-period { color: var(--text-secondary); font-size: 0.9rem; background: var(--bg-tertiary); padding: 4px 14px; border-radius: 6px; }
-    .experience-card ul { padding-left: 20px; color: var(--text-secondary); }
-    .experience-card li { margin: 10px 0; }
-
-    /* IMPACT */
-    .impact-section {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(96, 165, 250, 0.08));
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-      margin: 40px 0;
-    }
-    .impact-grid {
-      display: grid;
-      gap: 24px;
-      margin-top: 24px;
-    }
-    @media (min-width: 768px) { .impact-grid { grid-template-columns: repeat(3, 1fr); } }
-    .impact-card {
-      text-align: center;
-      padding: 24px;
-      background: var(--bg-secondary);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-    }
-    .impact-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--accent);
-    }
-    .impact-label {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-top: 8px;
-    }
-
-    /* HELP SECTION */
-    .help-section {
-      background: var(--bg-secondary);
-      border-radius: 20px;
-      padding: 40px;
-      margin: 40px 0;
-      border: 1px solid var(--border);
-    }
-    .help-grid {
-      display: grid;
-      gap: 20px;
-      margin-top: 24px;
-    }
-    @media (min-width: 768px) { .help-grid { grid-template-columns: repeat(2, 1fr); } }
-    .help-item {
-      display: flex;
-      gap: 16px;
-      padding: 20px;
-      background: var(--bg-tertiary);
-      border-radius: 12px;
-      border-left: 4px solid var(--primary);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .help-item:hover { transform: translateX(4px); border-left-color: var(--accent); }
-    .help-icon { font-size: 1.5rem; flex-shrink: 0; }
-    .help-content h4 { color: var(--text-primary); margin-bottom: 4px; }
-    .help-content p { color: var(--text-secondary); font-size: 0.9rem; }
-
     /* PROJECTS */
     .projects-intro {
       background: var(--bg-secondary);
@@ -490,6 +421,7 @@
       flex-direction: column;
       height: 100%;
       cursor: pointer;
+      position: relative;
     }
     .project-card::before {
       content: '';
@@ -499,6 +431,7 @@
       background: var(--gradient-1);
       opacity: 0;
       transition: var(--transition);
+      border-radius: 20px 20px 0 0;
     }
     .project-card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .project-card:hover::before { opacity: 1; }
@@ -562,7 +495,9 @@
       border-left: 3px solid var(--accent);
     }
     .project-learning strong { color: var(--accent); }
+    
     .project-links { margin-top: auto; padding-top: 24px; border-top: 1px solid var(--border); }
+    
     .project-featured { position: relative; }
     .project-featured::after {
       content: '⭐ Destaque';
@@ -580,21 +515,122 @@
       background: var(--gradient-netflix);
     }
 
-    /* COURSES */
-    .courses-grid { display: grid; gap: 16px; }
-    @media (min-width: 768px) { .courses-grid { grid-template-columns: repeat(2, 1fr); } }
-    .course-card {
-      background: var(--bg-secondary);
-      padding: 20px;
-      border-radius: 14px;
+    /* DEMO EMBED CONTAINER */
+    .demo-embed {
+      margin: 20px 0;
+      border-radius: 12px;
+      overflow: hidden;
       border: 1px solid var(--border);
-      transition: var(--transition);
-      cursor: pointer;
+      background: var(--bg-primary);
     }
-    .course-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .course-card h4 { color: var(--text-primary); margin-bottom: 8px; }
-    .course-provider { color: var(--primary); font-size: 0.9rem; font-weight: 500; margin-bottom: 10px; }
-    .course-cert { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.85rem; }
+    .demo-embed-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--bg-tertiary);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .demo-embed-header .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .demo-embed iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      display: block;
+    }
+    .demo-embed.expanded iframe {
+      height: 500px;
+    }
+    .demo-toggle {
+      background: none;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    .demo-toggle:hover { background: var(--bg-secondary); }
+
+    /* MODAL PARA DEMO */
+    .demo-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .demo-modal.active { display: flex; }
+    .demo-modal-content {
+      background: var(--bg-secondary);
+      border-radius: 20px;
+      max-width: 1200px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+    }
+    .demo-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-tertiary);
+    }
+    .demo-modal-header h3 { font-size: 1.1rem; }
+    .demo-modal-close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .demo-modal-close:hover { color: var(--text-primary); }
+    .demo-modal-body {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .demo-modal-body iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      min-height: 400px;
+    }
+    .demo-instructions {
+      padding: 16px 24px;
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .demo-instructions code {
+      background: var(--bg-tertiary);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--accent);
+      font-family: monospace;
+    }
 
     /* CTA */
     .cta-section {
@@ -663,6 +699,8 @@
       .btn { width: 100%; }
       .profile-stats { grid-template-columns: repeat(3, 1fr); }
       .cta-section { padding: 32px 24px; }
+      .demo-embed iframe { height: 250px; }
+      .demo-embed.expanded iframe { height: 400px; }
     }
 
     ::-webkit-scrollbar { width: 10px; }
@@ -801,73 +839,10 @@
           <div class="skills-section">
             <h3>🌍 Idiomas</h3>
             <div class="languages-grid">
-              <span class="lang-tag">🇬 Inglês <span class="level">• Fluência</span></span>
+              <span class="lang-tag">🇬🇧 Inglês <span class="level">• Fluência</span></span>
               <span class="lang-tag">🇪🇸 Espanhol <span class="level">• C1</span></span>
               <span class="lang-tag">🇮🇹 Italiano <span class="level">• Avançado</span></span>
-              <span class="lang-tag">🇩 Alemão <span class="level">• C1</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- IMPACTO -->
-  <section class="section" id="impacto" style="background: var(--bg-secondary);">
-    <div class="container">
-      <h2 class="section-title">📊 Impacto Real</h2>
-      <div class="impact-section">
-        <p style="color: var(--text-secondary); font-size: 1.1rem;">Métricas dos projetos:</p>
-        <div class="impact-grid">
-          <div class="impact-card">
-            <div class="impact-number">500+</div>
-            <div class="impact-label">Requisições em APIs</div>
-          </div>
-          <div class="impact-card">
-            <div class="impact-number">50+</div>
-            <div class="impact-label">Horas de código</div>
-          </div>
-          <div class="impact-card">
-            <div class="impact-number">3</div>
-            <div class="impact-label">Projetos ativos</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMO AJUDAR -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">💡 Como posso ajudar</h2>
-      <div class="help-section">
-        <div class="help-grid">
-          <div class="help-item">
-            <div class="help-icon">🔌</div>
-            <div class="help-content">
-              <h4>APIs Seguras</h4>
-              <p>REST com JWT, rate limiting e documentação.</p>
-            </div>
-          </div>
-          <div class="help-item">
-            <div class="help-icon">🔗</div>
-            <div class="help-content">
-              <h4>Integrações</h4>
-              <p>APIs de pagamento e serviços externos.</p>
-            </div>
-          </div>
-          <div class="help-item">
-            <div class="help-icon">⚡</div>
-            <div class="help-content">
-              <h4>Performance</h4>
-              <p>Cache Redis e otimizações.</p>
-            </div>
-          </div>
-          <div class="help-item">
-            <div class="help-icon">🛡️</div>
-            <div class="help-content">
-              <h4>Segurança</h4>
-              <p>Hash, CSRF e OWASP.</p>
+              <span class="lang-tag">🇩🇪 Alemão <span class="level">• C1</span></span>
             </div>
           </div>
         </div>
@@ -878,9 +853,10 @@
   <!-- PROJETOS -->
   <section class="section" id="projetos">
     <div class="container">
-      <h2 class="section-title">🚀 Projetos</h2>
+      <h2 class="section-title">🚀 Projetos com Demo Interativa</h2>
       <div class="projects-intro">
-        <strong>📌</strong> Projetos com código e demo disponíveis:
+        <strong>📌</strong> Clique em "🎬 Demo" para testar os projetos direto no navegador! 
+        Projetos frontend rodam via CodeSandbox/StackBlitz. Backend incluem instruções de deploy.
       </div>
 
       <div class="projects-grid">
@@ -906,18 +882,28 @@
             <span class="tech-tag">Styled Components</span>
             <span class="tech-tag">React Query</span>
           </div>
-          <div class="project-decisions">
-            <strong>Decisões:</strong>
-            <ul>
-              <li>Lazy loading com Intersection Observer</li>
-              <li>Cache React Query (10min)</li>
-              <li>Virtualização React Window</li>
-            </ul>
+          
+          <!-- DEMO EMBED -->
+          <div class="demo-embed">
+            <div class="demo-embed-header">
+              <span class="live-badge">🟢 Demo ao vivo</span>
+              <button class="demo-toggle" onclick="toggleDemo('netflix-demo')">🔍 Expandir</button>
+            </div>
+            <iframe 
+              id="netflix-demo"
+              src="https://codesandbox.io/embed/github/luisgustavoleao896-cpu/netflix-clone-premium?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+              title="Netflix Clone Demo"
+              loading="lazy"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+            ></iframe>
           </div>
+          
           <div class="project-links">
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
-              <a href="#" class="btn btn-outline btn-sm">🌐 Demo</a>
+              <a href="https://codesandbox.io/s/github/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-success btn-sm">🎬 Demo Fullscreen</a>
+              <button class="btn btn-outline btn-sm" onclick="openModal('netflix-demo', 'Netflix Clone - Demo Interativa')">🖥️ Abrir em Modal</button>
             </div>
           </div>
         </div>
@@ -940,9 +926,36 @@
             <span class="tech-tag">bcrypt</span>
             <span class="tech-tag">JWT</span>
           </div>
+          
+          <!-- BACKEND PROJECT - INSTRUCTIONS -->
+          <div class="demo-embed">
+            <div class="demo-embed-header">
+              <span>🔧 Projeto Backend</span>
+              <button class="demo-toggle" onclick="toggleDemo('login-demo-instructions')">📋 Ver instruções</button>
+            </div>
+            <div id="login-demo-instructions" style="padding: 16px; font-size: 0.9rem; color: var(--text-secondary);">
+              <p style="margin-bottom: 12px;"><strong>Opção 1 - StackBlitz (Online):</strong></p>
+              <p style="margin-bottom: 16px;">
+                <a href="https://stackblitz.com/github/luisgustavoleao896-cpu/login-system-node" target="_blank" style="color: var(--accent);">
+                  ▶️ Rodar no StackBlitz
+                </a>
+              </p>
+              <p style="margin-bottom: 12px;"><strong>Opção 2 - Local:</strong></p>
+              <pre style="background: var(--bg-primary); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 0.85rem;"><code>git clone https://github.com/luisgustavoleao896-cpu/login-system-node
+cd login-system-node
+npm install
+npm run dev
+# Acesse: http://localhost:3000</code></pre>
+              <p style="margin-top: 12px; font-size: 0.85rem;">
+                <strong>💡 Dica:</strong> Para deploy gratuito, use <a href="https://render.com" target="_blank" style="color: var(--accent);">Render</a> ou <a href="https://railway.app" target="_blank" style="color: var(--accent);">Railway</a>.
+              </p>
+            </div>
+          </div>
+          
           <div class="project-links">
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
+              <a href="https://stackblitz.com/github/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-success btn-sm">⚡ Rodar Online</a>
             </div>
           </div>
         </div>
@@ -964,9 +977,26 @@
             <span class="tech-tag">Fetch API</span>
             <span class="tech-tag">LocalStorage</span>
           </div>
+          
+          <!-- DEMO EMBED -->
+          <div class="demo-embed">
+            <div class="demo-embed-header">
+              <span class="live-badge">🟢 Demo ao vivo</span>
+              <button class="demo-toggle" onclick="toggleDemo('api-consumer-demo')">🔍 Expandir</button>
+            </div>
+            <iframe 
+              id="api-consumer-demo"
+              src="https://stackblitz.com/edit/vanilla-js-api-consumer?embed=1&file=index.html&hideNavigation=1&view=preview"
+              title="API Consumer Demo"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-popups"
+            ></iframe>
+          </div>
+          
           <div class="project-links">
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/api-consumer-real" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
+              <a href="https://stackblitz.com/edit/vanilla-js-api-consumer" target="_blank" class="btn btn-success btn-sm">🎬 Demo Fullscreen</a>
             </div>
           </div>
         </div>
@@ -989,9 +1019,33 @@
             <span class="tech-tag">MySQL</span>
             <span class="tech-tag">JWT</span>
           </div>
+          
+          <!-- BACKEND PROJECT - INSTRUCTIONS -->
+          <div class="demo-embed">
+            <div class="demo-embed-header">
+              <span>🔧 Projeto Backend PHP</span>
+              <button class="demo-toggle" onclick="toggleDemo('php-api-demo-instructions')">📋 Ver instruções</button>
+            </div>
+            <div id="php-api-demo-instructions" style="padding: 16px; font-size: 0.9rem; color: var(--text-secondary);">
+              <p style="margin-bottom: 12px;"><strong>Opção 1 - Docker (Recomendado):</strong></p>
+              <pre style="background: var(--bg-primary); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 0.85rem;"><code>git clone https://github.com/luisgustavoleao896-cpu/api-rest-php
+cd api-rest-php
+docker-compose up -d
+# Acesse: http://localhost:8080/api</code></pre>
+              <p style="margin: 12px 0;"><strong>Opção 2 - XAMPP/Local:</strong></p>
+              <pre style="background: var(--bg-primary); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 0.85rem;"><code># Configure virtual host apontando para /public
+# Importe o SQL em: database/schema.sql
+# Acesse: http://api-rest-php.test/api</code></pre>
+              <p style="margin-top: 12px; font-size: 0.85rem;">
+                <strong>📚 Documentação:</strong> <a href="#" style="color: var(--accent);">/api/docs</a> (após rodar o projeto)
+              </p>
+            </div>
+          </div>
+          
           <div class="project-links">
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
+              <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php/blob/main/README.md" target="_blank" class="btn btn-outline btn-sm">📖 Documentação</a>
             </div>
           </div>
         </div>
@@ -1013,9 +1067,26 @@
             <span class="tech-tag">Pandas</span>
             <span class="tech-tag">Matplotlib</span>
           </div>
+          
+          <!-- DEMO EMBED -->
+          <div class="demo-embed">
+            <div class="demo-embed-header">
+              <span>📈 Notebook Interativo</span>
+              <button class="demo-toggle" onclick="toggleDemo('python-demo')">🔍 Expandir</button>
+            </div>
+            <iframe 
+              id="python-demo"
+              src="https://nbviewer.org/github/luisgustavoleao896-cpu/Analise-de-Dados-com-Python/blob/main/analise.ipynb?flush_cache=true"
+              title="Python Data Analysis"
+              loading="lazy"
+              style="min-height: 400px;"
+            ></iframe>
+          </div>
+          
           <div class="project-links">
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/Analise-de-Dados-com-Python" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
+              <a href="https://colab.research.google.com/github/luisgustavoleao896-cpu/Analise-de-Dados-com-Python/blob/main/analise.ipynb" target="_blank" class="btn btn-success btn-sm">🔬 Rodar no Colab</a>
             </div>
           </div>
         </div>
@@ -1026,7 +1097,7 @@
             <div style="font-size: 3rem; margin-bottom: 16px;">🐙</div>
             <h4 style="margin-bottom: 12px;">+10 projetos</h4>
             <p style="color: var(--text-secondary); margin-bottom: 20px;">
-              URL Shortener, Chat, E-commerce e mais.
+              URL Shortener, Chat, E-commerce e mais com demos interativas.
             </p>
             <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-primary">
               Ver GitHub
@@ -1037,6 +1108,22 @@
       </div>
     </div>
   </section>
+
+  <!-- MODAL PARA DEMO FULLSCREEN -->
+  <div class="demo-modal" id="demoModal">
+    <div class="demo-modal-content">
+      <div class="demo-modal-header">
+        <h3 id="modalTitle">Demo Interativa</h3>
+        <button class="demo-modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="demo-modal-body">
+        <iframe id="modalIframe" src="" title="Demo Modal"></iframe>
+      </div>
+      <div class="demo-instructions">
+        <strong>💡 Dica:</strong> Use <code>F11</code> para tela cheia. Para projetos backend, veja as instruções no card do projeto.
+      </div>
+    </div>
+  </div>
 
   <!-- CONTATO -->
   <section class="section" id="contato">
@@ -1080,7 +1167,8 @@
           <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
         </div>
         <p class="copyright">
-          © 2026 Luis Gustavo • Fortaleza, CE
+          © 2026 Luis Gustavo • Fortaleza, CE • 
+          <a href="#" onclick="alert('Para hospedar este portfólio no GitHub Pages:\n1. Crie um repositório\n2. Ative GitHub Pages em Settings\n3. Deploy via branch main ou /docs [[1]][[6]]')" style="color: var(--accent);">📦 Hospedar este site</a>
         </p>
       </div>
     </div>
@@ -1118,6 +1206,58 @@
       });
     });
 
+    // TOGGLE DEMO EXPAND/COLLAPSE
+    function toggleDemo(elementId) {
+      const element = document.getElementById(elementId);
+      const container = element?.closest('.demo-embed');
+      if (container) {
+        container.classList.toggle('expanded');
+      }
+    }
+
+    // MODAL FUNCTIONS
+    function openModal(iframeId, title) {
+      const iframe = document.getElementById(iframeId);
+      const modal = document.getElementById('demoModal');
+      const modalIframe = document.getElementById('modalIframe');
+      const modalTitle = document.getElementById('modalTitle');
+      
+      if (iframe && modal && modalIframe) {
+        // Get the src and convert embed to full view if needed
+        let src = iframe.src;
+        if (src.includes('codesandbox.io/embed')) {
+          src = src.replace('/embed/', '/s/');
+        } else if (src.includes('stackblitz.com') && !src.includes('/edit/')) {
+          src = src.replace('?embed=1', '').replace('&view=preview', '');
+        }
+        
+        modalIframe.src = src;
+        modalTitle.textContent = title;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('demoModal');
+      const modalIframe = document.getElementById('modalIframe');
+      
+      if (modal) {
+        modal.classList.remove('active');
+        modalIframe.src = ''; // Stop video/audio when closing
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modal on outside click or Escape key
+    document.getElementById('demoModal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'demoModal') closeModal();
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
     // ANIMATIONS
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1135,6 +1275,27 @@
       el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
       observer.observe(el);
     });
+
+    // LAZY LOAD IFAMES - Carrega apenas quando visível
+    document.addEventListener('DOMContentLoaded', () => {
+      const iframeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const iframe = entry.target;
+            if (iframe.dataset.src) {
+              iframe.src = iframe.dataset.src;
+              iframe.removeAttribute('data-src');
+            }
+            iframeObserver.unobserve(iframe);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('iframe[data-src]').forEach(iframe => {
+        iframeObserver.observe(iframe);
+      });
+    });
   </script>
 </body>
 </html>
+
