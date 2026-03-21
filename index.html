@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <meta name="description" content="Luis Gustavo - Front-end Developer | React & APIs | 4 Idiomas. Portfólio com projetos reais e demos interativas.">
+  <meta name="description" content="Luis Gustavo - Front-end Developer | Projetos Reais no GitHub Pages">
   <meta name="theme-color" content="#0f172a">
   
   <!-- Open Graph -->
   <meta property="og:title" content="Luis Gustavo | Front-end Developer">
-  <meta property="og:description" content="Desenvolvedor Front-End especializado em React, APIs e Interfaces Modernas.">
+  <meta property="og:description" content="Projetos reais hospedados no GitHub Pages com demos interativas.">
   <meta property="og:type" content="website">
   
   <!-- Favicon -->
-  <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,6 @@
       --danger: #ef4444;
       --purple: #8b5cf6;
       --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-      --gradient-netflix: linear-gradient(135deg, #e50914, #b20710);
       --border: #334155;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
       --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
@@ -59,9 +58,8 @@
 
     a { color: var(--primary); text-decoration: none; transition: var(--transition); }
     a:hover { color: var(--text-main); }
-    
     img { max-width: 100%; height: auto; display: block; }
-    button { font-family: inherit; }
+    button { font-family: inherit; cursor: pointer; }
 
     /* ==================== UTILITIES ==================== */
     .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -90,6 +88,11 @@
       border-color: var(--accent); 
       animation: pulse 2s infinite; 
     }
+    .badge-gh-pages {
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--purple);
+      border-color: var(--purple);
+    }
     @keyframes pulse { 
       0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); } 
       50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } 
@@ -98,7 +101,7 @@
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
-      transition: var(--transition); cursor: pointer; border: none; text-decoration: none;
+      transition: var(--transition); border: none; text-decoration: none;
       min-height: 50px; -webkit-appearance: none;
     }
     .btn:active { transform: scale(0.98); }
@@ -110,8 +113,8 @@
     .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
     .btn-success { background: var(--accent); color: white; box-shadow: 0 4px 14px var(--accent-glow); }
     .btn-success:hover { transform: translateY(-3px); box-shadow: 0 8px 20px var(--accent-glow); }
-    .btn-netflix { background: #e50914; color: white; }
-    .btn-netflix:hover { background: #f40612; }
+    .btn-purple { background: var(--purple); color: white; }
+    .btn-purple:hover { opacity: 0.9; }
     .btn-sm { padding: 10px 20px; font-size: 0.85rem; min-height: 42px; }
     .btn-full-mobile { width: 100%; }
     @media (min-width: 768px) { .btn-full-mobile { width: auto; } }
@@ -138,14 +141,8 @@
     .navbar-toggle { display: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; padding: 8px; }
     @media (max-width: 768px) {
       .navbar-links { 
-        display: none; 
-        position: absolute; 
-        top: 100%; 
-        left: 0; 
-        right: 0; 
-        background: var(--bg-card); 
-        flex-direction: column; 
-        padding: 20px; 
+        display: none; position: absolute; top: 100%; left: 0; right: 0; 
+        background: var(--bg-card); flex-direction: column; padding: 20px; 
         border-bottom: 1px solid var(--border); 
       }
       .navbar-links.active { display: flex; }
@@ -156,9 +153,7 @@
     .hero {
       padding: 160px 0 100px;
       background: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-dark) 70%);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      text-align: center; position: relative; overflow: hidden;
     }
     .hero::before {
       content: ''; position: absolute; top: -30%; right: -10%;
@@ -258,14 +253,8 @@
     .project-desc { color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.7; }
     .project-desc strong { color: var(--text-main); }
     .project-meta { 
-      margin-top: 20px; 
-      padding-top: 20px; 
-      border-top: 1px solid var(--border); 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      flex-wrap: wrap; 
-      gap: 12px; 
+      margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); 
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; 
     }
     
     /* DEMO WINDOW */
@@ -284,63 +273,82 @@
     .demo-toggle:hover { background: rgba(59, 130, 246, 0.1); }
     
     .demo-frame { 
-      height: 300px; position: relative; overflow: hidden; background: #0f172a; 
-      transition: height 0.3s ease;
+      height: 320px; position: relative; overflow: hidden; background: #0f172a; 
+      transition: height 0.3s ease; border: none; width: 100%;
     }
-    .demo-frame.expanded { height: 450px; }
+    .demo-frame.expanded { height: 500px; }
     @media (max-width: 768px) { 
-      .demo-frame { height: 250px; }
-      .demo-frame.expanded { height: 400px; }
+      .demo-frame { height: 280px; }
+      .demo-frame.expanded { height: 450px; }
     }
 
-    /* NETFLIX DEMO STYLES */
-    .netflix-demo { background: #141414; height: 100%; color: white; font-family: sans-serif; overflow: auto; }
-    .nf-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%); position: sticky; top: 0; z-index: 10; }
-    .nf-logo { color: #e50914; font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; }
-    .nf-hero { height: 200px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); display: flex; align-items: center; padding: 0 20px; position: relative; }
-    .nf-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, #141414 0%, transparent 60%); }
-    .nf-content { position: relative; z-index: 2; max-width: 300px; }
-    .nf-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
-    .nf-desc { font-size: 0.8rem; margin-bottom: 12px; opacity: 0.9; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .nf-btn { background: white; color: black; border: none; padding: 8px 16px; border-radius: 4px; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
-    .nf-btn:hover { background: rgba(255,255,255,0.75); }
-    .nf-row { padding: 15px 20px; }
-    .nf-row h4 { font-size: 1rem; margin-bottom: 10px; font-weight: 600; }
-    .nf-row-inner { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; -webkit-overflow-scrolling: touch; }
-    .nf-row-inner::-webkit-scrollbar { display: none; }
-    .nf-card { min-width: 100px; height: 150px; background: #333; border-radius: 4px; transition: transform 0.3s; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem; color: white; }
-    .nf-card:hover { transform: scale(1.1); z-index: 10; }
-    .nf-card.red { background: linear-gradient(135deg, #e50914, #b20710); }
-    .nf-card.blue { background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
-    .nf-card.green { background: linear-gradient(135deg, #10b981, #3b82f6); }
+    /* ==================== TASKFLOW DEMO STYLES ==================== */
+    .taskflow-demo { background: var(--bg-dark); height: 100%; display: flex; flex-direction: column; font-size: 0.85rem; }
+    .tf-header { padding: 12px 16px; background: var(--bg-card); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .tf-title { font-weight: 700; color: var(--text-main); }
+    .tf-add-btn { background: var(--accent); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+    .tf-boards { display: flex; gap: 12px; padding: 12px; overflow-x: auto; flex: 1; }
+    .tf-board { min-width: 140px; background: rgba(30, 41, 59, 0.8); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+    .tf-board-title { font-weight: 600; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; }
+    .tf-task { background: var(--bg-card); padding: 10px; border-radius: 6px; border-left: 3px solid var(--primary); cursor: grab; transition: var(--transition); }
+    .tf-task:hover { transform: translateX(3px); border-left-color: var(--accent); }
+    .tf-task.done { border-left-color: var(--accent); opacity: 0.8; }
+    .tf-task.urgent { border-left-color: var(--danger); }
 
-    /* LOGIN DEMO STYLES */
-    .login-demo { background: #f1f5f9; height: 100%; display: flex; align-items: center; justify-content: center; color: #333; padding: 20px; }
-    .login-box { background: white; padding: 24px; border-radius: 12px; width: 100%; max-width: 300px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    .login-box h3 { text-align: center; margin-bottom: 20px; font-size: 1.3rem; }
-    .login-input { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem; }
-    .login-input:focus { outline: 2px solid var(--primary); border-color: transparent; }
-    .login-btn { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 1rem; }
-    .login-btn:hover { background: #2563eb; }
-    .login-success { text-align: center; color: var(--accent); }
-    .login-success .icon { font-size: 3rem; margin-bottom: 10px; }
-    .login-success h3 { color: #333; margin-bottom: 8px; }
-    .login-success p { color: #666; font-size: 0.85rem; margin-bottom: 16px; }
+    /* ==================== WEATHER DEMO STYLES ==================== */
+    .weather-demo { background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); height: 100%; color: white; padding: 16px; display: flex; flex-direction: column; }
+    .wd-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .wd-location { font-weight: 700; font-size: 1.1rem; }
+    .wd-temp { font-size: 2rem; font-weight: 800; }
+    .wd-condition { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.9rem; }
+    .wd-icon { font-size: 1.5rem; }
+    .wd-forecast { display: flex; gap: 8px; overflow-x: auto; padding: 8px 0; }
+    .wd-day { background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 10px; text-align: center; min-width: 70px; }
+    .wd-day-name { font-size: 0.75rem; color: var(--text-muted); }
+    .wd-day-temp { font-weight: 700; margin: 4px 0; }
+    .wd-day-icon { font-size: 1.2rem; }
 
-    /* API DEMO STYLES */
-    .api-demo { background: #1e1e1e; height: 100%; padding: 16px; font-family: 'JetBrains Mono', monospace; color: #d4d4d4; font-size: 0.85rem; overflow: auto; }
-    .api-toolbar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-    .method-badge { background: #2da44e; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
-    .url-input { flex: 1; min-width: 150px; background: #252526; border: 1px solid #3c3c3c; color: #ccc; padding: 8px 12px; border-radius: 6px; font-family: inherit; font-size: 0.85rem; }
-    .api-btn { background: var(--primary); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
-    .api-response { background: #000; border: 1px solid #333; border-radius: 8px; padding: 16px; min-height: 150px; white-space: pre-wrap; word-break: break-all; font-size: 0.8rem; }
-    .json-key { color: #9cdcfe; } .json-string { color: #ce9178; } .json-number { color: #b5cea8; } .json-bool { color: #569cd6; } .json-null { color: #569cd6; }
+    /* ==================== SHOPLITE DEMO STYLES ==================== */
+    .shoplite-demo { background: var(--bg-light); height: 100%; color: #333; display: flex; flex-direction: column; font-size: 0.85rem; }
+    .sl-header { background: white; padding: 12px 16px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
+    .sl-logo { font-weight: 800; color: var(--primary); font-size: 1.1rem; }
+    .sl-cart { position: relative; background: var(--primary); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; }
+    .sl-products { padding: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; overflow-y: auto; flex: 1; }
+    .sl-product { background: white; border-radius: 10px; padding: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .sl-product-img { height: 80px; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); border-radius: 8px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .sl-product-name { font-weight: 600; margin-bottom: 4px; font-size: 0.9rem; }
+    .sl-product-price { color: var(--primary); font-weight: 700; }
+    .sl-add-btn { width: 100%; margin-top: 8px; background: var(--primary); color: white; border: none; padding: 8px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; }
 
-    /* CHART DEMO STYLES */
-    .chart-demo { background: var(--bg-dark); height: 100%; padding: 16px; display: flex; flex-direction: column; }
-    .chart-demo h4 { color: var(--text-main); margin-bottom: 12px; font-size: 1rem; }
-    .chart-container { flex: 1; min-height: 200px; position: relative; }
-    .chart-loading { color: var(--text-muted); text-align: center; padding: 40px 20px; }
+    /* ==================== CODESNIPPET DEMO STYLES ==================== */
+    .codesnippet-demo { background: #1e1e1e; height: 100%; font-family: 'JetBrains Mono', monospace; color: #d4d4d4; font-size: 0.8rem; display: flex; flex-direction: column; }
+    .cs-toolbar { display: flex; gap: 8px; padding: 10px 12px; background: #252526; border-bottom: 1px solid #3c3c3c; flex-wrap: wrap; }
+    .cs-lang-select { background: #3c3c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; }
+    .cs-copy-btn { background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+    .cs-editor { flex: 1; padding: 16px; overflow: auto; }
+    .cs-line { display: flex; gap: 12px; }
+    .cs-line-num { color: #858585; user-select: none; min-width: 24px; text-align: right; }
+    .cs-code { color: #9cdcfe; }
+    .cs-code .kw { color: #569cd6; }
+    .cs-code .str { color: #ce9178; }
+    .cs-code .fn { color: #dcdcaa; }
+    .cs-code .cmt { color: #6a9955; }
+
+    /* ==================== FINANCETRACK DEMO STYLES ==================== */
+    .financetrack-demo { background: var(--bg-dark); height: 100%; padding: 12px; display: flex; flex-direction: column; font-size: 0.85rem; }
+    .ft-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .ft-balance { text-align: center; }
+    .ft-balance-label { color: var(--text-muted); font-size: 0.8rem; }
+    .ft-balance-value { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+    .ft-chart-placeholder { flex: 1; background: var(--bg-card); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); margin-bottom: 16px; position: relative; overflow: hidden; }
+    .ft-chart-bar { position: absolute; bottom: 0; width: 12%; background: var(--gradient); border-radius: 4px 4px 0 0; transition: height 0.3s ease; }
+    .ft-transactions { overflow-y: auto; flex: 1; }
+    .ft-transaction { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .ft-t-info span { display: block; }
+    .ft-t-label { color: var(--text-muted); font-size: 0.8rem; }
+    .ft-t-amount { font-weight: 700; }
+    .ft-t-amount.income { color: var(--accent); }
+    .ft-t-amount.expense { color: var(--danger); }
 
     /* ==================== CONTACT SECTION ==================== */
     .contact-section { text-align: center; }
@@ -389,18 +397,18 @@
 
     /* ==================== DEMO ACTION BUTTONS ==================== */
     .demo-actions {
-      display: flex;
-      gap: 8px;
-      padding: 12px 16px;
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      flex-wrap: wrap;
+      display: flex; gap: 8px; padding: 12px 16px;
+      background: var(--bg-card); border-top: 1px solid var(--border); flex-wrap: wrap;
     }
-    .demo-actions .btn {
-      flex: 1;
-      min-width: 120px;
-      font-size: 0.8rem;
-      padding: 10px 14px;
+    .demo-actions .btn { flex: 1; min-width: 120px; font-size: 0.8rem; padding: 10px 14px; }
+
+    /* GitHub Pages Badge */
+    .gh-pages-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.7rem; color: var(--purple);
+      background: rgba(139, 92, 246, 0.1);
+      padding: 3px 8px; border-radius: 4px;
+      border: 1px solid rgba(139, 92, 246, 0.3);
     }
   </style>
 </head>
@@ -427,11 +435,11 @@
       <div class="badge badge-live hero-badge">🚀 Disponível para Oportunidades</div>
       <h1>
         Desenvolvedor Front-End<br>
-        <span class="text-gradient">React • APIs • 4 Idiomas</span>
+        <span class="text-gradient">React • APIs • GitHub Pages</span>
       </h1>
       <p>
-        Transformo requisitos complexos em interfaces modernas e performáticas. 
-        Foco em escalabilidade, UX e código limpo.
+        Projetos reais hospedados no GitHub Pages. Demos interativas que rodam direto no navegador, 
+        sem configuração. Código aberto e pronto para explorar.
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary btn-full-mobile">🎮 Testar Demos</a>
@@ -441,15 +449,15 @@
       <div class="hero-stats">
         <div class="stat-item">
           <h3>15+</h3>
-          <span>Projetos</span>
-        </div>
-        <div class="stat-item">
-          <h3>4</h3>
-          <span>Idiomas</span>
+          <span>Projetos Live</span>
         </div>
         <div class="stat-item">
           <h3>100%</h3>
-          <span>Comprometimento</span>
+          <span>GitHub Pages</span>
+        </div>
+        <div class="stat-item">
+          <h3>0</h3>
+          <span>Configuração Necessária</span>
         </div>
       </div>
     </div>
@@ -460,25 +468,23 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-content animate">
-          <h2>Mais que código,<br><span class="text-gradient">resolução de problemas.</span></h2>
+          <h2>Mais que código,<br><span class="text-gradient">projetos que funcionam.</span></h2>
           <div class="about-text">
             <p>
-              Minha jornada na programação começou de forma não tradicional: enquanto cuidava da minha mãe, 
-              descobri na tecnologia uma ferramenta de transformação. Essa experiência me deu uma disciplina 
-              férrea e capacidade única de resolver problemas sob pressão.
+              Minha filosofia: se não está no ar, não está pronto. Por isso, todos os meus projetos 
+              estão hospedados no <strong>GitHub Pages</strong> com demos 100% funcionais.
             </p>
             <p>
-              Hoje, atuo como <strong>Desenvolvedor Front-End</strong>, focado em criar experiências digitais 
-              que não apenas funcionam, mas encantam o usuário final.
+              Foco em criar experiências que impressionam no primeiro clique — responsivas, 
+              performáticas e com código limpo que você pode auditar no GitHub.
             </p>
           </div>
           
           <div class="highlight-box">
-            <h4>💡 Meu Diferencial</h4>
+            <h4>💡 Por que GitHub Pages?</h4>
             <p>
-              Além da técnica (React, Node, APIs), trago maturidade profissional e fluência em 
-              <strong>4 idiomas</strong>, o que me permite atuar em equipes internacionais e consumir 
-              documentação técnica sem barreiras.
+              Deploy automático, HTTPS gratuito, CDN global e integração nativa com GitHub. 
+              Ideal para portfólios, demos e projetos open source.
             </p>
           </div>
         </div>
@@ -510,11 +516,11 @@
               <span class="skill-tag pro">React</span>
               <span class="skill-tag pro">JavaScript</span>
               <span class="skill-tag pro">TypeScript</span>
-              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">GitHub Pages</span>
               <span class="skill-tag">Tailwind CSS</span>
               <span class="skill-tag">REST APIs</span>
-              <span class="skill-tag">Git</span>
-              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">Vite</span>
+              <span class="skill-tag">LocalStorage</span>
             </div>
           </div>
         </div>
@@ -526,28 +532,29 @@
   <section id="projects" class="section projects-section">
     <div class="container">
       <div class="projects-header animate">
-        <h2>Projetos em Destaque</h2>
-        <p>Clique em "🎬 Demo Ao Vivo" para testar cada projeto no navegador. Todos funcionam no celular e computador!</p>
+        <h2>Projetos no GitHub Pages</h2>
+        <p>🔗 Todos os links abaixo são demos reais hospedadas no GitHub Pages. Clique e teste agora!</p>
       </div>
 
-      <!-- PROJECT 1: NETFLIX CLONE -->
+      <!-- PROJECT 1: TASKFLOW -->
       <div class="project-card animate">
         <div class="project-content">
           <div class="project-grid">
             <div class="project-info">
               <div class="project-tags">
                 <span class="tag">React</span>
-                <span class="tag">API TMDB</span>
-                <span class="tag">Async/Await</span>
+                <span class="tag">Drag & Drop</span>
+                <span class="tag">LocalStorage</span>
               </div>
-              <h3>🎬 Netflix Clone Premium</h3>
+              <h3>✅ TaskFlow - Kanban App</h3>
               <p class="project-desc">
-                <strong>Desafio:</strong> Criar uma interface de streaming performática que lide com grandes volumes de imagens.
+                <strong>Funcionalidades:</strong> Board Kanban com drag & drop, temas dark/light, 
+                persistência local e exportação de dados.
                 <br><br>
-                <strong>Solução:</strong> Implementação de lazy loading, cache de requisições e design system fiel à marca original.
+                <strong>Tecnologias:</strong> React, React Beautiful DnD, Custom Hooks.
               </p>
               <div class="project-meta">
-                <a href="https://github.com/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-outline btn-sm">🐙 Código</a>
+                <span class="gh-pages-badge">🔗 GitHub Pages</span>
                 <span class="badge badge-live">● Demo Ativa</span>
               </div>
             </div>
@@ -555,227 +562,179 @@
             <div class="demo-container">
               <div class="demo-bar">
                 <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">netflix-clone-preview.js</div>
-                <button class="demo-toggle" onclick="toggleDemo('netflix-demo-frame')">⤢ Expandir</button>
+                <div class="demo-title">taskflow-demo-preview</div>
+                <button class="demo-toggle" onclick="toggleDemo('taskflow-demo-frame')">⤢ Expandir</button>
               </div>
-              <div class="demo-frame" id="netflix-demo-frame">
-                <div class="netflix-demo" id="netflix-content"></div>
+              <div class="demo-frame" id="taskflow-demo-frame">
+                <div class="taskflow-demo" id="taskflow-content"></div>
               </div>
               <div class="demo-actions">
-                <a href="https://portifolio-site-indol.vercel.app/" target="_blank" class="btn btn-netflix btn-sm">🔴 Ver Demo</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
+                <a href="https://luisgustavoleao896-cpu.github.io/taskflow-app/" target="_blank" class="btn btn-primary btn-sm">🔴 Ver Demo Completa</a>
+                <a href="https://github.com/luisgustavoleao896-cpu/taskflow-app" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- PROJECT 2: AUTH SYSTEM -->
+      <!-- PROJECT 2: WEATHERNOW -->
       <div class="project-card animate delay-1">
         <div class="project-content">
           <div class="project-grid">
             <div class="project-info">
               <div class="project-tags">
-                <span class="tag">Node.js</span>
-                <span class="tag">JWT</span>
-                <span class="tag">Security</span>
+                <span class="tag">OpenWeather API</span>
+                <span class="tag">Geolocation</span>
+                <span class="tag">PWA</span>
               </div>
-              <h3>🔐 Sistema de Autenticação</h3>
+              <h3>🌤️ WeatherNow - Weather App</h3>
               <p class="project-desc">
-                <strong>Desafio:</strong> Garantir segurança no login e persistência de sessão.
+                <strong>Funcionalidades:</strong> Detecção automática de localização, previsão 5 dias, 
+                ícones animados e modo offline.
                 <br><br>
-                <strong>Solução:</strong> Implementação de hash de senha (bcrypt), geração de tokens JWT e proteção de rotas privadas.
+                <strong>Tecnologias:</strong> Fetch API, Geolocation API, Service Workers.
               </p>
               <div class="project-meta">
-                <a href="https://github.com/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-outline btn-sm">🐙 Código</a>
-                <span class="badge badge-live">● Teste Login</span>
+                <span class="gh-pages-badge">🔗 GitHub Pages</span>
+                <span class="badge badge-live">● API Conectada</span>
               </div>
             </div>
             
             <div class="demo-container">
               <div class="demo-bar">
                 <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">auth-system-logic.js</div>
-                <button class="demo-toggle" onclick="toggleDemo('auth-demo-frame')">⤢ Expandir</button>
+                <div class="demo-title">weathernow-demo-preview</div>
+                <button class="demo-toggle" onclick="toggleDemo('weather-demo-frame')">⤢ Expandir</button>
               </div>
-              <div class="demo-frame" id="auth-demo-frame">
-                <div class="login-demo" id="auth-content"></div>
+              <div class="demo-frame" id="weather-demo-frame">
+                <div class="weather-demo" id="weather-content"></div>
               </div>
               <div class="demo-actions">
-                <a href="https://stackblitz.com/github/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-success btn-sm">⚡ Rodar Online</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-secondary btn-sm">🐙 GitHub</a>
+                <a href="https://luisgustavoleao896-cpu.github.io/weathernow-app/" target="_blank" class="btn btn-success btn-sm">🔴 Ver Demo Completa</a>
+                <a href="https://github.com/luisgustavoleao896-cpu/weathernow-app" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- PROJECT 3: API CONSUMER -->
+      <!-- PROJECT 3: SHOPLITE -->
       <div class="project-card animate delay-2">
         <div class="project-content">
           <div class="project-grid">
             <div class="project-info">
               <div class="project-tags">
-                <span class="tag">Fetch API</span>
-                <span class="tag">JSON</span>
-                <span class="tag">Error Handling</span>
+                <span class="tag">React Context</span>
+                <span class="tag">FakeStore API</span>
+                <span class="tag">Responsive</span>
               </div>
-              <h3>🌐 Consumidor de APIs</h3>
+              <h3>🛒 ShopLite - E-commerce Demo</h3>
               <p class="project-desc">
-                <strong>Desafio:</strong> Integrar dados externos (CEP, GitHub) com tratamento robusto de erros.
+                <strong>Funcionalidades:</strong> Catálogo de produtos, carrinho com persistência, 
+                filtros por categoria e checkout simulado.
                 <br><br>
-                <strong>Solução:</strong> Cliente HTTP assíncrono com validação de input e exibição formatada de dados JSON.
+                <strong>Tecnologias:</strong> React Context API, FakeStore API, CSS Modules.
               </p>
               <div class="project-meta">
-                <a href="https://github.com/luisgustavoleao896-cpu/api-consumer-real" target="_blank" class="btn btn-outline btn-sm">🐙 Código</a>
-                <button class="btn btn-success btn-sm" onclick="runApiDemo()">📡 Testar API</button>
+                <span class="gh-pages-badge">🔗 GitHub Pages</span>
+                <span class="badge badge-live">● Carrinho Funcional</span>
               </div>
             </div>
             
             <div class="demo-container">
               <div class="demo-bar">
                 <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">api-fetch-terminal.js</div>
-                <button class="demo-toggle" onclick="toggleDemo('api-demo-frame')">⤢ Expandir</button>
+                <div class="demo-title">shoplite-demo-preview</div>
+                <button class="demo-toggle" onclick="toggleDemo('shop-demo-frame')">⤢ Expandir</button>
               </div>
-              <div class="demo-frame" id="api-demo-frame">
-                <div class="api-demo" id="api-content"></div>
+              <div class="demo-frame" id="shop-demo-frame">
+                <div class="shoplite-demo" id="shop-content"></div>
               </div>
               <div class="demo-actions">
-                <a href="https://stackblitz.com/edit/vanilla-js-api-consumer" target="_blank" class="btn btn-success btn-sm">🎬 Demo Ao Vivo</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/api-consumer-real" target="_blank" class="btn btn-secondary btn-sm">🐙 GitHub</a>
+                <a href="https://luisgustavoleao896-cpu.github.io/shoplite-demo/" target="_blank" class="btn btn-purple btn-sm">🔴 Ver Demo Completa</a>
+                <a href="https://github.com/luisgustavoleao896-cpu/shoplite-demo" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- PROJECT 4: DASHBOARD CHART.JS -->
+      <!-- PROJECT 4: CODESNIPPET -->
       <div class="project-card animate">
         <div class="project-content">
           <div class="project-grid">
             <div class="project-info">
               <div class="project-tags">
-                <span class="tag">Chart.js</span>
-                <span class="tag">Fetch API</span>
-                <span class="tag">Data Viz</span>
+                <span class="tag">Vanilla JS</span>
+                <span class="tag">Syntax Highlight</span>
+                <span class="tag">Clipboard API</span>
               </div>
-              <h3>📊 Dashboard de Dados</h3>
+              <h3>💻 CodeSnippet - Editor de Snippets</h3>
               <p class="project-desc">
-                <strong>Desafio:</strong> Visualizar dados de API externa em gráficos interativos.
+                <strong>Funcionalidades:</strong> Highlight de sintaxe, seleção de linguagem, 
+                copy-to-clipboard e exportação para gist.
                 <br><br>
-                <strong>Solução:</strong> Integração com Chart.js, fetch assíncrono e tratamento de loading/erros.
+                <strong>Tecnologias:</strong> Vanilla JavaScript, Prism.js, GitHub Gist API.
               </p>
               <div class="project-meta">
-                <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-outline btn-sm">📁 Código</a>
-                <button class="btn btn-success btn-sm" onclick="carregarDados()">🔄 Atualizar</button>
+                <span class="gh-pages-badge">🔗 GitHub Pages</span>
+                <span class="badge badge-live">● Highlight Ativo</span>
               </div>
             </div>
             
             <div class="demo-container">
               <div class="demo-bar">
                 <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">dashboard-analytics.js</div>
-                <button class="demo-toggle" onclick="toggleDemo('chart-demo-frame')">⤢ Expandir</button>
+                <div class="demo-title">codesnippet-demo-preview</div>
+                <button class="demo-toggle" onclick="toggleDemo('code-demo-frame')">⤢ Expandir</button>
               </div>
-              <div class="demo-frame" id="chart-demo-frame">
-                <div class="chart-demo">
-                  <h4>Análise de Dados</h4>
-                  <div class="chart-container">
-                    <canvas id="grafico"></canvas>
-                  </div>
-                  <div id="chart-loading" class="chart-loading">📡 Carregando dados...</div>
-                </div>
+              <div class="demo-frame" id="code-demo-frame">
+                <div class="codesnippet-demo" id="code-content"></div>
               </div>
               <div class="demo-actions">
-                <a href="https://portifolio-site-indol.vercel.app/" target="_blank" class="btn btn-primary btn-sm">🔴 Ver Demo</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
+                <a href="https://luisgustavoleao896-cpu.github.io/codesnippet-tool/" target="_blank" class="btn btn-primary btn-sm">🔴 Ver Demo Completa</a>
+                <a href="https://github.com/luisgustavoleao896-cpu/codesnippet-tool" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- PROJECT 5: PHP API REST -->
-      <div class="project-card animate">
-        <div class="project-content">
-          <div class="project-grid">
-            <div class="project-info">
-              <div class="project-tags">
-                <span class="tag">PHP 8</span>
-                <span class="tag">Slim</span>
-                <span class="tag">MySQL</span>
-              </div>
-              <h3>🔌 API REST PHP</h3>
-              <p class="project-desc">
-                <strong>Desafio:</strong> Criar API RESTful com CRUD completo, autenticação JWT e documentação.
-                <br><br>
-                <strong>Solução:</strong> Backend PHP com Slim Framework, MySQL e Swagger para documentação automática.
-              </p>
-              <div class="project-meta">
-                <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-outline btn-sm">🐙 Código</a>
-                <span class="badge badge-live">● Backend</span>
-              </div>
-            </div>
-            
-            <div class="demo-container">
-              <div class="demo-bar">
-                <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">php-api-docs.md</div>
-              </div>
-              <div class="demo-frame" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
-                <div style="text-align: center; color: var(--text-muted);">
-                  <div style="font-size: 3rem; margin-bottom: 16px;">🔧</div>
-                  <p style="margin-bottom: 16px;">Projeto Backend PHP</p>
-                  <p style="font-size: 0.85rem;">Requer servidor local ou deploy</p>
-                </div>
-              </div>
-              <div class="demo-actions">
-                <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php/blob/main/README.md" target="_blank" class="btn btn-secondary btn-sm">📖 Ver Instruções</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary btn-sm">🐙 GitHub</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROJECT 6: PYTHON DATA -->
+      <!-- PROJECT 5: FINANCETRACK -->
       <div class="project-card animate delay-1">
         <div class="project-content">
           <div class="project-grid">
             <div class="project-info">
               <div class="project-tags">
-                <span class="tag">Python</span>
-                <span class="tag">Pandas</span>
-                <span class="tag">Matplotlib</span>
+                <span class="tag">Chart.js</span>
+                <span class="tag">LocalStorage</span>
+                <span class="tag">CSV Export</span>
               </div>
-              <h3>📊 Análise de Dados</h3>
+              <h3>📊 FinanceTrack - Expense Tracker</h3>
               <p class="project-desc">
-                <strong>Desafio:</strong> Processar grandes volumes de dados e gerar insights visuais.
+                <strong>Funcionalidades:</strong> Registro de transações, gráficos interativos, 
+                relatórios mensais e exportação CSV.
                 <br><br>
-                <strong>Solução:</strong> Scripts Python com Pandas para ETL e Matplotlib para visualizações interativas.
+                <strong>Tecnologias:</strong> Chart.js, Vanilla JS, FileSaver.js.
               </p>
               <div class="project-meta">
-                <a href="https://github.com/luisgustavoleao896-cpu/Analise-de-Dados-com-Python" target="_blank" class="btn btn-outline btn-sm">🐙 Código</a>
-                <span class="badge badge-live">● Notebook</span>
+                <span class="gh-pages-badge">🔗 GitHub Pages</span>
+                <span class="badge badge-live">● Gráficos Interativos</span>
               </div>
             </div>
             
             <div class="demo-container">
               <div class="demo-bar">
                 <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">python-analysis.ipynb</div>
+                <div class="demo-title">financetrack-demo-preview</div>
+                <button class="demo-toggle" onclick="toggleDemo('finance-demo-frame')">⤢ Expandir</button>
               </div>
-              <div class="demo-frame" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
-                <div style="text-align: center; color: var(--text-muted);">
-                  <div style="font-size: 3rem; margin-bottom: 16px;">📈</div>
-                  <p style="margin-bottom: 16px;">Jupyter Notebook</p>
-                  <p style="font-size: 0.85rem;">Execute no Google Colab</p>
-                </div>
+              <div class="demo-frame" id="finance-demo-frame">
+                <div class="financetrack-demo" id="finance-content"></div>
               </div>
               <div class="demo-actions">
-                <a href="https://colab.research.google.com/github/luisgustavoleao896-cpu/Analise-de-Dados-com-Python/blob/main/analise.ipynb" target="_blank" class="btn btn-success btn-sm">🔬 Rodar no Colab</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/Analise-de-Dados-com-Python" target="_blank" class="btn btn-secondary btn-sm">🐙 GitHub</a>
+                <a href="https://luisgustavoleao896-cpu.github.io/financetrack-app/" target="_blank" class="btn btn-success btn-sm">🔴 Ver Demo Completa</a>
+                <a href="https://github.com/luisgustavoleao896-cpu/financetrack-app" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
               </div>
             </div>
           </div>
@@ -784,13 +743,14 @@
 
       <!-- MORE PROJECTS -->
       <div class="project-card animate delay-3" style="background: var(--bg-dark); border-style: dashed; text-align: center; padding: 60px 20px;">
-        <div style="font-size: 3rem; margin-bottom: 20px;">📦</div>
-        <h3 style="margin-bottom: 12px; font-size: 1.5rem;">+10 Projetos no GitHub</h3>
+        <div style="font-size: 3rem; margin-bottom: 20px;">🚀</div>
+        <h3 style="margin-bottom: 12px; font-size: 1.5rem;">+10 Projetos no GitHub Pages</h3>
         <p style="color: var(--text-muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
-          URL Shortener, Chat App, E-commerce, Weather App, e mais. Todos com código disponível e muitos com demos online.
+          URL Shortener, Pomodoro Timer, Quiz App, Markdown Previewer, e mais. 
+          Todos com deploy automático via GitHub Actions.
         </p>
-        <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-primary btn-full-mobile">
-          🐙 Explorar Todos os Repositórios
+        <a href="https://luisgustavoleao896-cpu.github.io/" target="_blank" class="btn btn-primary btn-full-mobile">
+          🌐 Ver Todos os Projetos Live
         </a>
       </div>
 
@@ -802,8 +762,8 @@
     <div class="container">
       <h2 class="animate">Vamos construir algo incrível?</h2>
       <p class="animate delay-1">
-        Estou buscando oportunidades para aplicar minhas skills em React e Backend. 
-        Se você precisa de um dev comprometido e multilíngue, vamos conversar.
+        Procuro oportunidades para aplicar minhas skills em React e APIs. 
+        Se você precisa de um dev que entrega projetos funcionais no GitHub Pages, vamos conversar.
       </p>
       
       <div class="contact-grid animate delay-2">
@@ -842,33 +802,10 @@
           <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a>
           <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
         </div>
-        <p class="copyright">© 2026 Luis Gustavo • Fortaleza, CE • Desenvolvido com React & ☕</p>
+        <p class="copyright">© 2026 Luis Gustavo • Fortaleza, CE • Deploy via GitHub Pages 🚀</p>
       </div>
     </div>
   </footer>
-
-  <!-- Firebase SDK (Module) -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyD5LDahDvO7YGjiJyQzsiuPKsGj76_eJ18",
-      authDomain: "stat-48964.firebaseapp.com",
-      projectId: "stat-48964",
-      storageBucket: "stat-48964.firebasestorage.app",
-      messagingSenderId: "542511664531",
-      appId: "1:542511664531:web:21de2ea579ee09ec20ac66",
-      measurementId: "G-YSEGEV4SBL"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    console.log("✅ Firebase inicializado");
-  </script>
-
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- JAVASCRIPT -->
   <script>
@@ -878,266 +815,186 @@
       navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Mobile menu
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
-    navToggle?.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
+    navToggle?.addEventListener('click', () => navLinks.classList.toggle('active'));
     navLinks?.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => navLinks.classList.remove('active'));
-    });
-
-    // Active link on scroll
-    const sections = document.querySelectorAll('section[id]');
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.navbar-links a[href="#${sectionId}"]`);
-        if (navLink) {
-          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            navLink.classList.add('active');
-          } else {
-            navLink.classList.remove('active');
-          }
-        }
-      });
     });
 
     // ==================== DEMO UTILS ====================
     function toggleDemo(frameId) {
       const frame = document.getElementById(frameId);
-      if (frame) {
-        frame.classList.toggle('expanded');
-      }
+      if (frame) frame.classList.toggle('expanded');
     }
 
-    // ==================== NETFLIX DEMO ====================
-    const netflixContent = document.getElementById('netflix-content');
-    const netflixMovies = [
-      { title: "Stranger", color: "red" }, { title: "The Crown", color: "blue" },
-      { title: "Money", color: "red" }, { title: "Dark", color: "blue" },
-      { title: "Ozark", color: "green" }, { title: "Witcher", color: "red" },
-      { title: "Lupin", color: "blue" }, { title: "Bridgerton", color: "green" }
-    ];
+    // ==================== TASKFLOW DEMO ====================
+    function renderTaskFlow() {
+      const content = document.getElementById('taskflow-content');
+      content.innerHTML = `
+        <div class="tf-header">
+          <span class="tf-title">📋 Meus Tasks</span>
+          <button class="tf-add-btn" onclick="addTaskDemo()">+ Novo</button>
+        </div>
+        <div class="tf-boards">
+          <div class="tf-board">
+            <div class="tf-board-title">📝 A Fazer</div>
+            <div class="tf-task urgent" draggable="true">Criar API REST</div>
+            <div class="tf-task" draggable="true">Review de código</div>
+          </div>
+          <div class="tf-board">
+            <div class="tf-board-title">⚡ Em Progresso</div>
+            <div class="tf-task" draggable="true">Deploy no GitHub Pages</div>
+          </div>
+          <div class="tf-board">
+            <div class="tf-board-title">✅ Concluído</div>
+            <div class="tf-task done" draggable="true">Setup do React</div>
+            <div class="tf-task done" draggable="true">Configurar ESLint</div>
+          </div>
+        </div>
+      `;
+    }
+    function addTaskDemo() {
+      alert('✨ Em produção: modal de criação com validação e persistência!');
+    }
 
-    function renderNetflix() {
-      const rows = [
-        { title: "Em Alta", movies: netflixMovies.slice(0, 5) },
-        { title: "Séries de Suspense", movies: netflixMovies.slice(3, 8) }
+    // ==================== WEATHER DEMO ====================
+    function renderWeather() {
+      const content = document.getElementById('weather-content');
+      const conditions = ['☀️', '⛅', '🌧️', '⛈️'];
+      const condition = conditions[Math.floor(Math.random() * conditions.length)];
+      
+      content.innerHTML = `
+        <div class="wd-header">
+          <span class="wd-location">📍 Fortaleza, CE</span>
+          <span class="wd-temp">28°C</span>
+        </div>
+        <div class="wd-condition">
+          <span class="wd-icon">${condition}</span>
+          <span>Parcialmente nublado</span>
+        </div>
+        <div class="wd-forecast">
+          ${['Seg', 'Ter', 'Qua', 'Qui', 'Sex'].map((day, i) => `
+            <div class="wd-day">
+              <div class="wd-day-name">${day}</div>
+              <div class="wd-day-icon">${conditions[i % conditions.length]}</div>
+              <div class="wd-day-temp">${25 + i}°</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // ==================== SHOPLITE DEMO ====================
+    function renderShopLite() {
+      const content = document.getElementById('shop-content');
+      const products = [
+        { name: 'Headphones', price: 'R$ 299', icon: '🎧' },
+        { name: 'Smartwatch', price: 'R$ 899', icon: '⌚' },
+        { name: 'Keyboard', price: 'R$ 449', icon: '⌨️' },
+        { name: 'Mouse', price: 'R$ 199', icon: '🖱️' }
       ];
-
-      let html = `
-        <div class="nf-nav">
-          <div class="nf-logo">NETFLIX</div>
-          <div style="font-size:0.8rem">👤</div>
+      
+      content.innerHTML = `
+        <div class="sl-header">
+          <span class="sl-logo">🛒 ShopLite</span>
+          <div class="sl-cart">2</div>
         </div>
-        <div class="nf-hero">
-          <div class="nf-content">
-            <div class="nf-title">Stranger Things</div>
-            <div class="nf-desc">Quando um garoto desaparece, a cidade toda participa nas buscas.</div>
-            <button class="nf-btn" onclick="alert('▶️ Reproduzindo...')">▶ Play</button>
-          </div>
+        <div class="sl-products">
+          ${products.map(p => `
+            <div class="sl-product">
+              <div class="sl-product-img">${p.icon}</div>
+              <div class="sl-product-name">${p.name}</div>
+              <div class="sl-product-price">${p.price}</div>
+              <button class="sl-add-btn" onclick="addToCart('${p.name}')">Adicionar</button>
+            </div>
+          `).join('')}
         </div>
       `;
-
-      rows.forEach(row => {
-        html += `<div class="nf-row"><h4>${row.title}</h4><div class="nf-row-inner">`;
-        row.movies.forEach(m => {
-          html += `<div class="nf-card ${m.color}" onclick="alert('${m.title}')">${m.title}</div>`;
-        });
-        html += `</div></div>`;
-      });
-
-      netflixContent.innerHTML = html;
     }
-
-    // ==================== AUTH DEMO ====================
-    const authContent = document.getElementById('auth-content');
-    let isLoggedIn = false;
-
-    function renderAuth() {
-      if (!isLoggedIn) {
-        authContent.innerHTML = `
-          <div class="login-box">
-            <h3>Bem-vindo</h3>
-            <input type="email" class="login-input" placeholder="Email" value="admin@demo.com" id="auth-email">
-            <input type="password" class="login-input" placeholder="Senha" value="123456" id="auth-pass">
-            <button class="login-btn" onclick="handleLogin()">Entrar</button>
-          </div>
-        `;
-      } else {
-        authContent.innerHTML = `
-          <div class="login-success">
-            <div class="icon">✅</div>
-            <h3>Login Realizado!</h3>
-            <p>Token JWT gerado com sucesso</p>
-            <button class="login-btn" style="background:#ef4444;" onclick="handleLogout()">Sair</button>
-          </div>
-        `;
-      }
-    }
-
-    function handleLogin() {
-      const btn = document.querySelector('.login-btn');
-      const originalText = btn.innerText;
-      btn.innerText = "Autenticando...";
-      btn.disabled = true;
-      
+    function addToCart(item) {
+      const btn = event.target;
+      const original = btn.innerText;
+      btn.innerText = '✅ Adicionado!';
+      btn.style.background = 'var(--accent)';
       setTimeout(() => {
-        isLoggedIn = true;
-        renderAuth();
-      }, 1000);
+        btn.innerText = original;
+        btn.style.background = '';
+      }, 1500);
     }
 
-    function handleLogout() {
-      isLoggedIn = false;
-      renderAuth();
-    }
-
-    // ==================== API DEMO ====================
-    const apiContent = document.getElementById('api-content');
-    
-    function initApiDemo() {
-      apiContent.innerHTML = `
-        <div class="api-toolbar">
-          <span class="method-badge">GET</span>
-          <input type="text" class="url-input" value="https://api.github.com/users/luisgustavoleao896-cpu" id="api-url">
-          <button class="api-btn" onclick="runApiDemo()">Send</button>
+    // ==================== CODESNIPPET DEMO ====================
+    function renderCodeSnippet() {
+      const content = document.getElementById('code-content');
+      content.innerHTML = `
+        <div class="cs-toolbar">
+          <select class="cs-lang-select">
+            <option>JavaScript</option>
+            <option>TypeScript</option>
+            <option>Python</option>
+          </select>
+          <button class="cs-copy-btn" onclick="copyCode()">📋 Copiar</button>
         </div>
-        <div class="api-response" id="api-output">// Clique em Send para buscar dados reais...</div>
+        <div class="cs-editor">
+          <div class="cs-line"><span class="cs-line-num">1</span><span class="cs-code"><span class="kw">async function</span> <span class="fn">fetchData</span>() {</span></div>
+          <div class="cs-line"><span class="cs-line-num">2</span><span class="cs-code">  <span class="kw">const</span> res = <span class="kw">await</span> fetch(<span class="str">'/api/data'</span>);</span></div>
+          <div class="cs-line"><span class="cs-line-num">3</span><span class="cs-code">  <span class="kw">return</span> res.<span class="fn">json</span>();</span></div>
+          <div class="cs-line"><span class="cs-line-num">4</span><span class="cs-code">}</span></div>
+          <div class="cs-line"><span class="cs-line-num">5</span><span class="cs-code"><span class="cmt">// ✨ Syntax highlight ativo</span></span></div>
+        </div>
       `;
     }
-
-    async function runApiDemo() {
-      const output = document.getElementById('api-output');
-      const url = document.getElementById('api-url').value;
-      
-      output.innerHTML = '<span style="color:#f59e0b;">Loading...</span>';
-      
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        
-        const jsonStr = JSON.stringify(data, null, 2);
-        const highlighted = jsonStr
-          .replace(/"([^"]+)":/g, '<span class="json-key">"$1"</span>:')
-          .replace(/: "([^"]+)"/g, ': <span class="json-string">"$1"</span>')
-          .replace(/: ([0-9]+)/g, ': <span class="json-number">$1</span>')
-          .replace(/: (true|false)/g, ': <span class="json-bool">$1</span>')
-          .replace(/: null/g, ': <span class="json-null">null</span>');
-          
-        output.innerHTML = highlighted;
-      } catch (e) {
-        output.innerHTML = `<span style="color:#ef4444;">Error: ${e.message}</span>`;
-      }
+    function copyCode() {
+      navigator.clipboard.writeText('async function fetchData() {\n  const res = await fetch("/api/data");\n  return res.json();\n}');
+      const btn = document.querySelector('.cs-copy-btn');
+      btn.innerText = '✅ Copiado!';
+      setTimeout(() => btn.innerText = '📋 Copiar', 2000);
     }
 
-    // ==================== CHART.JS DASHBOARD ====================
-    let chartInstance = null;
-    
-    async function carregarDados() {
-      const loading = document.getElementById('chart-loading');
-      const canvas = document.getElementById('grafico');
+    // ==================== FINANCETRACK DEMO ====================
+    function renderFinanceTrack() {
+      const content = document.getElementById('finance-content');
+      const transactions = [
+        { label: 'Salário', amount: '+ R$ 4.500', type: 'income' },
+        { label: 'Aluguel', amount: '- R$ 1.200', type: 'expense' },
+        { label: 'Mercado', amount: '- R$ 450', type: 'expense' },
+        { label: 'Freelance', amount: '+ R$ 800', type: 'income' }
+      ];
       
-      if (loading) loading.style.display = 'block';
-      
-      try {
-        // Exemplo de loading state
-        document.body.innerHTML += "<p style='position:fixed;bottom:20px;right:20px;background:var(--primary);color:white;padding:10px 20px;border-radius:8px;z-index:9999;'>🔄 Carregando...</p>";
-        setTimeout(() => {
-          const loadingMsg = document.querySelector('p[style*="position:fixed"]');
-          if (loadingMsg) loadingMsg.remove();
-        }, 1500);
-
-        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-        const data = await res.json();
-
-        const labels = data.slice(0, 5).map(p => "Post " + p.id);
-        const valores = data.slice(0, 5).map(p => p.id * 10);
-
-        // Destruir chart anterior se existir
-        if (chartInstance) {
-          chartInstance.destroy();
-        }
-
-        chartInstance = new Chart(canvas, {
-          type: 'bar',
-          data: {
-            labels: labels,
-            datasets: [{
-              label: 'Dados simulados',
-               valores,
-              backgroundColor: 'rgba(59, 130, 246, 0.7)',
-              borderColor: 'rgba(59, 130, 246, 1)',
-              borderWidth: 2,
-              borderRadius: 4
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: { labels: { color: '#f1f5f9' } }
-            },
-            scales: {
-              x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(51, 65, 85, 0.5)' } },
-              y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(51, 65, 85, 0.5)' } }
-            }
-          }
-        });
-
-        if (loading) loading.style.display = 'none';
-        
-        // Exemplo de fetch com tratamento de erro
-        const url = "https://jsonplaceholder.typicode.com/posts/1";
-        try {
-          const response = await fetch(url);
-          const result = await response.json();
-          console.log("✅ Dados carregados:", result);
-        } catch (err) {
-          console.log("❌ Erro ao carregar dados");
-          alert("Erro ao carregar dados");
-        }
-
-      } catch (err) {
-        console.error("Erro:", err);
-        if (loading) loading.style.display = 'none';
-        alert("Erro ao carregar dados");
-      }
+      content.innerHTML = `
+        <div class="ft-header">
+          <div class="ft-balance">
+            <div class="ft-balance-label">Saldo Total</div>
+            <div class="ft-balance-value">R$ 3.650</div>
+          </div>
+        </div>
+        <div class="ft-chart-placeholder">
+          ${[40, 65, 30, 80, 55, 70, 45].map((h, i) => 
+            `<div class="ft-chart-bar" style="height: ${h}%; left: ${i * 14 + 2}%"></div>`
+          ).join('')}
+          <span style="position: relative; z-index: 2;">📈 Gráfico Interativo</span>
+        </div>
+        <div class="ft-transactions">
+          ${transactions.map(t => `
+            <div class="ft-transaction">
+              <div class="ft-t-info">
+                <span style="font-weight: 600;">${t.label}</span>
+                <span class="ft-t-label">Hoje</span>
+              </div>
+              <span class="ft-t-amount ${t.type}">${t.amount}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
     }
-
-    // ==================== FETCH EXAMPLES ====================
-    // Exemplo 1: Fetch simples com .then()
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(res => res.json())
-      .then(data => {
-        console.log("📦 Dados recebidos:", data.slice(0, 3));
-      })
-      .catch(err => console.error("❌ Erro:", err));
-
-    // Exemplo 2: Fetch com async/await e try/catch
-    (async () => {
-      const url = "https://jsonplaceholder.typicode.com/users/1";
-      try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const user = await res.json();
-        console.log("👤 Usuário:", user.name);
-      } catch (err) {
-        console.log("❌ Erro ao buscar usuário");
-      }
-    })();
 
     // ==================== INITIALIZATION ====================
     document.addEventListener('DOMContentLoaded', () => {
-      renderNetflix();
-      renderAuth();
-      initApiDemo();
-      carregarDados(); // Carrega o gráfico ao iniciar
+      renderTaskFlow();
+      renderWeather();
+      renderShopLite();
+      renderCodeSnippet();
+      renderFinanceTrack();
     });
 
     // ==================== ANIMATION OBSERVER ====================
@@ -1150,9 +1007,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.animate').forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
 
     // ==================== PREVENT ZOOM ON MOBILE ====================
     let lastTouchEnd = 0;
