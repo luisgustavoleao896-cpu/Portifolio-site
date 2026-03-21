@@ -2,12 +2,13 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Luis Gustavo - Desenvolvedor Back-end. PHP, JavaScript, Python. Netflix Clone, APIs, autenticação JWT.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="description" content="Luis Gustavo - Desenvolvedor Back-end. Projetos com demos mobile-friendly.">
+  <meta name="theme-color" content="#0a0e17">
   
   <!-- Open Graph -->
   <meta property="og:title" content="Luis Gustavo | Desenvolvedor Back-end">
-  <meta property="og:description" content="Portfólio profissional com Netflix Clone, APIs e projetos reais com demos interativas.">
+  <meta property="og:description" content="Portfólio com demos que funcionam no celular!">
   <meta property="og:type" content="website">
   
   <!-- Favicon -->
@@ -42,7 +43,7 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     
     body {
@@ -51,6 +52,7 @@
       color: var(--text-primary);
       line-height: 1.7;
       overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
     }
 
     a { color: var(--accent); text-decoration: none; transition: var(--transition); cursor: pointer; }
@@ -59,9 +61,7 @@
     /* NAVBAR */
     .navbar {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       background: rgba(17, 24, 39, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
@@ -71,108 +71,58 @@
     }
     .navbar.scrolled { padding: 12px 0; box-shadow: var(--shadow); }
     .navbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .navbar-logo {
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--text-primary);
-    }
+    .navbar-logo { font-weight: 700; font-size: 1.2rem; color: var(--text-primary); }
     .navbar-logo span { color: var(--accent); }
-    .navbar-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
+    .navbar-links { display: flex; gap: 24px; list-style: none; }
     .navbar-links a {
-      color: var(--text-secondary);
-      font-weight: 500;
-      font-size: 0.95rem;
-      position: relative;
-      padding: 4px 0;
+      color: var(--text-secondary); font-weight: 500; font-size: 0.95rem;
+      position: relative; padding: 4px 0;
     }
-    .navbar-links a:hover,
-    .navbar-links a.active { color: var(--accent); }
+    .navbar-links a:hover, .navbar-links a.active { color: var(--accent); }
     .navbar-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--accent);
       transition: var(--transition);
     }
-    .navbar-links a:hover::after,
-    .navbar-links a.active::after { width: 100%; }
+    .navbar-links a:hover::after, .navbar-links a.active::after { width: 100%; }
     .navbar-cta { display: none; }
     @media (min-width: 768px) { .navbar-cta { display: flex; } }
-    .navbar-toggle {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 8px;
-    }
-    .navbar-toggle span {
-      width: 24px;
-      height: 2px;
-      background: var(--text-primary);
-      border-radius: 2px;
-    }
+    .navbar-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .navbar-toggle span { width: 24px; height: 2px; background: var(--text-primary); border-radius: 2px; }
     @media (min-width: 900px) { .navbar-toggle { display: none; } }
     @media (max-width: 899px) {
       .navbar-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-secondary);
-        flex-direction: column;
-        padding: 20px;
-        border-bottom: 1px solid var(--border);
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--bg-secondary); flex-direction: column;
+        padding: 20px; border-bottom: 1px solid var(--border);
       }
       .navbar-links.active { display: flex; }
     }
 
     /* UTILS */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .section { padding: 100px 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+    .section { padding: 80px 0; }
+    @media (min-width: 768px) { .section { padding: 100px 0; } }
+    
     .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 48px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      font-size: 1.75rem; font-weight: 700; margin-bottom: 32px;
+      display: flex; align-items: center; gap: 16px;
     }
+    @media (min-width: 768px) { .section-title { font-size: 2rem; } }
     .section-title::after {
-      content: '';
-      flex: 1;
-      height: 2px;
+      content: ''; flex: 1; height: 2px;
       background: linear-gradient(90deg, var(--border), transparent);
       margin-left: 24px;
     }
 
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 16px;
-      background: var(--gradient-2);
-      color: white;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 16px; background: var(--gradient-2);
+      color: white; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
     }
-    .badge-outline {
-      background: transparent;
-      border: 2px solid var(--border);
-      color: var(--text-secondary);
-    }
+    .badge-outline { background: transparent; border: 2px solid var(--border); color: var(--text-secondary); }
     .badge-live {
       background: linear-gradient(135deg, #22c55e, #10b981);
       animation: pulse-live 2s infinite;
@@ -181,531 +131,359 @@
       0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
       50% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
     }
+    .badge-mobile { background: linear-gradient(135deg, #f59e0b, #d97706); }
 
-    /* BUTTONS */
+    /* BUTTONS - Mobile Friendly */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: var(--transition);
-      border: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 10px; padding: 14px 24px; border-radius: 12px;
+      font-weight: 600; font-size: 0.95rem; cursor: pointer;
+      transition: var(--transition); border: none;
+      min-height: 48px; /* Touch target size */
+      -webkit-appearance: none;
     }
-    .btn-primary {
-      background: var(--gradient-2);
-      color: white;
-      box-shadow: var(--shadow);
-    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--gradient-2); color: white; box-shadow: var(--shadow); }
     .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .btn-secondary {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      border: 2px solid var(--border);
+    .btn-secondary { background: var(--bg-tertiary); color: var(--text-primary); border: 2px solid var(--border); }
+    .btn-secondary:hover { background: var(--bg-secondary); border-color: var(--accent); }
+    .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text-secondary); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-success { background: linear-gradient(135deg, #22c55e, #10b981); color: white; }
+    .btn-sm { padding: 12px 20px; font-size: 0.85rem; min-height: 44px; }
+    .btn-full-mobile { width: 100%; }
+    @media (min-width: 768px) { .btn-full-mobile { width: auto; } }
+    .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+    @media (max-width: 480px) {
+      .btn-group { flex-direction: column; }
+      .btn-group .btn { width: 100%; }
     }
-    .btn-secondary:hover { background: var(--bg-secondary); border-color: var(--accent); transform: translateY(-2px); }
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--border);
-      color: var(--text-secondary);
-    }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-    .btn-success {
-      background: linear-gradient(135deg, #22c55e, #10b981);
-      color: white;
-    }
-    .btn-success:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .btn-sm { padding: 10px 20px; font-size: 0.85rem; }
-    .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
 
     /* HERO */
     header {
       background: linear-gradient(180deg, rgba(96, 165, 250, 0.12) 0%, transparent 100%);
-      padding: 160px 0 80px;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
+      padding: 140px 0 60px; border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
     }
     header::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -10%;
-      width: 500px;
-      height: 500px;
+      content: ''; position: absolute; top: -30%; right: -10%;
+      width: 500px; height: 500px;
       background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: pulse 8s ease-in-out infinite;
+      border-radius: 50%; animation: pulse 8s ease-in-out infinite;
     }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-    }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 0.8; } }
 
-    .hero-content { display: grid; gap: 40px; align-items: center; }
+    .hero-content { display: grid; gap: 32px; align-items: center; }
     @media (min-width: 900px) { .hero-content { grid-template-columns: 1.2fr 0.8fr; } }
 
-    .hero-slogan {
-      font-size: 1.1rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
+    .hero-slogan { font-size: 1rem; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
     .hero-title {
-      font-size: 2.8rem;
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 20px;
+      font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 16px;
       background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     @media (min-width: 768px) { .hero-title { font-size: 3.5rem; } }
 
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      margin-bottom: 28px;
-      max-width: 550px;
-    }
-
+    .hero-subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 24px; max-width: 550px; }
     .hero-story {
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      border-left: 4px solid var(--primary);
-      padding: 20px 24px;
-      border-radius: 0 12px 12px 0;
-      margin: 28px 0;
-      font-size: 1rem;
-      line-height: 1.6;
+      background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35);
+      border-left: 4px solid var(--primary); padding: 16px 20px;
+      border-radius: 0 12px 12px 0; margin: 24px 0; font-size: 0.95rem; line-height: 1.6;
     }
     .hero-story strong { color: var(--primary); }
-
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 32px 0; }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-top: 24px;
-    }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 16px; color: var(--text-secondary); font-size: 0.9rem; margin-top: 20px; }
     .hero-meta span { display: flex; align-items: center; gap: 8px; }
     .hero-meta a { color: var(--accent); }
-
-    .availability { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .availability { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
 
     /* PROFILE CARD */
     .profile-card {
-      background: var(--bg-secondary);
-      border-radius: 24px;
-      padding: 32px;
-      border: 1px solid var(--border);
-      text-align: center;
-      cursor: pointer;
-      transition: var(--transition);
+      background: var(--bg-secondary); border-radius: 20px; padding: 24px;
+      border: 1px solid var(--border); text-align: center; cursor: pointer; transition: var(--transition);
     }
     .profile-card:hover { border-color: var(--accent); transform: translateY(-4px); }
     .profile-avatar {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      background: var(--gradient-1);
-      margin: 0 auto 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: white;
+      width: 100px; height: 100px; border-radius: 50%; background: var(--gradient-1);
+      margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 800; color: white;
     }
-    .profile-name { font-weight: 700; font-size: 1.2rem; margin-bottom: 6px; }
-    .profile-role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
-    .profile-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-    }
-    .stat-value { font-weight: 700; font-size: 1.4rem; color: var(--accent); }
-    .stat-label { font-size: 0.8rem; color: var(--text-secondary); }
+    .profile-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; }
+    .profile-role { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; }
+    .profile-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .stat-value { font-weight: 700; font-size: 1.2rem; color: var(--accent); }
+    .stat-label { font-size: 0.75rem; color: var(--text-secondary); }
 
     /* ABOUT */
-    .about-grid { display: grid; gap: 48px; }
+    .about-grid { display: grid; gap: 32px; }
     @media (min-width: 900px) { .about-grid { grid-template-columns: 1.1fr 0.9fr; } }
-
-    .about-story { font-size: 1.05rem; color: var(--text-secondary); }
-    .about-story p { margin-bottom: 20px; }
+    .about-story { font-size: 1rem; color: var(--text-secondary); }
+    .about-story p { margin-bottom: 16px; }
     .about-story strong { color: var(--text-primary); }
-
     .story-highlight {
-      background: var(--bg-secondary);
-      padding: 24px;
-      border-radius: 16px;
-      border-left: 4px solid var(--pink);
-      margin: 24px 0;
+      background: var(--bg-secondary); padding: 20px; border-radius: 12px;
+      border-left: 4px solid var(--pink); margin: 20px 0;
     }
-    .story-highlight h4 { color: var(--pink); margin-bottom: 12px; }
-
-    .values-grid { display: grid; gap: 16px; margin-top: 32px; }
+    .story-highlight h4 { color: var(--pink); margin-bottom: 8px; font-size: 1rem; }
+    .values-grid { display: grid; gap: 12px; margin-top: 24px; }
     .value-card {
-      display: flex;
-      gap: 14px;
-      padding: 20px;
-      background: var(--bg-secondary);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: var(--transition);
+      display: flex; gap: 12px; padding: 16px; background: var(--bg-secondary);
+      border-radius: 12px; border: 1px solid var(--border); cursor: pointer; transition: var(--transition);
     }
     .value-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .value-icon { font-size: 1.5rem; flex-shrink: 0; }
-    .value-content h4 { color: var(--text-primary); margin-bottom: 4px; }
-    .value-content p { color: var(--text-secondary); font-size: 0.9rem; }
+    .value-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .value-content h4 { color: var(--text-primary); margin-bottom: 4px; font-size: 1rem; }
+    .value-content p { color: var(--text-secondary); font-size: 0.85rem; }
 
     /* SKILLS */
-    .skills-section { margin-top: 24px; }
-    .skills-section h3 { font-size: 1.15rem; margin-bottom: 16px; }
-    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-    
+    .skills-section { margin-top: 20px; }
+    .skills-section h3 { font-size: 1.1rem; margin-bottom: 12px; }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
     .skill-tag {
-      padding: 8px 18px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: var(--transition);
-      cursor: pointer;
+      padding: 6px 14px; background: var(--bg-tertiary); border: 1px solid var(--border);
+      border-radius: 50px; font-size: 0.85rem; font-weight: 500; transition: var(--transition); cursor: pointer;
     }
-    .skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
     .skill-tag.pro { background: rgba(16, 185, 129, 0.15); border-color: var(--primary); color: var(--primary); }
-
-    .languages-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .languages-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .lang-tag {
-      padding: 8px 16px;
-      background: var(--bg-tertiary);
-      border-radius: 8px;
-      font-size: 0.9rem;
-      border: 1px solid var(--border);
+      padding: 6px 12px; background: var(--bg-tertiary); border-radius: 8px;
+      font-size: 0.85rem; border: 1px solid var(--border);
     }
     .lang-tag .level { color: var(--primary); font-weight: 600; }
 
-    /* PROJECTS */
+    /* PROJECTS - Mobile Optimized */
     .projects-intro {
-      background: var(--bg-secondary);
-      padding: 24px;
-      border-radius: 16px;
-      margin-bottom: 40px;
-      border-left: 4px solid var(--warning);
+      background: var(--bg-secondary); padding: 20px; border-radius: 12px;
+      margin-bottom: 32px; border-left: 4px solid var(--warning); font-size: 0.95rem;
     }
-    .projects-grid { display: grid; gap: 24px; }
+    .projects-grid { display: grid; gap: 20px; }
     @media (min-width: 768px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1100px) { .projects-grid { grid-template-columns: repeat(3, 1fr); } }
 
     .project-card {
-      background: var(--bg-secondary);
-      border-radius: 20px;
-      padding: 28px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      cursor: pointer;
-      position: relative;
+      background: var(--bg-secondary); border-radius: 16px; padding: 24px;
+      border: 1px solid var(--border); transition: var(--transition);
+      display: flex; flex-direction: column; height: auto; cursor: pointer; position: relative;
     }
     .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--gradient-1);
-      opacity: 0;
-      transition: var(--transition);
-      border-radius: 20px 20px 0 0;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: var(--gradient-1); opacity: 0; transition: var(--transition);
+      border-radius: 16px 16px 0 0;
     }
-    .project-card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .project-card:hover { border-color: var(--accent); }
     .project-card:hover::before { opacity: 1; }
+    .project-card.netflix-clone::before { background: var(--gradient-netflix); }
+    .project-card.netflix-clone:hover { border-color: #e50914; }
 
-    .project-card.netflix-clone {
-      position: relative;
-    }
-    .project-card.netflix-clone::before {
-      background: var(--gradient-netflix);
-    }
-    .project-card.netflix-clone:hover {
-      border-color: #e50914;
-    }
-
-    .project-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
-    .project-icon { font-size: 2rem; flex-shrink: 0; }
-    .project-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 6px; }
-    .project-subtitle { color: var(--text-secondary); font-size: 0.9rem; }
-    .project-description { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 18px; line-height: 1.6; flex: 1; }
-
+    .project-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+    .project-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .project-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+    .project-subtitle { color: var(--text-secondary); font-size: 0.85rem; }
+    .project-description { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; line-height: 1.6; flex: 1; }
     .project-problem {
-      background: rgba(245, 158, 11, 0.12);
-      border-left: 3px solid var(--warning);
-      padding: 14px 18px;
-      border-radius: 0 10px 10px 0;
-      margin: 18px 0;
-      font-size: 0.9rem;
+      background: rgba(245, 158, 11, 0.12); border-left: 3px solid var(--warning);
+      padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 0.85rem;
     }
     .project-problem strong { color: var(--warning); }
-
-    .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0; }
     .tech-tag {
-      padding: 5px 14px;
-      background: var(--bg-tertiary);
-      border-radius: 6px;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
+      padding: 4px 12px; background: var(--bg-tertiary); border-radius: 6px;
+      font-size: 0.75rem; color: var(--text-secondary); border: 1px solid var(--border);
     }
-
-    .project-decisions {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin: 18px 0;
-      padding: 14px 18px;
-      background: rgba(139, 92, 246, 0.1);
-      border-radius: 10px;
-      border-left: 3px solid var(--purple);
-    }
-    .project-decisions strong { color: var(--purple); display: block; margin-bottom: 8px; }
-    .project-decisions ul { padding-left: 20px; }
-    .project-decisions li { margin: 4px 0; }
-
-    .project-learning {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin: 18px 0;
-      padding: 14px 18px;
-      background: rgba(96, 165, 250, 0.1);
-      border-radius: 10px;
-      border-left: 3px solid var(--accent);
-    }
-    .project-learning strong { color: var(--accent); }
-    
-    .project-links { margin-top: auto; padding-top: 24px; border-top: 1px solid var(--border); }
+    .project-links { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); }
     
     .project-featured { position: relative; }
     .project-featured::after {
-      content: '⭐ Destaque';
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: var(--gradient-2);
-      color: white;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      content: '⭐'; position: absolute; top: 12px; right: 12px;
+      background: var(--gradient-2); color: white; padding: 4px 10px;
+      border-radius: 16px; font-size: 0.7rem; font-weight: 600;
     }
-    .project-featured.netflix::after {
-      background: var(--gradient-netflix);
-    }
+    .project-featured.netflix::after { background: var(--gradient-netflix); }
 
-    /* DEMO EMBED CONTAINER */
+    /* MOBILE-FRIENDLY DEMO CONTAINER */
+    .demo-container {
+      margin: 16px 0; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border); background: var(--bg-primary);
+    }
+    .demo-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 16px; background: var(--bg-tertiary);
+      border-bottom: 1px solid var(--border); font-size: 0.85rem; color: var(--text-secondary);
+      flex-wrap: wrap; gap: 8px;
+    }
+    .demo-header .live-badge {
+      display: flex; align-items: center; gap: 6px; color: var(--primary); font-weight: 600; font-size: 0.8rem;
+    }
+    
+    /* Responsive iframe with aspect ratio */
     .demo-embed {
-      margin: 20px 0;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--bg-primary);
-    }
-    .demo-embed-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      background: var(--bg-tertiary);
-      border-bottom: 1px solid var(--border);
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-    .demo-embed-header .live-badge {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--primary);
-      font-weight: 600;
+      position: relative; width: 100%;
+      /* 16:9 aspect ratio for desktop, adjusts on mobile */
+      padding-bottom: 56.25%;
+      background: var(--bg-secondary);
     }
     .demo-embed iframe {
-      width: 100%;
-      height: 300px;
-      border: none;
-      display: block;
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      border: none; display: block; background: var(--bg-primary);
     }
-    .demo-embed.expanded iframe {
-      height: 500px;
+    
+    /* Mobile: taller embed for better touch interaction */
+    @media (max-width: 768px) {
+      .demo-embed { padding-bottom: 75%; } /* ~4:3 ratio on mobile */
     }
-    .demo-toggle {
-      background: none;
-      border: none;
-      color: var(--accent);
-      cursor: pointer;
-      font-size: 0.85rem;
-      padding: 4px 8px;
-      border-radius: 4px;
-      transition: var(--transition);
+    @media (max-width: 480px) {
+      .demo-embed { padding-bottom: 100%; } /* 1:1 on very small screens */
     }
-    .demo-toggle:hover { background: var(--bg-secondary); }
-
-    /* MODAL PARA DEMO */
-    .demo-modal {
+    
+    .demo-actions {
+      display: flex; gap: 8px; padding: 12px 16px;
+      background: var(--bg-tertiary); border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .demo-actions .btn { flex: 1; min-width: 120px; font-size: 0.8rem; padding: 10px 12px; }
+    
+    /* Backend instructions box */
+    .demo-instructions {
+      padding: 16px; font-size: 0.85rem; color: var(--text-secondary);
+      background: var(--bg-primary); border-top: 1px solid var(--border);
       display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
     }
-    .demo-modal.active { display: flex; }
+    .demo-instructions.active { display: block; animation: slideDown 0.3s ease; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .demo-instructions pre {
+      background: var(--bg-secondary); padding: 12px; border-radius: 8px;
+      overflow-x: auto; font-size: 0.8rem; margin: 12px 0;
+      white-space: pre-wrap; word-break: break-all;
+    }
+    .demo-instructions code {
+      background: var(--bg-tertiary); padding: 2px 6px; border-radius: 4px;
+      color: var(--accent); font-family: monospace;
+    }
+    .demo-instructions a { color: var(--accent); text-decoration: none; }
+    .demo-instructions a:hover { text-decoration: underline; }
+    
+    /* Toggle button for instructions */
+    .btn-toggle {
+      background: none; border: none; color: var(--accent);
+      cursor: pointer; font-size: 0.85rem; padding: 4px 8px;
+      border-radius: 4px; transition: var(--transition);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .btn-toggle:hover { background: var(--bg-secondary); }
+    .btn-toggle .icon { transition: transform 0.3s ease; }
+    .btn-toggle.active .icon { transform: rotate(180deg); }
+
+    /* Mobile-specific demo card */
+    .mobile-demo-card {
+      display: none; padding: 16px; background: var(--bg-tertiary);
+      border-radius: 12px; margin: 12px 0; border: 1px dashed var(--border);
+    }
+    .mobile-demo-card.active { display: block; }
+    .mobile-demo-card .btn { width: 100%; margin: 8px 0; }
+    
+    /* Show mobile card only on small screens */
+    @media (max-width: 768px) {
+      .desktop-demo-embed { display: none; }
+      .mobile-demo-card.active { display: block; }
+    }
+    @media (min-width: 769px) {
+      .mobile-demo-card { display: none !important; }
+      .desktop-demo-embed { display: block; }
+    }
+
+    /* MODAL - Touch Optimized */
+    .demo-modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9); z-index: 2000;
+      justify-content: center; align-items: center; padding: 16px;
+    }
+    .demo-modal.active { display: flex; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
     .demo-modal-content {
-      background: var(--bg-secondary);
-      border-radius: 20px;
-      max-width: 1200px;
-      width: 100%;
-      max-height: 90vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      background: var(--bg-secondary); border-radius: 16px;
+      max-width: 100%; width: 100%; max-height: 90vh;
+      overflow: hidden; display: flex; flex-direction: column;
       border: 1px solid var(--border);
     }
     .demo-modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 24px;
-      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 20px; border-bottom: 1px solid var(--border);
       background: var(--bg-tertiary);
     }
-    .demo-modal-header h3 { font-size: 1.1rem; }
+    .demo-modal-header h3 { font-size: 1rem; font-weight: 600; }
     .demo-modal-close {
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: var(--transition);
+      background: none; border: none; color: var(--text-secondary);
+      font-size: 1.8rem; cursor: pointer; padding: 8px;
+      min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center;
     }
-    .demo-modal-close:hover { color: var(--text-primary); }
-    .demo-modal-body {
-      flex: 1;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+    .demo-modal-body { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+    .demo-modal-body iframe { flex: 1; width: 100%; border: none; min-height: 300px; }
+    .demo-modal-footer {
+      padding: 12px 20px; background: var(--bg-primary);
+      border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-secondary);
     }
-    .demo-modal-body iframe {
-      flex: 1;
-      width: 100%;
-      border: none;
-      min-height: 400px;
-    }
-    .demo-instructions {
-      padding: 16px 24px;
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border);
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-    .demo-instructions code {
-      background: var(--bg-tertiary);
-      padding: 2px 8px;
-      border-radius: 4px;
-      color: var(--accent);
-      font-family: monospace;
+    .demo-modal-footer code {
+      background: var(--bg-tertiary); padding: 2px 6px; border-radius: 4px;
+      color: var(--accent); font-family: monospace;
     }
 
     /* CTA */
     .cta-section {
       background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
-      border-radius: 24px;
-      padding: 48px;
-      text-align: center;
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
+      border-radius: 20px; padding: 32px 24px; text-align: center;
+      border: 1px solid var(--border); position: relative; overflow: hidden;
     }
-    .cta-section h3 { font-size: 1.8rem; margin-bottom: 20px; }
-    .cta-section p { color: var(--text-secondary); margin-bottom: 32px; max-width: 650px; margin: 0 auto 32px; }
+    @media (min-width: 768px) { .cta-section { padding: 48px; } }
+    .cta-section h3 { font-size: 1.5rem; margin-bottom: 16px; }
+    @media (min-width: 768px) { .cta-section h3 { font-size: 1.8rem; } }
+    .cta-section p { color: var(--text-secondary); margin-bottom: 24px; max-width: 650px; margin: 0 auto 24px; font-size: 0.95rem; }
     .cta-highlight {
-      color: var(--primary);
-      font-weight: 600;
-      background: rgba(16, 185, 129, 0.1);
-      padding: 4px 12px;
-      border-radius: 6px;
-      display: inline-block;
-      margin: 16px 0;
+      color: var(--primary); font-weight: 600; background: rgba(16, 185, 129, 0.1);
+      padding: 4px 12px; border-radius: 6px; display: inline-block; margin: 12px 0; font-size: 0.9rem;
     }
-    .contact-grid { display: grid; gap: 16px; margin: 40px 0; }
+    .contact-grid { display: grid; gap: 12px; margin: 32px 0; }
     @media (min-width: 768px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
     .contact-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 20px;
-      background: var(--bg-tertiary);
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px; background: var(--bg-tertiary); border-radius: 12px;
+      border: 1px solid var(--border); transition: var(--transition); cursor: pointer;
+      min-height: 56px;
     }
-    .contact-item:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .contact-item a { color: var(--text-primary); font-weight: 500; }
-    .contact-icon { font-size: 1.4rem; }
+    .contact-item:hover { border-color: var(--accent); }
+    .contact-item a { color: var(--text-primary); font-weight: 500; font-size: 0.9rem; }
+    .contact-icon { font-size: 1.2rem; }
 
     /* FOOTER */
     footer {
-      background: var(--bg-secondary);
-      padding: 48px 0 32px;
-      border-top: 1px solid var(--border);
-      margin-top: 60px;
+      background: var(--bg-secondary); padding: 40px 0 24px;
+      border-top: 1px solid var(--border); margin-top: 48px;
     }
-    .footer-content { display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; }
-    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
+    .footer-content { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: var(--text-secondary); font-size: 0.85rem; }
     .footer-links a:hover { color: var(--accent); }
-    .copyright { color: var(--text-secondary); font-size: 0.85rem; }
+    .copyright { color: var(--text-secondary); font-size: 0.8rem; }
 
     /* ANIMATIONS */
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    .animate { animation: fadeInUp 0.6s ease forwards; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate { animation: fadeInUp 0.5s ease forwards; }
     .delay-1 { animation-delay: 0.1s; }
     .delay-2 { animation-delay: 0.2s; }
     .delay-3 { animation-delay: 0.3s; }
 
-    @media (max-width: 768px) {
-      .section { padding: 70px 0; }
-      .section-title { font-size: 1.75rem; }
-      .hero-title { font-size: 2.2rem; }
-      .btn-group { flex-direction: column; }
-      .btn { width: 100%; }
-      .profile-stats { grid-template-columns: repeat(3, 1fr); }
-      .cta-section { padding: 32px 24px; }
-      .demo-embed iframe { height: 250px; }
-      .demo-embed.expanded iframe { height: 400px; }
+    /* Reduce motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
     }
 
-    ::-webkit-scrollbar { width: 10px; }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg-primary); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
   </style>
 </head>
@@ -717,15 +495,14 @@
     <div class="container">
       <a href="#" class="navbar-logo"><span>✦</span> LuisGustavo</a>
       <ul class="navbar-links" id="navLinks">
-        <li><a href="#sobre" class="active">Sobre</a></li>
-        <li><a href="#impacto">Impacto</a></li>
+        <li><a href="#sobre">Sobre</a></li>
         <li><a href="#projetos">Projetos</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
       <div class="navbar-cta">
         <a href="#" class="btn btn-primary btn-sm">📄 CV</a>
       </div>
-      <div class="navbar-toggle" id="navToggle">
+      <div class="navbar-toggle" id="navToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </div>
     </div>
@@ -737,42 +514,41 @@
       <div class="hero-content">
         <div>
           <div class="hero-slogan">✨ De cuidador a codificador</div>
-          <h1 class="hero-title">Desenvolvedor Back-end em início de carreira</h1>
+          <h1 class="hero-title">Desenvolvedor Back-end</h1>
           <p class="hero-subtitle">
-            Especialista em APIs escaláveis, autenticação segura e integrações. 
-            Netflix Clone, sistemas completos e impacto mensurável.
+            APIs escaláveis, autenticação segura e integrações. 
+            Projetos com demos que funcionam no celular! 📱
           </p>
           
           <div class="hero-story">
             <strong>Minha história:</strong> Enquanto cuidava da minha mãe, descobri na programação uma forma de construir um futuro melhor. 
-            Estudei todos os dias e criei projetos reais. Minha disciplina é meu maior ativo.
+            Estudei todos os dias e criei projetos reais.
           </div>
 
           <div class="hero-cta">
-            <a href="#projetos" class="btn btn-primary">🚀 Ver Projetos</a>
-            <a href="#" class="btn btn-secondary">📄 Baixar CV</a>
-            <a href="https://linkedin.com/in/luisgustavoleao" target="_blank" class="btn btn-outline">💼 LinkedIn</a>
+            <a href="#projetos" class="btn btn-primary btn-full-mobile">🚀 Ver Projetos</a>
+            <a href="#" class="btn btn-secondary btn-full-mobile">📄 Baixar CV</a>
           </div>
 
           <div class="hero-meta">
             <span>📍 Fortaleza, CE</span>
-            <span>📧 <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a></span>
+            <span>📧 <a href="mailto:gustavoluis.v.c.1016@gmail.com">Email</a></span>
             <span>🔗 <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a></span>
           </div>
 
           <div class="availability">
-            <span class="badge">✅ Disponível para remoto</span>
-            <span class="badge badge-outline">🎯 Back-end & APIs</span>
+            <span class="badge">✅ Remoto</span>
+            <span class="badge badge-outline">🎯 Back-end</span>
           </div>
         </div>
 
         <div class="profile-card">
           <div class="profile-avatar">LG</div>
-          <div class="profile-name">Luis Gustavo Verissimo Cavalcante</div>
-          <div class="profile-role">Desenvolvedor Back-end • PHP, Node.js, Python</div>
+          <div class="profile-name">Luis Gustavo</div>
+          <div class="profile-role">Back-end • PHP, Node.js, Python</div>
           <div class="profile-stats">
             <div class="stat"><div class="stat-value">15</div><div class="stat-label">Projetos</div></div>
-            <div class="stat"><div class="stat-value">13</div><div class="stat-label">Certificações</div></div>
+            <div class="stat"><div class="stat-value">13</div><div class="stat-label">Certs</div></div>
             <div class="stat"><div class="stat-value">4</div><div class="stat-label">Idiomas</div></div>
           </div>
         </div>
@@ -783,63 +559,52 @@
   <!-- SOBRE -->
   <section class="section" id="sobre">
     <div class="container">
-      <h2 class="section-title">👨‍💻 Sobre Mim</h2>
+      <h2 class="section-title">👨‍💻 Sobre</h2>
       <div class="about-grid">
         <div>
           <div class="about-story">
-            <p>
-              Sou um desenvolvedor focado em <strong>back-end e desenvolvimento web</strong>. 
-              Minha jornada começou de forma autodidata enquanto cuidava da minha mãe.
-            </p>
-            <p>
-              Minha experiência em <strong>vendas e atendimento</strong> me ensinou comunicação clara, 
-              organização e foco em entregar valor real.
-            </p>
+            <p>Desenvolvedor focado em <strong>back-end e APIs</strong>. Jornada autodidata enquanto cuidava da minha mãe.</p>
+            <p>Experiência em <strong>vendas e atendimento</strong> me ensinou comunicação clara e foco em valor real.</p>
           </div>
-
           <div class="story-highlight">
-            <h4>💡 O que me diferencia</h4>
-            <p style="color: var(--text-secondary); margin: 0;">
-              Estudo todos os dias, publico no GitHub e trago maturidade de quem já trabalhou com pessoas. 
-              Minha disciplina é meu maior ativo.
+            <h4>💡 Diferencial</h4>
+            <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">
+              Estudo diário, GitHub ativo e maturidade profissional. Disciplina é meu maior ativo.
             </p>
           </div>
-
           <div class="values-grid">
             <div class="value-card">
               <div class="value-icon">🎯</div>
-              <div class="value-content"><h4>Foco em Resultados</h4><p>Cada projeto tem objetivo claro.</p></div>
+              <div class="value-content"><h4>Resultados</h4><p style="font-size:0.85rem">Projetos com objetivo claro.</p></div>
             </div>
             <div class="value-card">
               <div class="value-icon">📚</div>
-              <div class="value-content"><h4>Aprendizado Contínuo</h4><p>Estudo diário e prática constante.</p></div>
+              <div class="value-content"><h4>Aprendizado</h4><p style="font-size:0.85rem">Estudo e prática constante.</p></div>
             </div>
             <div class="value-card">
               <div class="value-icon">🤝</div>
-              <div class="value-content"><h4>Comunicação Clara</h4><p>Essencial para trabalho em equipe.</p></div>
+              <div class="value-content"><h4>Comunicação</h4><p style="font-size:0.85rem">Essencial para equipes.</p></div>
             </div>
           </div>
         </div>
-
         <div>
           <div class="skills-section">
-            <h3>⚡ Stack Principal</h3>
+            <h3>⚡ Stack</h3>
             <div class="skills-grid">
-              <span class="skill-tag pro">🐘 PHP</span>
-              <span class="skill-tag pro">⚡ JavaScript</span>
-              <span class="skill-tag pro">🐍 Python</span>
-              <span class="skill-tag">🟢 Node.js</span>
-              <span class="skill-tag">⚛️ React</span>
-              <span class="skill-tag">🔗 REST APIs</span>
-              <span class="skill-tag">🗄️ MySQL</span>
-              <span class="skill-tag">🐙 Git</span>
+              <span class="skill-tag pro">PHP</span>
+              <span class="skill-tag pro">JavaScript</span>
+              <span class="skill-tag pro">Python</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">Git</span>
             </div>
           </div>
-
           <div class="skills-section">
             <h3>🌍 Idiomas</h3>
             <div class="languages-grid">
-              <span class="lang-tag">🇬🇧 Inglês <span class="level">• Fluência</span></span>
+              <span class="lang-tag">🇬🇧 Inglês <span class="level">• Fluente</span></span>
               <span class="lang-tag">🇪🇸 Espanhol <span class="level">• C1</span></span>
               <span class="lang-tag">🇮🇹 Italiano <span class="level">• Avançado</span></span>
               <span class="lang-tag">🇩🇪 Alemão <span class="level">• C1</span></span>
@@ -853,57 +618,71 @@
   <!-- PROJETOS -->
   <section class="section" id="projetos">
     <div class="container">
-      <h2 class="section-title">🚀 Projetos com Demo Interativa</h2>
+      <h2 class="section-title">🚀 Projetos Mobile-Friendly</h2>
       <div class="projects-intro">
-        <strong>📌</strong> Clique em "🎬 Demo" para testar os projetos direto no navegador! 
-        Projetos frontend rodam via CodeSandbox/StackBlitz. Backend incluem instruções de deploy.
+        <strong>📱 No celular:</strong> Use os botões "Abrir em Nova Aba" para melhor experiência. 
+        Embeds podem ter limitações em dispositivos móveis.
       </div>
 
       <div class="projects-grid">
 
         <!-- NETFLIX CLONE -->
-        <div class="project-card project-featured netflix netflix-clone animate">
+        <div class="project-card project-featured netflix animate">
           <div class="project-header">
             <div class="project-icon">🎬</div>
             <div>
-              <div class="project-title">Netflix Clone Premium</div>
+              <div class="project-title">Netflix Clone</div>
               <div class="project-subtitle">React • TMDB API</div>
             </div>
           </div>
-          <p class="project-description">
-            Clone da Netflix com carrosséis, busca, trailers YouTube, tema escuro/claro e favoritos.
-          </p>
-          <div class="project-problem">
-            <strong>Problema:</strong> Interface complexa com performance otimizada.
-          </div>
+          <p class="project-description">Clone com carrosséis, busca, trailers e favoritos.</p>
           <div class="project-tech">
             <span class="tech-tag">React 18</span>
             <span class="tech-tag">TMDB API</span>
             <span class="tech-tag">Styled Components</span>
-            <span class="tech-tag">React Query</span>
           </div>
           
-          <!-- DEMO EMBED -->
-          <div class="demo-embed">
-            <div class="demo-embed-header">
-              <span class="live-badge">🟢 Demo ao vivo</span>
-              <button class="demo-toggle" onclick="toggleDemo('netflix-demo')">🔍 Expandir</button>
+          <!-- DESKTOP EMBED -->
+          <div class="demo-container desktop-demo-embed">
+            <div class="demo-header">
+              <span class="live-badge">🟢 Preview</span>
+              <button class="btn-toggle" onclick="toggleInstructions('netflix-instructions')">
+                <span class="icon">▼</span> Instruções
+              </button>
             </div>
-            <iframe 
-              id="netflix-demo"
-              src="https://codesandbox.io/embed/github/luisgustavoleao896-cpu/netflix-clone-premium?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-              title="Netflix Clone Demo"
-              loading="lazy"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-            ></iframe>
+            <div class="demo-embed">
+              <iframe 
+                src="https://codesandbox.io/embed/github/luisgustavoleao896-cpu/netflix-clone-premium?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+                title="Netflix Clone"
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+              ></iframe>
+            </div>
+            <div class="demo-actions">
+              <a href="https://codesandbox.io/s/github/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-success btn-sm">🎬 Abrir Demo</a>
+              <button class="btn btn-outline btn-sm" onclick="openModal('netflix', 'Netflix Clone')">🖥️ Tela Cheia</button>
+            </div>
+            <div id="netflix-instructions" class="demo-instructions">
+              <p><strong>Dica mobile:</strong> Se o preview não responder, use o botão "Abrir Demo" acima.</p>
+            </div>
+          </div>
+          
+          <!-- MOBILE FALLBACK -->
+          <div class="mobile-demo-card" id="netflix-mobile">
+            <p style="font-size:0.9rem; margin-bottom:12px; color:var(--text-secondary)">
+              👆 Para melhor experiência no celular:
+            </p>
+            <a href="https://codesandbox.io/s/github/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-success">
+              🎬 Abrir Netflix Clone em Nova Aba
+            </a>
+            <a href="https://github.com/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-secondary">
+              🐙 Ver Código
+            </a>
           </div>
           
           <div class="project-links">
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
-              <a href="https://codesandbox.io/s/github/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-success btn-sm">🎬 Demo Fullscreen</a>
-              <button class="btn btn-outline btn-sm" onclick="openModal('netflix-demo', 'Netflix Clone - Demo Interativa')">🖥️ Abrir em Modal</button>
             </div>
           </div>
         </div>
@@ -917,45 +696,55 @@
               <div class="project-subtitle">Node.js • JWT</div>
             </div>
           </div>
-          <p class="project-description">
-            Autenticação com bcrypt, JWT, refresh tokens e proteção brute force.
-          </p>
+          <p class="project-description">Autenticação com bcrypt, JWT e refresh tokens.</p>
           <div class="project-tech">
             <span class="tech-tag">Node.js</span>
             <span class="tech-tag">Express</span>
-            <span class="tech-tag">bcrypt</span>
             <span class="tech-tag">JWT</span>
           </div>
           
-          <!-- BACKEND PROJECT - INSTRUCTIONS -->
-          <div class="demo-embed">
-            <div class="demo-embed-header">
-              <span>🔧 Projeto Backend</span>
-              <button class="demo-toggle" onclick="toggleDemo('login-demo-instructions')">📋 Ver instruções</button>
+          <div class="demo-container desktop-demo-embed">
+            <div class="demo-header">
+              <span>🔧 Backend</span>
+              <button class="btn-toggle" onclick="toggleInstructions('login-instructions')">
+                <span class="icon">▼</span> Como Rodar
+              </button>
             </div>
-            <div id="login-demo-instructions" style="padding: 16px; font-size: 0.9rem; color: var(--text-secondary);">
-              <p style="margin-bottom: 12px;"><strong>Opção 1 - StackBlitz (Online):</strong></p>
-              <p style="margin-bottom: 16px;">
-                <a href="https://stackblitz.com/github/luisgustavoleao896-cpu/login-system-node" target="_blank" style="color: var(--accent);">
-                  ▶️ Rodar no StackBlitz
-                </a>
-              </p>
-              <p style="margin-bottom: 12px;"><strong>Opção 2 - Local:</strong></p>
-              <pre style="background: var(--bg-primary); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 0.85rem;"><code>git clone https://github.com/luisgustavoleao896-cpu/login-system-node
+            <div id="login-instructions" class="demo-instructions">
+              <p><strong>Opção 1 - Online (Recomendado):</strong></p>
+              <a href="https://stackblitz.com/github/luisgustavoleao896-cpu/login-system-node" target="_blank" style="color:var(--accent)">▶️ Rodar no StackBlitz</a>
+              
+              <p style="margin:16px 0 8px"><strong>Opção 2 - Local:</strong></p>
+              <pre><code>git clone https://github.com/luisgustavoleao896-cpu/login-system-node
 cd login-system-node
 npm install
 npm run dev
 # Acesse: http://localhost:3000</code></pre>
-              <p style="margin-top: 12px; font-size: 0.85rem;">
-                <strong>💡 Dica:</strong> Para deploy gratuito, use <a href="https://render.com" target="_blank" style="color: var(--accent);">Render</a> ou <a href="https://railway.app" target="_blank" style="color: var(--accent);">Railway</a>.
+              
+              <p style="font-size:0.8rem; margin-top:12px">
+                💡 <strong>Deploy gratuito:</strong> <a href="https://render.com" target="_blank">Render</a> ou <a href="https://railway.app" target="_blank">Railway</a>
               </p>
             </div>
+            <div class="demo-actions">
+              <a href="https://stackblitz.com/github/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-success btn-sm">⚡ Rodar Online</a>
+            </div>
+          </div>
+          
+          <div class="mobile-demo-card" id="login-mobile">
+            <p style="font-size:0.9rem; margin-bottom:12px; color:var(--text-secondary)">
+              🔧 Projeto backend - rode online ou localmente:
+            </p>
+            <a href="https://stackblitz.com/github/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-success">
+              ⚡ Rodar no StackBlitz
+            </a>
+            <a href="https://github.com/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-secondary">
+              🐙 Ver Código + Instruções
+            </a>
           </div>
           
           <div class="project-links">
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
-              <a href="https://stackblitz.com/github/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-success btn-sm">⚡ Rodar Online</a>
             </div>
           </div>
         </div>
@@ -969,34 +758,42 @@ npm run dev
               <div class="project-subtitle">JavaScript • Fetch</div>
             </div>
           </div>
-          <p class="project-description">
-            Consumo de APIs reais (ViaCEP, GitHub) com cache e tratamento de erros.
-          </p>
+          <p class="project-description">Consulta CEP e GitHub com cache e tratamento de erros.</p>
           <div class="project-tech">
             <span class="tech-tag">JavaScript</span>
             <span class="tech-tag">Fetch API</span>
             <span class="tech-tag">LocalStorage</span>
           </div>
           
-          <!-- DEMO EMBED -->
-          <div class="demo-embed">
-            <div class="demo-embed-header">
-              <span class="live-badge">🟢 Demo ao vivo</span>
-              <button class="demo-toggle" onclick="toggleDemo('api-consumer-demo')">🔍 Expandir</button>
+          <div class="demo-container desktop-demo-embed">
+            <div class="demo-header">
+              <span class="live-badge">🟢 Interativo</span>
             </div>
-            <iframe 
-              id="api-consumer-demo"
-              src="https://stackblitz.com/edit/vanilla-js-api-consumer?embed=1&file=index.html&hideNavigation=1&view=preview"
-              title="API Consumer Demo"
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin allow-popups"
-            ></iframe>
+            <div class="demo-embed">
+              <iframe 
+                src="https://stackblitz.com/edit/vanilla-js-api-consumer?embed=1&file=index.html&hideNavigation=1&view=preview"
+                title="API Consumer"
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin allow-popups"
+              ></iframe>
+            </div>
+            <div class="demo-actions">
+              <a href="https://stackblitz.com/edit/vanilla-js-api-consumer" target="_blank" class="btn btn-success btn-sm">🎬 Abrir Demo</a>
+            </div>
+          </div>
+          
+          <div class="mobile-demo-card" id="api-consumer-mobile">
+            <p style="font-size:0.9rem; margin-bottom:12px; color:var(--text-secondary)">
+              🌐 Teste a API Consumer no seu navegador:
+            </p>
+            <a href="https://stackblitz.com/edit/vanilla-js-api-consumer" target="_blank" class="btn btn-success">
+              🎬 Abrir em Nova Aba
+            </a>
           </div>
           
           <div class="project-links">
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/api-consumer-real" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
-              <a href="https://stackblitz.com/edit/vanilla-js-api-consumer" target="_blank" class="btn btn-success btn-sm">🎬 Demo Fullscreen</a>
             </div>
           </div>
         </div>
@@ -1010,9 +807,7 @@ npm run dev
               <div class="project-subtitle">PHP • Slim • MySQL</div>
             </div>
           </div>
-          <p class="project-description">
-            API com CRUD, JWT, validação e documentação de endpoints.
-          </p>
+          <p class="project-description">CRUD completo com JWT, validação e documentação.</p>
           <div class="project-tech">
             <span class="tech-tag">PHP 8</span>
             <span class="tech-tag">Slim</span>
@@ -1020,32 +815,49 @@ npm run dev
             <span class="tech-tag">JWT</span>
           </div>
           
-          <!-- BACKEND PROJECT - INSTRUCTIONS -->
-          <div class="demo-embed">
-            <div class="demo-embed-header">
-              <span>🔧 Projeto Backend PHP</span>
-              <button class="demo-toggle" onclick="toggleDemo('php-api-demo-instructions')">📋 Ver instruções</button>
+          <div class="demo-container desktop-demo-embed">
+            <div class="demo-header">
+              <span>🔧 Backend PHP</span>
+              <button class="btn-toggle" onclick="toggleInstructions('php-instructions')">
+                <span class="icon">▼</span> Como Rodar
+              </button>
             </div>
-            <div id="php-api-demo-instructions" style="padding: 16px; font-size: 0.9rem; color: var(--text-secondary);">
-              <p style="margin-bottom: 12px;"><strong>Opção 1 - Docker (Recomendado):</strong></p>
-              <pre style="background: var(--bg-primary); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 0.85rem;"><code>git clone https://github.com/luisgustavoleao896-cpu/api-rest-php
+            <div id="php-instructions" class="demo-instructions">
+              <p><strong>Opção 1 - Docker (Recomendado):</strong></p>
+              <pre><code>git clone https://github.com/luisgustavoleao896-cpu/api-rest-php
 cd api-rest-php
 docker-compose up -d
 # Acesse: http://localhost:8080/api</code></pre>
-              <p style="margin: 12px 0;"><strong>Opção 2 - XAMPP/Local:</strong></p>
-              <pre style="background: var(--bg-primary); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 0.85rem;"><code># Configure virtual host apontando para /public
-# Importe o SQL em: database/schema.sql
+              
+              <p style="margin:12px 0"><strong>Opção 2 - XAMPP:</strong></p>
+              <pre><code># Configure virtual host para /public
+# Importe database/schema.sql
 # Acesse: http://api-rest-php.test/api</code></pre>
-              <p style="margin-top: 12px; font-size: 0.85rem;">
-                <strong>📚 Documentação:</strong> <a href="#" style="color: var(--accent);">/api/docs</a> (após rodar o projeto)
+              
+              <p style="font-size:0.8rem; margin-top:12px">
+                📚 <strong>Docs da API:</strong> <code>/api/docs</code> após rodar
               </p>
             </div>
+            <div class="demo-actions">
+              <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php/blob/main/README.md" target="_blank" class="btn btn-outline btn-sm">📖 Documentação</a>
+            </div>
+          </div>
+          
+          <div class="mobile-demo-card" id="php-mobile">
+            <p style="font-size:0.9rem; margin-bottom:12px; color:var(--text-secondary)">
+              🔧 API PHP - siga as instruções para rodar:
+            </p>
+            <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php/blob/main/README.md" target="_blank" class="btn btn-outline">
+              📖 Ver Instruções Completas
+            </a>
+            <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary">
+              🐙 Baixar Código
+            </a>
           </div>
           
           <div class="project-links">
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
-              <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php/blob/main/README.md" target="_blank" class="btn btn-outline btn-sm">📖 Documentação</a>
             </div>
           </div>
         </div>
@@ -1059,68 +871,73 @@ docker-compose up -d
               <div class="project-subtitle">Python • Pandas</div>
             </div>
           </div>
-          <p class="project-description">
-            Análise exploratória com limpeza, transformação e visualizações.
-          </p>
+          <p class="project-description">EDA com limpeza, transformação e visualizações.</p>
           <div class="project-tech">
             <span class="tech-tag">Python</span>
             <span class="tech-tag">Pandas</span>
             <span class="tech-tag">Matplotlib</span>
           </div>
           
-          <!-- DEMO EMBED -->
-          <div class="demo-embed">
-            <div class="demo-embed-header">
-              <span>📈 Notebook Interativo</span>
-              <button class="demo-toggle" onclick="toggleDemo('python-demo')">🔍 Expandir</button>
+          <div class="demo-container desktop-demo-embed">
+            <div class="demo-header">
+              <span>📈 Notebook</span>
             </div>
-            <iframe 
-              id="python-demo"
-              src="https://nbviewer.org/github/luisgustavoleao896-cpu/Analise-de-Dados-com-Python/blob/main/analise.ipynb?flush_cache=true"
-              title="Python Data Analysis"
-              loading="lazy"
-              style="min-height: 400px;"
-            ></iframe>
+            <div class="demo-embed" style="padding-bottom: 100%;">
+              <iframe 
+                src="https://nbviewer.org/github/luisgustavoleao896-cpu/Analise-de-Dados-com-Python/blob/main/analise.ipynb?flush_cache=true"
+                title="Python Analysis"
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="demo-actions">
+              <a href="https://colab.research.google.com/github/luisgustavoleao896-cpu/Analise-de-Dados-com-Python/blob/main/analise.ipynb" target="_blank" class="btn btn-success btn-sm">🔬 Rodar no Colab</a>
+            </div>
+          </div>
+          
+          <div class="mobile-demo-card" id="python-mobile">
+            <p style="font-size:0.9rem; margin-bottom:12px; color:var(--text-secondary)">
+              📊 Execute o notebook no Google Colab:
+            </p>
+            <a href="https://colab.research.google.com/github/luisgustavoleao896-cpu/Analise-de-Dados-com-Python/blob/main/analise.ipynb" target="_blank" class="btn btn-success">
+              🔬 Abrir no Google Colab
+            </a>
           </div>
           
           <div class="project-links">
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/Analise-de-Dados-com-Python" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
-              <a href="https://colab.research.google.com/github/luisgustavoleao896-cpu/Analise-de-Dados-com-Python/blob/main/analise.ipynb" target="_blank" class="btn btn-success btn-sm">🔬 Rodar no Colab</a>
             </div>
           </div>
         </div>
 
         <!-- MAIS PROJETOS -->
-        <div class="project-card" style="display: flex; align-items: center; justify-content: center; text-align: center; background: var(--bg-tertiary); border-style: dashed;">
-          <div>
-            <div style="font-size: 3rem; margin-bottom: 16px;">🐙</div>
-            <h4 style="margin-bottom: 12px;">+10 projetos</h4>
-            <p style="color: var(--text-secondary); margin-bottom: 20px;">
-              URL Shortener, Chat, E-commerce e mais com demos interativas.
-            </p>
-            <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-primary">
-              Ver GitHub
-            </a>
-          </div>
+        <div class="project-card" style="background: var(--bg-tertiary); border-style: dashed; align-items: center; text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">🐙</div>
+          <h4 style="margin-bottom: 8px;">+10 projetos</h4>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px;">
+            URL Shortener, Chat, E-commerce e mais.
+          </p>
+          <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-primary btn-full-mobile">
+            Ver GitHub
+          </a>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- MODAL PARA DEMO FULLSCREEN -->
+  <!-- MODAL -->
   <div class="demo-modal" id="demoModal">
     <div class="demo-modal-content">
       <div class="demo-modal-header">
-        <h3 id="modalTitle">Demo Interativa</h3>
-        <button class="demo-modal-close" onclick="closeModal()">&times;</button>
+        <h3 id="modalTitle">Demo</h3>
+        <button class="demo-modal-close" onclick="closeModal()" aria-label="Fechar">&times;</button>
       </div>
       <div class="demo-modal-body">
-        <iframe id="modalIframe" src="" title="Demo Modal"></iframe>
+        <iframe id="modalIframe" src="" title="Demo Fullscreen"></iframe>
       </div>
-      <div class="demo-instructions">
-        <strong>💡 Dica:</strong> Use <code>F11</code> para tela cheia. Para projetos backend, veja as instruções no card do projeto.
+      <div class="demo-modal-footer">
+        💡 Dica: Use <code>pinch-to-zoom</code> para ampliar. Projetos backend requerem ambiente local.
       </div>
     </div>
   </div>
@@ -1129,16 +946,13 @@ docker-compose up -d
   <section class="section" id="contato">
     <div class="container">
       <div class="cta-section">
-        <h3>🚀 Pronto para agregar valor</h3>
-        <p>
-          Busco oportunidade como <strong>Desenvolvedor Back-end</strong>. 
-          Vamos conversar?
-        </p>
-        <span class="cta-highlight">⚡ Resposta em até 24h</span>
+        <h3>🚀 Vamos trabalhar juntos?</h3>
+        <p>Busco oportunidade como <strong>Desenvolvedor Back-end</strong>. Respondo em até 24h!</p>
+        <span class="cta-highlight">⚡ Disponível para remoto</span>
         <div class="contact-grid">
           <div class="contact-item">
             <span class="contact-icon">📧</span>
-            <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a>
+            <a href="mailto:gustavoluis.v.c.1016@gmail.com">Enviar Email</a>
           </div>
           <div class="contact-item">
             <span class="contact-icon">💼</span>
@@ -1150,7 +964,9 @@ docker-compose up -d
           </div>
         </div>
         <div class="btn-group" style="justify-content: center;">
-          <a href="mailto:gustavoluis.v.c.1016@gmail.com?subject=Oportunidade Desenvolvedor" class="btn btn-primary">✉️ Enviar E-mail</a>
+          <a href="mailto:gustavoluis.v.c.1016@gmail.com?subject=Oportunidade Desenvolvedor" class="btn btn-primary btn-full-mobile">
+            ✉️ Entrar em Contato
+          </a>
         </div>
       </div>
     </div>
@@ -1167,71 +983,71 @@ docker-compose up -d
           <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
         </div>
         <p class="copyright">
-          © 2026 Luis Gustavo • Fortaleza, CE • 
-          <a href="#" onclick="alert('Para hospedar este portfólio no GitHub Pages:\n1. Crie um repositório\n2. Ative GitHub Pages em Settings\n3. Deploy via branch main ou /docs [[1]][[6]]')" style="color: var(--accent);">📦 Hospedar este site</a>
+          © 2026 Luis Gustavo • Fortaleza, CE
         </p>
       </div>
     </div>
   </footer>
 
   <script>
-    // NAVBAR SCROLL
+    // Detect mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+    // NAVBAR
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // MOBILE MENU
+    // Mobile menu
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     navToggle?.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
 
-    // SMOOTH SCROLL
+    // Close menu on link click (mobile)
+    navLinks?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          navLinks?.classList.remove('active');
-          document.querySelectorAll('.navbar-links a').forEach(link => link.classList.remove('active'));
-          this.classList.add('active');
         }
       });
     });
 
-    // TOGGLE DEMO EXPAND/COLLAPSE
-    function toggleDemo(elementId) {
-      const element = document.getElementById(elementId);
-      const container = element?.closest('.demo-embed');
-      if (container) {
-        container.classList.toggle('expanded');
+    // Toggle instructions
+    function toggleInstructions(id) {
+      const el = document.getElementById(id);
+      const btn = el?.previousElementSibling?.querySelector('.btn-toggle');
+      if (el) {
+        el.classList.toggle('active');
+        if (btn) btn.classList.toggle('active');
       }
     }
 
-    // MODAL FUNCTIONS
-    function openModal(iframeId, title) {
-      const iframe = document.getElementById(iframeId);
+    // Modal functions
+    function openModal(projectId, title) {
       const modal = document.getElementById('demoModal');
-      const modalIframe = document.getElementById('modalIframe');
+      const iframe = document.getElementById('modalIframe');
       const modalTitle = document.getElementById('modalTitle');
       
-      if (iframe && modal && modalIframe) {
-        // Get the src and convert embed to full view if needed
-        let src = iframe.src;
-        if (src.includes('codesandbox.io/embed')) {
-          src = src.replace('/embed/', '/s/');
-        } else if (src.includes('stackblitz.com') && !src.includes('/edit/')) {
-          src = src.replace('?embed=1', '').replace('&view=preview', '');
-        }
-        
-        modalIframe.src = src;
+      const urls = {
+        'netflix': 'https://codesandbox.io/s/github/luisgustavoleao896-cpu/netflix-clone-premium',
+        'login': 'https://stackblitz.com/github/luisgustavoleao896-cpu/login-system-node',
+        'api-consumer': 'https://stackblitz.com/edit/vanilla-js-api-consumer'
+      };
+      
+      if (modal && iframe && urls[projectId]) {
+        iframe.src = urls[projectId];
         modalTitle.textContent = title;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1240,61 +1056,70 @@ docker-compose up -d
 
     function closeModal() {
       const modal = document.getElementById('demoModal');
-      const modalIframe = document.getElementById('modalIframe');
-      
+      const iframe = document.getElementById('modalIframe');
       if (modal) {
         modal.classList.remove('active');
-        modalIframe.src = ''; // Stop video/audio when closing
+        iframe.src = '';
         document.body.style.overflow = '';
       }
     }
 
-    // Close modal on outside click or Escape key
+    // Close modal on outside click or Escape
     document.getElementById('demoModal')?.addEventListener('click', (e) => {
       if (e.target.id === 'demoModal') closeModal();
     });
-    
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
-    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-    // ANIMATIONS
-    const observer = new IntersectionObserver((entries) => {
+    // Show mobile cards on mobile devices
+    if (isMobile) {
+      document.querySelectorAll('.mobile-demo-card').forEach(card => {
+        card.classList.add('active');
+      });
+    }
+
+    // Lazy load iframes
+    const iframeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
+          const iframe = entry.target;
+          if (iframe.dataset.src) {
+            iframe.src = iframe.dataset.src;
+            iframe.removeAttribute('data-src');
+          }
+          iframeObserver.unobserve(iframe);
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.project-card, .experience-card, .course-card, .value-card, .help-item, .impact-card').forEach(el => {
+    document.querySelectorAll('iframe[data-src]').forEach(iframe => {
+      iframeObserver.observe(iframe);
+    });
+
+    // Animation observer
+    const animObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          animObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.project-card, .value-card').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
       el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(el);
+      animObserver.observe(el);
     });
 
-    // LAZY LOAD IFAMES - Carrega apenas quando visível
-    document.addEventListener('DOMContentLoaded', () => {
-      const iframeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const iframe = entry.target;
-            if (iframe.dataset.src) {
-              iframe.src = iframe.dataset.src;
-              iframe.removeAttribute('data-src');
-            }
-            iframeObserver.unobserve(iframe);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('iframe[data-src]').forEach(iframe => {
-        iframeObserver.observe(iframe);
-      });
-    });
+    // Prevent zoom on double-tap (mobile UX)
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', (e) => {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) e.preventDefault();
+      lastTouchEnd = now;
+    }, { passive: false });
   </script>
 </body>
 </html>
