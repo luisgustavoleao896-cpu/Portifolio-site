@@ -1,2491 +1,1435 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luis Gustavo Verissimo Cavalcante | Desenvolvedor Júnior</title>
-
-<style>
-/* --- CSS GERAL E VARIÁVEIS --- */
-:root {
-  --bg-color: #0f172a;
-  --card-bg: #1e293b;
-  --primary: #ff6b35;
-  --primary-hover: #e85a24;
-  --text-main: #f1f5f9;
-  --text-sec: #94a3b8;
-  --accent: #38bdf8;
-  --lightning: #fff700;
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --purple: #a855f7;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg-color);
-  color: var(--text-main);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-/* --- EFEITO DE RAIOS --- */
-.lightning-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  overflow: hidden;
-}
-
-.lightning-bolt {
-  position: absolute;
-  width: 4px;
-  height: 100vh;
-  background: linear-gradient(to bottom, transparent 0%, var(--lightning) 20%, #ffffff 50%, var(--lightning) 80%, transparent 100%);
-  opacity: 0;
-  filter: blur(2px) drop-shadow(0 0 10px var(--lightning)) drop-shadow(0 0 20px var(--lightning));
-  animation: lightning-flash 300ms ease-in-out;
-  transform: skewX(-15deg);
-}
-
-@keyframes lightning-flash {
-  0%, 100% { opacity: 0; }
-  10% { opacity: 1; }
-  30% { opacity: 0.5; }
-  50% { opacity: 0; }
-}
-
-@keyframes lightning-text {
-  0%, 85% { 
-    opacity: 1; 
-    text-shadow: 0 0 10px var(--lightning), 0 0 20px var(--lightning), 0 0 40px var(--lightning);
-  }
-  90%, 100% { opacity: 0.8; text-shadow: none; }
-}
-
-.storm-flash {
-  animation: storm-flash-animation 5s infinite;
-}
-
-@keyframes storm-flash-animation {
-  0%, 92%, 100% { opacity: 0; }
-  94% { opacity: 0.1; }
-  96% { opacity: 0; }
-  98% { opacity: 0.08; }
-}
-
-/* --- HEADER --- */
-header {
-  text-align: center;
-  padding: 80px 20px;
-  background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
-  border-bottom: 1px solid #334155;
-  position: relative;
-}
-
-header h1 {
-  font-size: 3rem;
-  margin: 0;
-  background: linear-gradient(90deg, #ff6b35, #fbbf24, #38bdf8);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient-shift 3s ease infinite, lightning-text 5s ease-in-out infinite;
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% center; }
-  50% { background-position: 100% center; }
-  100% { background-position: 0% center; }
-}
-
-header p {
-  font-size: 1.2rem;
-  color: var(--text-sec);
-  margin: 15px 0 0 0;
-}
-
-.contact-info {
-  margin: 20px 0;
-  color: var(--text-sec);
-  font-size: 0.95rem;
-}
-
-.contact-info a {
-  color: var(--accent);
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-.contact-info a:hover {
-  text-decoration: underline;
-}
-
-.header-btns {
-  margin-top: 25px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  padding: 12px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s;
-  border: none;
-  display: inline-block;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary), #ff8c42);
-  color: white;
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(255, 107, 53, 0.6);
-}
-
-.btn-secondary {
-  background: #24292e;
-  color: white;
-  border: 2px solid #24292e;
-}
-
-.btn-secondary:hover {
-  background: #1a1d21;
-  transform: translateY(-2px);
-}
-
-.btn-outline {
-  background: transparent;
-  border: 2px solid var(--text-sec);
-  color: var(--text-sec);
-}
-
-.btn-outline:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-  transform: translateY(-2px);
-}
-
-/* --- SEÇÕES --- */
-section {
-  max-width: 1200px;
-  margin: auto;
-  padding: 60px 20px;
-}
-
-h2 {
-  border-left: 5px solid var(--primary);
-  padding-left: 15px;
-  margin-bottom: 30px;
-  font-size: 2rem;
-  position: relative;
-}
-
-h2::after {
-  content: '⚡';
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  animation: lightning-text 3s ease-in-out infinite;
-}
-
-/* --- SKILLS --- */
-.skills-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.skill-tag {
-  background: #334155;
-  padding: 10px 18px;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  border: 2px solid #475569;
-  transition: all 0.3s;
-}
-
-.skill-tag:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
-}
-
-.skill-tag.highlight {
-  border-color: var(--primary);
-  color: var(--primary);
-  animation: lightning-text 4s ease-in-out infinite;
-}
-
-/* --- EXPERIÊNCIA --- */
-.experience-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-}
-
-.experience-card {
-  background: var(--card-bg);
-  padding: 25px;
-  border-radius: 12px;
-  border: 1px solid #334155;
-  transition: all 0.3s;
-}
-
-.experience-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary);
-}
-
-.experience-card h3 {
-  color: var(--accent);
-  margin: 0 0 10px 0;
-}
-
-.experience-card .company {
-  color: var(--primary);
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.experience-card .period {
-  color: var(--text-sec);
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-}
-
-.experience-card ul {
-  padding-left: 20px;
-  color: var(--text-sec);
-}
-
-.experience-card li {
-  margin: 8px 0;
-}
-
-/* --- PROJETOS --- */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-}
-
-.card {
-  background: var(--card-bg);
-  padding: 30px;
-  border-radius: 16px;
-  transition: all 0.3s;
-  border: 2px solid #334155;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
-  background-size: 400% 400%;
-  z-index: -1;
-  border-radius: 16px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  animation: gradient-shift 3s ease infinite;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  border-color: transparent;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255, 107, 53, 0.3);
-}
-
-.card h3 {
-  margin: 0 0 15px 0;
-  color: var(--accent);
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.card p {
-  color: var(--text-sec);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  flex: 1;
-}
-
-.card .tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 15px 0;
-}
-
-.card .tech-tag {
-  background: #334155;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  color: var(--text-sec);
-}
-
-.card .btn-group {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.card .btn-group .btn {
-  flex: 1;
-  min-width: 120px;
-  text-align: center;
-}
-
-/* --- CURSOS --- */
-.courses-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.course-card {
-  background: var(--card-bg);
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #334155;
-  transition: all 0.3s;
-}
-
-.course-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-}
-
-.course-card h4 {
-  color: var(--text-main);
-  margin: 0 0 10px 0;
-}
-
-.course-card .provider {
-  color: var(--primary);
-  font-size: 0.9rem;
-  margin-bottom: 10px;
-}
-
-.course-card .cert-link {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.85rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.course-card .cert-link:hover {
-  text-decoration: underline;
-}
-
-/* --- MODAL --- */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.95);
-  z-index: 10000;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(5px);
-}
-
-.modal-content {
-  background: #1e293b;
-  width: 95%;
-  max-width: 1100px;
-  height: 90vh;
-  border-radius: 16px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 3px solid var(--primary);
-  box-shadow: 0 0 50px rgba(255, 107, 53, 0.5);
-  animation: modal-appear 0.3s ease-out;
-}
-
-@keyframes modal-appear {
-  from { opacity: 0; transform: scale(0.8) translateY(-50px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.modal-header {
-  padding: 20px 25px;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #334155;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.modal-header h3 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: var(--accent);
-}
-
-.modal-tabs {
-  display: flex;
-  gap: 10px;
-}
-
-.tab-btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s;
-  background: #334155;
-  color: var(--text-sec);
-}
-
-.tab-btn.active {
-  background: var(--primary);
-  color: white;
-}
-
-.tab-btn:hover:not(.active) {
-  background: #475569;
-  color: white;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  transition: all 0.3s;
-}
-
-.close-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: rotate(90deg);
-}
-
-.modal-body {
-  flex: 1;
-  padding: 0;
-  overflow: hidden;
-  background: #0f172a;
-}
-
-.demo-container {
-  height: 100%;
-  overflow: auto;
-  padding: 30px;
-}
-
-.code-viewer {
-  display: flex;
-  height: 100%;
-}
-
-.file-tree {
-  background: #252526;
-  padding: 20px;
-  border-right: 1px solid #333;
-  width: 250px;
-  overflow-y: auto;
-}
-
-.file-tree h4 {
-  color: var(--text-sec);
-  margin: 0 0 15px 0;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.file-item {
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-sec);
-  transition: all 0.2s;
-  font-family: monospace;
-  font-size: 0.85rem;
-}
-
-.file-item:hover {
-  background: #37373d;
-  color: white;
-}
-
-.file-item.active {
-  background: #37373d;
-  color: var(--primary);
-}
-
-.code-content {
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.code-header {
-  background: #252526;
-  padding: 10px 20px;
-  border-bottom: 1px solid #333;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.code-filename {
-  color: var(--text-sec);
-  font-family: monospace;
-  font-size: 0.9rem;
-}
-
-.copy-btn {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.3s;
-}
-
-.copy-btn:hover {
-  background: var(--primary-hover);
-}
-
-.code-container {
-  flex: 1;
-  overflow: auto;
-  padding: 20px;
-  background: #1e1e1e;
-}
-
-pre {
-  margin: 0;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #d4d4d4;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-/* --- ESTILOS DOS PROJETOS DEMO --- */
-.demo-box {
-  background: var(--card-bg);
-  padding: 30px;
-  border-radius: 12px;
-  margin: 20px 0;
-}
-
-.demo-box h4 {
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-
-.api-endpoint {
-  background: #2d2d2d;
-  padding: 15px;
-  border-radius: 8px;
-  margin: 15px 0;
-  border-left: 4px solid var(--success);
-}
-
-.api-method {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 0.85rem;
-  margin-right: 10px;
-}
-
-.get { background: #22c55e; color: white; }
-.post { background: #3b82f6; color: white; }
-.put { background: #f59e0b; color: white; }
-.delete { background: #ef4444; color: white; }
-
-.demo-btn {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  margin: 10px 5px 10px 0;
-}
-
-.demo-btn:hover {
-  background: var(--primary-hover);
-}
-
-.demo-result {
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 8px;
-  margin-top: 20px;
-  font-family: monospace;
-  color: #d4d4d4;
-  display: none;
-}
-
-.demo-result.show {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Chat Demo */
-.chat-container {
-  max-width: 600px;
-  margin: 0 auto;
-  border: 1px solid #334155;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.chat-header {
-  background: var(--primary);
-  padding: 15px;
-  color: white;
-  font-weight: bold;
-}
-
-.chat-messages {
-  height: 300px;
-  overflow-y: auto;
-  padding: 20px;
-  background: #0f172a;
-}
-
-.chat-message {
-  margin: 10px 0;
-  padding: 10px 15px;
-  border-radius: 8px;
-  max-width: 70%;
-}
-
-.chat-message.sent {
-  background: var(--primary);
-  color: white;
-  margin-left: auto;
-}
-
-.chat-message.received {
-  background: #334155;
-  color: white;
-}
-
-.chat-input {
-  display: flex;
-  padding: 15px;
-  background: #1e293b;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 12px;
-  border: 1px solid #334155;
-  border-radius: 6px;
-  background: #0f172a;
-  color: white;
-  margin-right: 10px;
-}
-
-.chat-input button {
-  padding: 12px 24px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* E-commerce Demo */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin: 20px 0;
-}
-
-.product-card {
-  background: #334155;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.product-card .emoji {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-.product-card .price {
-  color: var(--success);
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin: 10px 0;
-}
-
-.cart-section {
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 8px;
-  margin-top: 20px;
-}
-
-/* Kanban Demo */
-.kanban-board {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 20px 0;
-}
-
-.kanban-column {
-  min-width: 250px;
-  background: #334155;
-  border-radius: 8px;
-  padding: 15px;
-}
-
-.kanban-column h4 {
-  margin: 0 0 15px 0;
-  color: var(--text-main);
-}
-
-.kanban-task {
-  background: #1e293b;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  cursor: grab;
-  transition: all 0.2s;
-}
-
-.kanban-task:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-/* Auth Demo */
-.auth-form {
-  max-width: 400px;
-  margin: 0 auto;
-  background: #334155;
-  padding: 30px;
-  border-radius: 12px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--text-sec);
-}
-
-.form-group input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #475569;
-  border-radius: 6px;
-  background: #1e293b;
-  color: white;
-  font-size: 1rem;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: var(--primary);
-}
-
-/* Dashboard Demo */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin: 20px 0;
-}
-
-.dash-card {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-}
-
-.dash-card.green {
-  background: linear-gradient(135deg, #11998e, #38ef7d);
-}
-
-.dash-card.orange {
-  background: linear-gradient(135deg, #f093fb, #f5576c);
-}
-
-.dash-card.blue {
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-}
-
-.dash-value {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: white;
-}
-
-.dash-label {
-  color: rgba(255,255,255,0.9);
-  margin-top: 5px;
-}
-
-/* Weather Demo */
-.weather-card {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  padding: 40px;
-  border-radius: 16px;
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.weather-temp {
-  font-size: 4rem;
-  font-weight: bold;
-  color: white;
-}
-
-.weather-icon {
-  font-size: 5rem;
-  margin: 20px 0;
-}
-
-/* URL Shortener Demo */
-.url-shortener {
-  max-width: 600px;
-  margin: 0 auto;
-  background: #334155;
-  padding: 30px;
-  border-radius: 12px;
-}
-
-.url-input-group {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.url-input-group input {
-  flex: 1;
-  padding: 12px;
-  border: 1px solid #475569;
-  border-radius: 6px;
-  background: #1e293b;
-  color: white;
-}
-
-.shortened-url {
-  background: #1e293b;
-  padding: 15px;
-  border-radius: 6px;
-  margin-top: 20px;
-  display: none;
-}
-
-.shortened-url.show {
-  display: block;
-}
-
-/* File Upload Demo */
-.upload-zone {
-  border: 3px dashed #475569;
-  padding: 40px;
-  text-align: center;
-  border-radius: 12px;
-  margin: 20px 0;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.upload-zone:hover {
-  border-color: var(--primary);
-  background: rgba(255, 107, 53, 0.1);
-}
-
-.upload-icon {
-  font-size: 4rem;
-  margin-bottom: 20px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
-  }
-  
-  .projects, .experience-grid, .courses-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .modal-content {
-    width: 100%;
-    height: 95vh;
-  }
-  
-  .code-viewer {
-    flex-direction: column;
-  }
-  
-  .file-tree {
-    width: 100%;
-    max-height: 150px;
-    border-right: none;
-    border-bottom: 1px solid #333;
-  }
-  
-  .kanban-board {
-    flex-direction: column;
-  }
-  
-  .kanban-column {
-    min-width: 100%;
-  }
-  
-  .card .btn-group {
-    flex-direction: column;
-  }
-  
-  .card .btn-group .btn {
-    width: 100%;
-  }
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0f172a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-hover);
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Luis Gustavo Verissimo Cavalcante - Desenvolvedor Júnior especializado em PHP, JavaScript e Python">
+  <title>Luis Gustavo | Desenvolvedor Júnior</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* === VARIÁVEIS E RESET === */
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-tertiary: #334155;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --primary: #22c55e;
+      --primary-hover: #16a34a;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --purple: #a855f7;
+      --border: #475569;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* === UTILITÁRIOS === */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      padding-left: 16px;
+      border-left: 4px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--border), transparent);
+      margin-left: 16px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .badge-outline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .badge-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* === BOTÕES === */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 2px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-tertiary);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 0.85rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* === HEADER / HERO === */
+    header {
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      padding: 100px 0 60px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-content {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-text h1 {
+        font-size: 3rem;
+      }
+    }
+
+    .hero-text .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .hero-text .objective {
+      background: var(--bg-secondary);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+      margin: 24px 0;
+      font-size: 1.05rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-top: 20px;
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta a {
+      color: var(--accent);
+    }
+
+    .hero-meta a:hover {
+      text-decoration: underline;
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-card {
+      background: var(--bg-secondary);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+      border: 1px solid var(--border);
+      max-width: 320px;
+      width: 100%;
+    }
+
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .profile-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .profile-role {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .profile-stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* === SOBRE MIM === */
+    .about-grid {
+      display: grid;
+      gap: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .about-grid {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .about-story {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+    }
+
+    .about-story p {
+      margin-bottom: 16px;
+    }
+
+    .about-highlights {
+      display: grid;
+      gap: 16px;
+    }
+
+    .highlight-card {
+      background: var(--bg-secondary);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .highlight-card h4 {
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .highlight-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .skills-section {
+      margin-top: 32px;
+    }
+
+    .skills-section h3 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      padding: 8px 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .skill-tag.primary {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .languages-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .lang-tag {
+      padding: 6px 14px;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* === EXPERIÊNCIA === */
+    .experience-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .experience-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .experience-card {
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .experience-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .experience-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .experience-company {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .experience-period {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      background: var(--bg-tertiary);
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    .experience-card ul {
+      padding-left: 20px;
+      color: var(--text-secondary);
+    }
+
+    .experience-card li {
+      margin: 8px 0;
+      font-size: 0.95rem;
+    }
+
+    /* === PROJETOS === */
+    .projects-intro {
+      background: var(--bg-secondary);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 32px;
+      border-left: 4px solid var(--warning);
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .project-card {
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .project-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .project-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      flex: 1;
+      line-height: 1.6;
+    }
+
+    .project-problem {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 3px solid var(--warning);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+
+    .project-problem strong {
+      color: var(--warning);
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .tech-tag {
+      padding: 4px 12px;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .project-learning {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 16px 0;
+      padding: 12px;
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .project-learning strong {
+      color: var(--accent);
+    }
+
+    .project-links {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* === CURSOS === */
+    .courses-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .course-card {
+      background: var(--bg-secondary);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .course-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .course-card h4 {
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .course-provider {
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .course-cert {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    .course-cert:hover {
+      text-decoration: underline;
+    }
+
+    /* === CONTATO / CTA === */
+    .cta-section {
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .cta-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      border-color: var(--accent);
+    }
+
+    .contact-item a {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .contact-icon {
+      font-size: 1.3rem;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--bg-secondary);
+      padding: 40px 0 24px;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .license {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      padding: 12px 20px;
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      max-width: 500px;
+    }
+
+    .license strong {
+      color: var(--primary);
+    }
+
+    .copyright {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-top: 16px;
+    }
+
+    /* === ANIMAÇÕES SUAVES === */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate {
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    /* === RESPONSIVIDADE === */
+    @media (max-width: 768px) {
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* === SCROLLBAR === */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- Efeito de Raios -->
-<div class="lightning-container" id="lightningContainer"></div>
-
-<header class="storm-flash">
-  <h1>⚡ Luis Gustavo Verissimo Cavalcante ⚡</h1>
-  <p>Desenvolvedor Júnior | Back-end & Web</p>
-  <div class="contact-info">
-    <span>📍 Fortaleza - CE</span> | 
-    <a href="mailto:gustavoluis.v.c.1016@gmail.com">📧 gustavoluis.v.c.1016@gmail.com</a> | 
-    <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">🐙 GitHub</a>
-  </div>
-  <div class="header-btns">
-    <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary">🐙 Ver GitHub</a>
-    <a href="mailto:gustavoluis.v.c.1016@gmail.com" class="btn btn-primary">📧 Entrar em Contato</a>
-    <a href="#projetos" class="btn btn-outline">🚀 Ver Projetos</a>
-  </div>
-</header>
-
-<section>
-  <h2>👨‍💻 Sobre Mim</h2>
-  <p style="font-size: 1.1rem; color: var(--text-sec); margin-bottom: 25px;">
-    Desenvolvedor Júnior com foco em desenvolvimento web e back-end, aplicando conhecimentos práticos em 
-    <strong>PHP, JavaScript e Python</strong>. Experiência em APIs REST, bancos de dados e projetos publicados no GitHub.
-    Aprendizado contínuo com foco em prática e projetos reais.
-  </p>
-  
-  <h3 style="color: var(--accent); margin: 30px 0 20px 0;">⚡ Stack Tecnológica</h3>
-  <div class="skills-grid">
-    <span class="skill-tag highlight">⚡ PHP</span>
-    <span class="skill-tag highlight">⚡ JavaScript</span>
-    <span class="skill-tag highlight">⚡ Python</span>
-    <span class="skill-tag">Node.js</span>
-    <span class="skill-tag">TypeScript</span>
-    <span class="skill-tag">React JS</span>
-    <span class="skill-tag">Slim Framework</span>
-    <span class="skill-tag">Express.js</span>
-    <span class="skill-tag">MySQL</span>
-    <span class="skill-tag">MongoDB</span>
-    <span class="skill-tag">Git & GitHub</span>
-    <span class="skill-tag">REST APIs</span>
-    <span class="skill-tag">Salesforce</span>
-    <span class="skill-tag">Figma</span>
-    <span class="skill-tag">HTML5 & CSS3</span>
-    <span class="skill-tag">Segurança da Informação</span>
-    <span class="skill-tag">Análise de Dados</span>
-  </div>
-
-  <h3 style="color: var(--accent); margin: 30px 0 20px 0;">🌍 Idiomas</h3>
-  <div class="skills-grid">
-    <span class="skill-tag">🇬🇧 Inglês – Fluência (Udemy)</span>
-    <span class="skill-tag">🇪🇸 Espanhol – A1 ao C1 (Udemy)</span>
-    <span class="skill-tag">🇮🇹 Italiano – Avançado (Udemy)</span>
-    <span class="skill-tag">🇩🇪 Alemão – A1 ao C1 (Udemy)</span>
-  </div>
-</section>
-
-<section>
-  <h2>💼 Experiência Profissional</h2>
-  <div class="experience-grid">
-    <div class="experience-card">
-      <h3>Teleatendimento</h3>
-      <div class="company">Concentrix</div>
-      <div class="period">Setembro 2024 -- Abril 2025</div>
-      <ul>
-        <li>Atendimento ao cliente via telefone</li>
-        <li>Suporte e resolução de demandas</li>
-        <li>Registro de informações em sistema</li>
-        <li>Cumprimento de indicadores de qualidade</li>
-      </ul>
-    </div>
-    
-    <div class="experience-card">
-      <h3>Consultor de Vendas</h3>
-      <div class="company">Grupo Dádiva</div>
-      <div class="period">2023 -- 2024</div>
-      <ul>
-        <li>Atendimento ao cliente e vendas consultivas</li>
-        <li>Prospecção e fidelização de clientes</li>
-        <li>Cumprimento de metas e resultados comerciais</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="projetos">
-  <h2>🚀 10 Projetos Mais Valorizados (2025)</h2>
-  <p style="color: var(--text-sec); margin-bottom: 30px;">
-    Clique em <strong>"▶ Executar Demo"</strong> para testar e <strong>"📄 Ver Código"</strong> para analisar o código
-  </p>
-
-  <div class="projects">
-
-    <!-- PROJETO 1: API REST -->
-    <div class="card">
-      <h3>🔌 API REST com JWT</h3>
-      <p>API completa com autenticação, CRUD, validação e documentação. Uma das habilidades mais requisitadas.</p>
-      <div class="tech-stack">
-        <span class="tech-tag">PHP</span>
-        <span class="tech-tag">Slim Framework</span>
-        <span class="tech-tag">JWT</span>
-        <span class="tech-tag">MySQL</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('api-rest', 'demo')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModal('api-rest', 'code')">📄 Ver Código</button>
-        <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 2: AUTH SYSTEM -->
-    <div class="card">
-      <h3>🔐 Sistema de Autenticação</h3>
-      <p>Login, registro, recuperação de senha, JWT tokens e proteção de rotas. Essencial para qualquer aplicação.</p>
-      <div class="tech-stack">
-        <span class="tech-tag">Node.js</span>
-        <span class="tech-tag">Express</span>
-        <span class="tech-tag">bcrypt</span>
-        <span class="tech-tag">JWT</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('auth', 'demo')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModal('auth', 'code')">📄 Ver Código</button>
-        <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 3: E-COMMERCE -->
-    <div class="card">
-      <h3>🛒 E-Commerce Completo</h3>
-      <p>Carrinho de compras, checkout, gestão de produtos e pedidos. Projeto completo de venda online.</p>
-      <div class="tech-stack">
-        <span class="tech-tag">React</span>
-        <span class="tech-tag">Node.js</span>
-        <span class="tech-tag">MySQL</span>
-        <span class="tech-tag">Stripe</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('ecommerce', 'demo')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModal('ecommerce', 'code')">📄 Ver Código</button>
-        <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 4: CHAT REAL-TIME -->
-    <div class="card">
-      <h3>💬 Chat em Tempo Real</h3>
-      <p>Mensagens instantâneas com WebSocket, salas privadas, notificações e status online.</p>
-      <div class="tech-stack">
-        <span class="tech-tag">Node.js</span>
-        <span class="tech-tag">Socket.io</span>
-        <span class="tech-tag">MongoDB</span>
-        <span class="tech-tag">Redis</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('chat', 'demo')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModal('chat', 'code')">📄 Ver Código</button>
-        <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 5: DASHBOARD -->
-    <div class="card">
-      <h3>📊 Dashboard Analytics</h3>
-      <p>Painel administrativo com gráficos, métricas, relatórios e visualização de dados em tempo real.</p>
-      <div class="tech-stack">
-        <span class="tech-tag">React</span>
-        <span class="tech-tag">Chart.js</span>
-        <span class="tech-tag">API</span>
-        <span class="tech-tag">CSS Grid</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('dashboard', 'demo')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModal('dashboard', 'code')">📄 Ver Código</button>
-        <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 6: KANBAN BOARD -->
-    <div class="card">
-      <h3>📋 Kanban Board</h3>
-      <p>Gerenciamento de tarefas com drag & drop, colunas personalizáveis e colaboração em equipe.</p>
-      <div class="tech-stack">
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">HTML5</span>
-        <span class="tech-tag">CSS3</span>
-        <span class="tech-tag">LocalStorage</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('kanban', 'demo')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModal('kanban', 'code')">📄 Ver Código</button>
-        <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 7: PYTHON DATA -->
-    <div class="card">
-      <h3>📈 Análise de Dados Python</h3>
-      <p>Análise exploratória, visualizações, estatísticas e machine learning básico com Pandas.</p>
-      <div class="tech-stack">
-        <span class="tech-tag">Python</span>
-        <span class="tech-tag">Pandas</span>
-        <span class="tech-tag">NumPy</span>
-        <span class="tech-tag">Matplotlib</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('python-data', 'demo')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModal('python-data', 'code')">📄 Ver Código</button>
-        <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 8: WEATHER APP -->
-    <div class="card">
-      <h3>🌤️ Weather App API</h3>
-      <p>Aplicação de clima consumindo API externa, geolocalização e histórico de buscas.</p>
-      <div class="tech-stack">
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">Fetch API</span>
-        <span class="tech-tag">OpenWeather</span>
-        <span class="tech-tag">LocalStorage</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('weather', 'demo')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModal('weather', 'code')">📄 Ver Código</button>
-        <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 9: URL SHORTENER -->
-    <div class="card">
-      <h3>🔗 URL Shortener</h3>
-      <p>Encurtador de URLs com analytics, QR Code, links personalizados e expiração automática.</p>
-      <div class="tech-stack">
-        <span class="tech-tag">Node.js</span>
-        <span class="tech-tag">Express</span>
-        <span class="tech-tag">MongoDB</span>
-        <span class="tech-tag">QRCode</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('url-shortener', 'demo')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModal('url-shortener', 'code')">📄 Ver Código</button>
-        <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-    </div>
-
-    <!-- PROJETO 10: FILE UPLOAD -->
-    <div class="card">
-      <h3>📁 Upload Seguro</h3>
-      <p>Sistema de upload com validação, antivírus, criptografia e armazenamento em nuvem.</p>
-      <div class="tech-stack">
-        <span class="tech-tag">Node.js</span>
-        <span class="tech-tag">Multer</span>
-        <span class="tech-tag">AWS S3</span>
-        <span class="tech-tag">Crypto</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline" onclick="openModal('file-upload', 'demo')">▶ Executar Demo</button>
-        <button class="btn btn-outline" onclick="openModal('file-upload', 'code')">📄 Ver Código</button>
-        <a href="#" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section>
-  <h2>📜 Certificações -- Programação</h2>
-  <div class="courses-grid">
-    <div class="course-card">
-      <h4>Salesforce Administrador</h4>
-      <div class="provider">Udemy</div>
-      <a href="https://ude.my/UC-d1627aOa-050c-460b-9c9d-504682b711e5" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Análise de Dados em Python</h4>
-      <div class="provider">Programação Dinâmica</div>
-      <a href="https://cursa.app/pt/meu-certificado/certc4b4469ae1302805eda20f9c549456c1" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Back-end com Slim Framework (PHP)</h4>
-      <div class="provider">Cursa</div>
-      <a href="https://cursa.app/pt/meu-certificado/cert212c0b82fe81e891f7ab992845d43130" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>HTML, CSS e JavaScript (Front-end)</h4>
-      <div class="provider">Cursa</div>
-      <a href="https://cursa.app/pt/meu-certificado/cert49663393e595fc3487c59aa1ddb0e167" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Lógica de Programação</h4>
-      <div class="provider">Cursa</div>
-      <a href="https://cursa.app/pt/meu-certificado/cert6a98c57b3a86b5365eaab487fe4d1865" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Segurança da Informação</h4>
-      <div class="provider">Cursa</div>
-      <a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Desenvolvimento Web Full Stack</h4>
-      <div class="provider">Udemy</div>
-      <a href="https://ude.my/UC-b87e3e1b-d352-4ca3-9a60-1e70bddcd729" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>Node.js com Express e TypeScript</h4>
-      <div class="provider">Cursa</div>
-      <a href="https://cursa.app/pt/meu-certificado/cert784f2ad8d43a8002a35353ced34ea0c8" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>React JS</h4>
-      <div class="provider">EuProgramador</div>
-      <a href="https://cursa.app/pt/meu-certificado/cert817951b9c469739094602d09bbcaa740" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>🎓 Certificações -- Idiomas</h2>
-  <div class="courses-grid">
-    <div class="course-card">
-      <h4>🇬🇧 Inglês -- Do Básico à Fluência</h4>
-      <div class="provider">Udemy</div>
-      <a href="https://ude.my/UC-e47bf283-89c7-4f7e-852a-5cc13473a67f" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>🇪🇸 Espanhol -- A1 ao C1</h4>
-      <div class="provider">Udemy</div>
-      <a href="https://ude.my/UC-7ae1c992-03c3-4b46-9a2b-f811de737ccd" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>🇮🇹 Italiano para Brasileiros</h4>
-      <div class="provider">PontoItalian / Udemy</div>
-      <a href="https://ude.my/UC-375c8abb-31cd-4420-8005-f0034f43f8b4" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-    <div class="course-card">
-      <h4>🇩🇪 Alemão Completo (A1 ao C1)</h4>
-      <div class="provider">Udemy - Tarik Becker</div>
-      <a href="https://ude.my/UC-7dc4ccc9-ff9c-452d-8059-d5f844942702" target="_blank" class="cert-link">📄 Ver Certificado</a>
-    </div>
-  </div>
-</section>
-
-<!-- MODAL ÚNICO PARA DEMO E CÓDIGO -->
-<div id="projectModal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3 id="modalTitle">⚡ Projeto</h3>
-      <div class="modal-tabs">
-        <button class="tab-btn active" id="tabDemo" onclick="switchTab('demo')">🎯 Demo</button>
-        <button class="tab-btn" id="tabCode" onclick="switchTab('code')">📄 Código</button>
-      </div>
-      <button class="close-btn" onclick="closeModal()">×</button>
-    </div>
-    <div id="modalBody" class="modal-body">
-      <!-- Conteúdo injetado via JavaScript -->
-    </div>
-  </div>
-</div>
-
-<script>
-// --- SISTEMA DE RAIOS ---
-function createLightning() {
-  const container = document.getElementById('lightningContainer');
-  const bolt = document.createElement('div');
-  bolt.className = 'lightning-bolt';
-  bolt.style.left = Math.random() * 100 + '%';
-  bolt.style.height = (Math.random() * 50 + 50) + 'vh';
-  bolt.style.animationDuration = (Math.random() * 200 + 100) + 'ms';
-  container.appendChild(bolt);
-  setTimeout(() => bolt.remove(), 300);
-}
-
-function randomLightning() {
-  setTimeout(() => {
-    createLightning();
-    if (Math.random() > 0.5) setTimeout(createLightning, Math.random() * 500);
-    randomLightning();
-  }, Math.random() * 8000 + 4000);
-}
-randomLightning();
-
-// --- MODAL ---
-const modal = document.getElementById('projectModal');
-const modalBody = document.getElementById('modalBody');
-const modalTitle = document.getElementById('modalTitle');
-const tabDemo = document.getElementById('tabDemo');
-const tabCode = document.getElementById('tabCode');
-let currentProject = null;
-let currentTab = 'demo';
-
-function openModal(projectType, tab = 'demo') {
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  currentProject = projectType;
-  currentTab = tab;
-  
-  updateTabs();
-  loadContent(projectType, tab);
-}
-
-function closeModal() {
-  modal.style.display = 'none';
-  modalBody.innerHTML = '';
-  document.body.style.overflow = 'auto';
-  currentProject = null;
-}
-
-function switchTab(tab) {
-  currentTab = tab;
-  updateTabs();
-  loadContent(currentProject, tab);
-}
-
-function updateTabs() {
-  if (currentTab === 'demo') {
-    tabDemo.classList.add('active');
-    tabCode.classList.remove('active');
-  } else {
-    tabDemo.classList.remove('active');
-    tabCode.classList.add('active');
-  }
-}
-
-function loadContent(projectType, tab) {
-  if (tab === 'demo') {
-    modalTitle.innerText = getProjectTitle(projectType) + ' - Demo';
-    loadDemo(projectType);
-  } else {
-    modalTitle.innerText = getProjectTitle(projectType) + ' - Código';
-    loadCode(projectType);
-  }
-}
-
-function getProjectTitle(type) {
-  const titles = {
-    'api-rest': '🔌 API REST com JWT',
-    'auth': '🔐 Sistema de Autenticação',
-    'ecommerce': '🛒 E-Commerce Completo',
-    'chat': '💬 Chat em Tempo Real',
-    'dashboard': '📊 Dashboard Analytics',
-    'kanban': '📋 Kanban Board',
-    'python-data': '📈 Análise de Dados Python',
-    'weather': '🌤️ Weather App API',
-    'url-shortener': '🔗 URL Shortener',
-    'file-upload': '📁 Upload Seguro'
-  };
-  return titles[type] || 'Projeto';
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) closeModal();
-}
-
-// --- DEMOS DOS PROJETOS ---
-
-function loadDemo(type) {
-  const demos = {
-    'api-rest': demoAPIRest,
-    'auth': demoAuth,
-    'ecommerce': demoEcommerce,
-    'chat': demoChat,
-    'dashboard': demoDashboard,
-    'kanban': demoKanban,
-    'python-data': demoPythonData,
-    'weather': demoWeather,
-    'url-shortener': demoURLShortener,
-    'file-upload': demoFileUpload
-  };
-  
-  if (demos[type]) demos[type]();
-}
-
-function loadCode(type) {
-  const codes = {
-    'api-rest': codeAPIRest,
-    'auth': codeAuth,
-    'ecommerce': codeEcommerce,
-    'chat': codeChat,
-    'dashboard': codeDashboard,
-    'kanban': codeKanban,
-    'python-data': codePythonData,
-    'weather': codeWeather,
-    'url-shortener': codeURLShortener,
-    'file-upload': codeFileUpload
-  };
-  
-  if (codes[type]) codes[type]();
-}
-
-// === DEMO: API REST ===
-function demoAPIRest() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>Endpoints Disponíveis</h4>
-        
-        <div class="api-endpoint">
-          <span class="api-method get">GET</span>
-          <code>/api/users</code>
-          <p style="color: var(--text-sec); margin: 10px 0 0 0;">Listar todos os usuários</p>
-        </div>
-        
-        <div class="api-endpoint">
-          <span class="api-method post">POST</span>
-          <code>/api/auth/login</code>
-          <p style="color: var(--text-sec); margin: 10px 0 0 0;">Autenticação JWT</p>
-        </div>
-        
-        <div class="api-endpoint">
-          <span class="api-method post">POST</span>
-          <code>/api/users</code>
-          <p style="color: var(--text-sec); margin: 10px 0 0 0;">Criar novo usuário</p>
-        </div>
-        
-        <div class="api-endpoint">
-          <span class="api-method put">PUT</span>
-          <code>/api/users/{id}</code>
-          <p style="color: var(--text-sec); margin: 10px 0 0 0;">Atualizar usuário</p>
-        </div>
-        
-        <div class="api-endpoint">
-          <span class="api-method delete">DELETE</span>
-          <code>/api/users/{id}</code>
-          <p style="color: var(--text-sec); margin: 10px 0 0 0;">Deletar usuário</p>
-        </div>
-        
-        <button class="demo-btn" onclick="testAPI()">🧪 Testar API</button>
-        
-        <div id="apiResult" class="demo-result">
-          <strong style="color: var(--success);">✅ Resposta da API:</strong>
-          <pre style="margin: 15px 0 0 0; overflow-x: auto;">{
-  "success": true,
-  "data": {
-    "id": 1,
-    "name": "Luis Gustavo",
-    "email": "gustavoluis.v.c.1016@gmail.com",
-    "created_at": "2026-03-20T10:30:00Z"
-  },
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}</pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function testAPI() {
-  document.getElementById('apiResult').classList.add('show');
-}
-
-// === DEMO: AUTH ===
-function demoAuth() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <div class="auth-form" id="authForm">
-          <h4 style="text-align: center; margin-bottom: 25px;">🔐 Login</h4>
-          <div id="authMessage"></div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="authEmail" value="admin@exemplo.com">
+  <!-- HERO SECTION -->
+  <header>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Desenvolvedor Full Stack Júnior</h1>
+          <p class="subtitle">Buscando minha primeira oportunidade na área de tecnologia</p>
+          
+          <div class="objective">
+            <strong>🎯 Objetivo:</strong> Atuar como Desenvolvedor Júnior, com foco em desenvolvimento web e back-end, aplicando conhecimentos práticos em PHP, JavaScript e Python, com projetos publicados no GitHub.
           </div>
-          <div class="form-group">
-            <label>Senha</label>
-            <input type="password" id="authPassword" value="admin123">
+
+          <div class="hero-cta">
+            <a href="#projetos" class="btn btn-primary">🚀 Ver Projetos</a>
+            <a href="Curriculo_Luis_Gustavo_2026.pdf" download class="btn btn-secondary">📄 Baixar CV</a>
+            <a href="https://linkedin.com/in/luisgustavoleao" target="_blank" class="btn btn-outline">💼 LinkedIn</a>
           </div>
-          <button class="demo-btn" style="width: 100%;" onclick="authLogin()">Entrar</button>
-          <p style="text-align: center; color: var(--text-sec); margin: 15px 0 0 0; font-size: 0.85rem;">
-            Use: admin@exemplo.com / admin123
+
+          <div class="hero-meta">
+            <span>📍 Fortaleza, CE</span>
+            <span>📧 <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a></span>
+            <span>📱 <a href="tel:+5585985841344">(85) 98584-1344</a></span>
+            <span>🔗 <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a></span>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <span class="badge">✅ Disponível para remoto</span>
+            <span class="badge badge-outline" style="margin-left: 8px;">🔄 Híbrido em Fortaleza</span>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <div class="profile-card">
+            <div class="profile-avatar">LG</div>
+            <div class="profile-name">Luis Gustavo Verissimo Cavalcante</div>
+            <div class="profile-role">Desenvolvedor Júnior</div>
+            <div class="profile-stats">
+              <div class="stat">
+                <div class="stat-value">10+</div>
+                <div class="stat-label">Projetos</div>
+              </div>
+              <div class="stat">
+                <div class="stat-value">13</div>
+                <div class="stat-label">Certificações</div>
+              </div>
+              <div class="stat">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Idiomas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SOBRE MIM -->
+  <section class="section" id="sobre">
+    <div class="container">
+      <h2 class="section-title">👨‍💻 Sobre Mim</h2>
+      
+      <div class="about-grid">
+        <div class="about-story">
+          <p>
+            Sou um desenvolvedor em formação contínua, com foco em <strong>back-end e desenvolvimento web</strong>. 
+            Minha jornada na programação é marcada pelo <strong>autodidatismo e disciplina</strong> — estudo diariamente, 
+            construo projetos reais e publico tudo no GitHub para demonstrar minha evolução.
           </p>
-        </div>
-        
-        <div id="authDashboard" style="display: none;">
-          <h4 style="color: var(--success); text-align: center;">✅ Login Realizado!</h4>
-          <div class="dashboard-grid">
-            <div class="dash-card">
-              <div class="dash-value">1</div>
-              <div class="dash-label">Usuário Logado</div>
-            </div>
-            <div class="dash-card green">
-              <div class="dash-value">Ativo</div>
-              <div class="dash-label">Status</div>
-            </div>
-            <div class="dash-card orange">
-              <div class="dash-value">24h</div>
-              <div class="dash-label">Token JWT</div>
-            </div>
-          </div>
-          <button class="demo-btn" style="width: 100%; margin-top: 20px;" onclick="authLogout()">Sair</button>
-        </div>
-      </div>
-    </div>
-  `;
-}
+          <p>
+            Apesar de minha experiência profissional anterior estar nas áreas de vendas e atendimento, 
+            desenvolvi habilidades transferíveis valiosas: <strong>comunicação clara, resolução de problemas 
+            sob pressão e foco em resultados</strong>. Hoje, direciono toda essa energia para a área de tecnologia.
+          </p>
+          <p>
+            Acredito que a prática constante é o caminho para a excelência. Por isso, cada projeto no meu 
+            portfólio foi construído com um propósito: resolver um problema real, aplicar uma nova tecnologia 
+            ou consolidar um conceito aprendido.
+          </p>
 
-function authLogin() {
-  const email = document.getElementById('authEmail').value;
-  const password = document.getElementById('authPassword').value;
-  
-  if (email === 'admin@exemplo.com' && password === 'admin123') {
-    document.getElementById('authForm').style.display = 'none';
-    document.getElementById('authDashboard').style.display = 'block';
-  } else {
-    document.getElementById('authMessage').innerHTML = '<div style="color: var(--danger); padding: 10px; background: rgba(239,68,68,0.2); border-radius: 6px; margin-bottom: 15px;">❌ Credenciais inválidas!</div>';
-  }
-}
-
-function authLogout() {
-  document.getElementById('authForm').style.display = 'block';
-  document.getElementById('authDashboard').style.display = 'none';
-  document.getElementById('authMessage').innerHTML = '';
-}
-
-// === DEMO: E-COMMERCE ===
-let cart = [];
-function demoEcommerce() {
-  cart = [];
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>Produtos Disponíveis</h4>
-        <div class="product-grid">
-          <div class="product-card">
-            <div class="emoji">👟</div>
-            <h5>Tênis Esportivo</h5>
-            <div class="price">R$ 299,90</div>
-            <button class="demo-btn" onclick="addToCart('Tênis', 299.90)">Adicionar</button>
-          </div>
-          <div class="product-card">
-            <div class="emoji">🎧</div>
-            <h5>Headphone</h5>
-            <div class="price">R$ 459,90</div>
-            <button class="demo-btn" onclick="addToCart('Headphone', 459.90)">Adicionar</button>
-          </div>
-          <div class="product-card">
-            <div class="emoji">⌚</div>
-            <h5>Smartwatch</h5>
-            <div class="price">R$ 899,90</div>
-            <button class="demo-btn" onclick="addToCart('Smartwatch', 899.90)">Adicionar</button>
-          </div>
-          <div class="product-card">
-            <div class="emoji">📱</div>
-            <h5>Smartphone</h5>
-            <div class="price">R$ 2.499,90</div>
-            <button class="demo-btn" onclick="addToCart('Smartphone', 2499.90)">Adicionar</button>
+          <div class="about-highlights">
+            <div class="highlight-card">
+              <h4>🎓 Aprendizado Contínuo</h4>
+              <p>Estudo diariamente através de cursos, documentação e prática em projetos pessoais.</p>
+            </div>
+            <div class="highlight-card">
+              <h4>🔧 Foco em Prática</h4>
+              <p>Prefiro aprender construindo. Cada conceito novo é aplicado imediatamente em código.</p>
+            </div>
+            <div class="highlight-card">
+              <h4>🤝 Soft Skills</h4>
+              <p>Comunicação, organização e comprometimento — habilidades que trago de experiências anteriores.</p>
+            </div>
           </div>
         </div>
-        
-        <div class="cart-section">
-          <h4>🛒 Carrinho</h4>
-          <div id="cartItems" style="color: var(--text-sec); margin: 15px 0;">Carrinho vazio</div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid #475569;">
-            <strong>Total:</strong>
-            <strong style="color: var(--success); font-size: 1.3rem;" id="cartTotal">R$ 0,00</strong>
+
+        <div>
+          <div class="skills-section">
+            <h3>⚡ Stack Principal</h3>
+            <div class="skills-grid">
+              <span class="skill-tag primary">PHP</span>
+              <span class="skill-tag primary">JavaScript</span>
+              <span class="skill-tag primary">Python</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Slim Framework</span>
+              <span class="skill-tag">Express.js</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">Git & GitHub</span>
+              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">HTML5 & CSS3</span>
+            </div>
           </div>
-          <button class="demo-btn" style="width: 100%; margin-top: 15px;" onclick="checkout()">Finalizar Compra</button>
+
+          <div class="skills-section">
+            <h3>🌍 Idiomas</h3>
+            <div class="languages-grid">
+              <span class="lang-tag">🇬🇧 Inglês – Fluência</span>
+              <span class="lang-tag">🇪🇸 Espanhol – C1</span>
+              <span class="lang-tag">🇮🇹 Italiano – Avançado</span>
+              <span class="lang-tag">🇩🇪 Alemão – C1</span>
+            </div>
+          </div>
+
+          <div class="skills-section">
+            <h3>🛠️ Ferramentas</h3>
+            <div class="skills-grid">
+              <span class="skill-tag">VS Code</span>
+              <span class="skill-tag">Postman</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Salesforce</span>
+              <span class="skill-tag">Linux</span>
+              <span class="skill-tag">Docker (básico)</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  `;
-}
+  </section>
 
-function addToCart(name, price) {
-  cart.push({name, price});
-  updateCart();
-}
-
-function updateCart() {
-  const items = document.getElementById('cartItems');
-  const total = document.getElementById('cartTotal');
-  
-  if (cart.length === 0) {
-    items.innerHTML = 'Carrinho vazio';
-    total.innerText = 'R$ 0,00';
-    return;
-  }
-  
-  items.innerHTML = cart.map(item => 
-    `<div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #334155;">
-      <span>${item.name}</span>
-      <span>R$ ${item.price.toFixed(2)}</span>
-    </div>`
-  ).join('');
-  
-  const sum = cart.reduce((acc, item) => acc + item.price, 0);
-  total.innerText = 'R$ ' + sum.toFixed(2);
-}
-
-function checkout() {
-  if (cart.length === 0) {
-    alert('Carrinho vazio!');
-    return;
-  }
-  alert('✅ Compra finalizada com sucesso!');
-  cart = [];
-  updateCart();
-}
-
-// === DEMO: CHAT ===
-function demoChat() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <div class="chat-container">
-          <div class="chat-header">💬 Sala: Desenvolvimento Web</div>
-          <div class="chat-messages" id="chatMessages">
-            <div class="chat-message received">
-              <strong>Ana</strong><br>
-              Alguém trabalhando no projeto React?
+  <!-- EXPERIÊNCIA -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title">💼 Experiência Profissional</h2>
+      
+      <div class="experience-grid">
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Teleatendimento</div>
+              <div class="experience-company">Concentrix</div>
             </div>
-            <div class="chat-message sent">
-              Sim! Estou com dúvidas sobre useEffect
-            </div>
-            <div class="chat-message received">
-              <strong>Carlos</strong><br>
-              Posso ajudar! Qual sua dúvida?
-            </div>
+            <span class="experience-period">Set/2024 – Abr/2025</span>
           </div>
-          <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Digite uma mensagem..." onkeypress="if(event.key==='Enter')sendMessage()">
-            <button onclick="sendMessage()">Enviar</button>
-          </div>
+          <ul>
+            <li>Atendimento ao cliente via telefone com foco em resolução de demandas</li>
+            <li>Registro preciso de informações em sistemas internos</li>
+            <li>Cumprimento rigoroso de indicadores de qualidade e produtividade</li>
+            <li>Desenvolvimento de habilidades de comunicação e empatia</li>
+          </ul>
         </div>
-        
-        <div style="margin-top: 20px; padding: 20px; background: #334155; border-radius: 8px;">
-          <h4 style="color: var(--accent);">🚀 Tecnologias</h4>
-          <ul style="color: var(--text-sec); padding-left: 20px; margin: 10px 0 0 0;">
-            <li>WebSocket (Socket.io)</li>
-            <li>Salas privadas</li>
-            <li>Status online/offline</li>
-            <li>Notificações em tempo real</li>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Consultor de Vendas</div>
+              <div class="experience-company">Grupo Dádiva</div>
+            </div>
+            <span class="experience-period">2023 – 2024</span>
+          </div>
+          <ul>
+            <li>Vendas consultivas com foco em entender necessidades do cliente</li>
+            <li>Prospecção ativa e estratégias de fidelização</li>
+            <li>Acompanhamento de metas e análise de resultados comerciais</li>
+            <li>Trabalho em equipe e adaptação a diferentes perfis de cliente</li>
           </ul>
         </div>
       </div>
+
+      <p style="color: var(--text-secondary); margin-top: 32px; font-style: italic;">
+        💡 <strong>Nota:</strong> Embora minha experiência formal não seja na área de TI, as competências desenvolvidas 
+        — como comunicação, organização, foco em resultados e resolução de problemas — são diretamente aplicáveis 
+        ao desenvolvimento de software e ao trabalho em equipe ágil.
+      </p>
     </div>
-  `;
-}
+  </section>
 
-function sendMessage() {
-  const input = document.getElementById('chatInput');
-  const messages = document.getElementById('chatMessages');
-  
-  if (input.value.trim()) {
-    const msg = document.createElement('div');
-    msg.className = 'chat-message sent';
-    msg.innerHTML = input.value;
-    messages.appendChild(msg);
-    input.value = '';
-    messages.scrollTop = messages.scrollHeight;
-  }
-}
-
-// === DEMO: DASHBOARD ===
-function demoDashboard() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>Métricas em Tempo Real</h4>
-        <div class="dashboard-grid">
-          <div class="dash-card">
-            <div class="dash-value">1,247</div>
-            <div class="dash-label">Usuários</div>
-          </div>
-          <div class="dash-card green">
-            <div class="dash-value">R$ 84.5K</div>
-            <div class="dash-label">Vendas</div>
-          </div>
-          <div class="dash-card orange">
-            <div class="dash-value">68.5%</div>
-            <div class="dash-label">Conversão</div>
-          </div>
-          <div class="dash-card blue">
-            <div class="dash-value">98.5%</div>
-            <div class="dash-label">Uptime</div>
-          </div>
-        </div>
-        
-        <div style="margin-top: 30px; background: #334155; padding: 20px; border-radius: 8px;">
-          <h4 style="color: var(--text-main);">📈 Gráfico de Vendas</h4>
-          <div style="height: 200px; background: linear-gradient(180deg, rgba(56,189,248,0.3) 0%, transparent 100%); border-bottom: 2px solid var(--accent); display: flex; align-items: flex-end; justify-content: space-around; padding: 0 20px;">
-            <div style="width: 40px; height: 60%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-            <div style="width: 40px; height: 80%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-            <div style="width: 40px; height: 45%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-            <div style="width: 40px; height: 90%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-            <div style="width: 40px; height: 70%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-            <div style="width: 40px; height: 85%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
-          </div>
-          <div style="display: flex; justify-content: space-around; margin-top: 10px; color: var(--text-sec); font-size: 0.85rem;">
-            <span>Jan</span><span>Fev</span><span>Mar</span><span>Abr</span><span>Mai</span><span>Jun</span>
-          </div>
-        </div>
+  <!-- PROJETOS -->
+  <section class="section" id="projetos">
+    <div class="container">
+      <h2 class="section-title">🚀 Projetos em Destaque</h2>
+      
+      <div class="projects-intro">
+        <strong>📌 Como ler esta seção:</strong> Cada projeto inclui: (1) o que ele faz, (2) qual problema resolve, 
+        (3) tecnologias utilizadas e (4) o que aprendi ao desenvolvê-lo. Clique nos links para ver o código completo.
       </div>
-    </div>
-  `;
-}
 
-// === DEMO: KANBAN ===
-function demoKanban() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>Gerenciamento de Tarefas</h4>
-        <div class="kanban-board">
-          <div class="kanban-column">
-            <h4>📝 A Fazer</h4>
-            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Criar API REST</div>
-            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Revisar código</div>
-            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Escrever testes</div>
-          </div>
-          <div class="kanban-column">
-            <h4>🔄 Em Progresso</h4>
-            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Desenvolver frontend</div>
-            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Configurar banco</div>
-          </div>
-          <div class="kanban-column">
-            <h4>✅ Concluído</h4>
-            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Setup do projeto</div>
-            <div class="kanban-task" draggable="true" onclick="moveTask(this)">Deploy inicial</div>
-          </div>
-        </div>
-        
-        <div style="margin-top: 20px; padding: 20px; background: #334155; border-radius: 8px;">
-          <h4 style="color: var(--accent);">✨ Funcionalidades</h4>
-          <ul style="color: var(--text-sec); padding-left: 20px; margin: 10px 0 0 0;">
-            <li>Clique para mover tarefas</li>
-            <li>Colunas personalizáveis</li>
-            <li>Prioridades e prazos</li>
-            <li>Colaboração em equipe</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  `;
-}
+      <div class="projects-grid">
 
-function moveTask(task) {
-  const columns = document.querySelectorAll('.kanban-column');
-  const currentColumn = task.parentElement;
-  let nextIndex = (Array.from(columns).indexOf(currentColumn) + 1) % columns.length;
-  columns[nextIndex].appendChild(task);
-}
-
-// === DEMO: PYTHON DATA ===
-function demoPythonData() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>Análise Exploratória de Dados</h4>
-        
-        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; font-family: monospace; color: #d4d4d4; margin: 20px 0;">
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-
-df = pd.read_csv('dados.csv')
-print(df.describe())
-plt.plot(df['date'], df['value'])
-plt.show()
-        </div>
-        
-        <button class="demo-btn" onclick="runPythonAnalysis()">▶ Executar Análise</button>
-        
-        <div id="pythonResult" class="demo-result">
-          <strong style="color: var(--success);">✅ Análise Concluída!</strong>
-          <div class="dashboard-grid" style="margin-top: 20px;">
-            <div class="dash-card">
-              <div class="dash-value">1,247</div>
-              <div class="dash-label">Registros</div>
-            </div>
-            <div class="dash-card green">
-              <div class="dash-value">98.5%</div>
-              <div class="dash-label">Dados Válidos</div>
-            </div>
-            <div class="dash-card orange">
-              <div class="dash-value">0.87</div>
-              <div class="dash-label">Correlação</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function runPythonAnalysis() {
-  document.getElementById('pythonResult').classList.add('show');
-}
-
-// === DEMO: WEATHER ===
-function demoWeather() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <div class="weather-card">
-          <div class="weather-icon">🌤️</div>
-          <div class="weather-temp">24°C</div>
-          <h4 style="color: white; margin: 10px 0;">Fortaleza, CE</h4>
-          <p style="color: rgba(255,255,255,0.9);">Parcialmente Nublado</p>
-          
-          <div style="display: flex; justify-content: space-around; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.3);">
+        <!-- PROJETO 1 -->
+        <div class="project-card animate">
+          <div class="project-header">
+            <div class="project-icon">🔌</div>
             <div>
-              <div style="font-size: 1.5rem;">💧</div>
-              <div>65%</div>
-              <div style="font-size: 0.8rem; opacity: 0.8;">Umidade</div>
+              <div class="project-title">API REST com Autenticação JWT</div>
+              <span class="badge">PHP • Slim Framework</span>
             </div>
+          </div>
+          <p class="project-description">
+            API completa para gestão de usuários com CRUD, autenticação via JWT, validação de dados e documentação de endpoints.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Fornecer uma base segura e escalável para aplicações que necessitam de autenticação e gerenciamento de usuários.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">PHP 8</span>
+            <span class="tech-tag">Slim Framework</span>
+            <span class="tech-tag">JWT</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">Composer</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Boas práticas de API REST, segurança com tokens, estrutura MVC e tratamento de erros.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+              <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank" class="btn btn-outline btn-sm">🌐 Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJETO 2 -->
+        <div class="project-card animate delay-1">
+          <div class="project-header">
+            <div class="project-icon">📊</div>
             <div>
-              <div style="font-size: 1.5rem;">💨</div>
-              <div>12 km/h</div>
-              <div style="font-size: 0.8rem; opacity: 0.8;">Vento</div>
+              <div class="project-title">Análise de Dados com Python</div>
+              <span class="badge">Python • Pandas</span>
             </div>
+          </div>
+          <p class="project-description">
+            Script para análise exploratória de dados, com limpeza, transformação e visualização de datasets reais.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Automatizar a extração de insights de planilhas e bancos de dados, reduzindo tempo de análise manual.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+            <span class="tech-tag">Matplotlib</span>
+            <span class="tech-tag">Jupyter</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Manipulação de dados com Pandas, criação de gráficos informativos e boas práticas em análise de dados.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJETO 3 -->
+        <div class="project-card animate delay-2">
+          <div class="project-header">
+            <div class="project-icon">🌐</div>
             <div>
-              <div style="font-size: 1.5rem;">👁️</div>
-              <div>10 km</div>
-              <div style="font-size: 0.8rem; opacity: 0.8;">Visibilidade</div>
+              <div class="project-title">Portfólio Web Responsivo</div>
+              <span class="badge">HTML • CSS • JS</span>
+            </div>
+          </div>
+          <p class="project-description">
+            Site pessoal responsivo com design moderno, animações suaves e otimização para SEO e performance.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Criar uma presença online profissional que comunique claramente habilidades e projetos para recrutadores.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Flexbox/Grid</span>
+            <span class="tech-tag">SEO</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Design responsivo, acessibilidade, otimização de performance e boas práticas de HTML semântico.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank" class="btn btn-secondary btn-sm">🌐 Acessar Site</a>
+              <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-outline btn-sm">🐙 Ver Código</a>
             </div>
           </div>
         </div>
-        
-        <button class="demo-btn" style="width: 100%; margin-top: 20px;" onclick="refreshWeather()">🔄 Atualizar</button>
-      </div>
-    </div>
-  `;
-}
 
-function refreshWeather() {
-  alert('🌤️ Dados atualizados com sucesso!');
-}
-
-// === DEMO: URL SHORTENER ===
-function demoURLShortener() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <div class="url-shortener">
-          <h4 style="text-align: center;">Encurte sua URL</h4>
-          <div class="url-input-group">
-            <input type="url" id="longUrl" placeholder="Cole sua URL longa aqui..." value="https://exemplo.com/pagina-muito-longa">
-            <button class="demo-btn" onclick="shortenUrl()">Encurtar</button>
-          </div>
-          
-          <div id="shortUrl" class="shortened-url">
-            <strong style="color: var(--success);">✅ URL Encurtada:</strong>
-            <div style="background: #1e293b; padding: 15px; border-radius: 6px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
-              <code style="color: var(--accent);">short.link/abc123</code>
-              <button class="demo-btn" style="padding: 6px 12px; margin: 0;" onclick="copyUrl()">📋 Copiar</button>
+        <!-- PROJETO 4 -->
+        <div class="project-card animate">
+          <div class="project-header">
+            <div class="project-icon">🗄️</div>
+            <div>
+              <div class="project-title">Sistema de Gestão com PHP</div>
+              <span class="badge">PHP • MySQL</span>
             </div>
-            <div style="margin-top: 15px; display: flex; gap: 15px;">
-              <div style="flex: 1; background: #1e293b; padding: 10px; border-radius: 6px; text-align: center;">
-                <div style="font-size: 1.5rem; color: var(--accent);">1,247</div>
-                <div style="font-size: 0.85rem; color: var(--text-sec);">Cliques</div>
-              </div>
-              <div style="flex: 1; background: #1e293b; padding: 10px; border-radius: 6px; text-align: center;">
-                <div style="font-size: 1.5rem; color: var(--accent);">QR</div>
-                <div style="font-size: 0.85rem; color: var(--text-sec);">Code</div>
-              </div>
+          </div>
+          <p class="project-description">
+            Aplicação web para cadastro, edição e exclusão de registros com interface administrativa e persistência em banco de dados.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Substituir planilhas manuais por um sistema centralizado para gestão de informações.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">PDO</span>
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">Sessions</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Conexão segura com banco de dados, prevenção de SQL injection, estrutura de pastas e organização de código.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="https://github.com/luisgustavoleao896-cpu/php.git" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  `;
-}
 
-function shortenUrl() {
-  document.getElementById('shortUrl').classList.add('show');
-}
-
-function copyUrl() {
-  alert('📋 URL copiada!');
-}
-
-// === DEMO: FILE UPLOAD ===
-function demoFileUpload() {
-  modalBody.innerHTML = `
-    <div class="demo-container">
-      <div class="demo-box">
-        <h4>Upload de Arquivos</h4>
-        
-        <div class="upload-zone" onclick="triggerUpload()">
-          <div class="upload-icon">📁</div>
-          <h4>Arraste arquivos aqui</h4>
-          <p style="color: var(--text-sec);">ou clique para selecionar</p>
-          <p style="color: var(--text-sec); font-size: 0.85rem; margin-top: 10px;">PDF, DOC, JPG, PNG - Máx 10MB</p>
-        </div>
-        
-        <div id="uploadResult" class="demo-result">
-          <strong style="color: var(--success);">✅ Upload Realizado!</strong>
-          <div style="background: #1e293b; padding: 15px; border-radius: 6px; margin-top: 15px; display: flex; align-items: center; gap: 15px;">
-            <div style="font-size: 2rem;">📄</div>
-            <div style="flex: 1;">
-              <strong>documento.pdf</strong><br>
-              <small style="color: var(--text-sec);">2.4 MB • Criptografado</small>
+        <!-- PROJETO 5 -->
+        <div class="project-card animate delay-1">
+          <div class="project-header">
+            <div class="project-icon">🔐</div>
+            <div>
+              <div class="project-title">Sistema de Login Seguro</div>
+              <span class="badge">JavaScript • Node.js</span>
             </div>
-            <div style="color: var(--success);">✓ Seguro</div>
+          </div>
+          <p class="project-description">
+            Módulo de autenticação com hash de senhas, tokens de sessão, validação de formulário e proteção contra ataques comuns.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Implementar autenticação segura em aplicações web, protegendo dados de usuários.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express</span>
+            <span class="tech-tag">bcrypt</span>
+            <span class="tech-tag">JWT</span>
+            <span class="tech-tag">dotenv</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Segurança em aplicações web, hash de senhas, middleware de autenticação e boas práticas com variáveis de ambiente.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="#" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+            </div>
           </div>
         </div>
+
+        <!-- PROJETO 6 -->
+        <div class="project-card animate delay-2">
+          <div class="project-header">
+            <div class="project-icon">📱</div>
+            <div>
+              <div class="project-title">Landing Page Moderna</div>
+              <span class="badge">HTML • CSS • JS</span>
+            </div>
+          </div>
+          <p class="project-description">
+            Página de conversão com animações CSS, formulário funcional, otimização mobile e integração com APIs externas.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Criar uma experiência de usuário envolvente que converta visitantes em leads.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3 Animations</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Fetch API</span>
+            <span class="tech-tag">LocalStorage</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Animações performáticas, formulários com validação, consumo de APIs e persistência local.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="#" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+              <a href="#" class="btn btn-outline btn-sm">🌐 Demo</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-primary">
+          🐙 Ver Todos os Projetos no GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICAÇÕES -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title">📜 Certificações</h2>
+      
+      <h3 style="color: var(--accent); margin: 32px 0 20px;">💻 Programação & Tecnologia</h3>
+      <div class="courses-grid">
+        <div class="course-card">
+          <h4>Desenvolvimento Web Full Stack</h4>
+          <div class="course-provider">Udemy</div>
+          <a href="https://ude.my/UC-b87e3e1b-d352-4ca3-9a60-1e70bddcd729" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Back-end com Slim Framework (PHP)</h4>
+          <div class="course-provider">Cursa</div>
+          <a href="https://cursa.app/pt/meu-certificado/cert212c0b82fe81e891f7ab992845d43130" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Análise de Dados em Python</h4>
+          <div class="course-provider">Programação Dinâmica</div>
+          <a href="https://cursa.app/pt/meu-certificado/certc4b4469ae1302805eda20f9c549456c1" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Node.js com Express e TypeScript</h4>
+          <div class="course-provider">Cursa</div>
+          <a href="https://cursa.app/pt/meu-certificado/cert784f2ad8d43a8002a35353ced34ea0c8" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>React JS</h4>
+          <div class="course-provider">EuProgramador</div>
+          <a href="https://cursa.app/pt/meu-certificado/cert817951b9c469739094602d09bbcaa740" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Banco de Dados MySQL</h4>
+          <div class="course-provider">Cursa</div>
+          <a href="https://cursa.app/pt/meu-certificado/cert79cb8341079f5ac898fc8a756abc177e" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Segurança da Informação</h4>
+          <div class="course-provider">Cursa</div>
+          <a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Salesforce Administrador</h4>
+          <div class="course-provider">Udemy</div>
+          <a href="https://ude.my/UC-d1627aOa-050c-460b-9c9d-504682b711e5" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+      </div>
+
+      <h3 style="color: var(--accent); margin: 40px 0 20px;">🌍 Idiomas</h3>
+      <div class="courses-grid">
+        <div class="course-card">
+          <h4>🇬🇧 Inglês – Do Básico à Fluência</h4>
+          <div class="course-provider">Udemy</div>
+          <a href="https://ude.my/UC-e47bf283-89c7-4f7e-852a-5cc13473a67f" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>🇪🇸 Espanhol – A1 ao C1</h4>
+          <div class="course-provider">Udemy</div>
+          <a href="https://ude.my/UC-7ae1c992-03c3-4b46-9a2b-f811de737ccd" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>🇮🇹 Italiano para Brasileiros</h4>
+          <div class="course-provider">PontoItalian / Udemy</div>
+          <a href="https://ude.my/UC-375c8abb-31cd-4420-8005-f0034f43f8b4" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>🇩🇪 Alemão Completo (A1 ao C1)</h4>
+          <div class="course-provider">Udemy - Tarik Becker</div>
+          <a href="https://ude.my/UC-7dc4ccc9-ff9c-452d-8059-d5f844942702" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO / CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-section">
+        <h3>🤝 Vamos Conversar?</h3>
+        <p>
+          Estou em busca da minha primeira oportunidade como Desenvolvedor Júnior. 
+          Se sua equipe precisa de alguém dedicado, com sede de aprendizado e foco em entregar valor, 
+          adoraria conhecer mais sobre a vaga.
+        </p>
         
-        <div style="margin-top: 20px; padding: 20px; background: #334155; border-radius: 8px;">
-          <h4 style="color: var(--accent);">🔒 Recursos de Segurança</h4>
-          <ul style="color: var(--text-sec); padding-left: 20px; margin: 10px 0 0 0;">
-            <li>Validação de tipo e extensão</li>
-            <li>Scan antivírus</li>
-            <li>Criptografia AES-256</li>
-            <li>Armazenamento AWS S3</li>
-          </ul>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span class="contact-icon">📧</span>
+            <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📱</span>
+            <a href="tel:+5585985841344">(85) 98584-1344</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">💼</span>
+            <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="btn-group" style="justify-content: center;">
+          <a href="Curriculo_Luis_Gustavo_2026.pdf" download class="btn btn-primary">📄 Baixar Currículo em PDF</a>
+          <a href="mailto:gustavoluis.v.c.1016@gmail.com?subject=Oportunidade para Desenvolvedor Júnior" class="btn btn-secondary">✉️ Enviar E-mail</a>
         </div>
       </div>
     </div>
-  `;
-}
+  </section>
 
-function triggerUpload() {
-  document.getElementById('uploadResult').classList.add('show');
-}
-
-// === CÓDIGOS DOS PROJETOS ===
-
-function codeAPIRest() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active"><span>🐘</span> index.php</div>
-        <div class="file-item"><span>🛣️</span> routes.php</div>
-        <div class="file-item"><span>🎮</span> UserController.php</div>
-        <div class="file-item"><span>🗄️</span> User.php</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">index.php</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#sobre">Sobre</a>
+          <a href="#projetos">Projetos</a>
+          <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
+          <a href="Curriculo_Luis_Gustavo_2026.pdf" download>Download CV</a>
         </div>
-        <div class="code-container">
-          <pre><code>&lt;?php
-require 'vendor/autoload.php';
-
-use Slim\App;
-use Controllers\UserController;
-
-$app = new App();
-
-// Rotas da API
-$app-&gt;get('/api/users', [UserController::class, 'index']);
-$app-&gt;post('/api/auth/login', [UserController::class, 'login']);
-$app-&gt;post('/api/users', [UserController::class, 'store']);
-$app-&gt;put('/api/users/{id}', [UserController::class, 'update']);
-$app-&gt;delete('/api/users/{id}', [UserController::class, 'destroy']);
-
-$app-&gt;run();
-?&gt;</code></pre>
+        
+        <div class="license">
+          <strong>📄 Licença:</strong> Este portfólio e seus códigos estão sob a <strong>MIT License</strong>. 
+          Sinta-se à vontade para usar, modificar e compartilhar — apenas mantenha a atribuição.
         </div>
+        
+        <p class="copyright">
+          © 2026 Luis Gustavo Verissimo Cavalcante • Fortaleza, CE • 
+          <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a>
+        </p>
       </div>
     </div>
-  `;
-}
+  </footer>
 
-function codeAuth() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active"><span>🟢</span> auth.js</div>
-        <div class="file-item"><span>🔐</span> jwt.js</div>
-        <div class="file-item"><span>🎮</span> userController.js</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">auth.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-
-async function hashPassword(password) {
-    const salt = await bcrypt.genSalt(12);
-    return await bcrypt.hash(password, salt);
-}
-
-function generateToken(user) {
-    return jwt.sign(
-        { id: user.id, email: user.email },
-        process.env.JWT_SECRET,
-        { expiresIn: '24h' }
-    );
-}
-
-module.exports = { hashPassword, generateToken };</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codeEcommerce() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active"><span>⚛️</span> Cart.js</div>
-        <div class="file-item"><span>📦</span> Product.js</div>
-        <div class="file-item"><span>💳</span> Checkout.js</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">Cart.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>class Cart {
-    constructor() {
-        this.items = [];
-    }
-    
-    add(product, quantity) {
-        this.items.push({ product, quantity });
-        this.save();
-    }
-    
-    getTotal() {
-        return this.items.reduce((total, item) => 
-            total + (item.product.price * item.quantity), 0
-        );
-    }
-    
-    save() {
-        localStorage.setItem('cart', JSON.stringify(this.items));
-    }
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codeChat() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active"><span>🟢</span> server.js</div>
-        <div class="file-item"><span>⚡</span> socket.js</div>
-        <div class="file-item"><span>🗄️</span> message.js</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">server.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>const io = require('socket.io')(server);
-
-io.on('connection', (socket) => {
-    console.log('User connected:', socket.id);
-    
-    socket.on('sendMessage', (data) => {
-        io.emit('receiveMessage', {
-            user: data.user,
-            message: data.message,
-            time: new Date()
-        });
+  <script>
+    // Animação suave ao rolar para seções
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
-    
-    socket.on('disconnect', () => {
-        console.log('User disconnected');
-    });
-});</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
 
-function codeDashboard() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active"><span>⚛️</span> Dashboard.jsx</div>
-        <div class="file-item"><span>📈</span> Chart.jsx</div>
-        <div class="file-item"><span>📊</span> Metrics.jsx</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">Dashboard.jsx</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>function Dashboard() {
-    const [metrics, setMetrics] = useState({});
-    
-    useEffect(() => {
-        fetch('/api/metrics')
-            .then(res =&gt; res.json())
-            .then(data =&gt; setMetrics(data));
-    }, []);
-    
-    return (
-        &lt;div className="dashboard"&gt;
-            &lt;Metrics data={metrics} /&gt;
-            &lt;Chart data={metrics.sales} /&gt;
-        &lt;/div&gt;
-    );
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codeKanban() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active"><span>⚡</span> kanban.js</div>
-        <div class="file-item"><span>🎨</span> style.css</div>
-        <div class="file-item"><span>📄</span> index.html</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">kanban.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>function dragStart(event) {
-    event.dataTransfer.setData('text', event.target.id);
-}
-
-function drop(event) {
-    event.preventDefault();
-    const id = event.dataTransfer.getData('text');
-    event.target.appendChild(document.getElementById(id));
-    saveToLocalStorage();
-}
-
-function saveToLocalStorage() {
-    const tasks = document.querySelectorAll('.kanban-task');
-    localStorage.setItem('tasks', JSON.stringify(
-        Array.from(tasks).map(t =&gt; t.innerText)
-    ));
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codePythonData() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active"><span>🐍</span> main.py</div>
-        <div class="file-item"><span>📊</span> analysis.py</div>
-        <div class="file-item"><span>📈</span> viz.py</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">main.py</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Carregar dados
-df = pd.read_csv('dados.csv')
-
-# Estatísticas
-print(df.describe())
-
-# Visualização
-plt.figure(figsize=(10, 6))
-plt.plot(df['date'], df['value'])
-plt.title('Análise de Dados')
-plt.xlabel('Data')
-plt.ylabel('Valor')
-plt.grid(True)
-plt.show()
-
-# Machine Learning
-from sklearn.model_selection import train_test_split
-X = df[['feature1', 'feature2']]
-y = df['target']
-X_train, X_test = train_test_split(X, y, test_size=0.2)
-print('Modelo treinado!')</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codeWeather() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active"><span>⚡</span> weather.js</div>
-        <div class="file-item"><span>🎨</span> style.css</div>
-        <div class="file-item"><span>📄</span> index.html</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">weather.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>async function getWeather(city) {
-    const apiKey = 'YOUR_API_KEY';
-    const response = await fetch(
-        \`https://api.openweathermap.org/data/2.5/weather?q=\${city}&appid=\${apiKey}\`
-    );
-    const data = await response.json();
-    
-    return {
-        temp: data.main.temp,
-        humidity: data.main.humidity,
-        wind: data.wind.speed,
-        description: data.weather[0].description
+    // Efeito de entrada ao rolar
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
     };
-}
 
-// Salvar histórico
-function saveHistory(city, weather) {
-    const history = JSON.parse(localStorage.getItem('weatherHistory') || '[]');
-    history.push({ city, weather, date: new Date() });
-    localStorage.setItem('weatherHistory', JSON.stringify(history));
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
 
-function codeURLShortener() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active"><span>🟢</span> app.js</div>
-        <div class="file-item"><span>🗄️</span> urlModel.js</div>
-        <div class="file-item"><span>🎮</span> urlController.js</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">app.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>const express = require('express');
-const mongoose = require('mongoose');
-const app = express();
-
-app.use(express.json());
-
-// Rotas
-app.post('/api/shorten', async (req, res) => {
-    const { url } = req.body;
-    const shortCode = generateShortCode();
-    
-    await Url.create({ originalUrl: url, shortCode });
-    
-    res.json({ 
-        shortUrl: \`https://short.link/\${shortCode}\` 
+    document.querySelectorAll('.project-card, .experience-card, .course-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
     });
-});
 
-app.get('/:shortCode', async (req, res) => {
-    const url = await Url.findOne({ shortCode: req.params.shortCode });
-    url.clicks++;
-    await url.save();
-    res.redirect(url.originalUrl);
-});
-
-app.listen(3000);</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function codeFileUpload() {
-  modalBody.innerHTML = `
-    <div class="code-viewer">
-      <div class="file-tree">
-        <h4>📁 Arquivos</h4>
-        <div class="file-item active"><span>🟢</span> upload.js</div>
-        <div class="file-item"><span>🔒</span> security.js</div>
-        <div class="file-item"><span>☁️</span> s3.js</div>
-      </div>
-      <div class="code-content">
-        <div class="code-header">
-          <span class="code-filename">upload.js</span>
-          <button class="copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="code-container">
-          <pre><code>const multer = require('multer');
-const crypto = require('crypto');
-const AWS = require('aws-sdk');
-
-// Configuração do upload
-const storage = multer.memoryStorage();
-const upload = multer({ 
-    storage,
-    limits: { fileSize: 10 * 1024 * 1024 },
-    fileFilter: (req, file, cb) => {
-        const allowed = ['pdf', 'doc', 'jpg', 'png'];
-        const ext = file.originalname.split('.').pop().toLowerCase();
-        cb(null, allowed.includes(ext));
-    }
-});
-
-// Criptografia
-function encryptFile(buffer) {
-    const cipher = crypto.createCipher('aes-256-cbc', process.env.KEY);
-    return cipher.update(buffer) + cipher.final();
-}
-
-// Upload para S3
-async function uploadToS3(file, filename) {
-    const s3 = new AWS.S3();
-    return s3.upload({
-        Bucket: process.env.BUCKET,
-        Key: filename,
-        Body: file
-    }).promise();
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function copyCode() {
-  const code = document.querySelector('pre code').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    alert('✅ Código copiado para a área de transferência!');
-  });
-}
-</script>
+    // Botão de copiar e-mail
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const text = this.getAttribute('data-copy');
+        navigator.clipboard.writeText(text).then(() => {
+          const original = this.textContent;
+          this.textContent = '✓ Copiado!';
+          setTimeout(() => this.textContent = original, 2000);
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
+
