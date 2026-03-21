@@ -2,525 +2,737 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <meta name="description" content="Luis Gustavo - Front-end Developer | Projetos Reais no GitHub Pages">
-  <meta name="theme-color" content="#0f172a">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="Luis Gustavo | Front-end Developer">
-  <meta property="og:description" content="Projetos reais hospedados no GitHub Pages com demos interativas.">
-  <meta property="og:type" content="website">
-  
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
-  
-  <!-- Fonts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Luis Gustavo - Desenvolvedor Júnior especializado em PHP, JavaScript e Python">
+  <title>Luis Gustavo | Transformando Código em Soluções</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-  <title>Luis Gustavo | Front-end Developer & API Specialist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* ==================== CSS VARIABLES ==================== */
+    /* === VARIÁVEIS E RESET === */
     :root {
-      --bg-dark: #0f172a;
-      --bg-card: #1e293b;
-      --bg-light: #f8fafc;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --primary: #3b82f6;
-      --primary-glow: rgba(59, 130, 246, 0.5);
-      --accent: #10b981;
-      --accent-glow: rgba(16, 185, 129, 0.5);
+      --bg-primary: #0a0e17;
+      --bg-secondary: #111827;
+      --bg-tertiary: #1f2937;
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --accent: #60a5fa;
+      --accent-hover: #3b82f6;
+      --primary: #10b981;
+      --primary-hover: #059669;
       --warning: #f59e0b;
       --danger: #ef4444;
       --purple: #8b5cf6;
-      --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-      --border: #334155;
+      --pink: #ec4899;
+      --border: #374151;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      --gradient-1: linear-gradient(135deg, #60a5fa, #8b5cf6);
+      --gradient-2: linear-gradient(135deg, #10b981, #3b82f6);
+      --gradient-hero: linear-gradient(180deg, rgba(96, 165, 250, 0.1) 0%, transparent 100%);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* ==================== RESET & BASE ==================== */
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-main);
-      line-height: 1.6;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
       overflow-x: hidden;
-      -webkit-text-size-adjust: 100%;
     }
 
-    a { color: var(--primary); text-decoration: none; transition: var(--transition); }
-    a:hover { color: var(--text-main); }
-    img { max-width: 100%; height: auto; display: block; }
-    button { font-family: inherit; cursor: pointer; }
+    a { color: var(--accent); text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--accent-hover); }
+    
+    /* === UTILITÁRIOS === */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 100px 0; }
+    
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--border), transparent);
+      margin-left: 24px;
+    }
 
-    /* ==================== UTILITIES ==================== */
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    @media (min-width: 768px) { .container { padding: 0 24px; } }
-    
-    .section { padding: 80px 0; }
-    @media (min-width: 768px) { .section { padding: 100px 0; } }
-    
-    .text-gradient {
-      background: var(--gradient);
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: var(--gradient-2);
+      color: white;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .badge-outline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .badge-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* === BOTÕES === */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient-2);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+    .btn-secondary {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 2px solid var(--border);
+    }
+    .btn-secondary:hover { background: var(--bg-secondary); border-color: var(--accent); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .btn-sm { padding: 10px 20px; font-size: 0.85rem; }
+    .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* === HERO SECTION === */
+    header {
+      background: var(--gradient-hero);
+      padding: 120px 0 80px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .hero-content {
+      display: grid;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (min-width: 900px) { .hero-content { grid-template-columns: 1.2fr 0.8fr; } }
+
+    .hero-slogan {
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
-    .badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 20px;
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-      background: rgba(59, 130, 246, 0.1); color: var(--primary);
-      border: 1px solid rgba(59, 130, 246, 0.2);
-    }
-    .badge-live { 
-      background: rgba(16, 185, 129, 0.15); 
-      color: var(--accent); 
-      border-color: var(--accent); 
-      animation: pulse 2s infinite; 
-    }
-    .badge-gh-pages {
-      background: rgba(139, 92, 246, 0.15);
-      color: var(--purple);
-      border-color: var(--purple);
-    }
-    @keyframes pulse { 
-      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); } 
-      50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } 
-    }
-    
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
-      transition: var(--transition); border: none; text-decoration: none;
-      min-height: 50px; -webkit-appearance: none;
-    }
-    .btn:active { transform: scale(0.98); }
-    .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 14px var(--primary-glow); }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 20px var(--primary-glow); }
-    .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border); }
-    .btn-secondary:hover { background: var(--bg-dark); border-color: var(--primary); }
-    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
-    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
-    .btn-success { background: var(--accent); color: white; box-shadow: 0 4px 14px var(--accent-glow); }
-    .btn-success:hover { transform: translateY(-3px); box-shadow: 0 8px 20px var(--accent-glow); }
-    .btn-purple { background: var(--purple); color: white; }
-    .btn-purple:hover { opacity: 0.9; }
-    .btn-sm { padding: 10px 20px; font-size: 0.85rem; min-height: 42px; }
-    .btn-full-mobile { width: 100%; }
-    @media (min-width: 768px) { .btn-full-mobile { width: auto; } }
-    .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
-    @media (max-width: 600px) { 
-      .btn-group { flex-direction: column; width: 100%; } 
-      .btn-group .btn { width: 100%; } 
+    @media (min-width: 768px) { .hero-title { font-size: 3.5rem; } }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      max-width: 550px;
     }
 
-    /* ==================== NAVBAR ==================== */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border); padding: 16px 0;
-      transition: var(--transition);
+    .hero-story {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-left: 4px solid var(--primary);
+      padding: 20px 24px;
+      border-radius: 0 12px 12px 0;
+      margin: 28px 0;
+      font-size: 1rem;
     }
-    .navbar.scrolled { padding: 12px 0; box-shadow: var(--shadow); }
-    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
-    .navbar-logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-main); }
-    .navbar-logo span { color: var(--primary); }
-    .navbar-links { display: flex; gap: 32px; list-style: none; }
-    .navbar-links a { color: var(--text-muted); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
-    .navbar-links a:hover, .navbar-links a.active { color: var(--primary); }
-    .navbar-toggle { display: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; padding: 8px; }
-    @media (max-width: 768px) {
-      .navbar-links { 
-        display: none; position: absolute; top: 100%; left: 0; right: 0; 
-        background: var(--bg-card); flex-direction: column; padding: 20px; 
-        border-bottom: 1px solid var(--border); 
-      }
-      .navbar-links.active { display: flex; }
-      .navbar-toggle { display: block; }
+    .hero-story strong { color: var(--primary); }
+
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 32px 0; }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-top: 24px;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 8px; }
+    .hero-meta a { color: var(--accent); }
+    .hero-meta a:hover { text-decoration: underline; }
+
+    .availability {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    /* ==================== HERO SECTION ==================== */
-    .hero {
-      padding: 160px 0 100px;
-      background: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-dark) 70%);
-      text-align: center; position: relative; overflow: hidden;
+    /* === PROFILE CARD === */
+    .profile-card {
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .hero::before {
-      content: ''; position: absolute; top: -30%; right: -10%;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-      border-radius: 50%; animation: pulse-bg 8s ease-in-out infinite;
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gradient-1);
     }
-    @keyframes pulse-bg { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 0.8; } }
-    
-    .hero-badge { margin-bottom: 24px; animation: fadeInDown 0.8s ease; }
-    .hero h1 {
-      font-size: 2.5rem; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto;
-      animation: fadeInUp 0.8s ease 0.2s backwards; line-height: 1.2;
-    }
-    @media (min-width: 768px) { .hero h1 { font-size: 4rem; } }
-    .hero p {
-      font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px;
-      animation: fadeInUp 0.8s ease 0.4s backwards;
-    }
-    @media (min-width: 768px) { .hero p { font-size: 1.25rem; } }
-    .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s ease 0.6s backwards; }
-    
-    .hero-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-      margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--border);
-      animation: fadeInUp 0.8s ease 0.8s backwards;
-    }
-    @media (min-width: 768px) { .hero-stats { gap: 60px; } }
-    .stat-item h3 { font-size: 2rem; color: var(--text-main); font-weight: 800; }
-    @media (min-width: 768px) { .stat-item h3 { font-size: 2.5rem; } }
-    .stat-item span { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-    /* ==================== ABOUT SECTION ==================== */
-    .about-grid { display: grid; gap: 48px; align-items: center; }
-    @media (min-width: 900px) { .about-grid { grid-template-columns: 1fr 1fr; } }
-    .about-content h2 { font-size: 2rem; margin-bottom: 24px; line-height: 1.2; }
-    @media (min-width: 768px) { .about-content h2 { font-size: 2.5rem; } }
-    .about-text { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 24px; }
-    .about-text p { margin-bottom: 16px; }
-    .highlight-box {
-      background: var(--bg-card); border-left: 4px solid var(--accent);
-      padding: 24px; border-radius: 0 12px 12px 0; margin: 30px 0;
+    .profile-avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: var(--gradient-1);
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: white;
+      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
     }
-    .highlight-box h4 { color: var(--accent); margin-bottom: 8px; font-size: 1.1rem; }
-    .highlight-box p { color: var(--text-muted); font-size: 0.95rem; margin: 0; }
-    
-    .lang-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 30px; }
-    .lang-card {
-      background: var(--bg-card); padding: 16px; border-radius: 12px;
-      border: 1px solid var(--border); display: flex; align-items: center; gap: 12px;
-      transition: var(--transition);
+
+    .profile-name { font-weight: 700; font-size: 1.2rem; margin-bottom: 6px; }
+    .profile-role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
+
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
     }
-    .lang-card:hover { border-color: var(--primary); transform: translateY(-2px); }
-    .lang-flag { font-size: 1.5rem; }
-    .lang-info strong { display: block; color: var(--text-main); font-size: 0.95rem; }
-    .lang-info span { font-size: 0.8rem; color: var(--primary); font-weight: 600; }
-    
-    .skills-section { margin-top: 32px; }
-    .skills-section h4 { margin-bottom: 16px; font-size: 1rem; }
-    .skills-grid { display: flex; gap: 10px; flex-wrap: wrap; }
+    .stat-value { font-weight: 700; font-size: 1.4rem; color: var(--accent); }
+    .stat-label { font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* === SOBRE MIM === */
+    .about-grid { display: grid; gap: 48px; }
+    @media (min-width: 900px) { .about-grid { grid-template-columns: 1.1fr 0.9fr; } }
+
+    .about-story { font-size: 1.05rem; color: var(--text-secondary); }
+    .about-story p { margin-bottom: 20px; }
+    .about-story strong { color: var(--text-primary); }
+
+    .story-highlight {
+      background: var(--bg-secondary);
+      padding: 24px;
+      border-radius: 16px;
+      border-left: 4px solid var(--pink);
+      margin: 24px 0;
+    }
+    .story-highlight h4 { color: var(--pink); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+
+    .values-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .value-card {
+      display: flex;
+      gap: 14px;
+      padding: 20px;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .value-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .value-content h4 { color: var(--text-primary); margin-bottom: 4px; font-size: 1rem; }
+    .value-content p { color: var(--text-secondary); font-size: 0.9rem; }
+
+    /* === SKILLS === */
+    .skills-section { margin-top: 24px; }
+    .skills-section h3 { font-size: 1.15rem; margin-bottom: 16px; color: var(--text-primary); }
+
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
     .skill-tag {
-      padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 8px; font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
+      padding: 8px 18px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .skill-tag.pro { background: rgba(16, 185, 129, 0.15); border-color: var(--primary); color: var(--primary); }
+    .skill-tag.learning { background: rgba(245, 158, 11, 0.1); border-color: var(--warning); color: var(--warning); }
+
+    .languages-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .lang-tag {
+      padding: 8px 16px;
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+    }
+    .lang-tag .level { font-size: 0.75rem; color: var(--primary); font-weight: 600; }
+
+    /* === EXPERIÊNCIA === */
+    .experience-grid { display: grid; gap: 24px; }
+    @media (min-width: 768px) { .experience-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .experience-card {
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient-2);
+      opacity: 0;
       transition: var(--transition);
     }
-    .skill-tag:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
-    .skill-tag.pro { background: rgba(16, 185, 129, 0.15); border-color: var(--accent); color: var(--accent); }
+    .experience-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .experience-card:hover::before { opacity: 1; }
 
-    /* ==================== PROJECTS SECTION ==================== */
-    .projects-section { background: #131c31; }
-    .projects-header { text-align: center; margin-bottom: 60px; }
-    .projects-header h2 { font-size: 2rem; margin-bottom: 16px; }
-    @media (min-width: 768px) { .projects-header h2 { font-size: 2.5rem; } }
-    .projects-header p { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
-    
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+    .exp-title { font-size: 1.2rem; font-weight: 600; color: var(--accent); }
+    .exp-company { color: var(--primary); font-weight: 600; margin-top: 4px; }
+    .exp-period { color: var(--text-secondary); font-size: 0.9rem; background: var(--bg-tertiary); padding: 4px 14px; border-radius: 6px; }
+
+    .experience-card ul { padding-left: 20px; color: var(--text-secondary); }
+    .experience-card li { margin: 10px 0; font-size: 0.95rem; }
+
+    /* === PROJETOS === */
+    .projects-intro {
+      background: var(--bg-secondary);
+      padding: 24px;
+      border-radius: 16px;
+      margin-bottom: 40px;
+      border-left: 4px solid var(--warning);
+    }
+
+    .projects-grid { display: grid; gap: 24px; }
+    @media (min-width: 768px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1100px) { .projects-grid { grid-template-columns: repeat(3, 1fr); } }
+
     .project-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; overflow: hidden; margin-bottom: 40px;
+      background: var(--bg-secondary);
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gradient-1);
+      opacity: 0;
       transition: var(--transition);
     }
-    .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
-    
-    .project-content { padding: 28px; }
-    @media (min-width: 768px) { .project-content { padding: 32px; } }
-    
-    .project-tags { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-    .tag {
-      font-size: 0.75rem; padding: 4px 12px; background: rgba(59, 130, 246, 0.1);
-      color: var(--primary); border-radius: 6px; font-weight: 600;
+    .project-card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
+    .project-icon { font-size: 2rem; flex-shrink: 0; }
+    .project-title { font-size: 1.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+    .project-subtitle { color: var(--text-secondary); font-size: 0.9rem; }
+
+    .project-description { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 18px; line-height: 1.6; flex: 1; }
+
+    .project-problem {
+      background: rgba(245, 158, 11, 0.12);
+      border-left: 3px solid var(--warning);
+      padding: 14px 18px;
+      border-radius: 0 10px 10px 0;
+      margin: 18px 0;
+      font-size: 0.9rem;
     }
-    
-    .project-grid { display: grid; gap: 24px; }
-    @media (min-width: 768px) { .project-grid { grid-template-columns: 1fr 1fr; } }
-    
-    .project-info h3 { font-size: 1.3rem; margin-bottom: 12px; font-weight: 700; }
-    @media (min-width: 768px) { .project-info h3 { font-size: 1.5rem; } }
-    .project-desc { color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.7; }
-    .project-desc strong { color: var(--text-main); }
-    .project-meta { 
-      margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); 
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; 
-    }
-    
-    /* DEMO WINDOW */
-    .demo-container {
-      background: #000; border-radius: 12px; overflow: hidden;
-      border: 1px solid var(--border); box-shadow: var(--shadow);
-    }
-    .demo-bar {
-      background: #1e293b; padding: 12px 16px; display: flex; align-items: center; gap: 8px;
-      border-bottom: 1px solid #334155; flex-wrap: wrap;
-    }
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot-red { background: #ef4444; } .dot-yellow { background: #f59e0b; } .dot-green { background: #10b981; }
-    .demo-title { flex: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748b; }
-    .demo-toggle { background: none; border: none; color: var(--primary); cursor: pointer; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; }
-    .demo-toggle:hover { background: rgba(59, 130, 246, 0.1); }
-    
-    .demo-frame { 
-      height: 320px; position: relative; overflow: hidden; background: #0f172a; 
-      transition: height 0.3s ease; border: none; width: 100%;
-    }
-    .demo-frame.expanded { height: 500px; }
-    @media (max-width: 768px) { 
-      .demo-frame { height: 280px; }
-      .demo-frame.expanded { height: 450px; }
+    .project-problem strong { color: var(--warning); }
+
+    .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+    .tech-tag {
+      padding: 5px 14px;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      border: 1px solid var(--border);
     }
 
-    /* ==================== TASKFLOW DEMO STYLES ==================== */
-    .taskflow-demo { background: var(--bg-dark); height: 100%; display: flex; flex-direction: column; font-size: 0.85rem; }
-    .tf-header { padding: 12px 16px; background: var(--bg-card); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .tf-title { font-weight: 700; color: var(--text-main); }
-    .tf-add-btn { background: var(--accent); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
-    .tf-boards { display: flex; gap: 12px; padding: 12px; overflow-x: auto; flex: 1; }
-    .tf-board { min-width: 140px; background: rgba(30, 41, 59, 0.8); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
-    .tf-board-title { font-weight: 600; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; }
-    .tf-task { background: var(--bg-card); padding: 10px; border-radius: 6px; border-left: 3px solid var(--primary); cursor: grab; transition: var(--transition); }
-    .tf-task:hover { transform: translateX(3px); border-left-color: var(--accent); }
-    .tf-task.done { border-left-color: var(--accent); opacity: 0.8; }
-    .tf-task.urgent { border-left-color: var(--danger); }
+    .project-learning {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 18px 0;
+      padding: 14px 18px;
+      background: rgba(96, 165, 250, 0.1);
+      border-radius: 10px;
+      border-left: 3px solid var(--accent);
+    }
+    .project-learning strong { color: var(--accent); }
 
-    /* ==================== WEATHER DEMO STYLES ==================== */
-    .weather-demo { background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); height: 100%; color: white; padding: 16px; display: flex; flex-direction: column; }
-    .wd-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .wd-location { font-weight: 700; font-size: 1.1rem; }
-    .wd-temp { font-size: 2rem; font-weight: 800; }
-    .wd-condition { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.9rem; }
-    .wd-icon { font-size: 1.5rem; }
-    .wd-forecast { display: flex; gap: 8px; overflow-x: auto; padding: 8px 0; }
-    .wd-day { background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 10px; text-align: center; min-width: 70px; }
-    .wd-day-name { font-size: 0.75rem; color: var(--text-muted); }
-    .wd-day-temp { font-weight: 700; margin: 4px 0; }
-    .wd-day-icon { font-size: 1.2rem; }
+    .project-links { margin-top: auto; padding-top: 24px; border-top: 1px solid var(--border); }
 
-    /* ==================== SHOPLITE DEMO STYLES ==================== */
-    .shoplite-demo { background: var(--bg-light); height: 100%; color: #333; display: flex; flex-direction: column; font-size: 0.85rem; }
-    .sl-header { background: white; padding: 12px 16px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
-    .sl-logo { font-weight: 800; color: var(--primary); font-size: 1.1rem; }
-    .sl-cart { position: relative; background: var(--primary); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; }
-    .sl-products { padding: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; overflow-y: auto; flex: 1; }
-    .sl-product { background: white; border-radius: 10px; padding: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    .sl-product-img { height: 80px; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); border-radius: 8px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
-    .sl-product-name { font-weight: 600; margin-bottom: 4px; font-size: 0.9rem; }
-    .sl-product-price { color: var(--primary); font-weight: 700; }
-    .sl-add-btn { width: 100%; margin-top: 8px; background: var(--primary); color: white; border: none; padding: 8px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; }
+    .project-featured {
+      position: relative;
+    }
+    .project-featured::after {
+      content: '⭐ Destaque';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--gradient-2);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
 
-    /* ==================== CODESNIPPET DEMO STYLES ==================== */
-    .codesnippet-demo { background: #1e1e1e; height: 100%; font-family: 'JetBrains Mono', monospace; color: #d4d4d4; font-size: 0.8rem; display: flex; flex-direction: column; }
-    .cs-toolbar { display: flex; gap: 8px; padding: 10px 12px; background: #252526; border-bottom: 1px solid #3c3c3c; flex-wrap: wrap; }
-    .cs-lang-select { background: #3c3c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; }
-    .cs-copy-btn { background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
-    .cs-editor { flex: 1; padding: 16px; overflow: auto; }
-    .cs-line { display: flex; gap: 12px; }
-    .cs-line-num { color: #858585; user-select: none; min-width: 24px; text-align: right; }
-    .cs-code { color: #9cdcfe; }
-    .cs-code .kw { color: #569cd6; }
-    .cs-code .str { color: #ce9178; }
-    .cs-code .fn { color: #dcdcaa; }
-    .cs-code .cmt { color: #6a9955; }
+    /* === CURSOS === */
+    .courses-grid { display: grid; gap: 16px; }
+    @media (min-width: 768px) { .courses-grid { grid-template-columns: repeat(2, 1fr); } }
 
-    /* ==================== FINANCETRACK DEMO STYLES ==================== */
-    .financetrack-demo { background: var(--bg-dark); height: 100%; padding: 12px; display: flex; flex-direction: column; font-size: 0.85rem; }
-    .ft-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .ft-balance { text-align: center; }
-    .ft-balance-label { color: var(--text-muted); font-size: 0.8rem; }
-    .ft-balance-value { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
-    .ft-chart-placeholder { flex: 1; background: var(--bg-card); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); margin-bottom: 16px; position: relative; overflow: hidden; }
-    .ft-chart-bar { position: absolute; bottom: 0; width: 12%; background: var(--gradient); border-radius: 4px 4px 0 0; transition: height 0.3s ease; }
-    .ft-transactions { overflow-y: auto; flex: 1; }
-    .ft-transaction { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
-    .ft-t-info span { display: block; }
-    .ft-t-label { color: var(--text-muted); font-size: 0.8rem; }
-    .ft-t-amount { font-weight: 700; }
-    .ft-t-amount.income { color: var(--accent); }
-    .ft-t-amount.expense { color: var(--danger); }
+    .course-card {
+      background: var(--bg-secondary);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .course-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .course-card h4 { color: var(--text-primary); margin-bottom: 8px; font-size: 1.05rem; }
+    .course-provider { color: var(--primary); font-size: 0.9rem; font-weight: 500; margin-bottom: 10px; }
+    .course-cert { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.85rem; }
+    .course-cert:hover { text-decoration: underline; }
 
-    /* ==================== CONTACT SECTION ==================== */
-    .contact-section { text-align: center; }
-    .contact-section h2 { font-size: 2rem; margin-bottom: 24px; }
-    @media (min-width: 768px) { .contact-section h2 { font-size: 2.5rem; } }
-    .contact-section p { color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; font-size: 1.05rem; }
-    .contact-grid { display: grid; gap: 16px; max-width: 500px; margin: 0 auto 40px; }
+    /* === CONTATO / CTA === */
+    .cta-section {
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+      border-radius: 24px;
+      padding: 48px;
+      text-align: center;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .cta-section h3 { font-size: 1.8rem; margin-bottom: 20px; }
+    .cta-section p { color: var(--text-secondary); margin-bottom: 32px; max-width: 650px; margin-left: auto; margin-right: auto; }
+
+    .contact-grid { display: grid; gap: 16px; margin: 40px 0; }
     @media (min-width: 768px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
+
     .contact-item {
-      background: var(--bg-card); padding: 20px; border-radius: 12px;
-      border: 1px solid var(--border); transition: var(--transition);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px;
+      background: var(--bg-tertiary);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
     }
-    .contact-item:hover { border-color: var(--primary); transform: translateY(-3px); }
-    .contact-icon { font-size: 1.5rem; }
-    .contact-label { font-size: 0.85rem; color: var(--text-muted); }
-    .contact-link { font-weight: 600; color: var(--text-main); font-size: 0.9rem; }
+    .contact-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .contact-item a { color: var(--text-primary); font-weight: 500; }
+    .contact-icon { font-size: 1.4rem; }
 
-    /* ==================== FOOTER ==================== */
-    footer { background: var(--bg-card); padding: 60px 0 40px; border-top: 1px solid var(--border); }
-    .footer-content { text-align: center; }
-    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
-    .footer-links a { color: var(--text-muted); font-weight: 500; font-size: 0.95rem; }
-    .footer-links a:hover { color: var(--primary); }
-    .copyright { color: #64748b; font-size: 0.9rem; }
+    /* === FOOTER === */
+    footer {
+      background: var(--bg-secondary);
+      padding: 48px 0 32px;
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+    }
+    .footer-content { display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
+    .footer-links a:hover { color: var(--accent); }
 
-    /* ==================== ANIMATIONS ==================== */
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-    
-    .animate { animation: fadeInUp 0.8s ease forwards; opacity: 0; }
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
+    .license {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      padding: 16px 24px;
+      background: var(--bg-tertiary);
+      border-radius: 10px;
+      max-width: 600px;
+      border: 1px solid var(--border);
+    }
+    .license strong { color: var(--primary); }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-      html { scroll-behavior: auto; }
+    .copyright { color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px; }
+
+    /* === ANIMAÇÕES === */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { animation: fadeInUp 0.6s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    /* === RESPONSIVIDADE === */
+    @media (max-width: 768px) {
+      .section { padding: 70px 0; }
+      .section-title { font-size: 1.75rem; }
+      .hero-title { font-size: 2.2rem; }
+      .btn-group { flex-direction: column; }
+      .btn { width: 100%; }
+      .profile-stats { grid-template-columns: repeat(3, 1fr); }
+      .cta-section { padding: 32px 24px; }
     }
 
-    /* ==================== SCROLLBAR ==================== */
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-dark); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
-
-    /* ==================== DEMO ACTION BUTTONS ==================== */
-    .demo-actions {
-      display: flex; gap: 8px; padding: 12px 16px;
-      background: var(--bg-card); border-top: 1px solid var(--border); flex-wrap: wrap;
-    }
-    .demo-actions .btn { flex: 1; min-width: 120px; font-size: 0.8rem; padding: 10px 14px; }
-
-    /* GitHub Pages Badge */
-    .gh-pages-badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 0.7rem; color: var(--purple);
-      background: rgba(139, 92, 246, 0.1);
-      padding: 3px 8px; border-radius: 4px;
-      border: 1px solid rgba(139, 92, 246, 0.3);
-    }
+    /* === SCROLLBAR === */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
+  <!-- HERO SECTION -->
+  <header>
     <div class="container">
-      <a href="#" class="navbar-logo">&lt;Luis<span>Gustavo</span>/&gt;</a>
-      <ul class="navbar-links" id="navLinks">
-        <li><a href="#about">Sobre</a></li>
-        <li><a href="#projects">Projetos</a></li>
-        <li><a href="#contact">Contato</a></li>
-        <li><a href="#" class="btn btn-primary btn-sm">📄 CV</a></li>
-      </ul>
-      <div class="navbar-toggle" id="navToggle" aria-label="Menu">☰</div>
-    </div>
-  </nav>
+      <div class="hero-content">
+        <div>
+          <div class="hero-slogan">✨ De cuidador a codificador</div>
+          <h1 class="hero-title">Transformando código em soluções reais</h1>
+          <p class="hero-subtitle">
+            Desenvolvedor Júnior focado em back-end e web, com disciplina de quem estuda todos os dias e projetos que resolvem problemas de verdade.
+          </p>
+          
+          <div class="hero-story">
+            <strong>Minha história:</strong> Enquanto cuidava da minha mãe, descobri na programação uma forma de construir um futuro melhor. 
+            Cada linha de código que escrevo carrega dedicação, resiliência e o desejo de crescer na área de tecnologia.
+          </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="badge badge-live hero-badge">🚀 Disponível para Oportunidades</div>
-      <h1>
-        Desenvolvedor Front-End<br>
-        <span class="text-gradient">React • APIs • GitHub Pages</span>
-      </h1>
-      <p>
-        Projetos reais hospedados no GitHub Pages. Demos interativas que rodam direto no navegador, 
-        sem configuração. Código aberto e pronto para explorar.
-      </p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary btn-full-mobile">🎮 Testar Demos</a>
-        <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary btn-full-mobile">🐙 GitHub</a>
+          <div class="hero-cta">
+            <a href="#projetos" class="btn btn-primary">🚀 Ver Projetos</a>
+            <a href="Curriculo_Luis_Gustavo_2026.pdf" download class="btn btn-secondary">📄 Baixar CV</a>
+            <a href="https://linkedin.com/in/luisgustavoleao" target="_blank" class="btn btn-outline">💼 LinkedIn</a>
+          </div>
+
+          <div class="hero-meta">
+            <span>📍 Fortaleza, CE</span>
+            <span>📧 <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a></span>
+            <span>📱 <a href="tel:+5585985841344">(85) 98584-1344</a></span>
+            <span>🔗 <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a></span>
+          </div>
+
+          <div class="availability">
+            <span class="badge">✅ Disponível para remoto</span>
+            <span class="badge badge-outline">🔄 Híbrido em Fortaleza</span>
+            <span class="badge badge-outline">🎯 Primeira oportunidade Jr</span>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-avatar">LG</div>
+          <div class="profile-name">Luis Gustavo Verissimo Cavalcante</div>
+          <div class="profile-role">Desenvolvedor Júnior • Back-end & Web</div>
+          <div class="profile-stats">
+            <div class="stat">
+              <div class="stat-value">4</div>
+              <div class="stat-label">Projetos</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">13</div>
+              <div class="stat-label">Certificações</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">4</div>
+              <div class="stat-label">Idiomas</div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="hero-stats">
-        <div class="stat-item">
-          <h3>15+</h3>
-          <span>Projetos Live</span>
-        </div>
-        <div class="stat-item">
-          <h3>100%</h3>
-          <span>GitHub Pages</span>
-        </div>
-        <div class="stat-item">
-          <h3>0</h3>
-          <span>Configuração Necessária</span>
-        </div>
-      </div>
     </div>
-  </section>
+  </header>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
+  <!-- SOBRE MIM -->
+  <section class="section" id="sobre">
     <div class="container">
+      <h2 class="section-title">👨‍💻 Sobre Mim</h2>
+      
       <div class="about-grid">
-        <div class="about-content animate">
-          <h2>Mais que código,<br><span class="text-gradient">projetos que funcionam.</span></h2>
-          <div class="about-text">
+        <div>
+          <div class="about-story">
             <p>
-              Minha filosofia: se não está no ar, não está pronto. Por isso, todos os meus projetos 
-              estão hospedados no <strong>GitHub Pages</strong> com demos 100% funcionais.
+              Sou um desenvolvedor em constante evolução, com foco em <strong>back-end e desenvolvimento web</strong>. 
+              Minha jornada na programação começou de forma autodidata — enquanto cuidava da minha mãe, encontrei 
+              no código uma forma de transformar desafios em soluções.
             </p>
             <p>
-              Foco em criar experiências que impressionam no primeiro clique — responsivas, 
-              performáticas e com código limpo que você pode auditar no GitHub.
+              Minha experiência anterior em <strong>vendas e atendimento</strong> me ensinou habilidades que hoje 
+              aplico no desenvolvimento: comunicação clara, organização sob pressão e foco em entregar valor real.
+            </p>
+            <p>
+              Acredito que <strong>a prática constante é o caminho para a excelência</strong>. Por isso, cada projeto 
+              no meu portfólio foi construído com um propósito: resolver um problema, aplicar uma nova tecnologia 
+              ou consolidar um conceito aprendido.
             </p>
           </div>
-          
-          <div class="highlight-box">
-            <h4>💡 Por que GitHub Pages?</h4>
-            <p>
-              Deploy automático, HTTPS gratuito, CDN global e integração nativa com GitHub. 
-              Ideal para portfólios, demos e projetos open source.
+
+          <div class="story-highlight">
+            <h4>💡 O que me diferencia</h4>
+            <p style="color: var(--text-secondary); margin: 0;">
+              Não sou apenas mais um currículo. Sou alguém que estuda todos os dias, publica no GitHub para 
+              demonstrar evolução real, e traz a maturidade de quem já trabalhou com pessoas. Minha disciplina 
+              é meu maior ativo.
             </p>
+          </div>
+
+          <div class="values-grid">
+            <div class="value-card">
+              <div class="value-icon">🎯</div>
+              <div class="value-content">
+                <h4>Foco em Resultados</h4>
+                <p>Cada projeto tem um objetivo claro e métricas de sucesso definidas.</p>
+              </div>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">📚</div>
+              <div class="value-content">
+                <h4>Aprendizado Contínuo</h4>
+                <p>Estudo diário através de cursos, documentação e prática em projetos reais.</p>
+              </div>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">🤝</div>
+              <div class="value-content">
+                <h4>Comunicação Clara</h4>
+                <p>Habilidade desenvolvida no atendimento, essencial para trabalho em equipe ágil.</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="animate delay-1">
-          <h3 style="margin-bottom: 24px; font-size: 1.3rem;">🌍 Idiomas</h3>
-          <div class="lang-grid">
-            <div class="lang-card">
-              <span class="lang-flag">🇧🇷</span>
-              <div class="lang-info"><strong>Português</strong><span>Nativo</span></div>
-            </div>
-            <div class="lang-card">
-              <span class="lang-flag">🇬🇧</span>
-              <div class="lang-info"><strong>Inglês</strong><span>Avançado (C1)</span></div>
-            </div>
-            <div class="lang-card">
-              <span class="lang-flag">🇪🇸</span>
-              <div class="lang-info"><strong>Espanhol</strong><span>Avançado (C1)</span></div>
-            </div>
-            <div class="lang-card">
-              <span class="lang-flag">🇮🇹</span>
-              <div class="lang-info"><strong>Italiano</strong><span>Intermediário</span></div>
-            </div>
-          </div>
-          
+        <div>
           <div class="skills-section">
-            <h4>⚡ Stack Principal</h4>
+            <h3>⚡ Stack Principal</h3>
             <div class="skills-grid">
-              <span class="skill-tag pro">React</span>
-              <span class="skill-tag pro">JavaScript</span>
-              <span class="skill-tag pro">TypeScript</span>
-              <span class="skill-tag">GitHub Pages</span>
-              <span class="skill-tag">Tailwind CSS</span>
-              <span class="skill-tag">REST APIs</span>
-              <span class="skill-tag">Vite</span>
-              <span class="skill-tag">LocalStorage</span>
+              <span class="skill-tag pro">🐘 PHP</span>
+              <span class="skill-tag pro">⚡ JavaScript</span>
+              <span class="skill-tag pro">🐍 Python</span>
+              <span class="skill-tag">🟢 Node.js</span>
+              <span class="skill-tag">📘 TypeScript</span>
+              <span class="skill-tag">⚛️ React</span>
+              <span class="skill-tag">🔗 REST APIs</span>
+              <span class="skill-tag">🗄️ MySQL</span>
+              <span class="skill-tag">🍃 MongoDB</span>
+              <span class="skill-tag">🐙 Git & GitHub</span>
+              <span class="skill-tag">🌐 HTML5 & CSS3</span>
+              <span class="skill-tag learning">🔄 Docker (em aprendizado)</span>
+            </div>
+          </div>
+
+          <div class="skills-section">
+            <h3>🌍 Idiomas</h3>
+            <div class="languages-grid">
+              <span class="lang-tag">🇬🇧 Inglês <span class="level">• Fluência</span></span>
+              <span class="lang-tag">🇪🇸 Espanhol <span class="level">• C1</span></span>
+              <span class="lang-tag">🇮🇹 Italiano <span class="level">• Avançado</span></span>
+              <span class="lang-tag">🇩🇪 Alemão <span class="level">• C1</span></span>
+            </div>
+          </div>
+
+          <div class="skills-section">
+            <h3>🛠️ Ferramentas</h3>
+            <div class="skills-grid">
+              <span class="skill-tag">💻 VS Code</span>
+              <span class="skill-tag">🔌 Postman</span>
+              <span class="skill-tag">🎨 Figma</span>
+              <span class="skill-tag">☁️ Salesforce</span>
+              <span class="skill-tag">🐧 Linux</span>
+              <span class="skill-tag">📦 Composer</span>
             </div>
           </div>
         </div>
@@ -528,266 +740,393 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="section projects-section">
+  <!-- EXPERIÊNCIA -->
+  <section class="section" style="background: var(--bg-secondary);">
     <div class="container">
-      <div class="projects-header animate">
-        <h2>Projetos no GitHub Pages</h2>
-        <p>🔗 Todos os links abaixo são demos reais hospedadas no GitHub Pages. Clique e teste agora!</p>
-      </div>
-
-      <!-- PROJECT 1: TASKFLOW -->
-      <div class="project-card animate">
-        <div class="project-content">
-          <div class="project-grid">
-            <div class="project-info">
-              <div class="project-tags">
-                <span class="tag">React</span>
-                <span class="tag">Drag & Drop</span>
-                <span class="tag">LocalStorage</span>
-              </div>
-              <h3>✅ TaskFlow - Kanban App</h3>
-              <p class="project-desc">
-                <strong>Funcionalidades:</strong> Board Kanban com drag & drop, temas dark/light, 
-                persistência local e exportação de dados.
-                <br><br>
-                <strong>Tecnologias:</strong> React, React Beautiful DnD, Custom Hooks.
-              </p>
-              <div class="project-meta">
-                <span class="gh-pages-badge">🔗 GitHub Pages</span>
-                <span class="badge badge-live">● Demo Ativa</span>
-              </div>
+      <h2 class="section-title">💼 Experiência Profissional</h2>
+      
+      <div class="experience-grid">
+        <div class="experience-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">Consultor de Vendas</div>
+              <div class="exp-company">Grupo Dádiva</div>
             </div>
-            
-            <div class="demo-container">
-              <div class="demo-bar">
-                <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">taskflow-demo-preview</div>
-                <button class="demo-toggle" onclick="toggleDemo('taskflow-demo-frame')">⤢ Expandir</button>
-              </div>
-              <div class="demo-frame" id="taskflow-demo-frame">
-                <div class="taskflow-demo" id="taskflow-content"></div>
-              </div>
-              <div class="demo-actions">
-                <a href="https://luisgustavoleao896-cpu.github.io/taskflow-app/" target="_blank" class="btn btn-primary btn-sm">🔴 Ver Demo Completa</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/taskflow-app" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
-              </div>
-            </div>
+            <span class="exp-period">2023 – 2024</span>
           </div>
+          <ul>
+            <li>Vendas consultivas com foco em entender necessidades reais do cliente</li>
+            <li>Prospecção ativa e estratégias de fidelização baseadas em dados</li>
+            <li>Acompanhamento de metas e análise de resultados comerciais</li>
+            <li>Desenvolvimento de empatia e comunicação assertiva</li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">Teleatendimento</div>
+              <div class="exp-company">Concentrix</div>
+            </div>
+            <span class="exp-period">Set/2024 – Abr/2025</span>
+          </div>
+          <ul>
+            <li>Atendimento ao cliente com foco em resolução ágil de demandas</li>
+            <li>Registro preciso de informações em sistemas internos</li>
+            <li>Cumprimento de indicadores de qualidade e produtividade</li>
+            <li>Trabalho sob pressão mantendo calma e profissionalismo</li>
+          </ul>
         </div>
       </div>
 
-      <!-- PROJECT 2: WEATHERNOW -->
-      <div class="project-card animate delay-1">
-        <div class="project-content">
-          <div class="project-grid">
-            <div class="project-info">
-              <div class="project-tags">
-                <span class="tag">OpenWeather API</span>
-                <span class="tag">Geolocation</span>
-                <span class="tag">PWA</span>
-              </div>
-              <h3>🌤️ WeatherNow - Weather App</h3>
-              <p class="project-desc">
-                <strong>Funcionalidades:</strong> Detecção automática de localização, previsão 5 dias, 
-                ícones animados e modo offline.
-                <br><br>
-                <strong>Tecnologias:</strong> Fetch API, Geolocation API, Service Workers.
-              </p>
-              <div class="project-meta">
-                <span class="gh-pages-badge">🔗 GitHub Pages</span>
-                <span class="badge badge-live">● API Conectada</span>
-              </div>
-            </div>
-            
-            <div class="demo-container">
-              <div class="demo-bar">
-                <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">weathernow-demo-preview</div>
-                <button class="demo-toggle" onclick="toggleDemo('weather-demo-frame')">⤢ Expandir</button>
-              </div>
-              <div class="demo-frame" id="weather-demo-frame">
-                <div class="weather-demo" id="weather-content"></div>
-              </div>
-              <div class="demo-actions">
-                <a href="https://luisgustavoleao896-cpu.github.io/weathernow-app/" target="_blank" class="btn btn-success btn-sm">🔴 Ver Demo Completa</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/weathernow-app" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROJECT 3: SHOPLITE -->
-      <div class="project-card animate delay-2">
-        <div class="project-content">
-          <div class="project-grid">
-            <div class="project-info">
-              <div class="project-tags">
-                <span class="tag">React Context</span>
-                <span class="tag">FakeStore API</span>
-                <span class="tag">Responsive</span>
-              </div>
-              <h3>🛒 ShopLite - E-commerce Demo</h3>
-              <p class="project-desc">
-                <strong>Funcionalidades:</strong> Catálogo de produtos, carrinho com persistência, 
-                filtros por categoria e checkout simulado.
-                <br><br>
-                <strong>Tecnologias:</strong> React Context API, FakeStore API, CSS Modules.
-              </p>
-              <div class="project-meta">
-                <span class="gh-pages-badge">🔗 GitHub Pages</span>
-                <span class="badge badge-live">● Carrinho Funcional</span>
-              </div>
-            </div>
-            
-            <div class="demo-container">
-              <div class="demo-bar">
-                <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">shoplite-demo-preview</div>
-                <button class="demo-toggle" onclick="toggleDemo('shop-demo-frame')">⤢ Expandir</button>
-              </div>
-              <div class="demo-frame" id="shop-demo-frame">
-                <div class="shoplite-demo" id="shop-content"></div>
-              </div>
-              <div class="demo-actions">
-                <a href="https://luisgustavoleao896-cpu.github.io/shoplite-demo/" target="_blank" class="btn btn-purple btn-sm">🔴 Ver Demo Completa</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/shoplite-demo" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROJECT 4: CODESNIPPET -->
-      <div class="project-card animate">
-        <div class="project-content">
-          <div class="project-grid">
-            <div class="project-info">
-              <div class="project-tags">
-                <span class="tag">Vanilla JS</span>
-                <span class="tag">Syntax Highlight</span>
-                <span class="tag">Clipboard API</span>
-              </div>
-              <h3>💻 CodeSnippet - Editor de Snippets</h3>
-              <p class="project-desc">
-                <strong>Funcionalidades:</strong> Highlight de sintaxe, seleção de linguagem, 
-                copy-to-clipboard e exportação para gist.
-                <br><br>
-                <strong>Tecnologias:</strong> Vanilla JavaScript, Prism.js, GitHub Gist API.
-              </p>
-              <div class="project-meta">
-                <span class="gh-pages-badge">🔗 GitHub Pages</span>
-                <span class="badge badge-live">● Highlight Ativo</span>
-              </div>
-            </div>
-            
-            <div class="demo-container">
-              <div class="demo-bar">
-                <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">codesnippet-demo-preview</div>
-                <button class="demo-toggle" onclick="toggleDemo('code-demo-frame')">⤢ Expandir</button>
-              </div>
-              <div class="demo-frame" id="code-demo-frame">
-                <div class="codesnippet-demo" id="code-content"></div>
-              </div>
-              <div class="demo-actions">
-                <a href="https://luisgustavoleao896-cpu.github.io/codesnippet-tool/" target="_blank" class="btn btn-primary btn-sm">🔴 Ver Demo Completa</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/codesnippet-tool" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROJECT 5: FINANCETRACK -->
-      <div class="project-card animate delay-1">
-        <div class="project-content">
-          <div class="project-grid">
-            <div class="project-info">
-              <div class="project-tags">
-                <span class="tag">Chart.js</span>
-                <span class="tag">LocalStorage</span>
-                <span class="tag">CSV Export</span>
-              </div>
-              <h3>📊 FinanceTrack - Expense Tracker</h3>
-              <p class="project-desc">
-                <strong>Funcionalidades:</strong> Registro de transações, gráficos interativos, 
-                relatórios mensais e exportação CSV.
-                <br><br>
-                <strong>Tecnologias:</strong> Chart.js, Vanilla JS, FileSaver.js.
-              </p>
-              <div class="project-meta">
-                <span class="gh-pages-badge">🔗 GitHub Pages</span>
-                <span class="badge badge-live">● Gráficos Interativos</span>
-              </div>
-            </div>
-            
-            <div class="demo-container">
-              <div class="demo-bar">
-                <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-                <div class="demo-title">financetrack-demo-preview</div>
-                <button class="demo-toggle" onclick="toggleDemo('finance-demo-frame')">⤢ Expandir</button>
-              </div>
-              <div class="demo-frame" id="finance-demo-frame">
-                <div class="financetrack-demo" id="finance-content"></div>
-              </div>
-              <div class="demo-actions">
-                <a href="https://luisgustavoleao896-cpu.github.io/financetrack-app/" target="_blank" class="btn btn-success btn-sm">🔴 Ver Demo Completa</a>
-                <a href="https://github.com/luisgustavoleao896-cpu/financetrack-app" target="_blank" class="btn btn-secondary btn-sm">📁 Código</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MORE PROJECTS -->
-      <div class="project-card animate delay-3" style="background: var(--bg-dark); border-style: dashed; text-align: center; padding: 60px 20px;">
-        <div style="font-size: 3rem; margin-bottom: 20px;">🚀</div>
-        <h3 style="margin-bottom: 12px; font-size: 1.5rem;">+10 Projetos no GitHub Pages</h3>
-        <p style="color: var(--text-muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
-          URL Shortener, Pomodoro Timer, Quiz App, Markdown Previewer, e mais. 
-          Todos com deploy automático via GitHub Actions.
-        </p>
-        <a href="https://luisgustavoleao896-cpu.github.io/" target="_blank" class="btn btn-primary btn-full-mobile">
-          🌐 Ver Todos os Projetos Live
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section contact-section">
-    <div class="container">
-      <h2 class="animate">Vamos construir algo incrível?</h2>
-      <p class="animate delay-1">
-        Procuro oportunidades para aplicar minhas skills em React e APIs. 
-        Se você precisa de um dev que entrega projetos funcionais no GitHub Pages, vamos conversar.
+      <p style="color: var(--text-secondary); margin-top: 40px; font-style: italic; padding: 20px; background: rgba(96, 165, 250, 0.08); border-radius: 12px; border-left: 4px solid var(--accent);">
+        💡 <strong>Nota:</strong> Embora minha experiência formal não seja em TI, as competências desenvolvidas 
+        — comunicação, organização, foco em resultados e resolução de problemas — são diretamente aplicáveis 
+        ao desenvolvimento de software e ao trabalho em equipe ágil.
       </p>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section class="section" id="projetos">
+    <div class="container">
+      <h2 class="section-title">🚀 Projetos em Destaque</h2>
       
-      <div class="contact-grid animate delay-2">
-        <div class="contact-item">
-          <span class="contact-icon">📧</span>
-          <span class="contact-label">Email</span>
-          <a href="mailto:gustavoluis.v.c.1016@gmail.com" class="contact-link">Enviar Email</a>
+      <div class="projects-intro">
+        <strong>📌 Como ler esta seção:</strong> Cada projeto inclui: (1) o problema que resolve, 
+        (2) tecnologias utilizadas, (3) o que aprendi e (4) links para código e demo.
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- PROJETO 1: PORTFÓLIO -->
+        <div class="project-card project-featured animate">
+          <div class="project-header">
+            <div class="project-icon">🌐</div>
+            <div>
+              <div class="project-title">Portfólio Web Responsivo</div>
+              <div class="project-subtitle">HTML • CSS • JavaScript</div>
+            </div>
+          </div>
+          <p class="project-description">
+            Site pessoal moderno e responsivo, otimizado para SEO e performance, com design que comunica 
+            profissionalismo e destaca projetos de forma clara para recrutadores.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Criar uma presença online que converta visitantes em oportunidades, 
+            com navegação intuitiva e carregamento rápido em qualquer dispositivo.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">HTML5 Semântico</span>
+            <span class="tech-tag">CSS3 Moderno</span>
+            <span class="tech-tag">JavaScript Vanilla</span>
+            <span class="tech-tag">Flexbox/Grid</span>
+            <span class="tech-tag">SEO Básico</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Design responsivo mobile-first, acessibilidade, otimização de performance 
+            e boas práticas de HTML semântico para melhor indexação.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank" class="btn btn-secondary btn-sm">🌐 Acessar Demo</a>
+              <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-outline btn-sm">🐙 Ver Código</a>
+            </div>
+          </div>
         </div>
-        <div class="contact-item">
-          <span class="contact-icon">💼</span>
-          <span class="contact-label">LinkedIn</span>
-          <a href="https://linkedin.com/in/luisgustavoleao" target="_blank" class="contact-link">Conectar</a>
+
+        <!-- PROJETO 2: API REST -->
+        <div class="project-card animate delay-1">
+          <div class="project-header">
+            <div class="project-icon">🔌</div>
+            <div>
+              <div class="project-title">API REST com Autenticação JWT</div>
+              <div class="project-subtitle">PHP • Slim Framework • MySQL</div>
+            </div>
+          </div>
+          <p class="project-description">
+            API completa para gestão de usuários com CRUD, autenticação via JWT, validação de dados, 
+            tratamento de erros e documentação de endpoints.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Fornecer uma base segura e escalável para aplicações que necessitam 
+            de autenticação, autorização e gerenciamento de usuários com boas práticas de API REST.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">PHP 8</span>
+            <span class="tech-tag">Slim Framework</span>
+            <span class="tech-tag">JWT Auth</span>
+            <span class="tech-tag">MySQL/PDO</span>
+            <span class="tech-tag">Composer</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Estrutura MVC, segurança com tokens, prevenção de SQL injection, 
+            padronização de respostas JSON e documentação de APIs.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+            </div>
+          </div>
         </div>
-        <div class="contact-item">
-          <span class="contact-icon">🐙</span>
-          <span class="contact-label">GitHub</span>
-          <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="contact-link">Ver Código</a>
+
+        <!-- PROJETO 3: PYTHON DATA -->
+        <div class="project-card animate delay-2">
+          <div class="project-header">
+            <div class="project-icon">📊</div>
+            <div>
+              <div class="project-title">Análise de Dados com Python</div>
+              <div class="project-subtitle">Python • Pandas • Visualização</div>
+            </div>
+          </div>
+          <p class="project-description">
+            Script para análise exploratória de dados com limpeza, transformação, estatísticas descritivas 
+            e visualizações informativas para tomada de decisão.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Automatizar a extração de insights de datasets reais, 
+            reduzindo tempo de análise manual e permitindo identificação rápida de padrões e tendências.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+            <span class="tech-tag">Matplotlib</span>
+            <span class="tech-tag">Jupyter</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Manipulação eficiente de dados com Pandas, criação de visualizações 
+            claras, tratamento de dados ausentes e boas práticas em análise exploratória.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJETO 4: SISTEMA PHP -->
+        <div class="project-card animate">
+          <div class="project-header">
+            <div class="project-icon">🗄️</div>
+            <div>
+              <div class="project-title">Sistema de Gestão com PHP</div>
+              <div class="project-subtitle">PHP • MySQL • PDO</div>
+            </div>
+          </div>
+          <p class="project-description">
+            Aplicação web para cadastro, edição e exclusão de registros com interface administrativa, 
+            validação de formulários e persistência segura em banco de dados.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Substituir planilhas manuais e processos desconexos por um 
+            sistema centralizado para gestão de informações com controle de acesso e histórico de alterações.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">PDO</span>
+            <span class="tech-tag">Sessions</span>
+            <span class="tech-tag">HTML/CSS</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Conexão segura com banco de dados, prevenção de SQL injection, 
+            estrutura de pastas organizada e validação de dados no back-end.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="https://github.com/luisgustavoleao896-cpu/php.git" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJETO 5: LOGIN SYSTEM (NOVO) -->
+        <div class="project-card animate delay-1">
+          <div class="project-header">
+            <div class="project-icon">🔐</div>
+            <div>
+              <div class="project-title">Sistema de Login Seguro</div>
+              <div class="project-subtitle">JavaScript • Node.js • bcrypt</div>
+            </div>
+          </div>
+          <p class="project-description">
+            Módulo de autenticação completo com hash de senhas, tokens de sessão, validação de formulário, 
+            proteção contra brute force e recuperação de senha.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Implementar autenticação segura em aplicações web, protegendo 
+            dados sensíveis de usuários contra ataques comuns como credential stuffing e session hijacking.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express</span>
+            <span class="tech-tag">bcrypt.js</span>
+            <span class="tech-tag">JWT</span>
+            <span class="tech-tag">dotenv</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Segurança em aplicações web, hash de senhas com salt, middleware 
+            de autenticação, variáveis de ambiente e boas práticas de OWASP.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="#" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+              <a href="#" class="btn btn-outline btn-sm">🌐 Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJETO 6: API CLIMA (NOVO) -->
+        <div class="project-card animate delay-2">
+          <div class="project-header">
+            <div class="project-icon">🌤️</div>
+            <div>
+              <div class="project-title">Weather App - API de Clima</div>
+              <div class="project-subtitle">JavaScript • Fetch API • OpenWeather</div>
+            </div>
+          </div>
+          <p class="project-description">
+            Aplicação que consome API externa de clima em tempo real, com geolocalização, histórico de buscas 
+            e interface responsiva com condições climáticas dinâmicas.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Demonstrar consumo de APIs REST externas, tratamento de respostas 
+            assíncronas, manipulação de dados JSON e persistência local com localStorage.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">JavaScript ES6+</span>
+            <span class="tech-tag">Fetch API</span>
+            <span class="tech-tag">Async/Await</span>
+            <span class="tech-tag">OpenWeather API</span>
+            <span class="tech-tag">LocalStorage</span>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Consumo de APIs com tratamento de erros, promises/async-await, 
+            manipulação de dados JSON e armazenamento local para melhor experiência do usuário.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="#" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+              <a href="#" class="btn btn-outline btn-sm">🌐 Demo</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align: center; margin-top: 48px;">
+        <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-primary">
+          🐙 Ver Todos os Projetos no GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICAÇÕES -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title">📜 Certificações</h2>
+      
+      <h3 style="color: var(--accent); margin: 40px 0 24px;">💻 Programação & Tecnologia</h3>
+      <div class="courses-grid">
+        <div class="course-card">
+          <h4>Desenvolvimento Web Full Stack</h4>
+          <div class="course-provider">Udemy</div>
+          <a href="https://ude.my/UC-b87e3e1b-d352-4ca3-9a60-1e70bddcd729" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Back-end com Slim Framework (PHP)</h4>
+          <div class="course-provider">Cursa</div>
+          <a href="https://cursa.app/pt/meu-certificado/cert212c0b82fe81e891f7ab992845d43130" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Análise de Dados em Python</h4>
+          <div class="course-provider">Programação Dinâmica</div>
+          <a href="https://cursa.app/pt/meu-certificado/certc4b4469ae1302805eda20f9c549456c1" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Node.js com Express e TypeScript</h4>
+          <div class="course-provider">Cursa</div>
+          <a href="https://cursa.app/pt/meu-certificado/cert784f2ad8d43a8002a35353ced34ea0c8" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>React JS</h4>
+          <div class="course-provider">EuProgramador</div>
+          <a href="https://cursa.app/pt/meu-certificado/cert817951b9c469739094602d09bbcaa740" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Banco de Dados MySQL</h4>
+          <div class="course-provider">Cursa</div>
+          <a href="https://cursa.app/pt/meu-certificado/cert79cb8341079f5ac898fc8a756abc177e" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Segurança da Informação</h4>
+          <div class="course-provider">Cursa</div>
+          <a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>Salesforce Administrador</h4>
+          <div class="course-provider">Udemy</div>
+          <a href="https://ude.my/UC-d1627aOa-050c-460b-9c9d-504682b711e5" target="_blank" class="course-cert">📄 Ver Certificado</a>
         </div>
       </div>
-      
-      <div class="animate delay-3">
-        <a href="mailto:gustavoluis.v.c.1016@gmail.com?subject=Oportunidade Desenvolvedor" class="btn btn-primary btn-full-mobile" style="padding: 16px 40px; font-size: 1.05rem;">
-          📬 Entrar em Contato
-        </a>
+
+      <h3 style="color: var(--accent); margin: 48px 0 24px;">🌍 Idiomas</h3>
+      <div class="courses-grid">
+        <div class="course-card">
+          <h4>🇬🇧 Inglês – Do Básico à Fluência</h4>
+          <div class="course-provider">Udemy</div>
+          <a href="https://ude.my/UC-e47bf283-89c7-4f7e-852a-5cc13473a67f" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>🇪🇸 Espanhol – A1 ao C1</h4>
+          <div class="course-provider">Udemy</div>
+          <a href="https://ude.my/UC-7ae1c992-03c3-4b46-9a2b-f811de737ccd" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>🇮🇹 Italiano para Brasileiros</h4>
+          <div class="course-provider">PontoItalian / Udemy</div>
+          <a href="https://ude.my/UC-375c8abb-31cd-4420-8005-f0034f43f8b4" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+        <div class="course-card">
+          <h4>🇩🇪 Alemão Completo (A1 ao C1)</h4>
+          <div class="course-provider">Udemy - Tarik Becker</div>
+          <a href="https://ude.my/UC-7dc4ccc9-ff9c-452d-8059-d5f844942702" target="_blank" class="course-cert">📄 Ver Certificado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO / CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-section">
+        <h3>🤝 Vamos Conversar?</h3>
+        <p>
+          Estou em busca da minha <strong>primeira oportunidade como Desenvolvedor Júnior</strong>. 
+          Se sua equipe precisa de alguém dedicado, com sede de aprendizado, disciplina comprovada 
+          e foco em entregar valor — adoraria conhecer mais sobre a vaga.
+        </p>
+        
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span class="contact-icon">📧</span>
+            <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📱</span>
+            <a href="tel:+5585985841344">(85) 98584-1344</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">💼</span>
+            <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="btn-group" style="justify-content: center;">
+          <a href="Curriculo_Luis_Gustavo_2026.pdf" download class="btn btn-primary">📄 Baixar Currículo em PDF</a>
+          <a href="mailto:gustavoluis.v.c.1016@gmail.com?subject=Oportunidade para Desenvolvedor Júnior" class="btn btn-secondary">✉️ Enviar E-mail</a>
+        </div>
       </div>
     </div>
   </section>
@@ -797,226 +1136,69 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-links">
-          <a href="#about">Sobre</a>
-          <a href="#projects">Projetos</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#projetos">Projetos</a>
           <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a>
           <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
+          <a href="Curriculo_Luis_Gustavo_2026.pdf" download>Download CV</a>
         </div>
-        <p class="copyright">© 2026 Luis Gustavo • Fortaleza, CE • Deploy via GitHub Pages 🚀</p>
+        
+        <div class="license">
+          <strong>📄 Licença MIT:</strong> Este portfólio e seus códigos estão sob a <strong>MIT License</strong>. 
+          Sinta-se à vontade para usar, modificar e compartilhar — apenas mantenha a atribuição original.
+        </div>
+        
+        <p class="copyright">
+          © 2026 Luis Gustavo Verissimo Cavalcante • Fortaleza, CE • 
+          <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a>
+        </p>
       </div>
     </div>
   </footer>
 
-  <!-- JAVASCRIPT -->
   <script>
-    // ==================== NAVBAR ====================
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    // Smooth scroll para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
 
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    navToggle?.addEventListener('click', () => navLinks.classList.toggle('active'));
-    navLinks?.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('active'));
-    });
-
-    // ==================== DEMO UTILS ====================
-    function toggleDemo(frameId) {
-      const frame = document.getElementById(frameId);
-      if (frame) frame.classList.toggle('expanded');
-    }
-
-    // ==================== TASKFLOW DEMO ====================
-    function renderTaskFlow() {
-      const content = document.getElementById('taskflow-content');
-      content.innerHTML = `
-        <div class="tf-header">
-          <span class="tf-title">📋 Meus Tasks</span>
-          <button class="tf-add-btn" onclick="addTaskDemo()">+ Novo</button>
-        </div>
-        <div class="tf-boards">
-          <div class="tf-board">
-            <div class="tf-board-title">📝 A Fazer</div>
-            <div class="tf-task urgent" draggable="true">Criar API REST</div>
-            <div class="tf-task" draggable="true">Review de código</div>
-          </div>
-          <div class="tf-board">
-            <div class="tf-board-title">⚡ Em Progresso</div>
-            <div class="tf-task" draggable="true">Deploy no GitHub Pages</div>
-          </div>
-          <div class="tf-board">
-            <div class="tf-board-title">✅ Concluído</div>
-            <div class="tf-task done" draggable="true">Setup do React</div>
-            <div class="tf-task done" draggable="true">Configurar ESLint</div>
-          </div>
-        </div>
-      `;
-    }
-    function addTaskDemo() {
-      alert('✨ Em produção: modal de criação com validação e persistência!');
-    }
-
-    // ==================== WEATHER DEMO ====================
-    function renderWeather() {
-      const content = document.getElementById('weather-content');
-      const conditions = ['☀️', '⛅', '🌧️', '⛈️'];
-      const condition = conditions[Math.floor(Math.random() * conditions.length)];
-      
-      content.innerHTML = `
-        <div class="wd-header">
-          <span class="wd-location">📍 Fortaleza, CE</span>
-          <span class="wd-temp">28°C</span>
-        </div>
-        <div class="wd-condition">
-          <span class="wd-icon">${condition}</span>
-          <span>Parcialmente nublado</span>
-        </div>
-        <div class="wd-forecast">
-          ${['Seg', 'Ter', 'Qua', 'Qui', 'Sex'].map((day, i) => `
-            <div class="wd-day">
-              <div class="wd-day-name">${day}</div>
-              <div class="wd-day-icon">${conditions[i % conditions.length]}</div>
-              <div class="wd-day-temp">${25 + i}°</div>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-
-    // ==================== SHOPLITE DEMO ====================
-    function renderShopLite() {
-      const content = document.getElementById('shop-content');
-      const products = [
-        { name: 'Headphones', price: 'R$ 299', icon: '🎧' },
-        { name: 'Smartwatch', price: 'R$ 899', icon: '⌚' },
-        { name: 'Keyboard', price: 'R$ 449', icon: '⌨️' },
-        { name: 'Mouse', price: 'R$ 199', icon: '🖱️' }
-      ];
-      
-      content.innerHTML = `
-        <div class="sl-header">
-          <span class="sl-logo">🛒 ShopLite</span>
-          <div class="sl-cart">2</div>
-        </div>
-        <div class="sl-products">
-          ${products.map(p => `
-            <div class="sl-product">
-              <div class="sl-product-img">${p.icon}</div>
-              <div class="sl-product-name">${p.name}</div>
-              <div class="sl-product-price">${p.price}</div>
-              <button class="sl-add-btn" onclick="addToCart('${p.name}')">Adicionar</button>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-    function addToCart(item) {
-      const btn = event.target;
-      const original = btn.innerText;
-      btn.innerText = '✅ Adicionado!';
-      btn.style.background = 'var(--accent)';
-      setTimeout(() => {
-        btn.innerText = original;
-        btn.style.background = '';
-      }, 1500);
-    }
-
-    // ==================== CODESNIPPET DEMO ====================
-    function renderCodeSnippet() {
-      const content = document.getElementById('code-content');
-      content.innerHTML = `
-        <div class="cs-toolbar">
-          <select class="cs-lang-select">
-            <option>JavaScript</option>
-            <option>TypeScript</option>
-            <option>Python</option>
-          </select>
-          <button class="cs-copy-btn" onclick="copyCode()">📋 Copiar</button>
-        </div>
-        <div class="cs-editor">
-          <div class="cs-line"><span class="cs-line-num">1</span><span class="cs-code"><span class="kw">async function</span> <span class="fn">fetchData</span>() {</span></div>
-          <div class="cs-line"><span class="cs-line-num">2</span><span class="cs-code">  <span class="kw">const</span> res = <span class="kw">await</span> fetch(<span class="str">'/api/data'</span>);</span></div>
-          <div class="cs-line"><span class="cs-line-num">3</span><span class="cs-code">  <span class="kw">return</span> res.<span class="fn">json</span>();</span></div>
-          <div class="cs-line"><span class="cs-line-num">4</span><span class="cs-code">}</span></div>
-          <div class="cs-line"><span class="cs-line-num">5</span><span class="cs-code"><span class="cmt">// ✨ Syntax highlight ativo</span></span></div>
-        </div>
-      `;
-    }
-    function copyCode() {
-      navigator.clipboard.writeText('async function fetchData() {\n  const res = await fetch("/api/data");\n  return res.json();\n}');
-      const btn = document.querySelector('.cs-copy-btn');
-      btn.innerText = '✅ Copiado!';
-      setTimeout(() => btn.innerText = '📋 Copiar', 2000);
-    }
-
-    // ==================== FINANCETRACK DEMO ====================
-    function renderFinanceTrack() {
-      const content = document.getElementById('finance-content');
-      const transactions = [
-        { label: 'Salário', amount: '+ R$ 4.500', type: 'income' },
-        { label: 'Aluguel', amount: '- R$ 1.200', type: 'expense' },
-        { label: 'Mercado', amount: '- R$ 450', type: 'expense' },
-        { label: 'Freelance', amount: '+ R$ 800', type: 'income' }
-      ];
-      
-      content.innerHTML = `
-        <div class="ft-header">
-          <div class="ft-balance">
-            <div class="ft-balance-label">Saldo Total</div>
-            <div class="ft-balance-value">R$ 3.650</div>
-          </div>
-        </div>
-        <div class="ft-chart-placeholder">
-          ${[40, 65, 30, 80, 55, 70, 45].map((h, i) => 
-            `<div class="ft-chart-bar" style="height: ${h}%; left: ${i * 14 + 2}%"></div>`
-          ).join('')}
-          <span style="position: relative; z-index: 2;">📈 Gráfico Interativo</span>
-        </div>
-        <div class="ft-transactions">
-          ${transactions.map(t => `
-            <div class="ft-transaction">
-              <div class="ft-t-info">
-                <span style="font-weight: 600;">${t.label}</span>
-                <span class="ft-t-label">Hoje</span>
-              </div>
-              <span class="ft-t-amount ${t.type}">${t.amount}</span>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-
-    // ==================== INITIALIZATION ====================
-    document.addEventListener('DOMContentLoaded', () => {
-      renderTaskFlow();
-      renderWeather();
-      renderShopLite();
-      renderCodeSnippet();
-      renderFinanceTrack();
-    });
-
-    // ==================== ANIMATION OBSERVER ====================
+    // Animação de entrada ao rolar
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
-    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+    document.querySelectorAll('.project-card, .experience-card, .course-card, .value-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
 
-    // ==================== PREVENT ZOOM ON MOBILE ====================
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', (e) => {
-      const now = Date.now();
-      if (now - lastTouchEnd <= 300) e.preventDefault();
-      lastTouchEnd = now;
-    }, { passive: false });
+    // Efeito de hover nos botões de skill
+    document.querySelectorAll('.skill-tag').forEach(tag => {
+      tag.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px)';
+      });
+      tag.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
   </script>
+
 </body>
 </html>
 
