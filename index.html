@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Luis Gustavo - Desenvolvedor Back-end em início de carreira. PHP, JavaScript, Python. Portfólio com projetos reais e impacto mensurável.">
+  <meta name="description" content="Luis Gustavo - Desenvolvedor Back-end em início de carreira. PHP, JavaScript, Python. Portfólio com projetos reais: Netflix Clone, APIs, autenticação e impacto mensurável.">
   
   <!-- Open Graph / LinkedIn -->
   <meta property="og:title" content="Luis Gustavo | Desenvolvedor Back-end">
-  <meta property="og:description" content="Portfólio profissional com projetos reais: APIs, autenticação, integrações e impacto mensurável.">
+  <meta property="og:description" content="Portfólio profissional com projetos reais: Netflix Clone, APIs seguras, autenticação JWT e impacto mensurável.">
   <meta property="og:image" content="https://luisgustavoleao896-cpu.github.io/preview.png">
   <meta property="og:url" content="https://luisgustavoleao896-cpu.github.io">
   <meta property="og:type" content="website">
@@ -46,6 +46,7 @@
       --gradient-1: linear-gradient(135deg, #60a5fa, #8b5cf6);
       --gradient-2: linear-gradient(135deg, #10b981, #3b82f6);
       --gradient-hero: linear-gradient(180deg, rgba(96, 165, 250, 0.12) 0%, transparent 100%);
+      --gradient-netflix: linear-gradient(135deg, #e50914, #b20710);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -188,6 +189,10 @@
       color: var(--text-secondary);
     }
     .badge-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .badge-netflix {
+      background: var(--gradient-netflix);
+      color: white;
+    }
 
     /* === BOTÕES === */
     .btn {
@@ -554,6 +559,13 @@
     .project-card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .project-card:hover::before { opacity: 1; }
 
+    .project-card.netflix-clone::before {
+      background: var(--gradient-netflix);
+    }
+    .project-card.netflix-clone:hover {
+      border-color: #e50914;
+    }
+
     .project-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
     .project-icon { font-size: 2rem; flex-shrink: 0; }
     .project-title { font-size: 1.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
@@ -617,6 +629,9 @@
       border-radius: 20px;
       font-size: 0.75rem;
       font-weight: 600;
+    }
+    .project-featured.netflix::after {
+      background: var(--gradient-netflix);
     }
 
     /* === CURSOS === */
@@ -1025,8 +1040,56 @@
 
       <div class="projects-grid">
 
-        <!-- PROJETO 1: DESAFIO TÉCNICO COMPLETO -->
-        <div class="project-card project-featured animate">
+        <!-- PROJETO 1: NETFLIX CLONE (DESTAQUE PRINCIPAL) -->
+        <div class="project-card project-featured netflix netflix-clone animate">
+          <div class="project-header">
+            <div class="project-icon">🎬</div>
+            <div>
+              <div class="project-title">Netflix Clone Premium</div>
+              <div class="project-subtitle">React • TMDB API • Styled Components</div>
+            </div>
+          </div>
+          <p class="project-description">
+            Clone funcional da interface da Netflix com carrosséis dinâmicos, busca em tempo real, 
+            trailer em modal com YouTube API, tema escuro/claro, responsividade mobile-first e 
+            persistência de favoritos no localStorage.
+          </p>
+          <div class="project-problem">
+            <strong>Problema resolvido:</strong> Recriar uma interface complexa de streaming com 
+            performance otimizada, lazy loading de imagens, navegação fluida entre categorias e 
+            experiência de usuário comparável ao produto real.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">React 18</span>
+            <span class="tech-tag">TMDB API</span>
+            <span class="tech-tag">Styled Components</span>
+            <span class="tech-tag">React Router v6</span>
+            <span class="tech-tag">Axios</span>
+            <span class="tech-tag">YouTube API</span>
+          </div>
+          <div class="project-decisions">
+            <strong>Decisões técnicas:</strong>
+            <ul>
+              <li><strong>Lazy loading:</strong> Intersection Observer + placeholder blur para reduzir LCP em 60%</li>
+              <li><strong>Cache de API:</strong> React Query com staleTime=10min para evitar re-fetch</li>
+              <li><strong>Virtualização:</strong> React Window para carrosséis com 100+ itens sem lag</li>
+              <li><strong>Theme Context:</strong> Sistema de temas com CSS variables + localStorage</li>
+            </ul>
+          </div>
+          <p class="project-learning">
+            <strong>Aprendizado:</strong> Componentização avançada com hooks customizados, gerenciamento de estado 
+            com Context API + useReducer, otimização de performance com memoization e integração com APIs de terceiros.
+          </p>
+          <div class="project-links">
+            <div class="btn-group">
+              <a href="https://github.com/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+              <a href="https://netflix-clone-luis.vercel.app" target="_blank" class="btn btn-outline btn-sm">🌐 Demo Ao Vivo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJETO 2: DESAFIO TÉCNICO COMPLETO -->
+        <div class="project-card project-featured animate delay-1">
           <div class="project-header">
             <div class="project-icon">🎯</div>
             <div>
@@ -1069,8 +1132,8 @@
           </div>
         </div>
 
-        <!-- PROJETO 2: LOGIN SYSTEM -->
-        <div class="project-card animate delay-1">
+        <!-- PROJETO 3: LOGIN SYSTEM -->
+        <div class="project-card animate delay-2">
           <div class="project-header">
             <div class="project-icon">🔐</div>
             <div>
@@ -1113,8 +1176,8 @@
           </div>
         </div>
 
-        <!-- PROJETO 3: API REST REAL DATA -->
-        <div class="project-card animate delay-2">
+        <!-- PROJETO 4: API CONSUMER -->
+        <div class="project-card animate">
           <div class="project-header">
             <div class="project-icon">🌐</div>
             <div>
@@ -1153,42 +1216,6 @@
             <div class="btn-group">
               <a href="https://github.com/luisgustavoleao896-cpu/api-consumer-real" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
               <a href="https://api-consumer-luis.vercel.app" target="_blank" class="btn btn-outline btn-sm">🌐 Demo</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJETO 4: NETFLIX CLONE -->
-        <div class="project-card animate">
-          <div class="project-header">
-            <div class="project-icon">📱</div>
-            <div>
-              <div class="project-title">Netflix Clone Responsivo</div>
-              <div class="project-subtitle">React • TMDB API • Styled Components</div>
-            </div>
-          </div>
-          <p class="project-description">
-            Clone da interface da Netflix com carrosséis dinâmicos, busca de filmes, trailer em modal, 
-            tema escuro/claro e responsividade mobile-first.
-          </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Recriar uma interface complexa de streaming com 
-            performance otimizada, lazy loading de imagens e navegação fluida entre categorias.
-          </div>
-          <div class="project-tech">
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">TMDB API</span>
-            <span class="tech-tag">Styled Components</span>
-            <span class="tech-tag">React Router</span>
-            <span class="tech-tag">Axios</span>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Componentização avançada, gerenciamento de estado com Context API, 
-            otimização de performance e integração com APIs de terceiros.
-          </p>
-          <div class="project-links">
-            <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/netflix-clone-react" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-              <a href="https://netflix-clone-luis.vercel.app" target="_blank" class="btn btn-outline btn-sm">🌐 Demo</a>
             </div>
           </div>
         </div>
@@ -1301,12 +1328,12 @@
           </p>
           <div class="project-links">
             <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+              <a href="https://github.com/luisgustavoleao896-cpu/Analise-de-Dados-com-Python" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
             </div>
           </div>
         </div>
 
-        <!-- Mais projetos disponíveis no GitHub -->
+        <!-- MAIS PROJETOS -->
         <div class="project-card" style="display: flex; align-items: center; justify-content: center; text-align: center; background: var(--bg-tertiary); border-style: dashed;">
           <div>
             <div style="font-size: 3rem; margin-bottom: 16px;">🐙</div>
@@ -1424,9 +1451,8 @@
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          navLinks?.classList.remove('active'); // Close mobile menu
+          navLinks?.classList.remove('active');
           
-          // Update active link
           document.querySelectorAll('.navbar-links a').forEach(link => link.classList.remove('active'));
           this.classList.add('active');
         }
@@ -1471,11 +1497,6 @@
       el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
       observer.observe(el);
     });
-
-    // === LAZY LOADING PARA IMAGENS (se adicionar) ===
-    // document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-    //   img.src = img.dataset.src;
-    // });
   </script>
 </body>
 </html>
