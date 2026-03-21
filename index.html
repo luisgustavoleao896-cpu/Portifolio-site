@@ -1,1096 +1,485 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Luis Gustavo - Front-end Developer">
-  <title>Luis Gustavo | Front-end Developer</title>
-
-  <style>
-    :root {
-      --bg-dark: #0f172a;
-      --bg-card: #1e293b;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --primary: #3b82f6;
-      --accent: #10b981;
-      --border: #334155;
-      --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    a { color: var(--primary); text-decoration: none; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    .section { padding: 80px 0; }
-    
-    .text-gradient {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .badge {
-      display: inline-flex;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: rgba(16, 185, 129, 0.15);
-      color: var(--accent);
-      border: 1px solid var(--accent);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-    }
-
-    .btn-secondary {
-      background: var(--bg-card);
-      color: var(--text-main);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--primary);
-    }
-
-    .btn-success {
-      background: var(--accent);
-      color: white;
-    }
-
-    .btn-sm { padding: 8px 16px; font-size: 0.9rem; }
-
-    /* Navbar */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 0;
-      z-index: 1000;
-    }
-
-    .navbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .navbar-logo {
-      font-size: 1.25rem;
-      font-weight: 800;
-    }
-
-    .navbar-logo span { color: var(--primary); }
-
-    .navbar-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .navbar-links a {
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .navbar-links a:hover { color: var(--primary); }
-
-    .navbar-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .navbar-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-card);
-        flex-direction: column;
-        padding: 20px;
-        gap: 16px;
-      }
-      .navbar-links.active { display: flex; }
-      .navbar-toggle { display: block; }
-    }
-
-    /* Hero */
-    .hero {
-      padding: 160px 0 100px;
-      text-align: center;
-      background: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-dark) 70%);
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 24px;
-      line-height: 1.2;
-    }
-
-    @media (min-width: 768px) {
-      .hero h1 { font-size: 3.5rem; }
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto 40px;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 80px;
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-    }
-
-    .stat-item h3 {
-      font-size: 2rem;
-      font-weight: 800;
-    }
-
-    .stat-item span {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-
-    /* About */
-    .about-grid {
-      display: grid;
-      gap: 48px;
-      align-items: center;
-    }
-
-    @media (min-width: 900px) {
-      .about-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    .about-content h2 {
-      font-size: 2rem;
-      margin-bottom: 24px;
-    }
-
-    .about-text {
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-
-    .highlight-box {
-      background: var(--bg-card);
-      border-left: 4px solid var(--accent);
-      padding: 24px;
-      border-radius: 0 12px 12px 0;
-      margin: 30px 0;
-    }
-
-    .highlight-box h4 {
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .lang-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 30px;
-    }
-
-    .lang-card {
-      background: var(--bg-card);
-      padding: 16px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .lang-flag { font-size: 1.5rem; }
-    .lang-info strong { display: block; }
-    .lang-info span { font-size: 0.8rem; color: var(--primary); }
-
-    .skills-grid {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-
-    .skill-tag {
-      padding: 8px 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.85rem;
-    }
-
-    .skill-tag.pro {
-      background: rgba(16, 185, 129, 0.15);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* Projects */
-    .projects-section { background: #131c31; }
-    
-    .projects-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .projects-header h2 {
-      font-size: 2rem;
-      margin-bottom: 16px;
-    }
-
-    .projects-header p { color: var(--text-muted); }
-
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 40px;
-    }
-
-    .project-content { padding: 28px; }
-
-    .project-grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    @media (min-width: 768px) {
-      .project-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    .project-tags {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .tag {
-      font-size: 0.75rem;
-      padding: 4px 12px;
-      background: rgba(59, 130, 246, 0.1);
-      color: var(--primary);
-      border-radius: 6px;
-    }
-
-    .project-info h3 {
-      font-size: 1.3rem;
-      margin-bottom: 12px;
-    }
-
-    .project-desc {
-      color: var(--text-muted);
-      margin-bottom: 20px;
-      font-size: 0.95rem;
-    }
-
-    .project-meta {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    /* Demo Window */
-    .demo-container {
-      background: #000;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .demo-bar {
-      background: #1e293b;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid #334155;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .dot-red { background: #ef4444; }
-    .dot-yellow { background: #f59e0b; }
-    .dot-green { background: #10b981; }
-
-    .demo-title {
-      flex: 1;
-      text-align: center;
-      font-family: monospace;
-      font-size: 0.75rem;
-      color: #64748b;
-    }
-
-    .demo-frame {
-      height: 300px;
-      position: relative;
-      overflow: auto;
-    }
-
-    .demo-actions {
-      display: flex;
-      gap: 8px;
-      padding: 12px 16px;
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-
-    /* Netflix Demo */
-    .netflix-demo {
-      background: #141414;
-      height: 100%;
-      color: white;
-      font-family: sans-serif;
-    }
-
-    .nf-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
-    }
-
-    .nf-logo {
-      color: #e50914;
-      font-weight: 900;
-      font-size: 1.3rem;
-    }
-
-    .nf-hero {
-      height: 200px;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      position: relative;
-    }
-
-    .nf-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, #141414 0%, transparent 60%);
-    }
-
-    .nf-content {
-      position: relative;
-      z-index: 2;
-      max-width: 300px;
-    }
-
-    .nf-title {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .nf-desc {
-      font-size: 0.8rem;
-      margin-bottom: 12px;
-      opacity: 0.9;
-    }
-
-    .nf-btn {
-      background: white;
-      color: black;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .nf-row {
-      padding: 15px 20px;
-    }
-
-    .nf-row h4 {
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-
-    .nf-row-inner {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding: 10px 0;
-    }
-
-    .nf-row-inner::-webkit-scrollbar { display: none; }
-
-    .nf-card {
-      min-width: 100px;
-      height: 150px;
-      background: #333;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.75rem;
-      flex-shrink: 0;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .nf-card:hover { transform: scale(1.1); }
-    .nf-card.red { background: linear-gradient(135deg, #e50914, #b20710); }
-    .nf-card.blue { background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
-    .nf-card.green { background: linear-gradient(135deg, #10b981, #3b82f6); }
-
-    /* Login Demo */
-    .login-demo {
-      background: #f1f5f9;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #333;
-      padding: 20px;
-    }
-
-    .login-box {
-      background: white;
-      padding: 24px;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 300px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .login-box h3 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .login-input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 0.95rem;
-    }
-
-    .login-btn {
-      width: 100%;
-      padding: 12px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .login-success {
-      text-align: center;
-    }
-
-    .login-success .icon {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    /* API Demo */
-    .api-demo {
-      background: #1e1e1e;
-      height: 100%;
-      padding: 16px;
-      font-family: monospace;
-      color: #d4d4d4;
-      font-size: 0.85rem;
-    }
-
-    .api-toolbar {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .method-badge {
-      background: #2da44e;
-      color: white;
-      padding: 4px 10px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-
-    .url-input {
-      flex: 1;
-      min-width: 150px;
-      background: #252526;
-      border: 1px solid #3c3c3c;
-      color: #ccc;
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-family: inherit;
-    }
-
-    .api-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .api-response {
-      background: #000;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 16px;
-      min-height: 150px;
-      white-space: pre-wrap;
-      word-break: break-all;
-    }
-
-    /* Contact */
-    .contact-section { text-align: center; }
-    .contact-section h2 { font-size: 2rem; margin-bottom: 24px; }
-    .contact-section p {
-      color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto 40px;
-    }
-
-    .contact-grid {
-      display: grid;
-      gap: 16px;
-      max-width: 500px;
-      margin: 0 auto 40px;
-    }
-
-    @media (min-width: 768px) {
-      .contact-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    .contact-item {
-      background: var(--bg-card);
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-
-    .contact-icon { font-size: 1.5rem; margin-bottom: 8px; }
-    .contact-label {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .contact-link { font-weight: 600; }
-
-    /* Footer */
-    footer {
-      background: var(--bg-card);
-      padding: 60px 0 40px;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a { color: var(--text-muted); }
-    .footer-links a:hover { color: var(--primary); }
-    .copyright { color: #64748b; font-size: 0.9rem; }
-  </style>
-</head>
-
-<body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="#" class="navbar-logo">&lt;Luis<span>Gustavo</span>/&gt;</a>
-      <ul class="navbar-links" id="navLinks">
-        <li><a href="#about">Sobre</a></li>
-        <li><a href="#projects">Projetos</a></li>
-        <li><a href="#contact">Contato</a></li>
-        <li><a href="#" class="btn btn-primary btn-sm">📄 CV</a></li>
-      </ul>
-      <div class="navbar-toggle" id="navToggle">☰</div>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="badge" style="margin-bottom: 24px;">🚀 Disponível para Oportunidades</div>
-      <h1>
-        Desenvolvedor Front-End<br>
-        <span class="text-gradient">React • APIs • 4 Idiomas</span>
-      </h1>
-      <p>
-        Transformo requisitos complexos em interfaces modernas e performáticas. 
-        Foco em escalabilidade, UX e código limpo.
-      </p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">🎮 Testar Demos</a>
-        <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary">🐙 GitHub</a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="stat-item">
-          <h3>15+</h3>
-          <span>Projetos</span>
-        </div>
-        <div class="stat-item">
-          <h3>4</h3>
-          <span>Idiomas</span>
-        </div>
-        <div class="stat-item">
-          <h3>100%</h3>
-          <span>Comprometimento</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-content">
-          <h2>Mais que código,<br><span class="text-gradient">resolução de problemas.</span></h2>
-          <div class="about-text">
-            <p>
-              Minha jornada na programação começou de forma não tradicional: enquanto cuidava da minha mãe, 
-              descobri na tecnologia uma ferramenta de transformação. Essa experiência me deu uma disciplina 
-              férrea e capacidade única de resolver problemas sob pressão.
-            </p>
-            <p>
-              Hoje, atuo como <strong>Desenvolvedor Front-End</strong>, focado em criar experiências digitais 
-              que não apenas funcionam, mas encantam o usuário final.
-            </p>
-          </div>
-          
-          <div class="highlight-box">
-            <h4>💡 Meu Diferencial</h4>
-            <p>
-              Além da técnica (React, Node, APIs), trago maturidade profissional e fluência em 
-              <strong>4 idiomas</strong>, o que me permite atuar em equipes internacionais.
-            </p>
-          </div>
-        </div>
-
-        <div>
-          <h3 style="margin-bottom: 24px;">🌍 Idiomas</h3>
-          <div class="lang-grid">
-            <div class="lang-card">
-              <span class="lang-flag">🇧🇷</span>
-              <div class="lang-info"><strong>Português</strong><span>Nativo</span></div>
-            </div>
-            <div class="lang-card">
-              <span class="lang-flag">🇬🇧</span>
-              <div class="lang-info"><strong>Inglês</strong><span>Avançado (C1)</span></div>
-            </div>
-            <div class="lang-card">
-              <span class="lang-flag">🇪🇸</span>
-              <div class="lang-info"><strong>Espanhol</strong><span>Avançado (C1)</span></div>
-            </div>
-            <div class="lang-card">
-              <span class="lang-flag">🇮🇹</span>
-              <div class="lang-info"><strong>Italiano</strong><span>Intermediário</span></div>
-            </div>
-          </div>
-          
-          <div style="margin-top: 32px;">
-            <h4 style="margin-bottom: 16px;">⚡ Stack Principal</h4>
-            <div class="skills-grid">
-              <span class="skill-tag pro">React</span>
-              <span class="skill-tag pro">JavaScript</span>
-              <span class="skill-tag pro">TypeScript</span>
-              <span class="skill-tag">Node.js</span>
-              <span class="skill-tag">Tailwind CSS</span>
-              <span class="skill-tag">REST APIs</span>
-              <span class="skill-tag">Git</span>
-              <span class="skill-tag">MySQL</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="section projects-section">
-    <div class="container">
-      <div class="projects-header">
-        <h2>Projetos em Destaque</h2>
-        <p>Clique em "🎬 Demo Ao Vivo" para testar cada projeto diretamente no navegador.</p>
-      </div>
-
-      <!-- Project 1: Netflix -->
-      <div class="project-card">
-        <div class="project-content">
-          <div class="project-grid">
-            <div class="project-info">
-              <div class="project-tags">
-                <span class="tag">React</span>
-                <span class="tag">API TMDB</span>
-                <span class="tag">Async/Await</span>
-              </div>
-              <h3>🎬 Netflix Clone Premium</h3>
-              <p class="project-desc">
-                <strong>Desafio:</strong> Criar uma interface de streaming performática.
-                <br><br>
-                <strong>Solução:</strong> Lazy loading, cache de requisições e design fiel à marca.
-              </p>
-              <div class="project-meta">
-                <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
-                <span class="badge">● Demo Ativa</span>
-              </div>
-            </div>
-            
-            <div class="demo-container">
-              <div class="demo-bar">
-                <div class="dot dot-red"></div>
-                <div class="dot dot-yellow"></div>
-                <div class="dot dot-green"></div>
-                <div class="demo-title">netflix-demo.js</div>
-              </div>
-              <div class="demo-frame">
-                <div class="netflix-demo" id="netflix-content"></div>
-              </div>
-              <div class="demo-actions">
-                <button onclick="alert('Demo funcional acima! 👆')" class="btn btn-success btn-sm">🎬 Demo Ao Vivo</button>
-                <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary btn-sm">🐙 GitHub</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2: Auth System -->
-      <div class="project-card">
-        <div class="project-content">
-          <div class="project-grid">
-            <div class="project-info">
-              <div class="project-tags">
-                <span class="tag">Node.js</span>
-                <span class="tag">JWT</span>
-                <span class="tag">Security</span>
-              </div>
-              <h3>🔐 Sistema de Autenticação</h3>
-              <p class="project-desc">
-                <strong>Desafio:</strong> Garantir segurança no login e persistência de sessão.
-                <br><br>
-                <strong>Solução:</strong> Hash de senha (bcrypt), tokens JWT e rotas protegidas.
-              </p>
-              <div class="project-meta">
-                <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
-                <span class="badge">● Teste Login</span>
-              </div>
-            </div>
-            
-            <div class="demo-container">
-              <div class="demo-bar">
-                <div class="dot dot-red"></div>
-                <div class="dot dot-yellow"></div>
-                <div class="dot dot-green"></div>
-                <div class="demo-title">auth-system.js</div>
-              </div>
-              <div class="demo-frame">
-                <div class="login-demo" id="auth-content"></div>
-              </div>
-              <div class="demo-actions">
-                <button onclick="alert('Teste o login acima! 👆')" class="btn btn-success btn-sm">⚡ Testar Login</button>
-                <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary btn-sm">🐙 GitHub</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 3: API Consumer -->
-      <div class="project-card">
-        <div class="project-content">
-          <div class="project-grid">
-            <div class="project-info">
-              <div class="project-tags">
-                <span class="tag">Fetch API</span>
-                <span class="tag">JSON</span>
-                <span class="tag">Error Handling</span>
-              </div>
-              <h3>🌐 Consumidor de APIs</h3>
-              <p class="project-desc">
-                <strong>Desafio:</strong> Integrar dados externos (CEP, GitHub) com tratamento de erros.
-                <br><br>
-                <strong>Solução:</strong> Cliente HTTP assíncrono com validação e formatação de dados.
-              </p>
-              <div class="project-meta">
-                <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
-                <button onclick="runApiDemo()" class="btn btn-success btn-sm">📡 Testar API</button>
-              </div>
-            </div>
-            
-            <div class="demo-container">
-              <div class="demo-bar">
-                <div class="dot dot-red"></div>
-                <div class="dot dot-yellow"></div>
-                <div class="dot dot-green"></div>
-                <div class="demo-title">api-fetch.js</div>
-              </div>
-              <div class="demo-frame">
-                <div class="api-demo" id="api-content">
-                  <div class="api-toolbar">
-                    <span class="method-badge">GET</span>
-                    <input type="text" class="url-input" value="https://api.github.com/users/github" id="api-url">
-                    <button class="api-btn" onclick="runApiDemo()">Send</button>
-                  </div>
-                  <div class="api-response" id="api-output">// Clique em Send para buscar dados...</div>
-                </div>
-              </div>
-              <div class="demo-actions">
-                <button onclick="runApiDemo()" class="btn btn-success btn-sm">🎬 Demo Ao Vivo</button>
-                <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-secondary btn-sm">🐙 GitHub</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- More Projects -->
-      <div class="project-card" style="background: var(--bg-dark); border-style: dashed; text-align: center; padding: 60px 20px;">
-        <div style="font-size: 3rem; margin-bottom: 20px;">📦</div>
-        <h3 style="margin-bottom: 12px;">+10 Projetos no GitHub</h3>
-        <p style="color: var(--text-muted); margin-bottom: 24px; max-width: 500px; margin: 0 auto 24px;">
-          URL Shortener, Chat App, E-commerce, Weather App, e mais.
-        </p>
-        <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-primary">
-          🐙 Explorar Todos os Repositórios
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section contact-section">
-    <div class="container">
-      <h2>Vamos construir algo incrível?</h2>
-      <p>
-        Estou buscando oportunidades para aplicar minhas skills em React e Backend. 
-        Se você precisa de um dev comprometido e multilíngue, vamos conversar.
-      </p>
-      
-      <div class="contact-grid">
-        <div class="contact-item">
-          <div class="contact-icon">📧</div>
-          <span class="contact-label">Email</span>
-          <a href="mailto:gustavoluis.v.c.1016@gmail.com" class="contact-link">Enviar Email</a>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">💼</div>
-          <span class="contact-label">LinkedIn</span>
-          <a href="https://linkedin.com/in/luisgustavoleao" target="_blank" class="contact-link">Conectar</a>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">🐙</div>
-          <span class="contact-label">GitHub</span>
-          <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="contact-link">Ver Código</a>
-        </div>
-      </div>
-      
-      <div>
-        <a href="mailto:gustavoluis.v.c.1016@gmail.com" class="btn btn-primary" style="padding: 16px 40px; font-size: 1.05rem;">
-          📬 Entrar em Contato
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <a href="#about">Sobre</a>
-        <a href="#projects">Projetos</a>
-        <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
-      </div>
-      <p class="copyright">© 2026 Luis Gustavo • Fortaleza, CE • Desenvolvido com React & ☕</p>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile menu
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+<script>
+  // ============================================
+  // 🎯 CONFIGURAÇÃO GLOBAL
+  // ============================================
+  const CONFIG = {
+    apiBase: 'https://jsonplaceholder.typicode.com',
+    tmdbMock: true, // Usar dados mockados para evitar CORS do TMDB [[3]][[6]]
+    animations: true,
+    debug: false
+  };
+
+  // ============================================
+  // 📱 MENU MOBILE
+  // ============================================
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  
+  navToggle?.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    navToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+  });
+
+  // Fechar menu ao clicar em link
+  document.querySelectorAll('.navbar-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      navToggle.textContent = '☰';
     });
+  });
 
-    // Netflix Demo
-    const netflixContent = document.getElementById('netflix-content');
-    const movies = [
-      { title: "Stranger", color: "red" },
-      { title: "The Crown", color: "blue" },
-      { title: "Money", color: "red" },
-      { title: "Dark", color: "blue" },
-      { title: "Ozark", color: "green" }
-    ];
+  // ============================================
+  // 🎬 NETFLIX DEMO - ULTRA-REALISTA
+  // ============================================
+  const netflixContent = document.getElementById('netflix-content');
+  
+  // Dados mockados realistas (evita CORS do TMDB [[9]])
+  const netflixData = {
+    trending: [
+      { id: 1, title: "Stranger Things", year: 2016, rating: "98%", img: "🔮", genre: "Sci-Fi", desc: "Quando um garoto desaparece, uma cidade inteira é envolvida em mistérios sobrenaturais." },
+      { id: 2, title: "The Crown", year: 2016, rating: "95%", img: "👑", genre: "Drama", desc: "A narrativa épica da rainha Elizabeth II e os eventos que moldaram a segunda metade do século XX." },
+      { id: 3, title: "Money Heist", year: 2017, rating: "97%", img: "💰", genre: "Crime", desc: "Um grupo único de assaltantes invade a Casa da Moeda da Espanha em um plano elaborado." },
+      { id: 4, title: "Dark", year: 2017, rating: "96%", img: "🌀", genre: "Thriller", desc: "Uma família descobre segredos sombrios em uma cidade alemã após o desaparecimento de duas crianças." },
+      { id: 5, title: "Ozark", year: 2017, rating: "94%", img: "💵", genre: "Crime", desc: "Um consultor financeiro lava dinheiro para um cartel enquanto tenta manter sua família segura." },
+      { id: 6, title: "Bridgerton", year: 2020, rating: "92%", img: "🌹", genre: "Romance", desc: "Oito irmãos unidos pela família buscam amor e felicidade na alta sociedade londrina." }
+    ],
+    originals: [
+      { id: 7, title: "Wednesday", year: 2022, rating: "93%", img: "🖤", genre: "Comédia", desc: "Wednesday Addams investiga mistérios sobrenaturais em sua nova escola." },
+      { id: 8, title: "Squid Game", year: 2021, rating: "99%", img: "🔺", genre: "Thriller", desc: "Centenas de jogadores endividados aceitam um convite mortal para competir em jogos infantis." }
+    ]
+  };
 
-    function renderNetflix() {
-      let html = `
-        <div class="nf-nav">
-          <div class="nf-logo">NETFLIX</div>
-          <div style="font-size:0.8rem">👤</div>
+  function renderNetflix() {
+    const createCard = (movie) => `
+      <div class="nf-card ${movie.id % 3 === 0 ? 'red' : movie.id % 3 === 1 ? 'blue' : 'green'}" 
+           onclick="showMovieDetails(${JSON.stringify(movie).replace(/"/g, '&quot;')})"
+           style="cursor: pointer;"
+           title="Clique para ver detalhes">
+        <div style="font-size: 2rem; margin-bottom: 8px;">${movie.img}</div>
+        <div style="font-size: 0.7rem; text-align: center;">${movie.title}</div>
+      </div>
+    `;
+
+    let html = `
+      <div class="nf-nav">
+        <div class="nf-logo">NETFLIX</div>
+        <div style="display: flex; gap: 15px; align-items: center;">
+          <span style="font-size: 0.8rem; cursor: pointer;" onclick="alert('🔍 Busca em desenvolvimento')">🔍</span>
+          <span style="font-size: 0.8rem; cursor: pointer;" onclick="alert('🔔 Notificações')">🔔</span>
+          <div style="width: 24px; height: 24px; background: #e50914; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; cursor: pointer;" onclick="alert('👤 Perfil')">👤</div>
         </div>
-        <div class="nf-hero">
-          <div class="nf-content">
-            <div class="nf-title">Stranger Things</div>
-            <div class="nf-desc">Quando um garoto desaparece, a cidade toda participa nas buscas.</div>
-            <button class="nf-btn" onclick="alert('▶️ Reproduzindo...')">▶ Play</button>
+      </div>
+      
+      <div class="nf-hero">
+        <div class="nf-content">
+          <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+            <span class="badge" style="background: #e50914; border-color: #e50914; color: white;">NETFLIX ORIGINAL</span>
+            <span class="badge" style="background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3); color: white;">98% Match</span>
+          </div>
+          <div class="nf-title">Stranger Things</div>
+          <div class="nf-desc">Quando um garoto desaparece, a cidade toda participa nas buscas. Mistérios sobrenaturais, amizade e coragem em uma jornada épica.</div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="nf-btn" onclick="playDemo('Stranger Things')">▶ Play</button>
+            <button class="nf-btn" style="background: rgba(109, 109, 110, 0.7);" onclick="alert('✅ Adicionado à Minha Lista')">+ Minha Lista</button>
           </div>
         </div>
-        <div class="nf-row">
-          <h4>Em Alta</h4>
-          <div class="nf-row-inner">
-      `;
+      </div>
       
-      movies.forEach(m => {
-        html += `<div class="nf-card ${m.color}" onclick="alert('${m.title}')">${m.title}</div>`;
+      <div class="nf-row">
+        <h4>🔥 Em Alta Agora</h4>
+        <div class="nf-row-inner">
+          ${netflixData.trending.map(createCard).join('')}
+        </div>
+      </div>
+      
+      <div class="nf-row">
+        <h4>🎬 Originais Netflix</h4>
+        <div class="nf-row-inner">
+          ${netflixData.originals.map(createCard).join('')}
+        </div>
+      </div>
+      
+      <!-- Modal de Detalhes (oculto por padrão) -->
+      <div id="movie-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: #141414; border-radius: 12px; max-width: 500px; width: 100%; padding: 24px; position: relative;">
+          <button onclick="closeModal()" style="position: absolute; top: 12px; right: 12px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
+          <div id="modal-content"></div>
+        </div>
+      </div>
+    `;
+    
+    netflixContent.innerHTML = html;
+    
+    // Efeito de hover nas cards
+    document.querySelectorAll('.nf-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.15)';
+        this.style.zIndex = '10';
+        this.style.boxShadow = '0 10px 40px rgba(0,0,0,0.5)';
       });
-      
-      html += `</div></div>`;
-      netflixContent.innerHTML = html;
-    }
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.zIndex = '1';
+        this.style.boxShadow = 'none';
+      });
+    });
+  }
 
-    // Auth Demo
-    const authContent = document.getElementById('auth-content');
-    let isLoggedIn = false;
+  function showMovieDetails(movie) {
+    const modal = document.getElementById('movie-modal');
+    const content = document.getElementById('modal-content');
+    
+    content.innerHTML = `
+      <div style="font-size: 3rem; margin-bottom: 16px;">${movie.img}</div>
+      <h3 style="margin-bottom: 8px;">${movie.title}</h3>
+      <div style="display: flex; gap: 12px; color: #b3b3b3; font-size: 0.9rem; margin-bottom: 16px;">
+        <span>${movie.year}</span>
+        <span>•</span>
+        <span>${movie.genre}</span>
+        <span>•</span>
+        <span style="color: #46d369;">${movie.rating}</span>
+      </div>
+      <p style="color: #d2d2d2; line-height: 1.5; margin-bottom: 24px;">${movie.desc}</p>
+      <div style="display: flex; gap: 10px;">
+        <button class="nf-btn" onclick="playDemo('${movie.title}')">▶ Assistir</button>
+        <button class="nf-btn" style="background: rgba(109, 109, 110, 0.7);" onclick="alert('✅ ${movie.title} adicionado à lista!')">+ Lista</button>
+      </div>
+    `;
+    
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
 
-    function renderAuth() {
-      if (!isLoggedIn) {
-        authContent.innerHTML = `
-          <div class="login-box">
-            <h3>Bem-vindo</h3>
-            <input type="email" class="login-input" placeholder="Email" value="admin@demo.com">
-            <input type="password" class="login-input" placeholder="Senha" value="123456">
-            <button class="login-btn" onclick="handleLogin()">Entrar</button>
-          </div>
-        `;
-      } else {
-        authContent.innerHTML = `
-          <div class="login-success">
-            <div class="icon">✅</div>
-            <h3>Login Realizado!</h3>
-            <p>Token JWT gerado com sucesso</p>
-            <button class="login-btn" style="background:#ef4444; margin-top:12px;" onclick="handleLogout()">Sair</button>
-          </div>
-        `;
+  function closeModal() {
+    document.getElementById('movie-modal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  function playDemo(title) {
+    // Simula carregamento de vídeo
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '⏳ Carregando...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      alert(`🎬 Iniciando "${title}"...\n\n⚠️ Esta é uma demo interativa!\n\nEm produção, aqui seria integrado com:\n• Player de vídeo HTML5\n• API de streaming\n• Sistema de recomendação`);
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }, 1500);
+  }
+
+  // Fechar modal ao clicar fora
+  document.addEventListener('click', (e) => {
+    const modal = document.getElementById('movie-modal');
+    if (e.target === modal) closeModal();
+  });
+
+  // ============================================
+  // 🔐 AUTH SYSTEM - FLUXO REALISTA COM JWT
+  // ============================================
+  const authContent = document.getElementById('auth-content');
+  
+  // Simula "banco de dados" de usuários
+  const mockUsers = [
+    { email: 'admin@demo.com', password: '123456', name: 'Admin User', token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mock' },
+    { email: 'user@demo.com', password: 'senha123', name: 'Test User', token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mock2' }
+  ];
+
+  // Verifica sessão ao carregar
+  function checkSession() {
+    const session = localStorage.getItem('auth_session');
+    if (session) {
+      const userData = JSON.parse(session);
+      // Verifica se token não "expirou" (simulação de 24h)
+      if (Date.now() - userData.timestamp < 24 * 60 * 60 * 1000) {
+        return userData;
       }
+      localStorage.removeItem('auth_session');
     }
+    return null;
+  }
 
-    function handleLogin() {
-      const btn = document.querySelector('.login-btn');
-      btn.innerText = "Autenticando...";
+  function renderAuth() {
+    const user = checkSession();
+    
+    if (!user) {
+      authContent.innerHTML = `
+        <div class="login-box">
+          <h3 style="text-align: center; margin-bottom: 8px;">🔐 Acesso Seguro</h3>
+          <p style="text-align: center; color: #64748b; font-size: 0.85rem; margin-bottom: 20px;">Demo com JWT simulado</p>
+          
+          <form id="login-form" onsubmit="handleLogin(event)">
+            <div style="margin-bottom: 16px;">
+              <label style="display: block; font-size: 0.85rem; margin-bottom: 6px; color: #64748b;">Email</label>
+              <input type="email" id="email" class="login-input" placeholder="admin@demo.com" required 
+                     style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem;">
+            </div>
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; font-size: 0.85rem; margin-bottom: 6px; color: #64748b;">Senha</label>
+              <input type="password" id="password" class="login-input" placeholder="••••••" required
+                     style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem;">
+            </div>
+            
+            <div id="login-error" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 12px; display: none;"></div>
+            
+            <button type="submit" class="login-btn" id="login-btn">Entrar</button>
+          </form>
+          
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 0.8rem; color: #64748b;">
+            <strong>Credenciais de teste:</strong><br>
+            📧 admin@demo.com / 🔑 123456<br>
+            📧 user@demo.com / 🔑 senha123
+          </div>
+        </div>
+      `;
+    } else {
+      // Decodifica mock JWT para display
+      const tokenParts = user.token.split('.');
+      const mockPayload = {
+        sub: user.email,
+        name: user.name,
+        iat: Math.floor(user.timestamp / 1000),
+        exp: Math.floor(user.timestamp / 1000) + 86400
+      };
+      
+      authContent.innerHTML = `
+        <div class="login-success">
+          <div class="icon">✅</div>
+          <h3>Autenticado!</h3>
+          <p style="color: #64748b; margin: 8px 0;">Bem-vindo, <strong>${user.name}</strong></p>
+          
+          <div style="background: #f8fafc; border-radius: 8px; padding: 12px; margin: 16px 0; font-family: monospace; font-size: 0.75rem; text-align: left; max-height: 150px; overflow: auto;">
+            <div style="color: #64748b; margin-bottom: 4px;">🔑 Token JWT (mock):</div>
+            <div style="word-break: break-all; color: #3b82f6;">${user.token.substring(0, 40)}...</div>
+          </div>
+          
+          <div style="background: #f8fafc; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 0.8rem; text-align: left;">
+            <div style="color: #64748b; margin-bottom: 4px;">📋 Payload Decodificado:</div>
+            <pre style="margin: 0; white-space: pre-wrap;">${JSON.stringify(mockPayload, null, 2)}</pre>
+          </div>
+          
+          <button class="login-btn" style="background:#ef4444;" onclick="handleLogout()">🚪 Sair</button>
+        </div>
+      `;
+    }
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const errorEl = document.getElementById('login-error');
+    const btn = document.getElementById('login-btn');
+    
+    // UI Loading state
+    btn.innerHTML = '🔄 Autenticando...';
+    btn.disabled = true;
+    errorEl.style.display = 'none';
+    
+    // Simula delay de rede (realista)
+    await new Promise(resolve => setTimeout(resolve, 1200));
+    
+    // Valida credenciais
+    const user = mockUsers.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+      // "Gera" token JWT mockado
+      const sessionData = {
+        email: user.email,
+        name: user.name,
+        token: user.token,
+        timestamp: Date.now()
+      };
+      
+      // Salva sessão (simula localStorage + httpOnly cookie)
+      localStorage.setItem('auth_session', JSON.stringify(sessionData));
+      
+      // Feedback visual de sucesso
+      btn.innerHTML = '✅ Sucesso!';
+      btn.style.background = '#10b981';
+      
       setTimeout(() => {
-        isLoggedIn = true;
         renderAuth();
       }, 800);
+    } else {
+      // Feedback de erro
+      errorEl.textContent = '❌ Email ou senha inválidos';
+      errorEl.style.display = 'block';
+      
+      // Shake animation no form
+      const form = document.getElementById('login-form');
+      form.style.animation = 'shake 0.3s';
+      setTimeout(() => form.style.animation = '', 300);
+      
+      btn.innerHTML = 'Entrar';
+      btn.disabled = false;
     }
+  }
 
-    function handleLogout() {
-      isLoggedIn = false;
+  function handleLogout() {
+    localStorage.removeItem('auth_session');
+    
+    // Feedback visual
+    const btn = event.target;
+    btn.innerHTML = '🚪 Saindo...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
       renderAuth();
-    }
+      alert('👋 Sessão encerrada com sucesso!');
+    }, 500);
+  }
 
-    // API Demo
-    async function runApiDemo() {
-      const output = document.getElementById('api-output');
-      const url = document.getElementById('api-url').value;
+  // Adiciona animação de shake via CSS dinâmico
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // ============================================
+  // 🌐 API CONSUMER - FETCH REAL COM TRATAMENTO
+  // ============================================
+  async function runApiDemo() {
+    const output = document.getElementById('api-output');
+    const urlInput = document.getElementById('api-url');
+    const url = urlInput?.value || 'https://jsonplaceholder.typicode.com/posts/1';
+    
+    // UI Loading com skeleton
+    output.innerHTML = `
+      <div style="color: #f59e0b;">
+        <span style="display: inline-block; animation: pulse 1.5s infinite;">⚡</span> 
+        Conectando a ${new URL(url).hostname}...
+      </div>
+      <div style="margin-top: 12px; color: #64748b; font-size: 0.85rem;">
+        <div style="background: #2a2a2a; height: 12px; border-radius: 4px; margin: 4px 0; animation: pulse 1.5s infinite;"></div>
+        <div style="background: #2a2a2a; height: 12px; border-radius: 4px; margin: 4px 0; animation: pulse 1.5s infinite 0.2s;"></div>
+        <div style="background: #2a2a2a; height: 12px; border-radius: 4px; margin: 4px 0; animation: pulse 1.5s infinite 0.4s;"></div>
+      </div>
+    `;
+    
+    // Adiciona animação pulse se não existir
+    if (!document.querySelector('#pulse-animation')) {
+      const pulseStyle = document.createElement('style');
+      pulseStyle.id = 'pulse-animation';
+      pulseStyle.textContent = `
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+      `;
+      document.head.appendChild(pulseStyle);
+    }
+    
+    try {
+      // Usa JSONPlaceholder para evitar CORS [[12]][[13]]
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 8000);
       
-      output.innerHTML = '<span style="color:#f59e0b;">Loading...</span>';
+      const startTime = performance.now();
+      const response = await fetch(url, { 
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+        signal: controller.signal
+      });
+      const endTime = performance.now();
+      clearTimeout(timeout);
       
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        output.textContent = JSON.stringify(data, null, 2);
-      } catch (e) {
-        output.innerHTML = `<span style="color:#ef4444;">Error: ${e.message}</span>`;
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
+      
+      const data = await response.json();
+      const responseTime = Math.round(endTime - startTime);
+      
+      // Formata resposta com syntax highlighting mockado
+      const formatted = JSON.stringify(data, null, 2)
+        .replace(/"([^"]+)":/g, '<span style="color: #9cdcfe;">"$1"</span>:')
+        .replace(/: "([^"]*)"/g, ': <span style="color: #ce9178;">"$1"</span>')
+        .replace(/: (\d+)/g, ': <span style="color: #b5cea8;">$1</span>')
+        .replace(/: (true|false)/g, ': <span style="color: #569cd6;">$1</span>');
+      
+      output.innerHTML = `
+        <div style="color: #46d369; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+          ✅ <span>200 OK</span>
+          <span style="color: #64748b; font-size: 0.8rem;">• ${responseTime}ms</span>
+          <span style="color: #64748b; font-size: 0.8rem;">• ${new Blob([JSON.stringify(data)]).size} bytes</span>
+        </div>
+        <div style="border-top: 1px solid #333; padding-top: 12px;">${formatted}</div>
+      `;
+      
+    } catch (error) {
+      let errorMsg = error.message;
+      
+      if (error.name === 'AbortError') {
+        errorMsg = '⏱️ Timeout: Requisição demorou mais de 8s';
+      } else if (error.message.includes('Failed to fetch')) {
+        errorMsg = '🌐 Erro de Conexão: Verifique sua internet ou CORS';
+      }
+      
+      output.innerHTML = `
+        <div style="color: #ef4444; margin-bottom: 12px;">❌ Erro na Requisição</div>
+        <div style="background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; padding: 12px; border-radius: 0 6px 6px 0;">
+          <code style="color: #fca5a5;">${errorMsg}</code>
+        </div>
+        <div style="margin-top: 12px; font-size: 0.85rem; color: #94a3b8;">
+          💡 <strong>Dica:</strong> Este demo usa <a href="https://jsonplaceholder.typicode.com" target="_blank" style="color: #3b82f6;">JSONPlaceholder</a> [[12]]<br>
+          que funciona sem CORS para fins educacionais.
+        </div>
+      `;
     }
+  }
 
-    // Initialize
+  // ============================================
+  // 🎯 INICIALIZAÇÃO
+  // ============================================
+  document.addEventListener('DOMContentLoaded', () => {
+    // Renderiza demos
     renderNetflix();
     renderAuth();
-  </script>
-</body>
-</html>
+    
+    // Configura inputs da API demo
+    const apiInput = document.getElementById('api-url');
+    if (apiInput) {
+      apiInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') runApiDemo();
+      });
+    }
+    
+    // Smooth scroll para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+    
+    // Feedback visual ao rolar navbar
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(15, 23, 42, 0.98)';
+        navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+      } else {
+        navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+    
+    // Console Easter Egg para recrutadores 😉
+    console.log('%c👋 Olá, recrutador!', 'font-size: 16px; font-weight: bold; color: #3b82f6;');
+    console.log('%cEste portfolio foi desenvolvido por Luis Gustavo.', 'color: #94a3b8;');
+    console.log('%c🔗 GitHub: https://github.com/luisgustavoleao896-cpu', 'color: #10b981;');
+    console.log('%c💡 Dica: As demos acima são 100% funcionais no navegador!', 'color: #f59e0b;');
+  });
+</script>
 
