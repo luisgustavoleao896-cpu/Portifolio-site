@@ -3,1202 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfólio de Luis Gustavo - Desenvolvedor Júnior especializado em PHP, JavaScript e Python">
-  <title>Luis Gustavo | Transformando Código em Soluções</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Luis Gustavo | Desenvolvedor Web</title>
 
   <style>
-    /* === VARIÁVEIS E RESET === */
-    :root {
-      --bg-primary: #0a0e17;
-      --bg-secondary: #111827;
-      --bg-tertiary: #1f2937;
-      --text-primary: #f9fafb;
-      --text-secondary: #9ca3af;
-      --accent: #60a5fa;
-      --accent-hover: #3b82f6;
-      --primary: #10b981;
-      --primary-hover: #059669;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --purple: #8b5cf6;
-      --pink: #ec4899;
-      --border: #374151;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
-      --gradient-1: linear-gradient(135deg, #60a5fa, #8b5cf6);
-      --gradient-2: linear-gradient(135deg, #10b981, #3b82f6);
-      --gradient-hero: linear-gradient(180deg, rgba(96, 165, 250, 0.1) 0%, transparent 100%);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.7;
-      overflow-x: hidden;
+      background: #0d1117;
+      color: #e6edf3;
+      line-height: 1.6;
     }
 
-    a { color: var(--accent); text-decoration: none; transition: var(--transition); }
-    a:hover { color: var(--accent-hover); }
-    
-    /* === UTILITÁRIOS === */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .section { padding: 100px 0; }
-    
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 48px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      position: relative;
-    }
-    
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 2px;
-      background: linear-gradient(90deg, var(--border), transparent);
-      margin-left: 24px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 16px;
-      background: var(--gradient-2);
-      color: white;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .badge-outline {
-      background: transparent;
-      border: 2px solid var(--border);
-      color: var(--text-secondary);
-    }
-    .badge-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* === BOTÕES === */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: var(--transition);
-      border: none;
-    }
-
-    .btn-primary {
-      background: var(--gradient-2);
-      color: white;
-      box-shadow: var(--shadow);
-    }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-
-    .btn-secondary {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      border: 2px solid var(--border);
-    }
-    .btn-secondary:hover { background: var(--bg-secondary); border-color: var(--accent); transform: translateY(-2px); }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--border);
-      color: var(--text-secondary);
-    }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-    .btn-sm { padding: 10px 20px; font-size: 0.85rem; }
-    .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    /* === HERO SECTION === */
     header {
-      background: var(--gradient-hero);
-      padding: 120px 0 80px;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: pulse 8s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-    }
-
-    .hero-content {
-      display: grid;
-      gap: 40px;
-      align-items: center;
-    }
-    @media (min-width: 900px) { .hero-content { grid-template-columns: 1.2fr 0.8fr; } }
-
-    .hero-slogan {
-      font-size: 1.1rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hero-title {
-      font-size: 2.8rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    @media (min-width: 768px) { .hero-title { font-size: 3.5rem; } }
-
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      margin-bottom: 28px;
-      max-width: 550px;
-    }
-
-    .hero-story {
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      border-left: 4px solid var(--primary);
-      padding: 20px 24px;
-      border-radius: 0 12px 12px 0;
-      margin: 28px 0;
-      font-size: 1rem;
-    }
-    .hero-story strong { color: var(--primary); }
-
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 32px 0; }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-top: 24px;
-    }
-    .hero-meta span { display: flex; align-items: center; gap: 8px; }
-    .hero-meta a { color: var(--accent); }
-    .hero-meta a:hover { text-decoration: underline; }
-
-    .availability {
-      margin-top: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    /* === PROFILE CARD === */
-    .profile-card {
-      background: var(--bg-secondary);
-      border-radius: 24px;
-      padding: 32px;
-      border: 1px solid var(--border);
+      padding: 40px 20px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .profile-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--gradient-1);
+      background: linear-gradient(135deg, #1f6feb, #8250df);
     }
 
-    .profile-avatar {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      background: var(--gradient-1);
-      margin: 0 auto 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    header h1 {
       font-size: 2.5rem;
-      font-weight: 800;
-      color: white;
-      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
     }
 
-    .profile-name { font-weight: 700; font-size: 1.2rem; margin-bottom: 6px; }
-    .profile-role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
-
-    .profile-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
+    header p {
+      margin-top: 10px;
+      opacity: 0.9;
     }
-    .stat-value { font-weight: 700; font-size: 1.4rem; color: var(--accent); }
-    .stat-label { font-size: 0.8rem; color: var(--text-secondary); }
 
-    /* === SOBRE MIM === */
-    .about-grid { display: grid; gap: 48px; }
-    @media (min-width: 900px) { .about-grid { grid-template-columns: 1.1fr 0.9fr; } }
-
-    .about-story { font-size: 1.05rem; color: var(--text-secondary); }
-    .about-story p { margin-bottom: 20px; }
-    .about-story strong { color: var(--text-primary); }
-
-    .story-highlight {
-      background: var(--bg-secondary);
-      padding: 24px;
-      border-radius: 16px;
-      border-left: 4px solid var(--pink);
-      margin: 24px 0;
-    }
-    .story-highlight h4 { color: var(--pink); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-
-    .values-grid {
-      display: grid;
-      gap: 16px;
-      margin-top: 32px;
-    }
-    .value-card {
-      display: flex;
-      gap: 14px;
+    .container {
+      max-width: 1000px;
+      margin: auto;
       padding: 20px;
-      background: var(--bg-secondary);
-      border-radius: 12px;
-      border: 1px solid var(--border);
     }
-    .value-icon { font-size: 1.5rem; flex-shrink: 0; }
-    .value-content h4 { color: var(--text-primary); margin-bottom: 4px; font-size: 1rem; }
-    .value-content p { color: var(--text-secondary); font-size: 0.9rem; }
 
-    /* === SKILLS === */
-    .skills-section { margin-top: 24px; }
-    .skills-section h3 { font-size: 1.15rem; margin-bottom: 16px; color: var(--text-primary); }
-
-    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-    .skill-tag {
-      padding: 8px 18px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    h2 {
+      margin-bottom: 15px;
+      color: #58a6ff;
     }
-    .skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-    .skill-tag.pro { background: rgba(16, 185, 129, 0.15); border-color: var(--primary); color: var(--primary); }
-    .skill-tag.learning { background: rgba(245, 158, 11, 0.1); border-color: var(--warning); color: var(--warning); }
 
-    .languages-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-    .lang-tag {
-      padding: 8px 16px;
-      background: var(--bg-tertiary);
-      border-radius: 8px;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid var(--border);
-    }
-    .lang-tag .level { font-size: 0.75rem; color: var(--primary); font-weight: 600; }
-
-    /* === EXPERIÊNCIA === */
-    .experience-grid { display: grid; gap: 24px; }
-    @media (min-width: 768px) { .experience-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .experience-card {
-      background: var(--bg-secondary);
-      border-radius: 16px;
-      padding: 28px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-    .experience-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--gradient-2);
-      opacity: 0;
-      transition: var(--transition);
-    }
-    .experience-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .experience-card:hover::before { opacity: 1; }
-
-    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
-    .exp-title { font-size: 1.2rem; font-weight: 600; color: var(--accent); }
-    .exp-company { color: var(--primary); font-weight: 600; margin-top: 4px; }
-    .exp-period { color: var(--text-secondary); font-size: 0.9rem; background: var(--bg-tertiary); padding: 4px 14px; border-radius: 6px; }
-
-    .experience-card ul { padding-left: 20px; color: var(--text-secondary); }
-    .experience-card li { margin: 10px 0; font-size: 0.95rem; }
-
-    /* === PROJETOS === */
-    .projects-intro {
-      background: var(--bg-secondary);
-      padding: 24px;
-      border-radius: 16px;
+    .section {
       margin-bottom: 40px;
-      border-left: 4px solid var(--warning);
     }
 
-    .projects-grid { display: grid; gap: 24px; }
-    @media (min-width: 768px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1100px) { .projects-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    .project-card {
-      background: var(--bg-secondary);
-      border-radius: 20px;
-      padding: 28px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--gradient-1);
-      opacity: 0;
-      transition: var(--transition);
-    }
-    .project-card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .project-card:hover::before { opacity: 1; }
-
-    .project-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
-    .project-icon { font-size: 2rem; flex-shrink: 0; }
-    .project-title { font-size: 1.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
-    .project-subtitle { color: var(--text-secondary); font-size: 0.9rem; }
-
-    .project-description { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 18px; line-height: 1.6; flex: 1; }
-
-    .project-problem {
-      background: rgba(245, 158, 11, 0.12);
-      border-left: 3px solid var(--warning);
-      padding: 14px 18px;
-      border-radius: 0 10px 10px 0;
-      margin: 18px 0;
-      font-size: 0.9rem;
-    }
-    .project-problem strong { color: var(--warning); }
-
-    .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
-    .tech-tag {
-      padding: 5px 14px;
-      background: var(--bg-tertiary);
-      border-radius: 6px;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-      border: 1px solid var(--border);
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
 
-    .project-learning {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin: 18px 0;
-      padding: 14px 18px;
-      background: rgba(96, 165, 250, 0.1);
+    .card {
+      background: #161b22;
+      padding: 20px;
       border-radius: 10px;
-      border-left: 3px solid var(--accent);
-    }
-    .project-learning strong { color: var(--accent); }
-
-    .project-links { margin-top: auto; padding-top: 24px; border-top: 1px solid var(--border); }
-
-    .project-featured {
-      position: relative;
-    }
-    .project-featured::after {
-      content: '⭐ Destaque';
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: var(--gradient-2);
-      color: white;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      transition: 0.3s;
     }
 
-    /* === CURSOS === */
-    .courses-grid { display: grid; gap: 16px; }
-    @media (min-width: 768px) { .courses-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .course-card {
-      background: var(--bg-secondary);
-      padding: 20px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-    }
-    .course-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .course-card h4 { color: var(--text-primary); margin-bottom: 8px; font-size: 1.05rem; }
-    .course-provider { color: var(--primary); font-size: 0.9rem; font-weight: 500; margin-bottom: 10px; }
-    .course-cert { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.85rem; }
-    .course-cert:hover { text-decoration: underline; }
-
-    /* === CONTATO / CTA === */
-    .cta-section {
-      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
-      border-radius: 24px;
-      padding: 48px;
-      text-align: center;
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
+    .card:hover {
+      transform: translateY(-5px);
+      background: #1c2128;
     }
 
-    .cta-section h3 { font-size: 1.8rem; margin-bottom: 20px; }
-    .cta-section p { color: var(--text-secondary); margin-bottom: 32px; max-width: 650px; margin-left: auto; margin-right: auto; }
-
-    .contact-grid { display: grid; gap: 16px; margin: 40px 0; }
-    @media (min-width: 768px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 20px;
-      background: var(--bg-tertiary);
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
+    .card h3 {
+      margin-bottom: 10px;
     }
-    .contact-item:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .contact-item a { color: var(--text-primary); font-weight: 500; }
-    .contact-icon { font-size: 1.4rem; }
 
-    /* === FOOTER === */
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #58a6ff;
+      text-decoration: none;
+    }
+
+    .skills span {
+      display: inline-block;
+      background: #21262d;
+      padding: 8px 12px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+
     footer {
-      background: var(--bg-secondary);
-      padding: 48px 0 32px;
-      border-top: 1px solid var(--border);
-      margin-top: 60px;
-    }
-    .footer-content { display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; }
-    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
-    .footer-links a:hover { color: var(--accent); }
-
-    .license {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      padding: 16px 24px;
-      background: var(--bg-tertiary);
-      border-radius: 10px;
-      max-width: 600px;
-      border: 1px solid var(--border);
-    }
-    .license strong { color: var(--primary); }
-
-    .copyright { color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px; }
-
-    /* === ANIMAÇÕES === */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate { animation: fadeInUp 0.6s ease forwards; }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-
-    /* === RESPONSIVIDADE === */
-    @media (max-width: 768px) {
-      .section { padding: 70px 0; }
-      .section-title { font-size: 1.75rem; }
-      .hero-title { font-size: 2.2rem; }
-      .btn-group { flex-direction: column; }
-      .btn { width: 100%; }
-      .profile-stats { grid-template-columns: repeat(3, 1fr); }
-      .cta-section { padding: 32px 24px; }
+      text-align: center;
+      padding: 20px;
+      opacity: 0.7;
     }
 
-    /* === SCROLLBAR === */
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: var(--bg-primary); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    @media(min-width: 768px) {
+      .projects {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- HERO SECTION -->
-  <header>
-    <div class="container">
-      <div class="hero-content">
-        <div>
-          <div class="hero-slogan">✨ De cuidador a codificador</div>
-          <h1 class="hero-title">Transformando código em soluções reais</h1>
-          <p class="hero-subtitle">
-            Desenvolvedor Júnior focado em back-end e web, com disciplina de quem estuda todos os dias e projetos que resolvem problemas de verdade.
-          </p>
-          
-          <div class="hero-story">
-            <strong>Minha história:</strong> Enquanto cuidava da minha mãe, descobri na programação uma forma de construir um futuro melhor. 
-            Cada linha de código que escrevo carrega dedicação, resiliência e o desejo de crescer na área de tecnologia.
-          </div>
+<header>
+  <h1>Luis Gustavo</h1>
+  <p>Desenvolvedor Web | PHP • JavaScript • Python</p>
+</header>
 
-          <div class="hero-cta">
-            <a href="#projetos" class="btn btn-primary">🚀 Ver Projetos</a>
-            <a href="Curriculo_Luis_Gustavo_2026.pdf" download class="btn btn-secondary">📄 Baixar CV</a>
-            <a href="https://linkedin.com/in/luisgustavoleao" target="_blank" class="btn btn-outline">💼 LinkedIn</a>
-          </div>
+<div class="container">
 
-          <div class="hero-meta">
-            <span>📍 Fortaleza, CE</span>
-            <span>📧 <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a></span>
-            <span>📱 <a href="tel:+5585985841344">(85) 98584-1344</a></span>
-            <span>🔗 <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a></span>
-          </div>
+  <!-- SOBRE -->
+  <div class="section">
+    <h2>Sobre mim</h2>
+    <p>
+      Sou um desenvolvedor em formação com foco em desenvolvimento web e back-end.
+      Tenho experiência prática com projetos reais utilizando PHP, JavaScript e Python,
+      além de conhecimento em APIs REST, análise de dados e desenvolvimento full stack.
+    </p>
 
-          <div class="availability">
-            <span class="badge">✅ Disponível para remoto</span>
-            <span class="badge badge-outline">🔄 Híbrido em Fortaleza</span>
-            <span class="badge badge-outline">🎯 Primeira oportunidade Jr</span>
-          </div>
-        </div>
+    <p style="margin-top:10px;">
+      Possuo experiência profissional com atendimento ao cliente e resolução de problemas,
+      o que fortaleceu minha comunicação, organização e foco em resultados.
+    </p>
 
-        <div class="profile-card">
-          <div class="profile-avatar">LG</div>
-          <div class="profile-name">Luis Gustavo Verissimo Cavalcante</div>
-          <div class="profile-role">Desenvolvedor Júnior • Back-end & Web</div>
-          <div class="profile-stats">
-            <div class="stat">
-              <div class="stat-value">4</div>
-              <div class="stat-label">Projetos</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">13</div>
-              <div class="stat-label">Certificações</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">4</div>
-              <div class="stat-label">Idiomas</div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <p style="margin-top:10px;">
+      Busco minha primeira oportunidade como desenvolvedor júnior para aplicar minhas
+      habilidades e continuar evoluindo na área.
+    </p>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <h2>Tecnologias</h2>
+    <div class="skills">
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>PHP</span>
+      <span>Python</span>
+      <span>MySQL</span>
+      <span>Node.js</span>
+      <span>React</span>
+      <span>APIs REST</span>
+      <span>GitHub</span>
     </div>
-  </header>
-
-  <!-- SOBRE MIM -->
-  <section class="section" id="sobre">
-    <div class="container">
-      <h2 class="section-title">👨‍💻 Sobre Mim</h2>
-      
-      <div class="about-grid">
-        <div>
-          <div class="about-story">
-            <p>
-              Sou um desenvolvedor em constante evolução, com foco em <strong>back-end e desenvolvimento web</strong>. 
-              Minha jornada na programação começou de forma autodidata — enquanto cuidava da minha mãe, encontrei 
-              no código uma forma de transformar desafios em soluções.
-            </p>
-            <p>
-              Minha experiência anterior em <strong>vendas e atendimento</strong> me ensinou habilidades que hoje 
-              aplico no desenvolvimento: comunicação clara, organização sob pressão e foco em entregar valor real.
-            </p>
-            <p>
-              Acredito que <strong>a prática constante é o caminho para a excelência</strong>. Por isso, cada projeto 
-              no meu portfólio foi construído com um propósito: resolver um problema, aplicar uma nova tecnologia 
-              ou consolidar um conceito aprendido.
-            </p>
-          </div>
-
-          <div class="story-highlight">
-            <h4>💡 O que me diferencia</h4>
-            <p style="color: var(--text-secondary); margin: 0;">
-              Não sou apenas mais um currículo. Sou alguém que estuda todos os dias, publica no GitHub para 
-              demonstrar evolução real, e traz a maturidade de quem já trabalhou com pessoas. Minha disciplina 
-              é meu maior ativo.
-            </p>
-          </div>
-
-          <div class="values-grid">
-            <div class="value-card">
-              <div class="value-icon">🎯</div>
-              <div class="value-content">
-                <h4>Foco em Resultados</h4>
-                <p>Cada projeto tem um objetivo claro e métricas de sucesso definidas.</p>
-              </div>
-            </div>
-            <div class="value-card">
-              <div class="value-icon">📚</div>
-              <div class="value-content">
-                <h4>Aprendizado Contínuo</h4>
-                <p>Estudo diário através de cursos, documentação e prática em projetos reais.</p>
-              </div>
-            </div>
-            <div class="value-card">
-              <div class="value-icon">🤝</div>
-              <div class="value-content">
-                <h4>Comunicação Clara</h4>
-                <p>Habilidade desenvolvida no atendimento, essencial para trabalho em equipe ágil.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="skills-section">
-            <h3>⚡ Stack Principal</h3>
-            <div class="skills-grid">
-              <span class="skill-tag pro">🐘 PHP</span>
-              <span class="skill-tag pro">⚡ JavaScript</span>
-              <span class="skill-tag pro">🐍 Python</span>
-              <span class="skill-tag">🟢 Node.js</span>
-              <span class="skill-tag">📘 TypeScript</span>
-              <span class="skill-tag">⚛️ React</span>
-              <span class="skill-tag">🔗 REST APIs</span>
-              <span class="skill-tag">🗄️ MySQL</span>
-              <span class="skill-tag">🍃 MongoDB</span>
-              <span class="skill-tag">🐙 Git & GitHub</span>
-              <span class="skill-tag">🌐 HTML5 & CSS3</span>
-              <span class="skill-tag learning">🔄 Docker (em aprendizado)</span>
-            </div>
-          </div>
-
-          <div class="skills-section">
-            <h3>🌍 Idiomas</h3>
-            <div class="languages-grid">
-              <span class="lang-tag">🇬🇧 Inglês <span class="level">• Fluência</span></span>
-              <span class="lang-tag">🇪🇸 Espanhol <span class="level">• C1</span></span>
-              <span class="lang-tag">🇮🇹 Italiano <span class="level">• Avançado</span></span>
-              <span class="lang-tag">🇩🇪 Alemão <span class="level">• C1</span></span>
-            </div>
-          </div>
-
-          <div class="skills-section">
-            <h3>🛠️ Ferramentas</h3>
-            <div class="skills-grid">
-              <span class="skill-tag">💻 VS Code</span>
-              <span class="skill-tag">🔌 Postman</span>
-              <span class="skill-tag">🎨 Figma</span>
-              <span class="skill-tag">☁️ Salesforce</span>
-              <span class="skill-tag">🐧 Linux</span>
-              <span class="skill-tag">📦 Composer</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIÊNCIA -->
-  <section class="section" style="background: var(--bg-secondary);">
-    <div class="container">
-      <h2 class="section-title">💼 Experiência Profissional</h2>
-      
-      <div class="experience-grid">
-        <div class="experience-card">
-          <div class="exp-header">
-            <div>
-              <div class="exp-title">Consultor de Vendas</div>
-              <div class="exp-company">Grupo Dádiva</div>
-            </div>
-            <span class="exp-period">2023 – 2024</span>
-          </div>
-          <ul>
-            <li>Vendas consultivas com foco em entender necessidades reais do cliente</li>
-            <li>Prospecção ativa e estratégias de fidelização baseadas em dados</li>
-            <li>Acompanhamento de metas e análise de resultados comerciais</li>
-            <li>Desenvolvimento de empatia e comunicação assertiva</li>
-          </ul>
-        </div>
-
-        <div class="experience-card">
-          <div class="exp-header">
-            <div>
-              <div class="exp-title">Teleatendimento</div>
-              <div class="exp-company">Concentrix</div>
-            </div>
-            <span class="exp-period">Set/2024 – Abr/2025</span>
-          </div>
-          <ul>
-            <li>Atendimento ao cliente com foco em resolução ágil de demandas</li>
-            <li>Registro preciso de informações em sistemas internos</li>
-            <li>Cumprimento de indicadores de qualidade e produtividade</li>
-            <li>Trabalho sob pressão mantendo calma e profissionalismo</li>
-          </ul>
-        </div>
-      </div>
-
-      <p style="color: var(--text-secondary); margin-top: 40px; font-style: italic; padding: 20px; background: rgba(96, 165, 250, 0.08); border-radius: 12px; border-left: 4px solid var(--accent);">
-        💡 <strong>Nota:</strong> Embora minha experiência formal não seja em TI, as competências desenvolvidas 
-        — comunicação, organização, foco em resultados e resolução de problemas — são diretamente aplicáveis 
-        ao desenvolvimento de software e ao trabalho em equipe ágil.
-      </p>
-    </div>
-  </section>
+  </div>
 
   <!-- PROJETOS -->
-  <section class="section" id="projetos">
-    <div class="container">
-      <h2 class="section-title">🚀 Projetos em Destaque</h2>
-      
-      <div class="projects-intro">
-        <strong>📌 Como ler esta seção:</strong> Cada projeto inclui: (1) o problema que resolve, 
-        (2) tecnologias utilizadas, (3) o que aprendi e (4) links para código e demo.
+  <div class="section">
+    <h2>Projetos</h2>
+
+    <div class="projects">
+
+      <div class="card">
+        <h3>Portfólio Web</h3>
+        <p>Site responsivo desenvolvido com HTML, CSS e JavaScript.</p>
+        <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank">Ver Projeto</a>
       </div>
 
-      <div class="projects-grid">
-
-        <!-- PROJETO 1: PORTFÓLIO -->
-        <div class="project-card project-featured animate">
-          <div class="project-header">
-            <div class="project-icon">🌐</div>
-            <div>
-              <div class="project-title">Portfólio Web Responsivo</div>
-              <div class="project-subtitle">HTML • CSS • JavaScript</div>
-            </div>
-          </div>
-          <p class="project-description">
-            Site pessoal moderno e responsivo, otimizado para SEO e performance, com design que comunica 
-            profissionalismo e destaca projetos de forma clara para recrutadores.
-          </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Criar uma presença online que converta visitantes em oportunidades, 
-            com navegação intuitiva e carregamento rápido em qualquer dispositivo.
-          </div>
-          <div class="project-tech">
-            <span class="tech-tag">HTML5 Semântico</span>
-            <span class="tech-tag">CSS3 Moderno</span>
-            <span class="tech-tag">JavaScript Vanilla</span>
-            <span class="tech-tag">Flexbox/Grid</span>
-            <span class="tech-tag">SEO Básico</span>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Design responsivo mobile-first, acessibilidade, otimização de performance 
-            e boas práticas de HTML semântico para melhor indexação.
-          </p>
-          <div class="project-links">
-            <div class="btn-group">
-              <a href="https://luisgustavoleao896-cpu.github.io/Portifolio-site/" target="_blank" class="btn btn-secondary btn-sm">🌐 Acessar Demo</a>
-              <a href="https://github.com/luisgustavoleao896-cpu/Portifolio-site" target="_blank" class="btn btn-outline btn-sm">🐙 Ver Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJETO 2: API REST -->
-        <div class="project-card animate delay-1">
-          <div class="project-header">
-            <div class="project-icon">🔌</div>
-            <div>
-              <div class="project-title">API REST com Autenticação JWT</div>
-              <div class="project-subtitle">PHP • Slim Framework • MySQL</div>
-            </div>
-          </div>
-          <p class="project-description">
-            API completa para gestão de usuários com CRUD, autenticação via JWT, validação de dados, 
-            tratamento de erros e documentação de endpoints.
-          </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Fornecer uma base segura e escalável para aplicações que necessitam 
-            de autenticação, autorização e gerenciamento de usuários com boas práticas de API REST.
-          </div>
-          <div class="project-tech">
-            <span class="tech-tag">PHP 8</span>
-            <span class="tech-tag">Slim Framework</span>
-            <span class="tech-tag">JWT Auth</span>
-            <span class="tech-tag">MySQL/PDO</span>
-            <span class="tech-tag">Composer</span>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Estrutura MVC, segurança com tokens, prevenção de SQL injection, 
-            padronização de respostas JSON e documentação de APIs.
-          </p>
-          <div class="project-links">
-            <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJETO 3: PYTHON DATA -->
-        <div class="project-card animate delay-2">
-          <div class="project-header">
-            <div class="project-icon">📊</div>
-            <div>
-              <div class="project-title">Análise de Dados com Python</div>
-              <div class="project-subtitle">Python • Pandas • Visualização</div>
-            </div>
-          </div>
-          <p class="project-description">
-            Script para análise exploratória de dados com limpeza, transformação, estatísticas descritivas 
-            e visualizações informativas para tomada de decisão.
-          </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Automatizar a extração de insights de datasets reais, 
-            reduzindo tempo de análise manual e permitindo identificação rápida de padrões e tendências.
-          </div>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Pandas</span>
-            <span class="tech-tag">NumPy</span>
-            <span class="tech-tag">Matplotlib</span>
-            <span class="tech-tag">Jupyter</span>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Manipulação eficiente de dados com Pandas, criação de visualizações 
-            claras, tratamento de dados ausentes e boas práticas em análise exploratória.
-          </p>
-          <div class="project-links">
-            <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJETO 4: SISTEMA PHP -->
-        <div class="project-card animate">
-          <div class="project-header">
-            <div class="project-icon">🗄️</div>
-            <div>
-              <div class="project-title">Sistema de Gestão com PHP</div>
-              <div class="project-subtitle">PHP • MySQL • PDO</div>
-            </div>
-          </div>
-          <p class="project-description">
-            Aplicação web para cadastro, edição e exclusão de registros com interface administrativa, 
-            validação de formulários e persistência segura em banco de dados.
-          </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Substituir planilhas manuais e processos desconexos por um 
-            sistema centralizado para gestão de informações com controle de acesso e histórico de alterações.
-          </div>
-          <div class="project-tech">
-            <span class="tech-tag">PHP</span>
-            <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">PDO</span>
-            <span class="tech-tag">Sessions</span>
-            <span class="tech-tag">HTML/CSS</span>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Conexão segura com banco de dados, prevenção de SQL injection, 
-            estrutura de pastas organizada e validação de dados no back-end.
-          </p>
-          <div class="project-links">
-            <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/php.git" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJETO 5: LOGIN SYSTEM (NOVO) -->
-        <div class="project-card animate delay-1">
-          <div class="project-header">
-            <div class="project-icon">🔐</div>
-            <div>
-              <div class="project-title">Sistema de Login Seguro</div>
-              <div class="project-subtitle">JavaScript • Node.js • bcrypt</div>
-            </div>
-          </div>
-          <p class="project-description">
-            Módulo de autenticação completo com hash de senhas, tokens de sessão, validação de formulário, 
-            proteção contra brute force e recuperação de senha.
-          </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Implementar autenticação segura em aplicações web, protegendo 
-            dados sensíveis de usuários contra ataques comuns como credential stuffing e session hijacking.
-          </div>
-          <div class="project-tech">
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">Express</span>
-            <span class="tech-tag">bcrypt.js</span>
-            <span class="tech-tag">JWT</span>
-            <span class="tech-tag">dotenv</span>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Segurança em aplicações web, hash de senhas com salt, middleware 
-            de autenticação, variáveis de ambiente e boas práticas de OWASP.
-          </p>
-          <div class="project-links">
-            <div class="btn-group">
-              <a href="#" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-              <a href="#" class="btn btn-outline btn-sm">🌐 Demo</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJETO 6: API CLIMA (NOVO) -->
-        <div class="project-card animate delay-2">
-          <div class="project-header">
-            <div class="project-icon">🌤️</div>
-            <div>
-              <div class="project-title">Weather App - API de Clima</div>
-              <div class="project-subtitle">JavaScript • Fetch API • OpenWeather</div>
-            </div>
-          </div>
-          <p class="project-description">
-            Aplicação que consome API externa de clima em tempo real, com geolocalização, histórico de buscas 
-            e interface responsiva com condições climáticas dinâmicas.
-          </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Demonstrar consumo de APIs REST externas, tratamento de respostas 
-            assíncronas, manipulação de dados JSON e persistência local com localStorage.
-          </div>
-          <div class="project-tech">
-            <span class="tech-tag">JavaScript ES6+</span>
-            <span class="tech-tag">Fetch API</span>
-            <span class="tech-tag">Async/Await</span>
-            <span class="tech-tag">OpenWeather API</span>
-            <span class="tech-tag">LocalStorage</span>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Consumo de APIs com tratamento de erros, promises/async-await, 
-            manipulação de dados JSON e armazenamento local para melhor experiência do usuário.
-          </p>
-          <div class="project-links">
-            <div class="btn-group">
-              <a href="#" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-              <a href="#" class="btn btn-outline btn-sm">🌐 Demo</a>
-            </div>
-          </div>
-        </div>
-
+      <div class="card">
+        <h3>API REST em PHP</h3>
+        <p>API com CRUD completo utilizando PHP e boas práticas de back-end.</p>
+        <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank">Ver Código</a>
       </div>
 
-      <div style="text-align: center; margin-top: 48px;">
-        <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-primary">
-          🐙 Ver Todos os Projetos no GitHub
-        </a>
+      <div class="card">
+        <h3>Análise de Dados em Python</h3>
+        <p>Projeto com manipulação e análise de dados usando Python.</p>
+        <a href="https://github.com/luisgustavoleao896-cpu/An-lise-de-Dados-com-Python" target="_blank">Ver Código</a>
       </div>
+
+      <div class="card">
+        <h3>Projeto PHP</h3>
+        <p>Aplicação back-end desenvolvida com PHP.</p>
+        <a href="https://github.com/luisgustavoleao896-cpu/php" target="_blank">Ver Código</a>
+      </div>
+
     </div>
-  </section>
+  </div>
 
-  <!-- CERTIFICAÇÕES -->
-  <section class="section" style="background: var(--bg-secondary);">
-    <div class="container">
-      <h2 class="section-title">📜 Certificações</h2>
-      
-      <h3 style="color: var(--accent); margin: 40px 0 24px;">💻 Programação & Tecnologia</h3>
-      <div class="courses-grid">
-        <div class="course-card">
-          <h4>Desenvolvimento Web Full Stack</h4>
-          <div class="course-provider">Udemy</div>
-          <a href="https://ude.my/UC-b87e3e1b-d352-4ca3-9a60-1e70bddcd729" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-        <div class="course-card">
-          <h4>Back-end com Slim Framework (PHP)</h4>
-          <div class="course-provider">Cursa</div>
-          <a href="https://cursa.app/pt/meu-certificado/cert212c0b82fe81e891f7ab992845d43130" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-        <div class="course-card">
-          <h4>Análise de Dados em Python</h4>
-          <div class="course-provider">Programação Dinâmica</div>
-          <a href="https://cursa.app/pt/meu-certificado/certc4b4469ae1302805eda20f9c549456c1" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-        <div class="course-card">
-          <h4>Node.js com Express e TypeScript</h4>
-          <div class="course-provider">Cursa</div>
-          <a href="https://cursa.app/pt/meu-certificado/cert784f2ad8d43a8002a35353ced34ea0c8" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-        <div class="course-card">
-          <h4>React JS</h4>
-          <div class="course-provider">EuProgramador</div>
-          <a href="https://cursa.app/pt/meu-certificado/cert817951b9c469739094602d09bbcaa740" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-        <div class="course-card">
-          <h4>Banco de Dados MySQL</h4>
-          <div class="course-provider">Cursa</div>
-          <a href="https://cursa.app/pt/meu-certificado/cert79cb8341079f5ac898fc8a756abc177e" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-        <div class="course-card">
-          <h4>Segurança da Informação</h4>
-          <div class="course-provider">Cursa</div>
-          <a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-        <div class="course-card">
-          <h4>Salesforce Administrador</h4>
-          <div class="course-provider">Udemy</div>
-          <a href="https://ude.my/UC-d1627aOa-050c-460b-9c9d-504682b711e5" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-      </div>
+  <!-- EXPERIÊNCIA -->
+  <div class="section">
+    <h2>Experiência</h2>
+    <p><strong>Grupo Dádiva</strong> — Consultor de Vendas (2023 - 2024)</p>
+    <p><strong>Concentrix</strong> — Teleatendimento (2024 - 2025)</p>
+  </div>
 
-      <h3 style="color: var(--accent); margin: 48px 0 24px;">🌍 Idiomas</h3>
-      <div class="courses-grid">
-        <div class="course-card">
-          <h4>🇬🇧 Inglês – Do Básico à Fluência</h4>
-          <div class="course-provider">Udemy</div>
-          <a href="https://ude.my/UC-e47bf283-89c7-4f7e-852a-5cc13473a67f" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-        <div class="course-card">
-          <h4>🇪🇸 Espanhol – A1 ao C1</h4>
-          <div class="course-provider">Udemy</div>
-          <a href="https://ude.my/UC-7ae1c992-03c3-4b46-9a2b-f811de737ccd" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-        <div class="course-card">
-          <h4>🇮🇹 Italiano para Brasileiros</h4>
-          <div class="course-provider">PontoItalian / Udemy</div>
-          <a href="https://ude.my/UC-375c8abb-31cd-4420-8005-f0034f43f8b4" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-        <div class="course-card">
-          <h4>🇩🇪 Alemão Completo (A1 ao C1)</h4>
-          <div class="course-provider">Udemy - Tarik Becker</div>
-          <a href="https://ude.my/UC-7dc4ccc9-ff9c-452d-8059-d5f844942702" target="_blank" class="course-cert">📄 Ver Certificado</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- IDIOMAS -->
+  <div class="section">
+    <h2>Idiomas</h2>
+    <p>Inglês (Avançado)</p>
+    <p>Espanhol (Avançado)</p>
+    <p>Italiano (Intermediário)</p>
+    <p>Alemão (Intermediário)</p>
+  </div>
 
-  <!-- CONTATO / CTA -->
-  <section class="section">
-    <div class="container">
-      <div class="cta-section">
-        <h3>🤝 Vamos Conversar?</h3>
-        <p>
-          Estou em busca da minha <strong>primeira oportunidade como Desenvolvedor Júnior</strong>. 
-          Se sua equipe precisa de alguém dedicado, com sede de aprendizado, disciplina comprovada 
-          e foco em entregar valor — adoraria conhecer mais sobre a vaga.
-        </p>
-        
-        <div class="contact-grid">
-          <div class="contact-item">
-            <span class="contact-icon">📧</span>
-            <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">📱</span>
-            <a href="tel:+5585985841344">(85) 98584-1344</a>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">💼</span>
-            <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
-          </div>
-        </div>
+  <!-- CONTATO -->
+  <div class="section">
+    <h2>Contato</h2>
+    <p>Email: gustavoluis.v.c.1016@gmail.com</p>
+    <p>GitHub: github.com/luisgustavoleao896-cpu</p>
+  </div>
 
-        <div class="btn-group" style="justify-content: center;">
-          <a href="Curriculo_Luis_Gustavo_2026.pdf" download class="btn btn-primary">📄 Baixar Currículo em PDF</a>
-          <a href="mailto:gustavoluis.v.c.1016@gmail.com?subject=Oportunidade para Desenvolvedor Júnior" class="btn btn-secondary">✉️ Enviar E-mail</a>
-        </div>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-links">
-          <a href="#sobre">Sobre</a>
-          <a href="#projetos">Projetos</a>
-          <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a>
-          <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
-          <a href="Curriculo_Luis_Gustavo_2026.pdf" download>Download CV</a>
-        </div>
-        
-        <div class="license">
-          <strong>📄 Licença MIT:</strong> Este portfólio e seus códigos estão sob a <strong>MIT License</strong>. 
-          Sinta-se à vontade para usar, modificar e compartilhar — apenas mantenha a atribuição original.
-        </div>
-        
-        <p class="copyright">
-          © 2026 Luis Gustavo Verissimo Cavalcante • Fortaleza, CE • 
-          <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a>
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Smooth scroll para links internos
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // Animação de entrada ao rolar
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.project-card, .experience-card, .course-card, .value-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(el);
-    });
-
-    // Efeito de hover nos botões de skill
-    document.querySelectorAll('.skill-tag').forEach(tag => {
-      tag.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-3px)';
-      });
-      tag.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-      });
-    });
-  </script>
+<footer>
+  <p>© 2026 Luis Gustavo</p>
+</footer>
 
 </body>
 </html>
-
