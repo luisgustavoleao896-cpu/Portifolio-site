@@ -3,29 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Luis Gustavo - Desenvolvedor Back-end em início de carreira. PHP, JavaScript, Python. Portfólio com projetos reais: Netflix Clone, APIs, autenticação e impacto mensurável.">
+  <meta name="description" content="Luis Gustavo - Desenvolvedor Back-end. PHP, JavaScript, Python. Netflix Clone, APIs, autenticação JWT.">
   
-  <!-- Open Graph / LinkedIn -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Luis Gustavo | Desenvolvedor Back-end">
-  <meta property="og:description" content="Portfólio profissional com projetos reais: Netflix Clone, APIs seguras, autenticação JWT e impacto mensurável.">
-  <meta property="og:image" content="https://luisgustavoleao896-cpu.github.io/preview.png">
-  <meta property="og:url" content="https://luisgustavoleao896-cpu.github.io">
+  <meta property="og:description" content="Portfólio profissional com Netflix Clone, APIs e projetos reais.">
   <meta property="og:type" content="website">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
   
-  <!-- Performance: Preload critical resources -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <title>Luis Gustavo | Desenvolvedor Back-end</title>
 
   <style>
-    /* === VARIÁVEIS E RESET === */
     :root {
       --bg-primary: #0a0e17;
       --bg-secondary: #111827;
@@ -35,9 +30,7 @@
       --accent: #60a5fa;
       --accent-hover: #3b82f6;
       --primary: #10b981;
-      --primary-hover: #059669;
       --warning: #f59e0b;
-      --danger: #ef4444;
       --purple: #8b5cf6;
       --pink: #ec4899;
       --border: #374151;
@@ -45,7 +38,6 @@
       --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
       --gradient-1: linear-gradient(135deg, #60a5fa, #8b5cf6);
       --gradient-2: linear-gradient(135deg, #10b981, #3b82f6);
-      --gradient-hero: linear-gradient(180deg, rgba(96, 165, 250, 0.12) 0%, transparent 100%);
       --gradient-netflix: linear-gradient(135deg, #e50914, #b20710);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -64,7 +56,7 @@
     a { color: var(--accent); text-decoration: none; transition: var(--transition); cursor: pointer; }
     a:hover { color: var(--accent-hover); }
     
-    /* === NAVBAR FIXA === */
+    /* NAVBAR */
     .navbar {
       position: fixed;
       top: 0;
@@ -77,10 +69,7 @@
       padding: 16px 0;
       transition: var(--transition);
     }
-    .navbar.scrolled {
-      padding: 12px 0;
-      box-shadow: var(--shadow);
-    }
+    .navbar.scrolled { padding: 12px 0; box-shadow: var(--shadow); }
     .navbar .container {
       display: flex;
       justify-content: space-between;
@@ -90,9 +79,6 @@
       font-weight: 700;
       font-size: 1.2rem;
       color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
     .navbar-logo span { color: var(--accent); }
     .navbar-links {
@@ -108,9 +94,7 @@
       padding: 4px 0;
     }
     .navbar-links a:hover,
-    .navbar-links a.active {
-      color: var(--accent);
-    }
+    .navbar-links a.active { color: var(--accent); }
     .navbar-links a::after {
       content: '';
       position: absolute;
@@ -122,17 +106,9 @@
       transition: var(--transition);
     }
     .navbar-links a:hover::after,
-    .navbar-links a.active::after {
-      width: 100%;
-    }
-    .navbar-cta {
-      display: none;
-    }
-    @media (min-width: 768px) {
-      .navbar-cta {
-        display: flex;
-      }
-    }
+    .navbar-links a.active::after { width: 100%; }
+    .navbar-cta { display: none; }
+    @media (min-width: 768px) { .navbar-cta { display: flex; } }
     .navbar-toggle {
       display: flex;
       flex-direction: column;
@@ -145,16 +121,26 @@
       height: 2px;
       background: var(--text-primary);
       border-radius: 2px;
-      transition: var(--transition);
     }
-    @media (min-width: 900px) {
-      .navbar-toggle { display: none; }
+    @media (min-width: 900px) { .navbar-toggle { display: none; } }
+    @media (max-width: 899px) {
+      .navbar-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-secondary);
+        flex-direction: column;
+        padding: 20px;
+        border-bottom: 1px solid var(--border);
+      }
+      .navbar-links.active { display: flex; }
     }
 
-    /* === UTILITÁRIOS === */
+    /* UTILS */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
     .section { padding: 100px 0; }
-    
     .section-title {
       font-size: 2rem;
       font-weight: 700;
@@ -162,7 +148,6 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      position: relative;
     }
     .section-title::after {
       content: '';
@@ -188,13 +173,8 @@
       border: 2px solid var(--border);
       color: var(--text-secondary);
     }
-    .badge-outline:hover { border-color: var(--accent); color: var(--accent); }
-    .badge-netflix {
-      background: var(--gradient-netflix);
-      color: white;
-    }
 
-    /* === BOTÕES === */
+    /* BUTTONS */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -229,9 +209,9 @@
     .btn-sm { padding: 10px 20px; font-size: 0.85rem; }
     .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* === HERO SECTION === */
+    /* HERO */
     header {
-      background: var(--gradient-hero);
+      background: linear-gradient(180deg, rgba(96, 165, 250, 0.12) 0%, transparent 100%);
       padding: 160px 0 80px;
       border-bottom: 1px solid var(--border);
       position: relative;
@@ -261,9 +241,6 @@
       color: var(--accent);
       font-weight: 600;
       margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .hero-title {
@@ -309,30 +286,20 @@
     }
     .hero-meta span { display: flex; align-items: center; gap: 8px; }
     .hero-meta a { color: var(--accent); }
-    .hero-meta a:hover { text-decoration: underline; }
 
     .availability { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
 
-    /* === PROFILE CARD === */
+    /* PROFILE CARD */
     .profile-card {
       background: var(--bg-secondary);
       border-radius: 24px;
       padding: 32px;
       border: 1px solid var(--border);
       text-align: center;
-      position: relative;
-      overflow: hidden;
       cursor: pointer;
       transition: var(--transition);
     }
     .profile-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .profile-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--gradient-1);
-    }
     .profile-avatar {
       width: 130px;
       height: 130px;
@@ -345,7 +312,6 @@
       font-size: 2.5rem;
       font-weight: 800;
       color: white;
-      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
     }
     .profile-name { font-weight: 700; font-size: 1.2rem; margin-bottom: 6px; }
     .profile-role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
@@ -359,7 +325,7 @@
     .stat-value { font-weight: 700; font-size: 1.4rem; color: var(--accent); }
     .stat-label { font-size: 0.8rem; color: var(--text-secondary); }
 
-    /* === SOBRE MIM === */
+    /* ABOUT */
     .about-grid { display: grid; gap: 48px; }
     @media (min-width: 900px) { .about-grid { grid-template-columns: 1.1fr 0.9fr; } }
 
@@ -374,7 +340,7 @@
       border-left: 4px solid var(--pink);
       margin: 24px 0;
     }
-    .story-highlight h4 { color: var(--pink); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .story-highlight h4 { color: var(--pink); margin-bottom: 12px; }
 
     .values-grid { display: grid; gap: 16px; margin-top: 32px; }
     .value-card {
@@ -389,12 +355,12 @@
     }
     .value-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .value-icon { font-size: 1.5rem; flex-shrink: 0; }
-    .value-content h4 { color: var(--text-primary); margin-bottom: 4px; font-size: 1rem; }
+    .value-content h4 { color: var(--text-primary); margin-bottom: 4px; }
     .value-content p { color: var(--text-secondary); font-size: 0.9rem; }
 
-    /* === SKILLS === */
+    /* SKILLS */
     .skills-section { margin-top: 24px; }
-    .skills-section h3 { font-size: 1.15rem; margin-bottom: 16px; color: var(--text-primary); }
+    .skills-section h3 { font-size: 1.15rem; margin-bottom: 16px; }
     .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
     
     .skill-tag {
@@ -405,14 +371,10 @@
       font-size: 0.9rem;
       font-weight: 500;
       transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 6px;
       cursor: pointer;
     }
     .skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
     .skill-tag.pro { background: rgba(16, 185, 129, 0.15); border-color: var(--primary); color: var(--primary); }
-    .skill-tag.learning { background: rgba(245, 158, 11, 0.1); border-color: var(--warning); color: var(--warning); }
 
     .languages-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
     .lang-tag {
@@ -420,14 +382,11 @@
       background: var(--bg-tertiary);
       border-radius: 8px;
       font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
       border: 1px solid var(--border);
     }
-    .lang-tag .level { font-size: 0.75rem; color: var(--primary); font-weight: 600; }
+    .lang-tag .level { color: var(--primary); font-weight: 600; }
 
-    /* === EXPERIÊNCIA === */
+    /* EXPERIENCE */
     .experience-grid { display: grid; gap: 24px; }
     @media (min-width: 768px) { .experience-grid { grid-template-columns: repeat(2, 1fr); } }
 
@@ -437,30 +396,18 @@
       padding: 28px;
       border: 1px solid var(--border);
       transition: var(--transition);
-      position: relative;
-      overflow: hidden;
       cursor: pointer;
     }
-    .experience-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--gradient-2);
-      opacity: 0;
-      transition: var(--transition);
-    }
     .experience-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .experience-card:hover::before { opacity: 1; }
 
     .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
     .exp-title { font-size: 1.2rem; font-weight: 600; color: var(--accent); }
     .exp-company { color: var(--primary); font-weight: 600; margin-top: 4px; }
     .exp-period { color: var(--text-secondary); font-size: 0.9rem; background: var(--bg-tertiary); padding: 4px 14px; border-radius: 6px; }
     .experience-card ul { padding-left: 20px; color: var(--text-secondary); }
-    .experience-card li { margin: 10px 0; font-size: 0.95rem; }
+    .experience-card li { margin: 10px 0; }
 
-    /* === IMPACTO REAL === */
+    /* IMPACT */
     .impact-section {
       background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(96, 165, 250, 0.08));
       border: 1px solid var(--border);
@@ -485,7 +432,6 @@
       font-size: 2.5rem;
       font-weight: 800;
       color: var(--accent);
-      line-height: 1;
     }
     .impact-label {
       color: var(--text-secondary);
@@ -493,7 +439,7 @@
       margin-top: 8px;
     }
 
-    /* === COMO POSSO AJUDAR === */
+    /* HELP SECTION */
     .help-section {
       background: var(--bg-secondary);
       border-radius: 20px;
@@ -522,7 +468,7 @@
     .help-content h4 { color: var(--text-primary); margin-bottom: 4px; }
     .help-content p { color: var(--text-secondary); font-size: 0.9rem; }
 
-    /* === PROJETOS === */
+    /* PROJECTS */
     .projects-intro {
       background: var(--bg-secondary);
       padding: 24px;
@@ -543,8 +489,6 @@
       display: flex;
       flex-direction: column;
       height: 100%;
-      position: relative;
-      overflow: hidden;
       cursor: pointer;
     }
     .project-card::before {
@@ -559,6 +503,9 @@
     .project-card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .project-card:hover::before { opacity: 1; }
 
+    .project-card.netflix-clone {
+      position: relative;
+    }
     .project-card.netflix-clone::before {
       background: var(--gradient-netflix);
     }
@@ -568,7 +515,7 @@
 
     .project-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
     .project-icon { font-size: 2rem; flex-shrink: 0; }
-    .project-title { font-size: 1.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+    .project-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 6px; }
     .project-subtitle { color: var(--text-secondary); font-size: 0.9rem; }
     .project-description { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 18px; line-height: 1.6; flex: 1; }
 
@@ -589,7 +536,6 @@
       border-radius: 6px;
       font-size: 0.8rem;
       color: var(--text-secondary);
-      font-weight: 500;
       border: 1px solid var(--border);
     }
 
@@ -634,7 +580,7 @@
       background: var(--gradient-netflix);
     }
 
-    /* === CURSOS === */
+    /* COURSES */
     .courses-grid { display: grid; gap: 16px; }
     @media (min-width: 768px) { .courses-grid { grid-template-columns: repeat(2, 1fr); } }
     .course-card {
@@ -646,12 +592,11 @@
       cursor: pointer;
     }
     .course-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .course-card h4 { color: var(--text-primary); margin-bottom: 8px; font-size: 1.05rem; }
+    .course-card h4 { color: var(--text-primary); margin-bottom: 8px; }
     .course-provider { color: var(--primary); font-size: 0.9rem; font-weight: 500; margin-bottom: 10px; }
     .course-cert { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.85rem; }
-    .course-cert:hover { text-decoration: underline; }
 
-    /* === CONTATO / CTA === */
+    /* CTA */
     .cta-section {
       background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
       border-radius: 24px;
@@ -661,18 +606,8 @@
       position: relative;
       overflow: hidden;
     }
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
-    }
     .cta-section h3 { font-size: 1.8rem; margin-bottom: 20px; }
-    .cta-section p { color: var(--text-secondary); margin-bottom: 32px; max-width: 650px; margin-left: auto; margin-right: auto; }
+    .cta-section p { color: var(--text-secondary); margin-bottom: 32px; max-width: 650px; margin: 0 auto 32px; }
     .cta-highlight {
       color: var(--primary);
       font-weight: 600;
@@ -700,7 +635,7 @@
     .contact-item a { color: var(--text-primary); font-weight: 500; }
     .contact-icon { font-size: 1.4rem; }
 
-    /* === FOOTER === */
+    /* FOOTER */
     footer {
       background: var(--bg-secondary);
       padding: 48px 0 32px;
@@ -711,19 +646,9 @@
     .footer-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
     .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
     .footer-links a:hover { color: var(--accent); }
-    .license {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      padding: 16px 24px;
-      background: var(--bg-tertiary);
-      border-radius: 10px;
-      max-width: 600px;
-      border: 1px solid var(--border);
-    }
-    .license strong { color: var(--primary); }
-    .copyright { color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px; }
+    .copyright { color: var(--text-secondary); font-size: 0.85rem; }
 
-    /* === ANIMAÇÕES === */
+    /* ANIMATIONS */
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     .animate { animation: fadeInUp 0.6s ease forwards; }
     .delay-1 { animation-delay: 0.1s; }
@@ -738,18 +663,6 @@
       .btn { width: 100%; }
       .profile-stats { grid-template-columns: repeat(3, 1fr); }
       .cta-section { padding: 32px 24px; }
-      .navbar-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-secondary);
-        flex-direction: column;
-        padding: 20px;
-        border-bottom: 1px solid var(--border);
-      }
-      .navbar-links.active { display: flex; }
     }
 
     ::-webkit-scrollbar { width: 10px; }
@@ -761,7 +674,7 @@
 
 <body>
 
-  <!-- NAVBAR FIXA -->
+  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="#" class="navbar-logo"><span>✦</span> LuisGustavo</a>
@@ -772,15 +685,15 @@
         <li><a href="#contato">Contato</a></li>
       </ul>
       <div class="navbar-cta">
-        <a href="Curriculo_Luis_Gustavo_2026.pdf" download class="btn btn-primary btn-sm">📄 CV</a>
+        <a href="#" class="btn btn-primary btn-sm">📄 CV</a>
       </div>
-      <div class="navbar-toggle" id="navToggle" aria-label="Menu">
+      <div class="navbar-toggle" id="navToggle">
         <span></span><span></span><span></span>
       </div>
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <header>
     <div class="container">
       <div class="hero-content">
@@ -788,36 +701,34 @@
           <div class="hero-slogan">✨ De cuidador a codificador</div>
           <h1 class="hero-title">Desenvolvedor Back-end em início de carreira</h1>
           <p class="hero-subtitle">
-            Especialista em APIs escaláveis, autenticação segura e integrações com dados reais. 
-            Cada projeto entrega valor mensurável com código limpo e boas práticas.
+            Especialista em APIs escaláveis, autenticação segura e integrações. 
+            Netflix Clone, sistemas completos e impacto mensurável.
           </p>
           
           <div class="hero-story">
             <strong>Minha história:</strong> Enquanto cuidava da minha mãe, descobri na programação uma forma de construir um futuro melhor. 
-            Estudei todos os dias, criei projetos reais e publiquei no GitHub. Minha disciplina é meu maior ativo.
+            Estudei todos os dias e criei projetos reais. Minha disciplina é meu maior ativo.
           </div>
 
           <div class="hero-cta">
             <a href="#projetos" class="btn btn-primary">🚀 Ver Projetos</a>
-            <a href="Curriculo_Luis_Gustavo_2026.pdf" download class="btn btn-secondary">📄 Baixar CV</a>
+            <a href="#" class="btn btn-secondary">📄 Baixar CV</a>
             <a href="https://linkedin.com/in/luisgustavoleao" target="_blank" class="btn btn-outline">💼 LinkedIn</a>
           </div>
 
           <div class="hero-meta">
             <span>📍 Fortaleza, CE</span>
             <span>📧 <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a></span>
-            <span>📱 <a href="tel:+5585985841344">(85) 98584-1344</a></span>
             <span>🔗 <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a></span>
           </div>
 
           <div class="availability">
             <span class="badge">✅ Disponível para remoto</span>
-            <span class="badge badge-outline">🔄 Híbrido em Fortaleza</span>
             <span class="badge badge-outline">🎯 Back-end & APIs</span>
           </div>
         </div>
 
-        <div class="profile-card" onclick="window.location.href='#sobre'">
+        <div class="profile-card">
           <div class="profile-avatar">LG</div>
           <div class="profile-name">Luis Gustavo Verissimo Cavalcante</div>
           <div class="profile-role">Desenvolvedor Back-end • PHP, Node.js, Python</div>
@@ -831,7 +742,7 @@
     </div>
   </header>
 
-  <!-- SOBRE MIM -->
+  <!-- SOBRE -->
   <section class="section" id="sobre">
     <div class="container">
       <h2 class="section-title">👨‍💻 Sobre Mim</h2>
@@ -839,42 +750,35 @@
         <div>
           <div class="about-story">
             <p>
-              Sou um desenvolvedor em constante evolução, com foco em <strong>back-end e desenvolvimento web</strong>. 
-              Minha jornada começou de forma autodidata — enquanto cuidava da minha mãe, encontrei no código 
-              uma forma de transformar desafios em soluções.
+              Sou um desenvolvedor focado em <strong>back-end e desenvolvimento web</strong>. 
+              Minha jornada começou de forma autodidata enquanto cuidava da minha mãe.
             </p>
             <p>
-              Minha experiência anterior em <strong>vendas e atendimento</strong> me ensinou habilidades que hoje 
-              aplico no desenvolvimento: comunicação clara, organização sob pressão e foco em entregar valor real.
-            </p>
-            <p>
-              Acredito que <strong>a prática constante é o caminho para a excelência</strong>. Por isso, cada projeto 
-              no meu portfólio foi construído com um propósito: resolver um problema, aplicar uma nova tecnologia 
-              ou consolidar um conceito aprendido.
+              Minha experiência em <strong>vendas e atendimento</strong> me ensinou comunicação clara, 
+              organização e foco em entregar valor real.
             </p>
           </div>
 
           <div class="story-highlight">
             <h4>💡 O que me diferencia</h4>
             <p style="color: var(--text-secondary); margin: 0;">
-              Não sou apenas mais um currículo. Sou alguém que estuda todos os dias, publica no GitHub para 
-              demonstrar evolução real, e traz a maturidade de quem já trabalhou com pessoas. Minha disciplina 
-              é meu maior ativo.
+              Estudo todos os dias, publico no GitHub e trago maturidade de quem já trabalhou com pessoas. 
+              Minha disciplina é meu maior ativo.
             </p>
           </div>
 
           <div class="values-grid">
             <div class="value-card">
               <div class="value-icon">🎯</div>
-              <div class="value-content"><h4>Foco em Resultados</h4><p>Cada projeto tem um objetivo claro e métricas de sucesso definidas.</p></div>
+              <div class="value-content"><h4>Foco em Resultados</h4><p>Cada projeto tem objetivo claro.</p></div>
             </div>
             <div class="value-card">
               <div class="value-icon">📚</div>
-              <div class="value-content"><h4>Aprendizado Contínuo</h4><p>Estudo diário através de cursos, documentação e prática em projetos reais.</p></div>
+              <div class="value-content"><h4>Aprendizado Contínuo</h4><p>Estudo diário e prática constante.</p></div>
             </div>
             <div class="value-card">
               <div class="value-icon">🤝</div>
-              <div class="value-content"><h4>Comunicação Clara</h4><p>Habilidade desenvolvida no atendimento, essencial para trabalho em equipe ágil.</p></div>
+              <div class="value-content"><h4>Comunicação Clara</h4><p>Essencial para trabalho em equipe.</p></div>
             </div>
           </div>
         </div>
@@ -887,36 +791,20 @@
               <span class="skill-tag pro">⚡ JavaScript</span>
               <span class="skill-tag pro">🐍 Python</span>
               <span class="skill-tag">🟢 Node.js</span>
-              <span class="skill-tag">📘 TypeScript</span>
               <span class="skill-tag">⚛️ React</span>
               <span class="skill-tag">🔗 REST APIs</span>
               <span class="skill-tag">🗄️ MySQL</span>
-              <span class="skill-tag">🍃 MongoDB</span>
-              <span class="skill-tag">🐙 Git & GitHub</span>
-              <span class="skill-tag">🌐 HTML5 & CSS3</span>
-              <span class="skill-tag learning">🔄 Docker (em aprendizado)</span>
+              <span class="skill-tag">🐙 Git</span>
             </div>
           </div>
 
           <div class="skills-section">
             <h3>🌍 Idiomas</h3>
             <div class="languages-grid">
-              <span class="lang-tag">🇬🇧 Inglês <span class="level">• Fluência</span></span>
+              <span class="lang-tag">🇬 Inglês <span class="level">• Fluência</span></span>
               <span class="lang-tag">🇪🇸 Espanhol <span class="level">• C1</span></span>
               <span class="lang-tag">🇮🇹 Italiano <span class="level">• Avançado</span></span>
-              <span class="lang-tag">🇩🇪 Alemão <span class="level">• C1</span></span>
-            </div>
-          </div>
-
-          <div class="skills-section">
-            <h3>🛠️ Ferramentas</h3>
-            <div class="skills-grid">
-              <span class="skill-tag">💻 VS Code</span>
-              <span class="skill-tag">🔌 Postman</span>
-              <span class="skill-tag">🎨 Figma</span>
-              <span class="skill-tag">☁️ Salesforce</span>
-              <span class="skill-tag">🐧 Linux</span>
-              <span class="skill-tag">📦 Composer</span>
+              <span class="lang-tag">🇩 Alemão <span class="level">• C1</span></span>
             </div>
           </div>
         </div>
@@ -924,411 +812,210 @@
     </div>
   </section>
 
-  <!-- IMPACTO REAL -->
+  <!-- IMPACTO -->
   <section class="section" id="impacto" style="background: var(--bg-secondary);">
     <div class="container">
       <h2 class="section-title">📊 Impacto Real</h2>
       <div class="impact-section">
-        <p style="color: var(--text-secondary); font-size: 1.1rem;">
-          Métricas dos meus projetos em produção e ambientes de teste:
-        </p>
+        <p style="color: var(--text-secondary); font-size: 1.1rem;">Métricas dos projetos:</p>
         <div class="impact-grid">
           <div class="impact-card">
             <div class="impact-number">500+</div>
-            <div class="impact-label">Requisições processadas em APIs</div>
+            <div class="impact-label">Requisições em APIs</div>
           </div>
           <div class="impact-card">
             <div class="impact-number">50+</div>
-            <div class="impact-label">Horas de código em projetos reais</div>
+            <div class="impact-label">Horas de código</div>
           </div>
           <div class="impact-card">
             <div class="impact-number">3</div>
-            <div class="impact-label">Projetos com deploy ativo</div>
+            <div class="impact-label">Projetos ativos</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- COMO POSSO AJUDAR -->
+  <!-- COMO AJUDAR -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">💡 Como posso ajudar sua empresa</h2>
+      <h2 class="section-title">💡 Como posso ajudar</h2>
       <div class="help-section">
-        <p style="color: var(--text-secondary); margin-bottom: 24px;">
-          Pronto para contribuir desde o primeiro dia em:
-        </p>
         <div class="help-grid">
           <div class="help-item">
             <div class="help-icon">🔌</div>
             <div class="help-content">
-              <h4>APIs Seguras e Escaláveis</h4>
-              <p>Desenvolvimento de endpoints REST com autenticação JWT, rate limiting e documentação clara.</p>
+              <h4>APIs Seguras</h4>
+              <p>REST com JWT, rate limiting e documentação.</p>
             </div>
           </div>
           <div class="help-item">
             <div class="help-icon">🔗</div>
             <div class="help-content">
-              <h4>Integração com Sistemas Externos</h4>
-              <p>Conexão com APIs de pagamento, serviços de cloud e terceiros com tratamento robusto de erros.</p>
+              <h4>Integrações</h4>
+              <p>APIs de pagamento e serviços externos.</p>
             </div>
           </div>
           <div class="help-item">
             <div class="help-icon">⚡</div>
             <div class="help-content">
-              <h4>Otimização de Performance</h4>
-              <p>Cache com Redis, queries otimizadas e lazy loading para aplicações mais rápidas.</p>
+              <h4>Performance</h4>
+              <p>Cache Redis e otimizações.</p>
             </div>
           </div>
           <div class="help-item">
             <div class="help-icon">🛡️</div>
             <div class="help-content">
-              <h4>Segurança Aplicada</h4>
-              <p>Hash de senhas, proteção CSRF, validação de input e boas práticas OWASP implementadas.</p>
+              <h4>Segurança</h4>
+              <p>Hash, CSRF e OWASP.</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- EXPERIÊNCIA -->
-  <section class="section" style="background: var(--bg-secondary);">
-    <div class="container">
-      <h2 class="section-title">💼 Experiência Profissional</h2>
-      <div class="experience-grid">
-        <div class="experience-card">
-          <div class="exp-header">
-            <div><div class="exp-title">Consultor de Vendas</div><div class="exp-company">Grupo Dádiva</div></div>
-            <span class="exp-period">2023 – 2024</span>
-          </div>
-          <ul>
-            <li>Atendimento ao cliente e vendas consultivas com foco em necessidades reais</li>
-            <li>Prospecção ativa e estratégias de fidelização baseadas em dados</li>
-            <li>Acompanhamento de metas e análise de resultados comerciais</li>
-            <li>Desenvolvimento de empatia e comunicação assertiva</li>
-          </ul>
-        </div>
-        <div class="experience-card">
-          <div class="exp-header">
-            <div><div class="exp-title">Teleatendimento</div><div class="exp-company">Concentrix</div></div>
-            <span class="exp-period">Set/2024 – Abr/2025</span>
-          </div>
-          <ul>
-            <li>Atendimento ao cliente via telefone com foco em resolução ágil</li>
-            <li>Suporte e registro preciso de informações em sistemas internos</li>
-            <li>Cumprimento de indicadores de qualidade e produtividade</li>
-            <li>Trabalho sob pressão mantendo calma e profissionalismo</li>
-          </ul>
-        </div>
-      </div>
-      <p style="color: var(--text-secondary); margin-top: 40px; font-style: italic; padding: 20px; background: rgba(96, 165, 250, 0.08); border-radius: 12px; border-left: 4px solid var(--accent);">
-        💡 <strong>Nota:</strong> As competências desenvolvidas — comunicação, organização, foco em resultados e resolução de problemas — 
-        são diretamente aplicáveis ao desenvolvimento de software e ao trabalho em equipe ágil.
-      </p>
     </div>
   </section>
 
   <!-- PROJETOS -->
   <section class="section" id="projetos">
     <div class="container">
-      <h2 class="section-title">🚀 Projetos em Destaque</h2>
+      <h2 class="section-title">🚀 Projetos</h2>
       <div class="projects-intro">
-        <strong>📌 Como ler esta seção:</strong> Cada projeto inclui: (1) problema resolvido, (2) tecnologias, 
-        (3) decisões técnicas e (4) links para código e demo.
+        <strong>📌</strong> Projetos com código e demo disponíveis:
       </div>
 
       <div class="projects-grid">
 
-        <!-- PROJETO 1: NETFLIX CLONE (DESTAQUE PRINCIPAL) -->
+        <!-- NETFLIX CLONE -->
         <div class="project-card project-featured netflix netflix-clone animate">
           <div class="project-header">
             <div class="project-icon">🎬</div>
             <div>
               <div class="project-title">Netflix Clone Premium</div>
-              <div class="project-subtitle">React • TMDB API • Styled Components</div>
+              <div class="project-subtitle">React • TMDB API</div>
             </div>
           </div>
           <p class="project-description">
-            Clone funcional da interface da Netflix com carrosséis dinâmicos, busca em tempo real, 
-            trailer em modal com YouTube API, tema escuro/claro, responsividade mobile-first e 
-            persistência de favoritos no localStorage.
+            Clone da Netflix com carrosséis, busca, trailers YouTube, tema escuro/claro e favoritos.
           </p>
           <div class="project-problem">
-            <strong>Problema resolvido:</strong> Recriar uma interface complexa de streaming com 
-            performance otimizada, lazy loading de imagens, navegação fluida entre categorias e 
-            experiência de usuário comparável ao produto real.
+            <strong>Problema:</strong> Interface complexa com performance otimizada.
           </div>
           <div class="project-tech">
             <span class="tech-tag">React 18</span>
             <span class="tech-tag">TMDB API</span>
             <span class="tech-tag">Styled Components</span>
-            <span class="tech-tag">React Router v6</span>
-            <span class="tech-tag">Axios</span>
-            <span class="tech-tag">YouTube API</span>
+            <span class="tech-tag">React Query</span>
           </div>
           <div class="project-decisions">
-            <strong>Decisões técnicas:</strong>
+            <strong>Decisões:</strong>
             <ul>
-              <li><strong>Lazy loading:</strong> Intersection Observer + placeholder blur para reduzir LCP em 60%</li>
-              <li><strong>Cache de API:</strong> React Query com staleTime=10min para evitar re-fetch</li>
-              <li><strong>Virtualização:</strong> React Window para carrosséis com 100+ itens sem lag</li>
-              <li><strong>Theme Context:</strong> Sistema de temas com CSS variables + localStorage</li>
+              <li>Lazy loading com Intersection Observer</li>
+              <li>Cache React Query (10min)</li>
+              <li>Virtualização React Window</li>
             </ul>
           </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Componentização avançada com hooks customizados, gerenciamento de estado 
-            com Context API + useReducer, otimização de performance com memoization e integração com APIs de terceiros.
-          </p>
           <div class="project-links">
             <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-              <a href="https://netflix-clone-luis.vercel.app" target="_blank" class="btn btn-outline btn-sm">🌐 Demo Ao Vivo</a>
+              <a href="https://github.com/luisgustavoleao896-cpu/netflix-clone-premium" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
+              <a href="#" class="btn btn-outline btn-sm">🌐 Demo</a>
             </div>
           </div>
         </div>
 
-        <!-- PROJETO 2: DESAFIO TÉCNICO COMPLETO -->
-        <div class="project-card project-featured animate delay-1">
-          <div class="project-header">
-            <div class="project-icon">🎯</div>
-            <div>
-              <div class="project-title">Desafio Técnico - Sistema Completo</div>
-              <div class="project-subtitle">Auth • API • Banco • Front</div>
-            </div>
-          </div>
-          <p class="project-description">
-            Sistema full-stack com autenticação JWT, API REST documentada, banco de dados relacional 
-            e frontend responsivo. Projeto criado para demonstrar domínio do ciclo completo de desenvolvimento.
-          </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Integrar múltiplas camadas da aplicação com segurança, 
-            performance e experiência de usuário consistente em um único repositório bem estruturado.
-          </div>
-          <div class="project-tech">
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">Express</span>
-            <span class="tech-tag">JWT</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">React</span>
-          </div>
-          <div class="project-decisions">
-            <strong>Decisões técnicas:</strong>
-            <ul>
-              <li>JWT em vez de sessions para escalabilidade horizontal</li>
-              <li>PostgreSQL com migrations para versionamento de schema</li>
-              <li>Arquitetura em camadas (controller/service/repository) para testabilidade</li>
-            </ul>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Orquestração de stack completo, deploy com variáveis de ambiente 
-            e documentação de API com OpenAPI/Swagger.
-          </p>
-          <div class="project-links">
-            <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/desafio-tecnico-completo" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-              <a href="https://desafio-tecnico-luis.vercel.app" target="_blank" class="btn btn-outline btn-sm">🌐 Demo</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJETO 3: LOGIN SYSTEM -->
-        <div class="project-card animate delay-2">
+        <!-- LOGIN SYSTEM -->
+        <div class="project-card animate delay-1">
           <div class="project-header">
             <div class="project-icon">🔐</div>
             <div>
-              <div class="project-title">Sistema de Login Seguro</div>
-              <div class="project-subtitle">Node.js • bcrypt • JWT</div>
+              <div class="project-title">Sistema de Login</div>
+              <div class="project-subtitle">Node.js • JWT</div>
             </div>
           </div>
           <p class="project-description">
-            Módulo de autenticação completo com hash de senhas, tokens de sessão, validação de formulário, 
-            proteção contra brute force e recuperação de senha.
+            Autenticação com bcrypt, JWT, refresh tokens e proteção brute force.
           </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Implementar autenticação segura em aplicações web, protegendo 
-            dados sensíveis de usuários contra ataques comuns como credential stuffing e session hijacking.
-          </div>
           <div class="project-tech">
             <span class="tech-tag">Node.js</span>
             <span class="tech-tag">Express</span>
-            <span class="tech-tag">bcrypt.js</span>
+            <span class="tech-tag">bcrypt</span>
             <span class="tech-tag">JWT</span>
-            <span class="tech-tag">dotenv</span>
           </div>
-          <div class="project-decisions">
-            <strong>Decisões técnicas:</strong>
-            <ul>
-              <li>bcrypt com salt rounds = 12 para equilíbrio segurança/performance</li>
-              <li>Refresh tokens com rotação para sessões persistentes seguras</li>
-              <li>Rate limiting por IP para prevenir ataques de força bruta</li>
-            </ul>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Segurança em aplicações web, hash de senhas com salt, middleware 
-            de autenticação, variáveis de ambiente e boas práticas de OWASP.
-          </p>
           <div class="project-links">
             <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-              <a href="https://login-demo-luis.onrender.com" target="_blank" class="btn btn-outline btn-sm">🌐 Demo</a>
+              <a href="https://github.com/luisgustavoleao896-cpu/login-system-node" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
             </div>
           </div>
         </div>
 
-        <!-- PROJETO 4: API CONSUMER -->
-        <div class="project-card animate">
+        <!-- API CONSUMER -->
+        <div class="project-card animate delay-2">
           <div class="project-header">
             <div class="project-icon">🌐</div>
             <div>
-              <div class="project-title">API Consumer - Dados Reais</div>
-              <div class="project-subtitle">JavaScript • Fetch API • REST</div>
+              <div class="project-title">API Consumer</div>
+              <div class="project-subtitle">JavaScript • Fetch</div>
             </div>
           </div>
           <p class="project-description">
-            Aplicação que consome APIs públicas reais (ViaCEP, GitHub, PokeAPI) com tratamento de erros, 
-            cache local, loading states e interface responsiva.
+            Consumo de APIs reais (ViaCEP, GitHub) com cache e tratamento de erros.
           </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Demonstrar consumo profissional de APIs externas com 
-            tratamento de edge cases, rate limiting e experiência do usuário otimizada.
-          </div>
           <div class="project-tech">
-            <span class="tech-tag">JavaScript ES6+</span>
+            <span class="tech-tag">JavaScript</span>
             <span class="tech-tag">Fetch API</span>
-            <span class="tech-tag">Async/Await</span>
             <span class="tech-tag">LocalStorage</span>
-            <span class="tech-tag">Error Handling</span>
           </div>
-          <div class="project-decisions">
-            <strong>Decisões técnicas:</strong>
-            <ul>
-              <li>Cache com TTL de 5min para reduzir chamadas repetidas à API</li>
-              <li>Debounce de 300ms em buscas para otimizar requisições</li>
-              <li>Fallback UI para offline e erros de rede</li>
-            </ul>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Consumo assíncrono de APIs, tratamento de erros robusto, 
-            caching estratégico e padrões de UI para estados de carregamento.
-          </p>
           <div class="project-links">
             <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/api-consumer-real" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-              <a href="https://api-consumer-luis.vercel.app" target="_blank" class="btn btn-outline btn-sm">🌐 Demo</a>
+              <a href="https://github.com/luisgustavoleao896-cpu/api-consumer-real" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
             </div>
           </div>
         </div>
 
-        <!-- PROJETO 5: URL SHORTENER -->
-        <div class="project-card animate delay-1">
-          <div class="project-header">
-            <div class="project-icon">🔗</div>
-            <div>
-              <div class="project-title">URL Shortener + Analytics</div>
-              <div class="project-subtitle">Python • FastAPI • Redis</div>
-            </div>
-          </div>
-          <p class="project-description">
-            Encurtador de URLs com dashboard de analytics, QR Code generation, links personalizados 
-            e cache com Redis para alta performance.
-          </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Criar serviço escalável de encurtamento com 
-            rastreamento de cliques, geolocalização e proteção contra abuso.
-          </div>
-          <div class="project-tech">
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">Redis</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">Pydantic</span>
-            <span class="tech-tag">Rate Limiting</span>
-          </div>
-          <div class="project-decisions">
-            <strong>Decisões técnicas:</strong>
-            <ul>
-              <li>Redis para cache de redirects, reduzindo latência em 90%</li>
-              <li>Base62 encoding para URLs curtas legíveis e colision-free</li>
-              <li>Async endpoints no FastAPI para I/O bound operations</li>
-            </ul>
-          </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Design de APIs assíncronas, caching estratégico, 
-            métricas em tempo real e boas práticas de segurança.
-          </p>
-          <div class="project-links">
-            <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/url-shortener-fastapi" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJETO 6: API REST PHP -->
-        <div class="project-card animate delay-2">
+        <!-- API REST PHP -->
+        <div class="project-card animate">
           <div class="project-header">
             <div class="project-icon">🔌</div>
             <div>
-              <div class="project-title">API REST com Autenticação JWT</div>
-              <div class="project-subtitle">PHP • Slim Framework • MySQL</div>
+              <div class="project-title">API REST PHP</div>
+              <div class="project-subtitle">PHP • Slim • MySQL</div>
             </div>
           </div>
           <p class="project-description">
-            API completa para gestão de usuários com CRUD, autenticação via JWT, validação de dados, 
-            tratamento de erros e documentação de endpoints.
+            API com CRUD, JWT, validação e documentação de endpoints.
           </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Fornecer uma base segura e escalável para aplicações que necessitam 
-            de autenticação, autorização e gerenciamento de usuários com boas práticas de API REST.
-          </div>
           <div class="project-tech">
             <span class="tech-tag">PHP 8</span>
-            <span class="tech-tag">Slim Framework</span>
-            <span class="tech-tag">JWT Auth</span>
-            <span class="tech-tag">MySQL/PDO</span>
-            <span class="tech-tag">Composer</span>
+            <span class="tech-tag">Slim</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">JWT</span>
           </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Estrutura MVC, segurança com tokens, prevenção de SQL injection, 
-            padronização de respostas JSON e documentação de APIs.
-          </p>
           <div class="project-links">
             <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+              <a href="https://github.com/luisgustavoleao896-cpu/api-rest-php" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
             </div>
           </div>
         </div>
 
-        <!-- PROJETO 7: PYTHON DATA ANALYSIS -->
-        <div class="project-card animate">
+        <!-- PYTHON DATA -->
+        <div class="project-card animate delay-1">
           <div class="project-header">
             <div class="project-icon">📊</div>
             <div>
-              <div class="project-title">Análise de Dados com Python</div>
-              <div class="project-subtitle">Python • Pandas • Visualização</div>
+              <div class="project-title">Análise de Dados</div>
+              <div class="project-subtitle">Python • Pandas</div>
             </div>
           </div>
           <p class="project-description">
-            Script para análise exploratória de dados com limpeza, transformação, estatísticas descritivas 
-            e visualizações informativas para tomada de decisão.
+            Análise exploratória com limpeza, transformação e visualizações.
           </p>
-          <div class="project-problem">
-            <strong>Problema resolvido:</strong> Automatizar a extração de insights de datasets reais, 
-            reduzindo tempo de análise manual e permitindo identificação rápida de padrões e tendências.
-          </div>
           <div class="project-tech">
             <span class="tech-tag">Python</span>
             <span class="tech-tag">Pandas</span>
-            <span class="tech-tag">NumPy</span>
             <span class="tech-tag">Matplotlib</span>
-            <span class="tech-tag">Jupyter</span>
           </div>
-          <p class="project-learning">
-            <strong>Aprendizado:</strong> Manipulação eficiente de dados com Pandas, criação de visualizações 
-            claras, tratamento de dados ausentes e boas práticas em análise exploratória.
-          </p>
           <div class="project-links">
             <div class="btn-group">
-              <a href="https://github.com/luisgustavoleao896-cpu/Analise-de-Dados-com-Python" target="_blank" class="btn btn-secondary btn-sm">🐙 Ver Código</a>
+              <a href="https://github.com/luisgustavoleao896-cpu/Analise-de-Dados-com-Python" target="_blank" class="btn btn-secondary btn-sm">🐙 Código</a>
             </div>
           </div>
         </div>
@@ -1337,12 +1024,12 @@
         <div class="project-card" style="display: flex; align-items: center; justify-content: center; text-align: center; background: var(--bg-tertiary); border-style: dashed;">
           <div>
             <div style="font-size: 3rem; margin-bottom: 16px;">🐙</div>
-            <h4 style="margin-bottom: 12px;">+8 projetos no GitHub</h4>
+            <h4 style="margin-bottom: 12px;">+10 projetos</h4>
             <p style="color: var(--text-secondary); margin-bottom: 20px;">
-              Chat em tempo real, E-commerce, PWA, Blog CMS e mais.
+              URL Shortener, Chat, E-commerce e mais.
             </p>
             <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="btn btn-primary">
-              Ver Todos os Projetos
+              Ver GitHub
             </a>
           </div>
         </div>
@@ -1351,52 +1038,32 @@
     </div>
   </section>
 
-  <!-- CERTIFICAÇÕES -->
-  <section class="section" style="background: var(--bg-secondary);">
-    <div class="container">
-      <h2 class="section-title">📜 Certificações</h2>
-      
-      <h3 style="color: var(--accent); margin: 40px 0 24px;">💻 Programação & Tecnologia</h3>
-      <div class="courses-grid">
-        <div class="course-card"><h4>Desenvolvimento Web Full Stack</h4><div class="course-provider">Udemy</div><a href="https://ude.my/UC-b87e3e1b-d352-4ca3-9a60-1e70bddcd729" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-        <div class="course-card"><h4>Back-end com Slim Framework (PHP)</h4><div class="course-provider">Cursa</div><a href="https://cursa.app/pt/meu-certificado/cert212c0b82fe81e891f7ab992845d43130" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-        <div class="course-card"><h4>Análise de Dados em Python</h4><div class="course-provider">Programação Dinâmica</div><a href="https://cursa.app/pt/meu-certificado/certc4b4469ae1302805eda20f9c549456c1" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-        <div class="course-card"><h4>Node.js com Express e TypeScript</h4><div class="course-provider">Cursa</div><a href="https://cursa.app/pt/meu-certificado/cert784f2ad8d43a8002a35353ced34ea0c8" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-        <div class="course-card"><h4>React JS</h4><div class="course-provider">EuProgramador</div><a href="https://cursa.app/pt/meu-certificado/cert817951b9c469739094602d09bbcaa740" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-        <div class="course-card"><h4>Banco de Dados MySQL</h4><div class="course-provider">Cursa</div><a href="https://cursa.app/pt/meu-certificado/cert79cb8341079f5ac898fc8a756abc177e" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-        <div class="course-card"><h4>Segurança da Informação</h4><div class="course-provider">Cursa</div><a href="https://cursa.app/pt/meu-certificado/certf52a09af4b614aaa1e1b4f909b851897" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-        <div class="course-card"><h4>Salesforce Administrador</h4><div class="course-provider">Udemy</div><a href="https://ude.my/UC-d1627aOa-050c-460b-9c9d-504682b711e5" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-      </div>
-
-      <h3 style="color: var(--accent); margin: 48px 0 24px;">🌍 Idiomas</h3>
-      <div class="courses-grid">
-        <div class="course-card"><h4>🇬🇧 Inglês – Do Básico à Fluência</h4><div class="course-provider">Udemy</div><a href="https://ude.my/UC-e47bf283-89c7-4f7e-852a-5cc13473a67f" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-        <div class="course-card"><h4>🇪🇸 Espanhol – A1 ao C1</h4><div class="course-provider">Udemy</div><a href="https://ude.my/UC-7ae1c992-03c3-4b46-9a2b-f811de737ccd" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-        <div class="course-card"><h4>🇮🇹 Italiano para Brasileiros</h4><div class="course-provider">PontoItalian / Udemy</div><a href="https://ude.my/UC-375c8abb-31cd-4420-8005-f0034f43f8b4" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-        <div class="course-card"><h4>🇩🇪 Alemão Completo (A1 ao C1)</h4><div class="course-provider">Udemy - Tarik Becker</div><a href="https://ude.my/UC-7dc4ccc9-ff9c-452d-8059-d5f844942702" target="_blank" class="course-cert">📄 Ver Certificado</a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTATO / CTA AGRESSIVO -->
+  <!-- CONTATO -->
   <section class="section" id="contato">
     <div class="container">
       <div class="cta-section">
-        <h3>🚀 Pronto para agregar valor na sua equipe</h3>
+        <h3>🚀 Pronto para agregar valor</h3>
         <p>
-          Estou em busca de oportunidade como <strong>Desenvolvedor Back-end</strong>. 
-          Se sua equipe precisa de alguém com foco em APIs, segurança e entrega de valor — 
-          vamos conversar.
+          Busco oportunidade como <strong>Desenvolvedor Back-end</strong>. 
+          Vamos conversar?
         </p>
-        <span class="cta-highlight">⚡ Resposta rápida em até 24h</span>
+        <span class="cta-highlight">⚡ Resposta em até 24h</span>
         <div class="contact-grid">
-          <div class="contact-item"><span class="contact-icon">📧</span><a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a></div>
-          <div class="contact-item"><span class="contact-icon">📱</span><a href="tel:+5585985841344">(85) 98584-1344</a></div>
-          <div class="contact-item"><span class="contact-icon">💼</span><a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a></div>
+          <div class="contact-item">
+            <span class="contact-icon">📧</span>
+            <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">💼</span>
+            <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🐙</span>
+            <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a>
+          </div>
         </div>
         <div class="btn-group" style="justify-content: center;">
-          <a href="Curriculo_Luis_Gustavo_2026.pdf" download class="btn btn-primary">📄 Baixar Currículo em PDF</a>
-          <a href="mailto:gustavoluis.v.c.1016@gmail.com?subject=Oportunidade para Desenvolvedor Back-end" class="btn btn-secondary">✉️ Enviar E-mail</a>
+          <a href="mailto:gustavoluis.v.c.1016@gmail.com?subject=Oportunidade Desenvolvedor" class="btn btn-primary">✉️ Enviar E-mail</a>
         </div>
       </div>
     </div>
@@ -1408,26 +1075,19 @@
       <div class="footer-content">
         <div class="footer-links">
           <a href="#sobre">Sobre</a>
-          <a href="#impacto">Impacto</a>
           <a href="#projetos">Projetos</a>
           <a href="https://github.com/luisgustavoleao896-cpu" target="_blank">GitHub</a>
           <a href="https://linkedin.com/in/luisgustavoleao" target="_blank">LinkedIn</a>
-          <a href="Curriculo_Luis_Gustavo_2026.pdf" download>Download CV</a>
-        </div>
-        <div class="license">
-          <strong>📄 Licença MIT:</strong> Este portfólio e seus códigos estão sob a <strong>MIT License</strong>. 
-          Sinta-se à vontade para usar, modificar e compartilhar — apenas mantenha a atribuição original.
         </div>
         <p class="copyright">
-          © 2026 Luis Gustavo Verissimo Cavalcante • Fortaleza, CE • 
-          <a href="mailto:gustavoluis.v.c.1016@gmail.com">gustavoluis.v.c.1016@gmail.com</a>
+          © 2026 Luis Gustavo • Fortaleza, CE
         </p>
       </div>
     </div>
   </footer>
 
   <script>
-    // === NAVBAR SCROLL EFFECT ===
+    // NAVBAR SCROLL
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
@@ -1437,14 +1097,14 @@
       }
     });
 
-    // === MOBILE MENU TOGGLE ===
+    // MOBILE MENU
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     navToggle?.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
 
-    // === SMOOTH SCROLL + ACTIVE LINK ===
+    // SMOOTH SCROLL
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1452,35 +1112,13 @@
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           navLinks?.classList.remove('active');
-          
           document.querySelectorAll('.navbar-links a').forEach(link => link.classList.remove('active'));
           this.classList.add('active');
         }
       });
     });
 
-    // === UPDATE ACTIVE LINK ON SCROLL ===
-    const sections = document.querySelectorAll('section[id], header');
-    const navItems = document.querySelectorAll('.navbar-links a');
-    
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute('id');
-        }
-      });
-      
-      navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href') === `#${current}`) {
-          item.classList.add('active');
-        }
-      });
-    });
-
-    // === ANIMAÇÃO AO ROLAR ===
+    // ANIMATIONS
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1489,7 +1127,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.project-card, .experience-card, .course-card, .value-card, .help-item, .impact-card').forEach(el => {
       el.style.opacity = '0';
