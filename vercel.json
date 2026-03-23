@@ -1,7 +1,4 @@
-/seu-projeto
-  ├── index.html
-  ├── vercel.json   ✅ AQUI
-  ├── style.css (se tiver){
+{
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
