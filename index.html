@@ -3,118 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luis Gustavo | Full Stack Engineer</title>
+<title>Netflix Clone</title>
 
 <style>
-* {margin:0; padding:0; box-sizing:border-box; font-family:Inter, system-ui;}
-body {background:#0b0f17; color:#e6edf3;}
-header {padding:80px 20px; text-align:center; max-width:900px; margin:auto;}
-h1 {font-size:3rem; font-weight:700; background:linear-gradient(90deg,#58a6ff,#2ea043); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
-.subtitle {margin-top:20px; color:#8b949e; font-size:1.1rem;}
-.container {max-width:1200px; margin:auto; padding:20px;}
-.section {margin-top:80px;}
-h2 {font-size:2rem; margin-bottom:30px;}
-.projects {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:25px;}
-.card {background:#161b22; border:1px solid #30363d; border-radius:16px; padding:25px; transition:0.3s; position:relative;}
-.card:hover {transform:translateY(-6px); border-color:#58a6ff;}
-.card h3 {font-size:1.2rem; margin-bottom:10px;}
-.card p {font-size:0.95rem; color:#8b949e; margin-bottom:15px;}
-.tech {font-size:0.8rem; color:#58a6ff; margin-bottom:10px;}
-.buttons a {text-decoration:none; padding:10px 14px; border-radius:8px; font-size:0.85rem; margin-right:8px; display:inline-block;}
-.demo {background:#238636; color:white;}
-.code {background:#30363d; color:white;}
-footer {text-align:center; margin:80px 0; color:#8b949e;}
+body {
+  margin: 0;
+  background: #141414;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 20px;
+  font-size: 24px;
+  color: red;
+  font-weight: bold;
+}
+
+.banner {
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.banner h1 {
+  font-size: 40px;
+}
+
+.row {
+  padding: 20px;
+}
+
+.movies {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+}
+
+.movies img {
+  width: 150px;
+  border-radius: 8px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.movies img:hover {
+  transform: scale(1.1);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>Luis Gustavo</h1>
-<p class="subtitle">
-Desenvolvedor Full Stack focado em transformar ideias em produtos digitais escaláveis.
-Especializado em interfaces modernas, consumo de APIs e soluções orientadas a dados.
-</p>
-</header>
+<header>NETFLIX</header>
 
-<div class="container">
-
-<section class="section">
-<h2>Impacto & Experiência</h2>
-<p>
-Minha abordagem é centrada em resolver problemas reais com tecnologia.
-Cada projeto abaixo foi desenvolvido com foco em simular cenários de produção,
-enfrentando desafios como performance, escalabilidade e experiência do usuário.
-</p>
-</section>
-
-<section class="section">
-<h2>Projetos em Produção</h2>
-<div class="projects">
-
-<!-- 1. Sistema de Autenticação -->
-<div class="card">
-<div class="tech">JavaScript • LocalStorage • Auth Flow</div>
-<h3>Sistema de Autenticação</h3>
-<p>Simula fluxo de login/registro com persistência de sessão.</p>
-<div class="buttons">
-<a href="https://sistema-de-autentica-o.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
-<a href="https://github.com/luisgustavoleao896-cpu/SISTEMA-DE-AUTENTICA-O" target="_blank" class="code">💻 Código</a>
-</div>
+<div class="banner" id="banner">
+  <h1 id="banner-title">Carregando...</h1>
 </div>
 
-<!-- 2. Consumidor de API -->
-<div class="card">
-<div class="tech">JavaScript • Fetch API • Async</div>
-<h3>Consumidor de API</h3>
-<p>Consome APIs em tempo real com tratamento de erros.</p>
-<div class="buttons">
-<a href="https://3-consumidor-de-api-dados-reais.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
-<a href="https://github.com/luisgustavoleao896-cpu/-3.-CONSUMIDOR-DE-API-Dados-Reais-" target="_blank" class="code">💻 Código</a>
-</div>
+<div class="row">
+  <h2>🔥 Em Alta</h2>
+  <div class="movies" id="trending"></div>
 </div>
 
-<!-- 3. Dashboard -->
-<div class="card">
-<div class="tech">Chart.js • Data Visualization</div>
-<h3>Dashboard de Dados</h3>
-<p>Painel com gráficos e métricas.</p>
-<div class="buttons">
-<a href="https://dashboard.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
-<a href="https://github.com/luisgustavoleao896-cpu/Dashboard" target="_blank" class="code">💻 Código</a>
-</div>
+<div class="row">
+  <h2>⭐ Mais Bem Avaliados</h2>
+  <div class="movies" id="toprated"></div>
 </div>
 
-<!-- 4. Netflix -->
-<div class="card">
-<div class="tech">API TMDB • UI/UX</div>
-<h3>Netflix Clone</h3>
-<p>Clone consumindo dados reais.</p>
-<div class="buttons">
-<a href="https://netflix-clone-ashy-alpha-49.vercel.app/" target="_blank" class="demo">🚀 Ver Projeto</a>
-<a href="https://github.com/luisgustavoleao896-cpu/NETFLIX-CLONE" target="_blank" class="code">💻 Código</a>
-</div>
-</div>
+<script>
+const API_KEY = "SUA_API_AQUI";
+const BASE_URL = "https://api.themoviedb.org/3";
 
-<!-- 5. Task -->
-<div class="card">
-<div class="tech">LocalStorage • State</div>
-<h3>Task Manager</h3>
-<p>Gerenciador de tarefas com persistência.</p>
-<div class="buttons">
-<a href="https://todo-app.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
-<a href="https://github.com/luisgustavoleao896-cpu/Todo-app" target="_blank" class="code">💻 Código</a>
-</div>
-</div>
+async function fetchMovies(url) {
+  const res = await fetch(url);
+  const data = await res.json();
+  return data.results;
+}
 
-</div>
-</section>
+function displayMovies(movies, elementId) {
+  const container = document.getElementById(elementId);
+  container.innerHTML = "";
 
-</div>
+  movies.forEach(movie => {
+    if (!movie.poster_path) return;
 
-<footer>
-© 2026 Luis Gustavo — Full Stack Engineer
-</footer>
+    const img = document.createElement("img");
+    img.src = "https://image.tmdb.org/t/p/w300" + movie.poster_path;
+    img.title = movie.title;
+
+    container.appendChild(img);
+  });
+}
+
+function setBanner(movie) {
+  const banner = document.getElementById("banner");
+  const title = document.getElementById("banner-title");
+
+  banner.style.backgroundImage =
+    "url(https://image.tmdb.org/t/p/original" + movie.backdrop_path + ")";
+  title.textContent = movie.title;
+}
+
+async function init() {
+  try {
+    const trending = await fetchMovies(
+      `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`
+    );
+
+    const topRated = await fetchMovies(
+      `${BASE_URL}/movie/top_rated?api_key=${API_KEY}`
+    );
+
+    displayMovies(trending, "trending");
+    displayMovies(topRated, "toprated");
+
+    setBanner(trending[0]);
+
+  } catch (error) {
+    console.error("Erro:", error);
+    document.body.innerHTML = "<h1>Erro ao carregar dados 😢</h1>";
+  }
+}
+
+init();
+</script>
 
 </body>
 </html>
