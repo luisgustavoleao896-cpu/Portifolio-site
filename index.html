@@ -3,166 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Netflix Clone | Luis Gustavo</title>
+<title>Luis Gustavo | Full Stack Engineer</title>
 
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:Inter, system-ui;}
-body {background:#141414; color:white;}
-
-header {
-  padding:20px;
-  font-size:24px;
-  color:red;
-  font-weight:bold;
-}
-
-.banner {
-  height:70vh;
-  background-size:cover;
-  display:flex;
-  align-items:flex-end;
-  padding:40px;
-}
-
-.banner-content h1 {font-size:3rem;}
-.banner-content p {max-width:500px; margin-top:10px;}
-
-.row {padding:20px;}
-.row h2 {margin-bottom:10px;}
-
-.movies {
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-}
-
-.movies img {
-  width:150px;
-  border-radius:6px;
-  transition:0.3s;
-  cursor:pointer;
-}
-
-.movies img:hover {
-  transform:scale(1.15);
-}
-
-.modal {
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.8);
-  display:none;
-  justify-content:center;
-  align-items:center;
-}
-
-.modal-content {
-  background:#181818;
-  padding:20px;
-  border-radius:10px;
-  max-width:500px;
-}
-
-.close {
-  cursor:pointer;
-  float:right;
-  font-size:20px;
-}
-
-::-webkit-scrollbar {display:none;}
+body {background:#0b0f17; color:#e6edf3;}
+header {padding:80px 20px; text-align:center; max-width:900px; margin:auto;}
+h1 {font-size:3rem; font-weight:700; background:linear-gradient(90deg,#58a6ff,#2ea043); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+.subtitle {margin-top:20px; color:#8b949e; font-size:1.1rem;}
+.container {max-width:1200px; margin:auto; padding:20px;}
+.section {margin-top:80px;}
+h2 {font-size:2rem; margin-bottom:30px;}
+.projects {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:25px;}
+.card {background:#161b22; border:1px solid #30363d; border-radius:16px; padding:25px; transition:0.3s; position:relative;}
+.card:hover {transform:translateY(-6px); border-color:#58a6ff;}
+.card h3 {font-size:1.2rem; margin-bottom:10px;}
+.card p {font-size:0.95rem; color:#8b949e; margin-bottom:15px;}
+.tech {font-size:0.8rem; color:#58a6ff; margin-bottom:10px;}
+.buttons a {text-decoration:none; padding:10px 14px; border-radius:8px; font-size:0.85rem; margin-right:8px; display:inline-block;}
+.demo {background:#238636; color:white;}
+.code {background:#30363d; color:white;}
+footer {text-align:center; margin:80px 0; color:#8b949e;}
 </style>
 </head>
 
 <body>
 
-<header>NETFLIX</header>
+<header>
+<h1>Luis Gustavo</h1>
+<p class="subtitle">
+Desenvolvedor Full Stack focado em transformar ideias em produtos digitais escaláveis.
+Especializado em interfaces modernas, consumo de APIs e soluções orientadas a dados.
+</p>
+</header>
 
-<div class="banner" id="banner">
-  <div class="banner-content">
-    <h1 id="title"></h1>
-    <p id="desc"></p>
-  </div>
+<div class="container">
+
+<section class="section">
+<h2>Impacto & Experiência</h2>
+<p>
+Minha abordagem é centrada em resolver problemas reais com tecnologia.
+Cada projeto abaixo foi desenvolvido com foco em simular cenários de produção,
+enfrentando desafios como performance, escalabilidade e experiência do usuário.
+</p>
+</section>
+
+<section class="section">
+<h2>Projetos em Produção</h2>
+<div class="projects">
+
+<!-- 1. Sistema de Autenticação -->
+<div class="card">
+<div class="tech">JavaScript • LocalStorage • Auth Flow</div>
+<h3>Sistema de Autenticação</h3>
+<p>Simula fluxo de login/registro com persistência de sessão.</p>
+<div class="buttons">
+<a href="https://sistema-de-autentica-o.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
+<a href="https://github.com/luisgustavoleao896-cpu/SISTEMA-DE-AUTENTICA-O" target="_blank" class="code">💻 Código</a>
+</div>
 </div>
 
-<div class="row">
-  <h2>🔥 Em Alta</h2>
-  <div class="movies" id="row1"></div>
+<!-- 2. Consumidor de API -->
+<div class="card">
+<div class="tech">JavaScript • Fetch API • Async</div>
+<h3>Consumidor de API</h3>
+<p>Consome APIs em tempo real com tratamento de erros.</p>
+<div class="buttons">
+<a href="https://3-consumidor-de-api-dados-reais.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
+<a href="https://github.com/luisgustavoleao896-cpu/-3.-CONSUMIDOR-DE-API-Dados-Reais-" target="_blank" class="code">💻 Código</a>
+</div>
 </div>
 
-<div class="row">
-  <h2>⭐ Mais Bem Avaliados</h2>
-  <div class="movies" id="row2"></div>
+<!-- 3. Dashboard -->
+<div class="card">
+<div class="tech">Chart.js • Data Visualization</div>
+<h3>Dashboard de Dados</h3>
+<p>Painel com gráficos e métricas.</p>
+<div class="buttons">
+<a href="https://dashboard.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
+<a href="https://github.com/luisgustavoleao896-cpu/Dashboard" target="_blank" class="code">💻 Código</a>
+</div>
 </div>
 
-<!-- Modal -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">✖</span>
-    <h2 id="modal-title"></h2>
-    <p id="modal-desc"></p>
-  </div>
+<!-- 4. Netflix (CORRIGIDO) -->
+<div class="card">
+<div class="tech">HTML • CSS • JavaScript • UI/UX</div>
+<h3>Netflix Clone</h3>
+<p>Clone com interface realista rodando no GitHub Pages.</p>
+<div class="buttons">
+<a href="https://SEU-USUARIO.github.io/netflix-clone-demo/" target="_blank" class="demo">🚀 Ver Projeto</a>
+<a href="https://github.com/SEU-USUARIO/netflix-clone-demo" target="_blank" class="code">💻 Código</a>
+</div>
 </div>
 
-<script>
-const movies = [
-  {
-    title: "Interstellar",
-    desc: "Exploração espacial em busca de um novo lar.",
-    img: "https://image.tmdb.org/t/p/w300/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg",
-    banner: "https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"
-  },
-  {
-    title: "Batman",
-    desc: "O cavaleiro das trevas combate o crime.",
-    img: "https://image.tmdb.org/t/p/w300/74xTEgt7R36Fpooo50r9T25onhq.jpg",
-    banner: "https://image.tmdb.org/t/p/original/3CxUndGhUcZdt1Zggjdb2HkLLQX.jpg"
-  },
-  {
-    title: "Avengers",
-    desc: "Heróis unidos para salvar o mundo.",
-    img: "https://image.tmdb.org/t/p/w300/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",
-    banner: "https://image.tmdb.org/t/p/original/9BBTo63ANSmhC4e6r62OJFuK2GL.jpg"
-  }
-];
+<!-- 5. Task -->
+<div class="card">
+<div class="tech">LocalStorage • State</div>
+<h3>Task Manager</h3>
+<p>Gerenciador de tarefas com persistência.</p>
+<div class="buttons">
+<a href="https://todo-app.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
+<a href="https://github.com/luisgustavoleao896-cpu/Todo-app" target="_blank" class="code">💻 Código</a>
+</div>
+</div>
 
-// Banner inicial
-document.getElementById("banner").style.backgroundImage =
-  `url(${movies[0].banner})`;
+</div>
+</section>
 
-document.getElementById("title").innerText = movies[0].title;
-document.getElementById("desc").innerText = movies[0].desc;
+</div>
 
-// Renderizar filmes
-function render(rowId) {
-  const row = document.getElementById(rowId);
-
-  movies.forEach(movie => {
-    const img = document.createElement("img");
-    img.src = movie.img;
-
-    img.onclick = () => openModal(movie);
-
-    row.appendChild(img);
-  });
-}
-
-render("row1");
-render("row2");
-
-// Modal
-function openModal(movie) {
-  document.getElementById("modal").style.display = "flex";
-  document.getElementById("modal-title").innerText = movie.title;
-  document.getElementById("modal-desc").innerText = movie.desc;
-}
-
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-}
-</script>
+<footer>
+© 2026 Luis Gustavo — Full Stack Engineer
+</footer>
 
 </body>
 </html>
