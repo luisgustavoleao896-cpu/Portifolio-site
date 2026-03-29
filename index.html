@@ -15,7 +15,7 @@ h1 {font-size:3rem; font-weight:700; background:linear-gradient(90deg,#58a6ff,#2
 .section {margin-top:80px;}
 h2 {font-size:2rem; margin-bottom:30px;}
 .projects {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:25px;}
-.card {background:#161b22; border:1px solid #30363d; border-radius:16px; padding:25px; transition:0.3s;}
+.card {background:#161b22; border:1px solid #30363d; border-radius:16px; padding:25px; transition:0.3s; position:relative;}
 .card:hover {transform:translateY(-6px); border-color:#58a6ff;}
 .card h3 {font-size:1.2rem; margin-bottom:10px;}
 .card p {font-size:0.95rem; color:#8b949e; margin-bottom:15px;}
@@ -25,8 +25,8 @@ h2 {font-size:2rem; margin-bottom:30px;}
 .code {background:#30363d; color:white;}
 footer {text-align:center; margin:80px 0; color:#8b949e;}
 
-/* NETFLIX MODAL */
-.netflix-modal {
+/* NETFLIX DEMO */
+.netflix-demo {
   position:fixed;
   top:0;
   left:0;
@@ -47,9 +47,32 @@ footer {text-align:center; margin:80px 0; color:#8b949e;}
 
 .row {padding:20px;}
 .movies {display:flex; gap:10px; overflow-x:auto;}
-.movies img {width:150px; border-radius:6px; transition:0.3s;}
+.movies img {
+  width:150px;
+  border-radius:6px;
+  transition:0.3s;
+  cursor:pointer;
+}
 .movies img:hover {transform:scale(1.1);}
-.close {position:absolute; top:20px; right:30px; font-size:25px; cursor:pointer;}
+
+.close {
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.banner {
+  height:60vh;
+  background-size:cover;
+  display:flex;
+  align-items:flex-end;
+  padding:20px;
+}
+.banner h1 {font-size:2.5rem;}
+
+::-webkit-scrollbar {display:none;}
 </style>
 </head>
 
@@ -59,43 +82,77 @@ footer {text-align:center; margin:80px 0; color:#8b949e;}
 <h1>Luis Gustavo</h1>
 <p class="subtitle">
 Desenvolvedor Full Stack focado em transformar ideias em produtos digitais escaláveis.
+Especializado em interfaces modernas, consumo de APIs e soluções orientadas a dados.
 </p>
 </header>
 
 <div class="container">
 
 <section class="section">
+<h2>Impacto & Experiência</h2>
+<p>
+Minha abordagem é centrada em resolver problemas reais com tecnologia.
+Cada projeto abaixo foi desenvolvido com foco em simular cenários de produção.
+</p>
+</section>
+
+<section class="section">
 <h2>Projetos em Produção</h2>
 
 <div class="projects">
 
-<!-- Auth -->
+<!-- 1 -->
 <div class="card">
-<div class="tech">JavaScript • Auth</div>
+<div class="tech">JavaScript • LocalStorage • Auth Flow</div>
 <h3>Sistema de Autenticação</h3>
-<p>Login com persistência.</p>
+<p>Simula fluxo de login/registro com persistência de sessão.</p>
 <div class="buttons">
 <a href="https://sistema-de-autentica-o.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
+<a href="https://github.com/luisgustavoleao896-cpu/SISTEMA-DE-AUTENTICA-O" target="_blank" class="code">💻 Código</a>
 </div>
 </div>
 
-<!-- API -->
+<!-- 2 -->
 <div class="card">
-<div class="tech">API • Fetch</div>
+<div class="tech">JavaScript • Fetch API • Async</div>
 <h3>Consumidor de API</h3>
-<p>Dados em tempo real.</p>
+<p>Consome APIs em tempo real com tratamento de erros.</p>
 <div class="buttons">
 <a href="https://3-consumidor-de-api-dados-reais.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
+<a href="https://github.com/luisgustavoleao896-cpu/-3.-CONSUMIDOR-DE-API-Dados-Reais-" target="_blank" class="code">💻 Código</a>
 </div>
 </div>
 
-<!-- Netflix (SEM 404) -->
+<!-- 3 -->
 <div class="card">
-<div class="tech">HTML • JS • UI</div>
+<div class="tech">Chart.js • Data Visualization</div>
+<h3>Dashboard de Dados</h3>
+<p>Painel com gráficos e métricas.</p>
+<div class="buttons">
+<a href="https://dashboard.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
+<a href="https://github.com/luisgustavoleao896-cpu/Dashboard" target="_blank" class="code">💻 Código</a>
+</div>
+</div>
+
+<!-- NETFLIX DEMO -->
+<div class="card">
+<div class="tech">HTML • CSS • JavaScript • UI/UX</div>
 <h3>Netflix Clone</h3>
-<p>Demo interativa dentro do portfólio.</p>
+<p>Demo interativa rodando direto no GitHub.</p>
 <div class="buttons">
 <a href="#" onclick="openNetflix()" class="demo">🚀 Ver Projeto</a>
+<a href="#" class="code">💻 Código</a>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<div class="tech">LocalStorage • State</div>
+<h3>Task Manager</h3>
+<p>Gerenciador de tarefas com persistência.</p>
+<div class="buttons">
+<a href="https://todo-app.vercel.app" target="_blank" class="demo">🚀 Ver Projeto</a>
+<a href="https://github.com/luisgustavoleao896-cpu/Todo-app" target="_blank" class="code">💻 Código</a>
 </div>
 </div>
 
@@ -104,42 +161,66 @@ Desenvolvedor Full Stack focado em transformar ideias em produtos digitais escal
 
 </div>
 
-<!-- MODAL NETFLIX -->
-<div class="netflix-modal" id="netflix">
+<!-- NETFLIX -->
+<div class="netflix-demo" id="netflix">
+
 <span class="close" onclick="closeNetflix()">✖</span>
 
 <div class="netflix-header">NETFLIX</div>
 
+<div class="banner" id="banner">
+<h1 id="banner-title"></h1>
+</div>
+
 <div class="row">
 <h2>🔥 Em Alta</h2>
-<div class="movies">
-<img src="https://image.tmdb.org/t/p/w300/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg">
-<img src="https://image.tmdb.org/t/p/w300/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg">
-<img src="https://image.tmdb.org/t/p/w300/74xTEgt7R36Fpooo50r9T25onhq.jpg">
-</div>
+<div class="movies" id="row1"></div>
 </div>
 
 <div class="row">
 <h2>⭐ Top</h2>
-<div class="movies">
-<img src="https://image.tmdb.org/t/p/w300/5BwqwxMEjeFtdknRV792Svo0K1v.jpg">
-<img src="https://image.tmdb.org/t/p/w300/3bhkrj58Vtu7enYsRolD1fZdja1.jpg">
-</div>
+<div class="movies" id="row2"></div>
 </div>
 
 </div>
 
 <script>
+const movies = [
+  {title:"Interstellar",img:"https://image.tmdb.org/t/p/w300/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg",banner:"https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"},
+  {title:"Batman",img:"https://image.tmdb.org/t/p/w300/74xTEgt7R36Fpooo50r9T25onhq.jpg",banner:"https://image.tmdb.org/t/p/original/3CxUndGhUcZdt1Zggjdb2HkLLQX.jpg"},
+  {title:"Avengers",img:"https://image.tmdb.org/t/p/w300/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",banner:"https://image.tmdb.org/t/p/original/9BBTo63ANSmhC4e6r62OJFuK2GL.jpg"}
+];
+
 function openNetflix(){
   document.getElementById("netflix").style.display="block";
+  setBanner(movies[0]);
+  render("row1");
+  render("row2");
 }
+
 function closeNetflix(){
   document.getElementById("netflix").style.display="none";
+}
+
+function render(id){
+  const row=document.getElementById(id);
+  row.innerHTML="";
+  movies.forEach(m=>{
+    const img=document.createElement("img");
+    img.src=m.img;
+    img.onclick=()=>setBanner(m);
+    row.appendChild(img);
+  });
+}
+
+function setBanner(m){
+  document.getElementById("banner").style.backgroundImage=`url(${m.banner})`;
+  document.getElementById("banner-title").innerText=m.title;
 }
 </script>
 
 <footer>
-© 2026 Luis Gustavo
+© 2026 Luis Gustavo — Full Stack Engineer
 </footer>
 
 </body>
