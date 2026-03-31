@@ -3,112 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Portfólio de Luis Gustavo - Full Stack Engineer | Netflix Clone Demo">
+<meta name="description" content="Portfólio de Luis Gustavo - Full Stack Engineer | Netflix Clone Demo Interativa">
 <meta name="theme-color" content="#0b0f17">
 <title>Luis Gustavo | Full Stack Engineer</title>
 <style>
-/* ===== PORTFÓLIO STYLES ===== */
-* {margin:0; padding:0; box-sizing:border-box; font-family:Inter, system-ui, -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;}
-body {background:#0b0f17; color:#e6edf3; line-height:1.6; overflow-x:hidden;}
-header {padding:80px 20px; text-align:center; max-width:900px; margin:auto;}
-h1 {font-size:3rem; font-weight:700; background:linear-gradient(90deg,#58a6ff,#2ea043); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
-.subtitle {margin-top:20px; color:#8b949e; font-size:1.1rem;}
-.container {max-width:1200px; margin:auto; padding:20px;}
-.section {margin-top:80px;}
-h2 {font-size:2rem; margin-bottom:30px;}
-.projects {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:25px;}
-.card {background:#161b22; border:1px solid #30363d; border-radius:16px; padding:25px; transition:0.3s; position:relative; cursor:pointer;}
-.card:hover {transform:translateY(-6px); border-color:#58a6ff; box-shadow:0 8px 30px rgba(88,166,255,0.15);}
-.card h3 {font-size:1.2rem; margin-bottom:10px;}
-.card p {font-size:0.95rem; color:#8b949e; margin-bottom:15px;}
-.tech {font-size:0.8rem; color:#58a6ff; margin-bottom:10px; font-weight:500;}
-.buttons a {text-decoration:none; padding:10px 14px; border-radius:8px; font-size:0.85rem; margin-right:8px; display:inline-block; transition:0.2s;}
-.buttons a:hover {transform:translateY(-2px);}
-.demo {background:#238636; color:white;}
-.code {background:#30363d; color:white;}
-footer {text-align:center; margin:80px 0 40px; color:#8b949e; padding:20px;}
-.gh-badge {display:inline-block; background:linear-gradient(135deg,#6e7681,#484f58); color:#fff; padding:3px 10px; border-radius:20px; font-size:0.75rem; font-weight:600; margin-left:8px; vertical-align:middle;}
-.gh-badge::before {content:"🔗"; margin-right:4px;}
+/* ===== PORTFÓLIO STYLES (ORIGINAL PRESERVADO) ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+body{background:#0b0f17;color:#e6edf3;line-height:1.6;overflow-x:hidden}
+header{padding:80px 20px;text-align:center;max-width:900px;margin:auto}
+h1{font-size:3rem;font-weight:700;background:linear-gradient(90deg,#58a6ff,#2ea043);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{margin-top:20px;color:#8b949e;font-size:1.1rem}
+.container{max-width:1200px;margin:auto;padding:20px}
+.section{margin-top:80px}
+h2{font-size:2rem;margin-bottom:30px}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:25px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:25px;transition:.3s;position:relative}
+.card:hover{transform:translateY(-6px);border-color:#58a6ff;box-shadow:0 8px 30px rgba(88,166,255,.15);cursor:pointer}
+.card h3{font-size:1.2rem;margin-bottom:10px}
+.card p{font-size:.95rem;color:#8b949e;margin-bottom:15px}
+.tech{font-size:.8rem;color:#58a6ff;margin-bottom:10px;font-weight:500}
+.buttons a{text-decoration:none;padding:10px 14px;border-radius:8px;font-size:.85rem;margin-right:8px;display:inline-block;transition:.2s}
+.buttons a:hover{transform:translateY(-2px)}
+.demo{background:#238636;color:#fff}
+.code{background:#30363d;color:#fff}
+footer{text-align:center;margin:80px 0 40px;color:#8b949e;padding:20px}
+.gh-badge{display:inline-block;background:linear-gradient(135deg,#6e7681,#484f58);color:#fff;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600;margin-left:8px;vertical-align:middle}
+.gh-badge::before{content:"🎬";margin-right:4px}
 
-/* ===== NETFLIX VIEW (Hidden by default) ===== */
-#netflix-view {display:none; position:fixed; top:0; left:0; width:100%; min-height:100vh; background:#141414; color:#fff; z-index:2000; overflow-x:hidden;}
-#netflix-view.active {display:block;}
+/* ===== NETFLIX DEMO OVERLAY (Hidden by default) ===== */
+#netflix-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;overflow-y:auto;animation:slideIn .4s ease}
+#netflix-overlay.active{display:block}
+@keyframes slideIn{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:scale(1)}}
 
 /* Netflix Header */
-.nf-header {position:fixed; top:0; width:100%; padding:15px 4%; display:flex; align-items:center; justify-content:space-between; background:linear-gradient(to bottom,rgba(0,0,0,0.9) 0%,transparent 100%); z-index:1000; transition:background 0.3s ease;}
-.nf-header.scrolled {background:#141414; box-shadow:0 2px 10px rgba(0,0,0,0.5);}
-.nf-logo {color:#e50914; font-size:1.9rem; font-weight:800; text-decoration:none; letter-spacing:-1.5px; text-transform:uppercase; cursor:pointer; transition:transform 0.2s;}
-.nf-logo:hover {transform:scale(1.05);}
-.nf-nav {display:flex; gap:22px; list-style:none;}
-.nf-nav a {color:#e5e5e5; text-decoration:none; font-size:0.92rem; transition:color 0.2s; position:relative; cursor:pointer;}
-.nf-nav a::after {content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:#fff; transition:width 0.2s;}
-.nf-nav a:hover {color:#fff;}
-.nf-nav a:hover::after {width:100%;}
-.nf-right {display:flex; align-items:center; gap:18px;}
-.nf-icon {font-size:1.2rem; cursor:pointer; transition:transform 0.2s;}
-.nf-icon:hover {transform:scale(1.1);}
-.nf-avatar {width:34px; height:34px; border-radius:4px; background:linear-gradient(135deg,#e50914,#b20710); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9rem; cursor:pointer;}
-.nf-back {background:rgba(0,0,0,0.6); border:none; color:#fff; padding:8px 16px; border-radius:4px; cursor:pointer; font-size:0.9rem; display:flex; align-items:center; gap:6px; transition:background 0.2s;}
-.nf-back:hover {background:rgba(0,0,0,0.8);}
+.nf-header{position:fixed;top:0;width:100%;padding:12px 4%;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(0,0,0,.9) 0%,transparent 100%);z-index:1000;transition:background .3s ease}
+.nf-header.scrolled{background:#141414;box-shadow:0 2px 20px rgba(0,0,0,.7)}
+.nf-logo{color:#e50914;font-size:2rem;font-weight:900;text-decoration:none;letter-spacing:-2px;cursor:pointer;transition:transform .2s}
+.nf-logo:hover{transform:scale(1.05)}
+.nf-nav{display:flex;gap:24px;list-style:none}
+.nf-nav a{color:#e5e5e5;text-decoration:none;font-size:.95rem;font-weight:400;transition:color .2s;cursor:pointer;position:relative}
+.nf-nav a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:#fff;transition:width .2s}
+.nf-nav a:hover{color:#fff}
+.nf-nav a:hover::after{width:100%}
+.nf-right{display:flex;align-items:center;gap:20px}
+.nf-icon{font-size:1.3rem;cursor:pointer;transition:transform .2s;opacity:.9}
+.nf-icon:hover{transform:scale(1.15);opacity:1}
+.nf-avatar{width:36px;height:36px;border-radius:4px;background:linear-gradient(135deg,#e50914,#b20710);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;cursor:pointer;transition:transform .2s}
+.nf-avatar:hover{transform:scale(1.1)}
+.nf-close{background:rgba(20,20,20,.8);border:2px solid #fff;color:#fff;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:.95rem;font-weight:600;display:flex;align-items:center;gap:8px;transition:all .2s}
+.nf-close:hover{background:#fff;color:#000;transform:scale(1.05)}
 
 /* Netflix Banner */
-.nf-banner {height:88vh; min-height:500px; background-size:cover; background-position:center top; background-repeat:no-repeat; display:flex; align-items:flex-end; padding:0 4%; position:relative;}
-.nf-banner::before {content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(180deg,transparent 0%,rgba(20,20,20,0.3) 40%,rgba(20,20,20,0.8) 70%,#141414 100%); pointer-events:none;}
-.nf-banner-content {position:relative; z-index:10; max-width:650px; padding-bottom:60px; animation:fadeInUp 0.8s ease;}
-@keyframes fadeInUp {from{opacity:0; transform:translateY(30px)} to{opacity:1; transform:translateY(0)}}
-.nf-banner-title {font-size:4rem; font-weight:800; margin-bottom:18px; text-shadow:2px 4px 8px rgba(0,0,0,0.6); line-height:1.1; letter-spacing:-1px;}
-.nf-banner-desc {font-size:1.25rem; line-height:1.5; margin-bottom:28px; color:#f5f5f5; text-shadow:1px 2px 4px rgba(0,0,0,0.5); max-width:550px;}
-.nf-banner-btns {display:flex; gap:12px; flex-wrap:wrap;}
-.nf-btn {padding:14px 32px; border:none; border-radius:5px; font-size:1.05rem; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:10px; transition:all 0.25s ease;}
-.nf-btn:hover {transform:scale(1.06); opacity:0.95;}
-.nf-btn-play {background:#fff; color:#000;}
-.nf-btn-play:hover {background:#f0f0f0;}
-.nf-btn-info {background:rgba(109,109,110,0.75); color:#fff; backdrop-filter:blur(4px);}
-.nf-btn-info:hover {background:rgba(109,109,110,0.9);}
+.nf-banner{height:90vh;min-height:550px;background-size:cover;background-position:center;background-repeat:no-repeat;display:flex;align-items:flex-end;padding:0 4%;position:relative}
+.nf-banner::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent 0%,rgba(20,20,20,.2) 35%,rgba(20,20,20,.85) 75%,#141414 100%);pointer-events:none}
+.nf-banner-content{position:relative;z-index:10;max-width:700px;padding-bottom:80px;animation:fadeInUp .9s ease}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.nf-banner-title{font-size:4.5rem;font-weight:800;margin-bottom:20px;text-shadow:3px 5px 12px rgba(0,0,0,.7);line-height:1.05;letter-spacing:-2px}
+.nf-banner-desc{font-size:1.35rem;line-height:1.5;margin-bottom:32px;color:#fff;text-shadow:2px 3px 6px rgba(0,0,0,.6);max-width:600px}
+.nf-banner-meta{display:flex;align-items:center;gap:15px;margin-bottom:25px;font-size:.95rem}
+.nf-badge{background:#e50914;color:#fff;padding:4px 12px;border-radius:3px;font-weight:700;font-size:.85rem}
+.nf-rating{color:#46d369;font-weight:600}
+.nf-banner-btns{display:flex;gap:14px;flex-wrap:wrap}
+.nf-btn{padding:15px 38px;border:none;border-radius:5px;font-size:1.1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .25s ease;min-width:150px;justify-content:center}
+.nf-btn:hover{transform:scale(1.08);opacity:.95}
+.nf-btn:active{transform:scale(.98)}
+.nf-btn-play{background:#fff;color:#000}
+.nf-btn-play:hover{background:#f0f0f0}
+.nf-btn-info{background:rgba(109,109,110,.7);color:#fff;backdrop-filter:blur(5px)}
+.nf-btn-info:hover{background:rgba(109,109,110,.9)}
+.nf-btn-mylist{background:rgba(255,255,255,.2);color:#fff;border:2px solid #fff}
+.nf-btn-mylist:hover{background:#fff;color:#000}
 
 /* Netflix Rows */
-.nf-row {padding:15px 4% 25px; margin-bottom:10px; position:relative; z-index:5;}
-.nf-row-title {font-size:1.45rem; font-weight:600; margin-bottom:16px; color:#e5e5e5; display:flex; align-items:center; gap:10px;}
-.nf-row-posters {display:flex; gap:12px; overflow-x:auto; overflow-y:visible; padding:12px 4px 20px; scroll-behavior:smooth; scrollbar-width:none;}
-.nf-row-posters::-webkit-scrollbar {display:none;}
-.nf-poster {flex:0 0 auto; width:165px; border-radius:6px; transition:all 0.35s cubic-bezier(0.25,0.46,0.45,0.94); cursor:pointer; position:relative; overflow:hidden; background:#222;}
-.nf-poster:hover {transform:scale(1.12) translateY(-8px); box-shadow:0 15px 40px rgba(0,0,0,0.85); z-index:20; border:2px solid rgba(255,255,255,0.15);}
-.nf-poster img {width:100%; height:auto; display:block; border-radius:6px; transition:opacity 0.3s;}
-.nf-poster:hover img {opacity:0.95;}
-.nf-poster-large {width:240px;}
-.nf-poster-title {position:absolute; bottom:0; left:0; right:0; padding:40px 10px 12px; background:linear-gradient(transparent,rgba(0,0,0,0.9)); font-size:0.85rem; font-weight:500; opacity:0; transition:opacity 0.3s; text-align:center;}
-.nf-poster:hover .nf-poster-title {opacity:1;}
+.nf-row{padding:20px 4% 35px;position:relative;z-index:5}
+.nf-row-title{font-size:1.5rem;font-weight:600;margin-bottom:18px;color:#e5e5e5;display:flex;align-items:center;gap:12px}
+.nf-row-posters{display:flex;gap:14px;overflow-x:auto;overflow-y:visible;padding:15px 5px 30px;scroll-behavior:smooth;scrollbar-width:none}
+.nf-row-posters::-webkit-scrollbar{display:none}
+.nf-poster{flex:0 0 auto;width:180px;border-radius:6px;transition:all .4s cubic-bezier(.25,.46,.45,.94);cursor:pointer;position:relative;overflow:hidden;background:#1a1a1a}
+.nf-poster:hover{transform:scale(1.15) translateY(-12px);box-shadow:0 20px 50px rgba(0,0,0,.9);z-index:30;border:3px solid rgba(255,255,255,.25)}
+.nf-poster img{width:100%;height:auto;display:block;border-radius:6px;transition:opacity .3s}
+.nf-poster:hover img{opacity:.95}
+.nf-poster-large{width:260px}
+.nf-poster-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:50px;height:50px;background:rgba(255,255,255,.95);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#000;transition:transform .3s;z-index:5}
+.nf-poster:hover .nf-poster-play{transform:translate(-50%,-50%) scale(1)}
+.nf-poster-title{position:absolute;bottom:0;left:0;right:0;padding:50px 12px 15px;background:linear-gradient(transparent,rgba(0,0,0,.95));font-size:.9rem;font-weight:600;opacity:0;transition:opacity .3s;text-align:center}
+.nf-poster:hover .nf-poster-title{opacity:1}
 
 /* Netflix Footer */
-.nf-footer {padding:50px 4% 30px; color:#757575; font-size:0.88rem; border-top:1px solid #333; margin-top:30px; position:relative; z-index:5;}
-.nf-footer-links {display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px 20px; margin:25px 0; max-width:900px;}
-.nf-footer-links a {color:#757575; text-decoration:none; transition:color 0.2s;}
-.nf-footer-links a:hover {color:#fff; text-decoration:underline;}
-.nf-footer-bottom {margin-top:25px; padding-top:20px; border-top:1px solid #2a2a2a; font-size:0.82rem;}
-.nf-footer-logo {color:#e50914; font-weight:800; font-size:1.3rem; margin-bottom:15px; display:inline-block; letter-spacing:-1px;}
+.nf-footer{padding:60px 4% 40px;color:#757575;font-size:.9rem;border-top:1px solid #333;margin-top:40px;position:relative;z-index:5}
+.nf-footer-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 25px;margin:30px 0;max-width:1000px}
+.nf-footer-links a{color:#757575;text-decoration:none;transition:color .2s}
+.nf-footer-links a:hover{color:#fff;text-decoration:underline}
+.nf-footer-bottom{margin-top:30px;padding-top:25px;border-top:1px solid #2a2a2a;font-size:.85rem}
+.nf-footer-logo{color:#e50914;font-weight:900;font-size:1.5rem;margin-bottom:20px;display:inline-block;letter-spacing:-2px}
 
-/* Loading */
-.nf-loading {position:fixed; top:0; left:0; width:100%; height:100%; background:#141414; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:9999; transition:opacity 0.4s ease, visibility 0.4s;}
-.nf-loading.hidden {opacity:0; visibility:hidden; pointer-events:none;}
-.nf-loader {width:60px; height:60px; border:4px solid #333; border-top-color:#e50914; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:25px;}
-@keyframes spin {to{transform:rotate(360deg)}}
-.nf-loading-text {color:#757575; font-size:0.95rem; letter-spacing:2px; text-transform:uppercase; animation:pulse 1.5s ease-in-out infinite;}
-@keyframes pulse {0%,100%{opacity:0.6} 50%{opacity:1}}
+/* Loading Screen */
+.nf-loading{position:fixed;top:0;left:0;width:100%;height:100%;background:#141414;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10000;transition:opacity .5s ease,visibility .5s}
+.nf-loading.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.nf-loader{width:70px;height:70px;border:5px solid #333;border-top-color:#e50914;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:30px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.nf-loading-text{color:#757575;font-size:1rem;letter-spacing:3px;text-transform:uppercase;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
 
-/* Mobile */
-.nf-menu-toggle {display:none; font-size:1.5rem; cursor:pointer; color:#fff;}
-@media (max-width:1024px) {.nf-banner-title{font-size:3.2rem} .nf-banner-desc{font-size:1.1rem} .nf-poster{width:145px} .nf-poster-large{width:200px}}
-@media (max-width:768px) {.nf-nav{display:none} .nf-menu-toggle{display:block} .nf-banner{height:75vh; min-height:400px} .nf-banner-title{font-size:2.4rem} .nf-banner-desc{font-size:0.98rem} .nf-btn{padding:12px 24px; font-size:0.95rem} .nf-poster{width:125px} .nf-poster-large{width:170px} .nf-row-title{font-size:1.25rem} .nf-footer-links{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:480px) {.nf-header{padding:12px 3%} .nf-banner{height:70vh; padding:0 3%} .nf-banner-title{font-size:2rem} .nf-banner-desc{font-size:0.9rem} .nf-banner-btns{flex-direction:column; align-items:flex-start} .nf-btn{width:100%; justify-content:center} .nf-poster{width:110px} .nf-poster-large{width:150px} .nf-row{padding:12px 3% 20px} .nf-footer{padding:40px 3% 25px; font-size:0.82rem} .nf-footer-links{grid-template-columns:repeat(2,1fr); gap:10px 15px}}
+/* Mobile Menu */
+.nf-menu-toggle{display:none;font-size:1.8rem;cursor:pointer;color:#fff}
+
+/* Responsive */
+@media(max-width:1100px){.nf-banner-title{font-size:3.5rem}.nf-banner-desc{font-size:1.15rem}.nf-poster{width:155px}.nf-poster-large{width:220px}}
+@media(max-width:850px){.nf-nav{display:none}.nf-menu-toggle{display:block}.nf-banner{height:80vh;min-height:450px}.nf-banner-title{font-size:2.8rem}.nf-banner-desc{font-size:1rem}.nf-btn{padding:13px 30px;font-size:1rem}.nf-poster{width:135px}.nf-poster-large{width:190px}.nf-row-title{font-size:1.35rem}.nf-footer-links{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.nf-header{padding:10px 3%}.nf-banner{height:75vh;padding:0 3%}.nf-banner-title{font-size:2.2rem}.nf-banner-desc{font-size:.95rem}.nf-banner-btns{flex-direction:column;align-items:flex-start}.nf-btn{width:100%}.nf-poster{width:120px}.nf-poster-large{width:165px}.nf-row{padding:15px 3% 30px}.nf-footer{padding:50px 3% 30px;font-size:.85rem}.nf-footer-links{grid-template-columns:repeat(2,1fr);gap:12px 18px}}
 
 /* Utils */
-.sr-only {position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
-[role="button"]:focus, button:focus, a:focus {outline:2px solid #fff; outline-offset:2px;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+[role="button"]:focus,button:focus,a:focus{outline:2px solid #fff;outline-offset:2px}
 </style>
 </head>
 <body>
 
-<!-- ===== PORTFOLIO VIEW (MAIN) ===== -->
+<!-- ===== PORTFOLIO VIEW (ORIGINAL) ===== -->
 <div id="portfolio-view">
 <header>
 <h1>Luis Gustavo</h1>
@@ -118,7 +130,7 @@ footer {text-align:center; margin:80px 0 40px; color:#8b949e; padding:20px;}
 <section class="section"><h2>Impacto & Experiência</h2><p>Minha abordagem é centrada em resolver problemas reais com tecnologia. Cada projeto abaixo foi desenvolvido com foco em simular cenários de produção.</p></section>
 <section class="section"><h2>Projetos em Produção</h2><div class="projects">
 
-<!-- 1: Auth System (Vercel) -->
+<!-- 1: Sistema de Autenticação (Vercel) -->
 <div class="card" onclick="window.open('https://sistema-de-autentica-o.vercel.app','_blank')">
 <div class="tech">JavaScript • LocalStorage • Auth Flow</div>
 <h3>Sistema de Autenticação</h3>
@@ -129,7 +141,7 @@ footer {text-align:center; margin:80px 0 40px; color:#8b949e; padding:20px;}
 </div>
 </div>
 
-<!-- 2: API Consumer (Vercel) -->
+<!-- 2: Consumidor de API (Vercel) -->
 <div class="card" onclick="window.open('https://3-consumidor-de-api-dados-reais.vercel.app','_blank')">
 <div class="tech">JavaScript • Fetch API • Async/Await</div>
 <h3>Consumidor de API</h3>
@@ -140,7 +152,7 @@ footer {text-align:center; margin:80px 0 40px; color:#8b949e; padding:20px;}
 </div>
 </div>
 
-<!-- 3: Dashboard (Vercel) -->
+<!-- 3: Dashboard de Dados (Vercel) -->
 <div class="card" onclick="window.open('https://dashboard.vercel.app','_blank')">
 <div class="tech">Chart.js • Data Visualization • Responsive</div>
 <h3>Dashboard de Dados</h3>
@@ -151,13 +163,13 @@ footer {text-align:center; margin:80px 0 40px; color:#8b949e; padding:20px;}
 </div>
 </div>
 
-<!-- 4: Netflix Clone (SPA within same file) -->
-<div class="card" onclick="openNetflix()" style="border-color:#58a6ff; box-shadow:0 0 0 1px rgba(88,166,255,0.3);">
-<div class="tech">HTML • CSS • JavaScript • UI/UX <span class="gh-badge">Demo Integrada</span></div>
+<!-- 4: Netflix Clone (DEMO INTERATIVA) -->
+<div class="card" onclick="openNetflixDemo()" style="border-color:#e50914;box-shadow:0 0 0 2px rgba(229,9,20,.4)">
+<div class="tech">HTML • CSS • JavaScript • UI/UX <span class="gh-badge">Demo Interativa</span></div>
 <h3>Netflix Clone</h3>
-<p>Interface de streaming ultra realista com banners dinâmicos, carrosséis interativos e SPA routing.</p>
+<p>Interface de streaming ultra realista com banners dinâmicos, carrosséis interativos e experiência cinematográfica.</p>
 <div class="buttons" onclick="event.stopPropagation()">
-<a href="#/netflix" class="demo" onclick="openNetflix(); return false">🚀 Ver Projeto</a>
+<a href="#/netflix" class="demo" onclick="openNetflixDemo();return false">🎬 Experimentar Demo</a>
 <a href="https://github.com/luisgustavoleao896-cpu" target="_blank" class="code">💻 Código</a>
 </div>
 </div>
@@ -175,47 +187,58 @@ footer {text-align:center; margin:80px 0 40px; color:#8b949e; padding:20px;}
 
 </div></section>
 </div>
-<footer>© 2026 Luis Gustavo — Full Stack Engineer<br><small style="opacity:0.7; margin-top:8px; display:block;">Projetos no Vercel • Netflix Clone: Demo integrada nesta página</small></footer>
+<footer>© 2026 Luis Gustavo — Full Stack Engineer<br><small style="opacity:.7;margin-top:8px;display:block">Projetos hospedados no Vercel • Netflix Clone: Demo interativa nesta página</small></footer>
 </div>
 
-<!-- ===== NETFLIX VIEW (SPA) ===== -->
-<div id="netflix-view" role="main" aria-label="Netflix Clone Demo">
+<!-- ===== NETFLIX DEMO OVERLAY ===== -->
+<div id="netflix-overlay" role="dialog" aria-label="Netflix Clone Demo" aria-modal="true">
   
   <!-- Loading -->
   <div class="nf-loading" id="nf-loading"><div class="nf-loader"></div><div class="nf-loading-text">Carregando Netflix...</div></div>
   
   <!-- Header -->
   <header class="nf-header" id="nf-header">
-    <button class="nf-back" onclick="closeNetflix()">← Voltar ao Portfólio</button>
-    <a class="nf-logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">NETFLIX</a>
+    <button class="nf-close" onclick="closeNetflixDemo()">← Voltar</button>
+    <a class="nf-logo" onclick="document.getElementById('netflix-overlay').scrollTo({top:0,behavior:'smooth'})">NETFLIX</a>
     <nav><ul class="nf-nav"><li><a>Início</a></li><li><a>Séries</a></li><li><a>Filmes</a></li><li><a>Bombando</a></li><li><a>Minha Lista</a></li></ul></nav>
     <div class="nf-right">
-      <span class="nf-icon" aria-label="Buscar">🔍</span>
-      <span class="nf-icon" aria-label="Notificações">🔔</span>
-      <div class="nf-avatar" aria-label="Perfil">LG</div>
-      <span class="nf-menu-toggle" aria-label="Menu">☰</span>
+      <span class="nf-icon" aria-label="Buscar" title="Buscar">🔍</span>
+      <span class="nf-icon" aria-label="Notificações" title="Notificações">🔔</span>
+      <div class="nf-avatar" aria-label="Perfil" title="Meu Perfil">LG</div>
+      <span class="nf-menu-toggle" aria-label="Menu" title="Menu">☰</span>
     </div>
   </header>
 
-  <!-- Banner -->
+  <!-- Banner Hero -->
   <section class="nf-banner" id="nf-banner" aria-labelledby="nf-banner-title">
     <div class="nf-banner-content">
       <h1 class="nf-banner-title" id="nf-banner-title">Carregando...</h1>
-      <p class="nf-banner-desc" id="nf-banner-desc">Aguarde enquanto preparamos sua experiência de streaming.</p>
+      <div class="nf-banner-meta">
+        <span class="nf-badge">HD</span>
+        <span class="nf-rating">★ 9.8</span>
+        <span>2024</span>
+        <span>•</span>
+        <span>2h 18min</span>
+        <span>•</span>
+        <span>Ficção Científica</span>
+      </div>
+      <p class="nf-banner-desc" id="nf-banner-desc">Aguarde enquanto preparamos sua experiência de streaming cinematográfica.</p>
       <div class="nf-banner-btns">
-        <button class="nf-btn nf-btn-play"><span aria-hidden="true">▶</span> Assistir</button>
-        <button class="nf-btn nf-btn-info"><span aria-hidden="true">ℹ</span> Mais Info</button>
+        <button class="nf-btn nf-btn-play"><span aria-hidden="true" style="font-size:1.3rem">▶</span> Assistir</button>
+        <button class="nf-btn nf-btn-info"><span aria-hidden="true">ℹ</span> Mais Informações</button>
+        <button class="nf-btn nf-btn-mylist">＋ Minha Lista</button>
       </div>
     </div>
   </section>
 
-  <!-- Rows -->
+  <!-- Movie Rows -->
   <main>
-    <section class="nf-row"><h2 class="nf-row-title">🔥 Em Alta</h2><div class="nf-row-posters" id="nf-row-trending"></div></section>
+    <section class="nf-row"><h2 class="nf-row-title">🔥 Em Alta Agora</h2><div class="nf-row-posters" id="nf-row-trending"></div></section>
     <section class="nf-row"><h2 class="nf-row-title">⭐ Originais Netflix</h2><div class="nf-row-posters" id="nf-row-originals"></div></section>
-    <section class="nf-row"><h2 class="nf-row-title">🎬 Ações & Aventura</h2><div class="nf-row-posters" id="nf-row-action"></div></section>
-    <section class="nf-row"><h2 class="nf-row-title">🎭 Dramas Aclamados</h2><div class="nf-row-posters" id="nf-row-drama"></div></section>
+    <section class="nf-row"><h2 class="nf-row-title">🎬 Ações Épicas</h2><div class="nf-row-posters" id="nf-row-action"></div></section>
+    <section class="nf-row"><h2 class="nf-row-title">🎭 Dramas Premiados</h2><div class="nf-row-posters" id="nf-row-drama"></div></section>
     <section class="nf-row"><h2 class="nf-row-title">🚀 Ficção Científica</h2><div class="nf-row-posters" id="nf-row-scifi"></div></section>
+    <section class="nf-row"><h2 class="nf-row-title">😂 Comédias</h2><div class="nf-row-posters" id="nf-row-comedy"></div></section>
   </main>
 
   <!-- Footer -->
@@ -228,64 +251,71 @@ footer {text-align:center; margin:80px 0 40px; color:#8b949e; padding:20px;}
       <a href="#">Teste de velocidade</a><a href="#">Avisos legais</a><a href="#">Somente na Netflix</a>
     </div>
     <div class="nf-footer-bottom">
-      <p>🎬 Netflix Clone Demo • Desenvolvido por <strong>Luis Gustavo</strong> • 2026</p>
-      <p style="margin-top:8px; opacity:0.85;">Projeto educacional de portfólio. Todas as imagens e marcas pertencem aos seus proprietários.</p>
-      <p style="margin-top:12px; font-size:0.78rem; opacity:0.7;">Imagens via TMDB • Este produto não é endossado ou aprovado pelo TMDb.</p>
+      <p><strong>Netflix Clone Demo</strong> • Desenvolvido por Luis Gustavo • 2026</p>
+      <p style="margin-top:10px;opacity:.85">Projeto educacional de portfólio. Todas as imagens, títulos e marcas pertencem aos seus respectivos proprietários.</p>
+      <p style="margin-top:15px;font-size:.8rem;opacity:.7">Imagens via TMDB • Este produto utiliza a API do TMDb mas não é endossado, certificado ou aprovado pelo TMDb.</p>
     </div>
   </footer>
 </div>
 
 <!-- ===== JAVASCRIPT ===== -->
 <script>
-// 🎬 DADOS DOS FILMES (TMDB - URLs públicas)
+// 🎬 DADOS DOS FILMES (TMDB - URLs públicas e estáveis)
 const nfMovies = {
   trending: [
-    {title:"Interstellar", img:"https://image.tmdb.org/t/p/w300/gEU2QniE6E8AhEuA8FN8Z5p0J3h.jpg", banner:"https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg", desc:"Uma equipe de astronautas viaja por um buraco de minhoca em busca de um novo lar para a humanidade."},
-    {title:"The Batman", img:"https://image.tmdb.org/t/p/w300/74xTEgt7R36Fpooo50r9T25onhq.jpg", banner:"https://image.tmdb.org/t/p/original/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg", desc:"Quando um assassino em série visa a elite de Gotham, Batman investiga a corrupção da cidade."},
-    {title:"Avengers: Endgame", img:"https://image.tmdb.org/t/p/w300/or06FN3Dka5tukK1e9sl16pB3iy.jpg", banner:"https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg", desc:"Os Vingadores se reúnem para desfazer as ações de Thanos e restaurar o equilíbrio ao universo."},
-    {title:"Stranger Things", img:"https://image.tmdb.org/t/p/w300/49WJfeN0moxb9IPfGn8AIqMGskD.jpg", banner:"https://image.tmdb.org/t/p/original/56v2KjBlU4XaOv9rVYEQypROD7P.jpg", desc:"Quando um garoto desaparece, sua cidade revela mistérios sobrenaturais e experimentos secretos."},
-    {title:"Inception", img:"https://image.tmdb.org/t/p/w300/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg", banner:"https://image.tmdb.org/t/p/original/s3TBrRGB1iav7gFOCNx3H31MoES.jpg", desc:"Um ladrão que rouba segredos corporativos através de tecnologia de compartilhamento de sonhos."},
-    {title:"The Witcher", img:"https://image.tmdb.org/t/p/w300/7vjaCdMw15FEbXyLQTVa04URsPm.jpg", banner:"https://image.tmdb.org/t/p/original/m8rWq3j73ZGhDuLZW7fX6LwW7c.jpg", desc:"Geralt de Rívia luta para encontrar seu lugar em um mundo onde pessoas são mais cruéis que bestas."},
-    {title:"Dune: Part Two", img:"https://image.tmdb.org/t/p/w300/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg", banner:"https://image.tmdb.org/t/p/original/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg", desc:"Paul Atreides se une a Chani e aos Fremen em uma jornada de vingança contra os conspiradores."},
-    {title:"Oppenheimer", img:"https://image.tmdb.org/t/p/w300/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", banner:"https://image.tmdb.org/t/p/original/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg", desc:"A história do cientista que liderou o Projeto Manhattan para desenvolver a bomba atômica."}
+    {title:"Interstellar",img:"https://image.tmdb.org/t/p/w300/gEU2QniE6E8AhEuA8FN8Z5p0J3h.jpg",banner:"https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",desc:"Uma equipe de astronautas viaja por um buraco de minhoca em busca de um novo lar para a humanidade.",year:"2014",rating:"★ 9.3",duration:"2h 49min"},
+    {title:"The Batman",img:"https://image.tmdb.org/t/p/w300/74xTEgt7R36Fpooo50r9T25onhq.jpg",banner:"https://image.tmdb.org/t/p/original/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg",desc:"Quando um assassino em série visa a elite de Gotham, Batman investiga a corrupção da cidade.",year:"2022",rating:"★ 8.9",duration:"2h 56min"},
+    {title:"Avengers: Endgame",img:"https://image.tmdb.org/t/p/w300/or06FN3Dka5tukK1e9sl16pB3iy.jpg",banner:"https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",desc:"Os Vingadores se reúnem para desfazer as ações de Thanos e restaurar o equilíbrio ao universo.",year:"2019",rating:"★ 9.1",duration:"3h 1min"},
+    {title:"Stranger Things",img:"https://image.tmdb.org/t/p/w300/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",banner:"https://image.tmdb.org/t/p/original/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",desc:"Quando um garoto desaparece, sua cidade revela mistérios sobrenaturais e experimentos secretos.",year:"2016",rating:"★ 9.0",duration:"Série"},
+    {title:"Inception",img:"https://image.tmdb.org/t/p/w300/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg",banner:"https://image.tmdb.org/t/p/original/s3TBrRGB1iav7gFOCNx3H31MoES.jpg",desc:"Um ladrão que rouba segredos corporativos através de tecnologia de compartilhamento de sonhos.",year:"2010",rating:"★ 9.2",duration:"2h 28min"},
+    {title:"The Witcher",img:"https://image.tmdb.org/t/p/w300/7vjaCdMw15FEbXyLQTVa04URsPm.jpg",banner:"https://image.tmdb.org/t/p/original/m8rWq3j73ZGhDuLZW7fX6LwW7c.jpg",desc:"Geralt de Rívia luta para encontrar seu lugar em um mundo onde pessoas são mais cruéis que bestas.",year:"2019",rating:"★ 8.7",duration:"Série"},
+    {title:"Dune: Part Two",img:"https://image.tmdb.org/t/p/w300/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",banner:"https://image.tmdb.org/t/p/original/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg",desc:"Paul Atreides se une a Chani e aos Fremen em uma jornada de vingança contra os conspiradores.",year:"2024",rating:"★ 9.4",duration:"2h 46min"},
+    {title:"Oppenheimer",img:"https://image.tmdb.org/t/p/w300/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",banner:"https://image.tmdb.org/t/p/original/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",desc:"A história do cientista que liderou o Projeto Manhattan para desenvolver a bomba atômica.",year:"2023",rating:"★ 9.0",duration:"3h"}
   ],
   originals: [
-    {title:"Squid Game", img:"https://image.tmdb.org/t/p/w300/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg", banner:"https://image.tmdb.org/t/p/original/qw3J9cNeLioOLoR68WX7z79aCdK.jpg", desc:"Centenas de jogadores endividados competem em jogos infantis mortais por um prêmio tentador."},
-    {title:"Wednesday", img:"https://image.tmdb.org/t/p/w300/9PFonBhy4cQy7Jz20NpMygczOkv.jpg", banner:"https://image.tmdb.org/t/p/original/iHSwvRVsRyxpX7FE7GbviaDvgGZ.jpg", desc:"Wednesday Addams investiga mistérios sobrenaturais na Nevermore Academy."},
-    {title:"Dark", img:"https://image.tmdb.org/t/p/w300/56v2KjBlU4XaOv9rVYEQypROD7P.jpg", banner:"https://image.tmdb.org/t/p/original/9yxep7oJdkj3Pla9TD9gKflRApY.jpg", desc:"Uma família descobre segredos perturbadores enquanto busca por uma criança desaparecida."},
-    {title:"O Gambito da Rainha", img:"https://image.tmdb.org/t/p/w300/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg", banner:"https://image.tmdb.org/t/p/original/34OGjFEbHJd0BbBz0H1Qj6Lqz5T.jpg", desc:"Uma jovem prodígio do xadrez luta contra vícios enquanto busca se tornar a maior do mundo."},
-    {title:"Bridgerton", img:"https://image.tmdb.org/t/p/w300/luoKpgVwi1E5nQsi7W0UuKHu2Rq.jpg", banner:"https://image.tmdb.org/t/p/original/qaewZKBKmXjb4ZfR8F8pJl7VZCz.jpg", desc:"Os Bridgerton navegam pelo mundo do amor e da sociedade na Londres do século XIX."},
-    {title:"La Casa de Papel", img:"https://image.tmdb.org/t/p/w300/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg", banner:"https://image.tmdb.org/t/p/original/xGexTKCJDkl12dTW4YCBDXWb1AD.jpg", desc:"Um grupo de assaltantes executa o maior roubo da história na Casa da Moeda da Espanha."},
-    {title:"The Crown", img:"https://image.tmdb.org/t/p/w300/1M876KPjulVwppEpldhdc8V4o68.jpg", banner:"https://image.tmdb.org/t/p/original/1GJGvnH8f5gYzN0XqNvqkLqXqKz.jpg", desc:"A história do reinado da Rainha Elizabeth II e os eventos que moldaram a segunda metade do século XX."}
+    {title:"Squid Game",img:"https://image.tmdb.org/t/p/w300/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg",banner:"https://image.tmdb.org/t/p/original/qw3J9cNeLioOLoR68WX7z79aCdK.jpg",desc:"Centenas de jogadores endividados competem em jogos infantis mortais por um prêmio tentador.",year:"2021",rating:"★ 9.2",duration:"Série"},
+    {title:"Wednesday",img:"https://image.tmdb.org/t/p/w300/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",banner:"https://image.tmdb.org/t/p/original/iHSwvRVsRyxpX7FE7GbviaDvgGZ.jpg",desc:"Wednesday Addams investiga mistérios sobrenaturais na Nevermore Academy.",year:"2022",rating:"★ 8.8",duration:"Série"},
+    {title:"Dark",img:"https://image.tmdb.org/t/p/w300/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",banner:"https://image.tmdb.org/t/p/original/9yxep7oJdkj3Pla9TD9gKflRApY.jpg",desc:"Uma família descobre segredos perturbadores enquanto busca por uma criança desaparecida.",year:"2017",rating:"★ 9.5",duration:"Série"},
+    {title:"O Gambito da Rainha",img:"https://image.tmdb.org/t/p/w300/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg",banner:"https://image.tmdb.org/t/p/original/34OGjFEbHJd0BbBz0H1Qj6Lqz5T.jpg",desc:"Uma jovem prodígio do xadrez luta contra vícios enquanto busca se tornar a maior do mundo.",year:"2020",rating:"★ 9.1",duration:"Minissérie"},
+    {title:"Bridgerton",img:"https://image.tmdb.org/t/p/w300/luoKpgVwi1E5nQsi7W0UuKHu2Rq.jpg",banner:"https://image.tmdb.org/t/p/original/qaewZKBKmXjb4ZfR8F8pJl7VZCz.jpg",desc:"Os Bridgerton navegam pelo mundo do amor e da sociedade na Londres do século XIX.",year:"2020",rating:"★ 8.5",duration:"Série"},
+    {title:"La Casa de Papel",img:"https://image.tmdb.org/t/p/w300/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",banner:"https://image.tmdb.org/t/p/original/xGexTKCJDkl12dTW4YCBDXWb1AD.jpg",desc:"Um grupo de assaltantes executa o maior roubo da história na Casa da Moeda da Espanha.",year:"2017",rating:"★ 8.9",duration:"Série"},
+    {title:"The Crown",img:"https://image.tmdb.org/t/p/w300/1M876KPjulVwppEpldhdc8V4o68.jpg",banner:"https://image.tmdb.org/t/p/original/1GJGvnH8f5gYzN0XqNvqkLqXqKz.jpg",desc:"A história do reinado da Rainha Elizabeth II e os eventos que moldaram a segunda metade do século XX.",year:"2016",rating:"★ 9.0",duration:"Série"}
   ],
   action: [
-    {title:"John Wick 4", img:"https://image.tmdb.org/t/p/w300/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg", banner:"https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg", desc:"John Wick descobre um caminho para derrotar The High Table."},
-    {title:"Missão: Impossível", img:"https://image.tmdb.org/t/p/w300/6Kx88YQK0QqzLZKj3p5fYkLjJQd.jpg", banner:"https://image.tmdb.org/t/p/original/8Z8dptJEypuLoOQro1WugD855YE.jpg", desc:"Ethan Hunt e sua equipe enfrentam sua missão mais perigosa até agora."},
-    {title:"Top Gun: Maverick", img:"https://image.tmdb.org/t/p/w300/62HCnUTziyWcpDaBO2i1DX17ljH.jpg", banner:"https://image.tmdb.org/t/p/original/odJ4hx6g6vBt4lBWKFD1tI8WS4x.jpg", desc:"Depois de mais de trinta anos, Maverick está onde pertence: como um dos melhores pilotos da Marinha."},
-    {title:"Fast X", img:"https://image.tmdb.org/t/p/w300/fiVW06jE7z9YnO4trhaMEdclSiC.jpg", banner:"https://image.tmdb.org/t/p/original/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg", desc:"Dom Toretto e sua família são alvo do filho vingativo de um inimigo do passado."},
-    {title:"Extraction 2", img:"https://image.tmdb.org/t/p/w300/7gKI9hpEMcZUQpNgKrkDzJpbnNS.jpg", banner:"https://image.tmdb.org/t/p/original/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg", desc:"Tyler Rake retorna para outra missão impossível de resgate."},
-    {title:"Guardiões da Galáxia Vol. 3", img:"https://image.tmdb.org/t/p/w300/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg", banner:"https://image.tmdb.org/t/p/original/5YZbUmjbMa3ClvSW1Wj3Gk9QVmY.jpg", desc:"Peter Quill e os Guardiões embarcam em uma missão para proteger um dos seus."}
+    {title:"John Wick 4",img:"https://image.tmdb.org/t/p/w300/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",banner:"https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",desc:"John Wick descobre um caminho para derrotar The High Table.",year:"2023",rating:"★ 8.8",duration:"2h 49min"},
+    {title:"Missão: Impossível",img:"https://image.tmdb.org/t/p/w300/6Kx88YQK0QqzLZKj3p5fYkLjJQd.jpg",banner:"https://image.tmdb.org/t/p/original/8Z8dptJEypuLoOQro1WugD855YE.jpg",desc:"Ethan Hunt e sua equipe enfrentam sua missão mais perigosa até agora.",year:"2023",rating:"★ 8.6",duration:"2h 43min"},
+    {title:"Top Gun: Maverick",img:"https://image.tmdb.org/t/p/w300/62HCnUTziyWcpDaBO2i1DX17ljH.jpg",banner:"https://image.tmdb.org/t/p/original/odJ4hx6g6vBt4lBWKFD1tI8WS4x.jpg",desc:"Depois de mais de trinta anos, Maverick está onde pertence: como um dos melhores pilotos da Marinha.",year:"2022",rating:"★ 9.0",duration:"2h 10min"},
+    {title:"Fast X",img:"https://image.tmdb.org/t/p/w300/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",banner:"https://image.tmdb.org/t/p/original/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg",desc:"Dom Toretto e sua família são alvo do filho vingativo de um inimigo do passado.",year:"2023",rating:"★ 8.2",duration:"2h 21min"},
+    {title:"Extraction 2",img:"https://image.tmdb.org/t/p/w300/7gKI9hpEMcZUQpNgKrkDzJpbnNS.jpg",banner:"https://image.tmdb.org/t/p/original/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg",desc:"Tyler Rake retorna para outra missão impossível de resgate.",year:"2023",rating:"★ 8.5",duration:"2h 2min"},
+    {title:"Guardiões da Galáxia Vol. 3",img:"https://image.tmdb.org/t/p/w300/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",banner:"https://image.tmdb.org/t/p/original/5YZbUmjbMa3ClvSW1Wj3Gk9QVmY.jpg",desc:"Peter Quill e os Guardiões embarcam em uma missão para proteger um dos seus.",year:"2023",rating:"★ 8.9",duration:"2h 30min"}
   ],
   drama: [
-    {title:"O Poderoso Chefão", img:"https://image.tmdb.org/t/p/w300/3bhkrj58Vtu7enYsRolD1fZdja1.jpg", banner:"https://image.tmdb.org/t/p/original/tmU7GeKVybMWFButWEGl2M4GeiP.jpg", desc:"A saga da família Corleone, uma das máfias mais poderosas de Nova York."},
-    {title:"Forrest Gump", img:"https://image.tmdb.org/t/p/w300/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg", banner:"https://image.tmdb.org/t/p/original/7c9UVPPiTPltouxRVY6N9uUaHDa.jpg", desc:"A vida de Forrest Gump, que testemunha eventos históricos com seu coração puro."},
-    {title:"Um Sonho de Liberdade", img:"https://image.tmdb.org/t/p/w300/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg", banner:"https://image.tmdb.org/t/p/original/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg", desc:"Dois homens presos formam uma amizade ao longo de décadas dentro de uma prisão."},
-    {title:"A Lista de Schindler", img:"https://image.tmdb.org/t/p/w300/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg", banner:"https://image.tmdb.org/t/p/original/loRmRzQXZeqG78TqZuyvSlEQfZb.jpg", desc:"Oskar Schindler salva mais de mil judeus durante o Holocausto."},
-    {title:"Parasita", img:"https://image.tmdb.org/t/p/w300/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg", banner:"https://image.tmdb.org/t/p/original/TU9NIjwzjoKPwQHoHshkFcQUCG.jpg", desc:"Uma família pobre se infiltra na vida de uma família rica com consequências imprevisíveis."},
-    {title:"Coringa", img:"https://image.tmdb.org/t/p/w300/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg", banner:"https://image.tmdb.org/t/p/original/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg", desc:"A origem sombria de um dos vilões mais icônicos do cinema."}
+    {title:"O Poderoso Chefão",img:"https://image.tmdb.org/t/p/w300/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",banner:"https://image.tmdb.org/t/p/original/tmU7GeKVybMWFButWEGl2M4GeiP.jpg",desc:"A saga da família Corleone, uma das máfias mais poderosas de Nova York.",year:"1972",rating:"★ 9.7",duration:"2h 55min"},
+    {title:"Forrest Gump",img:"https://image.tmdb.org/t/p/w300/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",banner:"https://image.tmdb.org/t/p/original/7c9UVPPiTPltouxRVY6N9uUaHDa.jpg",desc:"A vida de Forrest Gump, que testemunha eventos históricos com seu coração puro.",year:"1994",rating:"★ 9.4",duration:"2h 22min"},
+    {title:"Um Sonho de Liberdade",img:"https://image.tmdb.org/t/p/w300/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",banner:"https://image.tmdb.org/t/p/original/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg",desc:"Dois homens presos formam uma amizade ao longo de décadas dentro de uma prisão.",year:"1994",rating:"★ 9.8",duration:"2h 22min"},
+    {title:"A Lista de Schindler",img:"https://image.tmdb.org/t/p/w300/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg",banner:"https://image.tmdb.org/t/p/original/loRmRzQXZeqG78TqZuyvSlEQfZb.jpg",desc:"Oskar Schindler salva mais de mil judeus durante o Holocausto.",year:"1993",rating:"★ 9.6",duration:"3h 15min"},
+    {title:"Parasita",img:"https://image.tmdb.org/t/p/w300/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",banner:"https://image.tmdb.org/t/p/original/TU9NIjwzjoKPwQHoHshkFcQUCG.jpg",desc:"Uma família pobre se infiltra na vida de uma família rica com consequências imprevisíveis.",year:"2019",rating:"★ 9.3",duration:"2h 12min"},
+    {title:"Coringa",img:"https://image.tmdb.org/t/p/w300/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",banner:"https://image.tmdb.org/t/p/original/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",desc:"A origem sombria de um dos vilões mais icônicos do cinema.",year:"2019",rating:"★ 9.1",duration:"2h 2min"}
   ],
   scifi: [
-    {title:"Interestelar", img:"https://image.tmdb.org/t/p/w300/gEU2QniE6E8AhEuA8FN8Z5p0J3h.jpg", banner:"https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg", desc:"Uma equipe viaja por um buraco de minhoca em busca de um novo lar para a humanidade."},
-    {title:"Matrix", img:"https://image.tmdb.org/t/p/w300/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg", banner:"https://image.tmdb.org/t/p/original/fNG7i7RqMErkcqhohV2a6cV1Ehy.jpg", desc:"Um hacker descobre a verdade sobre sua realidade e seu papel na guerra contra seus controladores."},
-    {title:"Blade Runner 2049", img:"https://image.tmdb.org/t/p/w300/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg", banner:"https://image.tmdb.org/t/p/original/ilKE2RPpJGZjJHwNw3gHhRfLd6X.jpg", desc:"Um novo blade runner descobre um segredo que pode mergulhar a sociedade no caos."},
-    {title:"Ex Machina", img:"https://image.tmdb.org/t/p/w300/9goP7k4Rw9J7VJLJkXwJQY3Lw6S.jpg", banner:"https://image.tmdb.org/t/p/original/9goP7k4Rw9J7VJLJkXwJQY3Lw6S.jpg", desc:"Um jovem programador é convidado para testar uma IA com consciência humana."},
-    {title:"A Chegada", img:"https://image.tmdb.org/t/p/w300/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg", banner:"https://image.tmdb.org/t/p/original/yIZ1xendyqKvY3FGeeUYUd5X9Mm.jpg", desc:"Uma linguista é recrutada para se comunicar com alienígenas que chegaram à Terra."}
+    {title:"Interestelar",img:"https://image.tmdb.org/t/p/w300/gEU2QniE6E8AhEuA8FN8Z5p0J3h.jpg",banner:"https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",desc:"Uma equipe viaja por um buraco de minhoca em busca de um novo lar para a humanidade.",year:"2014",rating:"★ 9.3",duration:"2h 49min"},
+    {title:"Matrix",img:"https://image.tmdb.org/t/p/w300/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",banner:"https://image.tmdb.org/t/p/original/fNG7i7RqMErkcqhohV2a6cV1Ehy.jpg",desc:"Um hacker descobre a verdade sobre sua realidade e seu papel na guerra contra seus controladores.",year:"1999",rating:"★ 9.2",duration:"2h 16min"},
+    {title:"Blade Runner 2049",img:"https://image.tmdb.org/t/p/w300/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg",banner:"https://image.tmdb.org/t/p/original/ilKE2RPpJGZjJHwNw3gHhRfLd6X.jpg",desc:"Um novo blade runner descobre um segredo que pode mergulhar a sociedade no caos.",year:"2017",rating:"★ 8.9",duration:"2h 44min"},
+    {title:"Ex Machina",img:"https://image.tmdb.org/t/p/w300/9goP7k4Rw9J7VJLJkXwJQY3Lw6S.jpg",banner:"https://image.tmdb.org/t/p/original/9goP7k4Rw9J7VJLJkXwJQY3Lw6S.jpg",desc:"Um jovem programador é convidado para testar uma IA com consciência humana.",year:"2014",rating:"★ 8.7",duration:"1h 48min"},
+    {title:"A Chegada",img:"https://image.tmdb.org/t/p/w300/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg",banner:"https://image.tmdb.org/t/p/original/yIZ1xendyqKvY3FGeeUYUd5X9Mm.jpg",desc:"Uma linguista é recrutada para se comunicar com alienígenas que chegaram à Terra.",year:"2016",rating:"★ 8.8",duration:"1h 56min"}
+  ],
+  comedy: [
+    {title:"Todo Mundo em Pânico",img:"https://image.tmdb.org/t/p/w300/fVQFPRuw3yWXojYDJvA5EoFjUOY.jpg",banner:"https://image.tmdb.org/t/p/original/fVQFPRuw3yWXojYDJvA5EoFjUOY.jpg",desc:"Uma paródia hilária dos filmes de terror mais famosos.",year:"2000",rating:"★ 7.8",duration:"1h 28min"},
+    {title:"Superbad",img:"https://image.tmdb.org/t/p/w300/ek8e8txUyUwd2BNqj6lFEerJfbq.jpg",banner:"https://image.tmdb.org/t/p/original/ek8e8txUyUwd2BNqj6lFEerJfbq.jpg",desc:"Dois amigos tentam aproveitar ao máximo sua última festa antes da faculdade.",year:"2007",rating:"★ 8.5",duration:"1h 53min"},
+    {title:"Se Beber, Não Case",img:"https://image.tmdb.org/t/p/w300/9wSbe4CwObACCQvaUVhWRRfMd76.jpg",banner:"https://image.tmdb.org/t/p/original/9wSbe4CwObACCQvaUVhWRRfMd76.jpg",desc:"Uma despedida de solteiro em Las Vegas sai completamente do controle.",year:"2009",rating:"★ 8.2",duration:"1h 40min"},
+    {title:"Apertem os Cintos",img:"https://image.tmdb.org/t/p/w300/qG2hJlZPqL8G0LqYqKqLqKqLqKq.jpg",banner:"https://image.tmdb.org/t/p/original/qG2hJlZPqL8G0LqYqKqLqKqLqKq.jpg",desc:"Uma comédia absurda sobre um voo que dá muito errado.",year:"1980",rating:"★ 8.9",duration:"1h 28min"},
+    {title:"As Branquelas",img:"https://image.tmdb.org/t/p/w300/5QEtCBM6aXHftr7sgFxxUUl9Ej8.jpg",banner:"https://image.tmdb.org/t/p/original/5QEtCBM6aXHftr7sgFxxUUl9Ej8.jpg",desc:"Dois agentes do FBI se disfarçam para proteger duas herdeiras.",year:"2004",rating:"★ 7.5",duration:"1h 49min"}
   ]
 };
 
 // 🎯 ELEMENTOS DOM
 const portfolioView = document.getElementById('portfolio-view');
-const netflixView = document.getElementById('netflix-view');
+const netflixOverlay = document.getElementById('netflix-overlay');
 const nfBanner = document.getElementById('nf-banner');
 const nfBannerTitle = document.getElementById('nf-banner-title');
 const nfBannerDesc = document.getElementById('nf-banner-desc');
@@ -297,8 +327,8 @@ function nfUpdateBanner(movie) {
   nfBanner.style.backgroundImage = `url(${movie.banner})`;
   nfBannerTitle.textContent = movie.title;
   nfBannerDesc.textContent = movie.desc;
-  nfBanner.style.opacity = '0.85';
-  setTimeout(() => nfBanner.style.opacity = '1', 150);
+  nfBanner.style.opacity = '0.9';
+  setTimeout(() => nfBanner.style.opacity = '1', 200);
 }
 
 // 🖼️ CRIAR POSTER NETFLIX
@@ -307,12 +337,25 @@ function nfCreatePoster(movie, isLarge = false) {
   poster.className = `nf-poster ${isLarge ? 'nf-poster-large' : ''}`;
   poster.setAttribute('role', 'listitem');
   poster.setAttribute('tabindex', '0');
-  poster.innerHTML = `<img src="${movie.img}" alt="${movie.title}" loading="lazy"><div class="nf-poster-title">${movie.title}</div>`;
-  const updateOnInteraction = () => nfUpdateBanner(movie);
+  poster.setAttribute('aria-label', movie.title);
+  poster.innerHTML = `<img src="${movie.img}" alt="${movie.title}" loading="lazy"><div class="nf-poster-play" aria-hidden="true">▶</div><div class="nf-poster-title">${movie.title}</div>`;
+  
+  const updateOnInteraction = () => {
+    nfUpdateBanner(movie);
+    // Efeito sutil de scroll suave para o banner
+    nfBanner.scrollIntoView({behavior: 'smooth', block: 'start'});
+  };
+  
   poster.addEventListener('click', updateOnInteraction);
   poster.addEventListener('mouseenter', updateOnInteraction);
   poster.addEventListener('focus', updateOnInteraction);
-  poster.addEventListener('keydown', (e) => { if(e.key==='Enter'||e.key===' '){e.preventDefault(); updateOnInteraction();}});
+  poster.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      updateOnInteraction();
+    }
+  });
+  
   return poster;
 }
 
@@ -324,7 +367,7 @@ function nfRenderRow(containerId, movieList, isLarge = false) {
   movieList.forEach(movie => container.appendChild(nfCreatePoster(movie, isLarge)));
 }
 
-// 🔄 INICIALIZAR NETFLIX
+// 🔄 INICIALIZAR NETFLIX DEMO
 function nfInit() {
   const featured = nfMovies.trending[0];
   nfUpdateBanner(featured);
@@ -333,42 +376,71 @@ function nfInit() {
   nfRenderRow('nf-row-action', nfMovies.action);
   nfRenderRow('nf-row-drama', nfMovies.drama);
   nfRenderRow('nf-row-scifi', nfMovies.scifi);
-  setTimeout(() => { nfLoading.classList.add('hidden'); setTimeout(() => nfLoading.remove(), 400); }, 900);
-  nfMovies.trending.slice(0,3).forEach(m => { const img = new Image(); img.src = m.banner; });
+  nfRenderRow('nf-row-comedy', nfMovies.comedy);
+  
+  // Remover loading screen
+  setTimeout(() => {
+    nfLoading.classList.add('hidden');
+    setTimeout(() => nfLoading.remove(), 500);
+  }, 1000);
+  
+  // Pré-carregar banners dos primeiros filmes
+  nfMovies.trending.slice(0,4).forEach(m => {
+    const img = new Image();
+    img.src = m.banner;
+  });
 }
 
-// 🚀 ABRIR NETFLIX VIEW
-function openNetflix() {
+// 🚀 ABRIR NETFLIX DEMO
+function openNetflixDemo() {
   portfolioView.style.display = 'none';
-  netflixView.classList.add('active');
+  netflixOverlay.classList.add('active');
   document.body.style.overflow = 'hidden';
-  window.scrollTo(0, 0);
+  
   // Inicializa apenas na primeira vez
-  if(!window.nfInitialized) { nfInit(); window.nfInitialized = true; }
-  // Atualiza URL hash para SPA routing
-  if(location.hash !== '#/netflix') history.pushState(null, '', '#/netflix');
+  if(!window.nfInitialized) {
+    nfInit();
+    window.nfInitialized = true;
+  }
+  
+  // Atualiza URL hash para SPA routing (evita 404)
+  if(location.hash !== '#/netflix') {
+    history.pushState(null, '', '#/netflix');
+  }
+  
+  // Scroll para o topo
+  netflixOverlay.scrollTo({top: 0, behavior: 'auto'});
 }
 
-// 🔙 FECHAR NETFLIX VIEW
-function closeNetflix() {
-  netflixView.classList.remove('active');
+// 🔙 FECHAR NETFLIX DEMO
+function closeNetflixDemo() {
+  netflixOverlay.classList.remove('active');
   portfolioView.style.display = 'block';
   document.body.style.overflow = '';
-  if(location.hash === '#/netflix') history.pushState(null, '', '#/');
+  
+  if(location.hash === '#/netflix') {
+    history.pushState(null, '', '#/');
+  }
 }
 
-// 📜 HEADER SCROLL EFFECT (Netflix)
+// 📜 HEADER SCROLL EFFECT
 function nfHandleHeaderScroll() {
-  nfHeader.classList.toggle('scrolled', window.scrollY > 50);
+  const scrolled = netflixOverlay.scrollTop > 50;
+  nfHeader.classList.toggle('scrolled', scrolled);
 }
-window.addEventListener('scroll', nfHandleHeaderScroll, {passive: true});
+netflixOverlay.addEventListener('scroll', nfHandleHeaderScroll, {passive: true});
 
-// ♿ ACESSIBILIDADE
-document.querySelectorAll('[role="button"]').forEach(btn => {
-  btn.addEventListener('keydown', (e) => { if(e.key==='Enter'||e.key===' '){e.preventDefault(); btn.click();}});
+// ♿ ACESSIBILIDADE: Suporte a teclado
+document.querySelectorAll('[role="button"], .nf-btn, [tabindex="0"]').forEach(el => {
+  el.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click?.();
+    }
+  });
 });
 
-// 📱 MOBILE MENU (Netflix)
+// 📱 MOBILE MENU TOGGLE
 const nfMenuToggle = document.querySelector('.nf-menu-toggle');
 const nfNav = document.querySelector('.nf-nav');
 if(nfMenuToggle && nfNav) {
@@ -377,38 +449,59 @@ if(nfMenuToggle && nfNav) {
     nfNav.style.display = isHidden ? 'flex' : 'none';
     nfNav.style.flexDirection = 'column';
     nfNav.style.position = 'absolute';
-    nfNav.style.top = '60px';
+    nfNav.style.top = '65px';
     nfNav.style.right = '4%';
     nfNav.style.background = '#141414';
-    nfNav.style.padding = '15px';
-    nfNav.style.borderRadius = '8px';
-    nfNav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.5)';
+    nfNav.style.padding = '18px';
+    nfNav.style.borderRadius = '10px';
+    nfNav.style.boxShadow = '0 8px 30px rgba(0,0,0,.7)';
+    nfNav.style.zIndex = '1001';
   });
 }
 
 // 🔄 SPA ROUTING COM HASH (Evita 404 no GitHub Pages)
 function handleRouting() {
-  const hash = location.hash;
-  if(hash === '#/netflix') {
-    openNetflix();
+  if(location.hash === '#/netflix') {
+    openNetflixDemo();
   } else {
-    closeNetflix();
+    closeNetflixDemo();
   }
 }
 window.addEventListener('hashchange', handleRouting);
 window.addEventListener('load', handleRouting);
 
-// 🛡️ FALLBACK PARA GITHUB PAGES (404 handling via JS)
-// Se o usuário acessar uma rota inválida, redireciona para home
-if(!['', '#/', '#/netflix'].includes(location.hash) && location.pathname !== '/') {
+// 🛡️ FALLBACK PARA GITHUB PAGES
+if(!['', '#/', '#'].includes(location.hash) && location.pathname !== '/' && !location.pathname.endsWith('index.html')) {
   history.replaceState(null, '', '#/');
 }
 
-// 🎯 INICIALIZAÇÃO GERAL
+// 🎯 INICIALIZAÇÃO
 if(document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => handleRouting());
+  document.addEventListener('DOMContentLoaded', handleRouting);
 } else {
   handleRouting();
+}
+
+// 🎮 BOTÕES DO BANNER (efeitos visuais)
+document.querySelectorAll('.nf-btn').forEach(btn => {
+  btn.addEventListener('mouseenter', function() {
+    this.style.transform = 'scale(1.08)';
+  });
+  btn.addEventListener('mouseleave', function() {
+    this.style.transform = 'scale(1)';
+  });
+});
+
+// 🎬 EFEITO DE HOVER NOS POSTERS (somente desktop)
+if(window.matchMedia('(hover: hover)').matches) {
+  document.querySelectorAll('.nf-poster').forEach(poster => {
+    poster.addEventListener('mouseenter', function() {
+      this.style.zIndex = '30';
+    });
+    poster.addEventListener('mouseleave', function() {
+      this.style.zIndex = '';
+    });
+  });
 }
 </script>
 </body>
